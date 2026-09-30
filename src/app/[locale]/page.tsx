@@ -1,37 +1,40 @@
 import { getDictionary } from "@/i18n/get-dictionary";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/sections/hero/Hero";
-import { Marquee } from "@/components/sections/Marquee";
-import { ServicesBento } from "@/components/sections/services/ServicesBento";
-import { GreenhouseSimulator } from "@/components/sections/greenhouse/GreenhouseSimulator";
-import { RoiCalculator } from "@/components/sections/calculator/RoiCalculator";
-import { Projects } from "@/components/sections/projects/Projects";
-import { ContactHub } from "@/components/sections/contact/ContactHub";
+import { Hero } from "@/components/sections/home/hero/Hero";
+import { ProjectShowcase } from "@/components/sections/home/ProjectShowcase";
+import { ServicesMatrix } from "@/components/sections/home/ServicesMatrix";
+import { Estimator } from "@/components/sections/home/Estimator";
+import { FootprintMap } from "@/components/sections/home/FootprintMap";
+import { ConsultationPortal } from "@/components/sections/home/ConsultationPortal";
+import { PROJECTS } from "@/data/projects";
+import { formatNumber } from "@/lib/utils";
 
 /**
- * Home — a Server Component. It loads the locale dictionary once and hands
- * each (client) section only its own slice, so no copy is duplicated in JS
- * that a section doesn't use. All three WebGL scenes are split into lazy
- * chunks (next/dynamic, ssr:false) that mount when their section nears view.
+ * Home — a Server Component. Loads the dictionary once and hands each client
+ * section only its slice. All WebGL scenes are lazy chunks (next/dynamic,
+ * ssr:false) that mount when their section nears the viewport.
  */
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getDictionary(locale);
+  const tower = PROJECTS[0];
+  const projectT = { showcase: t.showcase, common: t.common, text: t.projectsText };
 
   return (
-    <>
-      <Navbar t={t.nav} locale={locale} />
-      <main>
-        <Hero t={t.hero} />
-        <Marquee items={t.marquee} />
-        <ServicesBento t={t.services} />
-        <GreenhouseSimulator t={t.greenhouse} />
-        <RoiCalculator t={t.calculator} />
-        <Projects t={t.projects} />
-        <ContactHub t={t.contact} crops={Object.values(t.calculator.crops)} />
-      </main>
-      <Footer t={t.footer} nav={t.nav} />
-    </>
+    <main>
+      <Hero
+        t={t.hero}
+        locale={locale}
+        finale={{
+          name: t.projectsText[tower.id].name,
+          meta: `${tower.floors} ${t.common.units.floors} · ${tower.heightM} m · ${formatNumber(tower.areaM2)} m²`,
+          cta: t.showcase.viewAll,
+        }}
+      />
+      <ProjectShowcase t={projectT} locale={locale} />
+      <ServicesMatrix t={t.matrix} locale={locale} more={t.common.readMore} years={t.common.units.years} />
+      <Estimator t={t.estimator} locale={locale} years={t.common.units.years} />
+      <FootprintMap t={{ map: t.map, common: t.common, text: t.projectsText }} locale={locale} />
+      <ConsultationPortal t={t.contact} types={t.common.types} cities={t.common.cities} />
+    </main>
   );
 }

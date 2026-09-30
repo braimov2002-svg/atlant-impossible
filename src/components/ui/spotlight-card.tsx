@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Glass card with a cursor-following spotlight (--mx/--my) and the rotating
- * gold→lime hairline border on hover. The base surface for the bento grid.
+ * gold→cyan hairline border on hover. The base surface for the bento grid.
  */
 export function SpotlightCard({
   children,

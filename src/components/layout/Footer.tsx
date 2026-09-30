@@ -1,52 +1,73 @@
-import { ArrowUp } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
+import { NavLink } from "./NavLink";
+import { BackToTop } from "./BackToTop";
 import { site } from "@/lib/site";
 import type { Dictionary } from "@/i18n/dictionaries/uz";
 
-export function Footer({ t, nav }: { t: Dictionary["footer"]; nav: Dictionary["nav"] }) {
+export function Footer({ t, nav, locale }: { t: Dictionary["footer"]; nav: Dictionary["nav"]; locale: string }) {
+  const contacts = [
+    site.office.address && { icon: MapPin, label: site.office.address, href: undefined },
+    site.phone && { icon: Phone, label: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+    site.email && { icon: Mail, label: site.email, href: `mailto:${site.email}` },
+    site.telegram && { icon: Send, label: site.telegram, href: `https://t.me/${site.telegram.replace("@", "")}` },
+  ].filter(Boolean) as { icon: typeof MapPin; label: string; href?: string }[];
+
   return (
-    <footer className="relative overflow-hidden border-t border-emerald-line pt-20">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
-          <div className="max-w-sm">
-            <div className="flex items-center gap-3">
-              <Logo className="h-10 w-10" />
-              <span className="font-display text-sm tracking-[0.18em] text-mist">{site.name}</span>
+    <footer className="relative mt-16 overflow-hidden border-t border-line">
+      <div className="bg-blueprint pointer-events-none absolute inset-0 [mask-image:linear-gradient(180deg,#000,transparent_70%)] opacity-60" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pt-20 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="max-w-sm">
+          <div className="flex items-center gap-3">
+            <Logo className="h-11 w-11" />
+            <div className="leading-none">
+              <p className="font-sharp text-lg font-medium tracking-[0.28em] text-mist">ATLANT</p>
+              <p className="pt-1 font-mono text-[10px] tracking-[0.26em] text-steel uppercase">Construction Group</p>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-sage">{t.tagline}</p>
           </div>
-          <nav aria-label="Footer">
-            <ul className="flex flex-wrap gap-x-7 gap-y-3">
-              {nav.items.map((i) => (
-                <li key={i.href}>
-                  <a href={i.href} className="text-sm text-sage transition hover:text-lime">
-                    {i.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <p className="mt-5 text-sm leading-relaxed text-steel">{t.tagline}</p>
+        </div>
+        <nav aria-label={t.pages}>
+          <p className="font-mono text-[10px] tracking-[0.24em] text-slate uppercase">{t.pages}</p>
+          <ul className="mt-4 space-y-2.5">
+            {nav.items.map((i) => (
+              <li key={i.href}>
+                <NavLink href={`/${locale}${i.href}`} className="text-sm text-steel transition hover:text-gold">
+                  {i.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div>
+          <p className="font-mono text-[10px] tracking-[0.24em] text-slate uppercase">{t.contact}</p>
+          <ul className="mt-4 space-y-2.5 text-sm text-steel">
+            <li className="flex items-center gap-2.5">
+              <MapPin className="h-4 w-4 text-gold" /> Toshkent, O‘zbekiston
+            </li>
+            {contacts.map(({ icon: Icon, label, href }) => (
+              <li key={label}>
+                <a href={href} className="flex items-center gap-2.5 transition hover:text-cyan">
+                  <Icon className="h-4 w-4 text-gold" /> {label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      {/* Oversized outlined wordmark */}
       <p
         aria-hidden
-        className="mt-16 text-center font-display text-[clamp(5rem,22vw,20rem)] leading-[0.8] font-medium tracking-[-0.06em] text-transparent select-none [-webkit-text-stroke:1px_rgb(110_231_183/0.14)] [mask-image:linear-gradient(180deg,#000_30%,transparent)]"
+        className="font-sharp relative mt-14 text-center text-[clamp(4.5rem,19vw,17rem)] leading-[0.8] font-extralight tracking-[0.04em] text-transparent select-none [-webkit-text-stroke:1px_rgb(226_184_89/0.22)] [mask-image:linear-gradient(180deg,#000_35%,transparent)]"
       >
-        AGCG
+        ATLANT
       </p>
 
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 border-t border-emerald-line px-5 py-6 sm:px-8">
-        <p className="text-xs text-moss">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 border-t border-line px-5 py-6 sm:px-8">
+        <p className="text-xs text-slate">
           © {new Date().getFullYear()} {site.name}. {t.rights}
         </p>
-        <a
-          href="#top"
-          className="flex items-center gap-2 rounded-full border border-emerald-line px-4 py-2 font-mono text-[10px] tracking-[0.18em] text-sage uppercase transition hover:border-lime/50 hover:text-lime"
-        >
-          {t.backToTop} <ArrowUp className="h-3 w-3" />
-        </a>
+        <BackToTop label={t.backToTop} />
       </div>
     </footer>
   );

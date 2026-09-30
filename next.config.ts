@@ -8,7 +8,11 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@react-three/drei", "framer-motion", "lucide-react"],
   },
   async redirects() {
-    return [{ source: "/", destination: "/uz", permanent: false }];
+    // Unprefixed routes → default locale (so /projects, /services, /about also work)
+    return [
+      { source: "/", destination: "/uz", permanent: false },
+      { source: "/:page(projects|services|about)", destination: "/uz/:page", permanent: false },
+    ];
   },
   async headers() {
     return [

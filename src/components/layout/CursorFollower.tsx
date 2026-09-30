@@ -61,19 +61,19 @@ export function CursorFollower() {
         <div
           className={`-translate-x-1/2 -translate-y-1/2 rounded-full border transition-[width,height,background-color,border-color] duration-500 ease-[var(--ease-out-expo)] ${
             label
-              ? "flex h-9 w-auto items-center border-lime/60 bg-forest-950/80 px-4 backdrop-blur-md"
-              : "h-9 w-9 border-lime/40"
+              ? "flex h-9 w-auto items-center border-cyan/60 bg-obsidian-900/80 px-4 backdrop-blur-md"
+              : "h-9 w-9 border-cyan/40"
           }`}
         >
           {label && (
-            <span className="font-mono text-[11px] tracking-widest whitespace-nowrap text-lime uppercase">
+            <span className="font-mono text-[11px] tracking-widest whitespace-nowrap text-cyan uppercase">
               {label}
             </span>
           )}
         </div>
       </div>
       <div ref={dotRef} className="invisible absolute top-0 left-0 opacity-0">
-        <div className="h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime shadow-[0_0_12px_#00ff66]" />
+        <div className="h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan shadow-[0_0_12px_#00f0ff]" />
       </div>
     </div>
   );

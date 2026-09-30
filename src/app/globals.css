@@ -1,120 +1,108 @@
 @import "tailwindcss";
 
 /* ───────────────────────────────────────────────────────────────────────────
-   AGCG design system — "Cyber-Organic / High-Tech Agro"
+   ATLANT design system — "Architectural Grandeur Meets Cyber-Futurism"
    Tailwind v4 is CSS-first: this @theme block IS the Tailwind config.
-   Every token becomes a utility (bg-forest-950, text-gold, font-display, …).
+   Every token becomes a utility (bg-obsidian-900, text-gold, font-display…).
    ─────────────────────────────────────────────────────────────────────────── */
 
 @theme {
   /* Core palette */
-  --color-forest-950: #0a1a12;
-  --color-forest-900: #0d2117;
-  --color-forest-850: #10281c;
-  --color-forest-800: #143222;
-  --color-forest-700: #1b412d;
-  --color-forest-600: #25573c;
+  --color-obsidian-950: #06080d;
+  --color-obsidian-900: #0b0f17; /* primary background */
+  --color-obsidian-850: #0e131d;
+  --color-obsidian-800: #121926;
+  --color-titanium-800: #1e293b; /* titanium gray */
+  --color-titanium-700: #273449;
+  --color-titanium-600: #334155;
 
-  --color-emerald-glass: rgb(16 185 129 / 0.1);
-  --color-emerald-line: rgb(110 231 183 / 0.16);
+  --color-gold: #e2b859; /* champagne matte gold */
+  --color-gold-soft: #f1d693;
+  --color-gold-deep: #a9832f;
 
-  --color-gold: #d4af37;
-  --color-gold-soft: #e8cf7a;
-  --color-gold-deep: #9c7c1f;
+  --color-cyan: #00f0ff; /* blueprint glow */
+  --color-cyan-soft: #8af8ff;
+  --color-cyan-deep: #0a7f8c;
 
-  --color-lime: #00ff66;
-  --color-lime-soft: #7dffb0;
+  --color-mist: #e6edf5;
+  --color-steel: #94a3b8;
+  --color-slate: #64748b;
+  --color-concrete: #a3a9b3;
 
-  --color-mist: #e8f2ec;
-  --color-sage: #8fa89a;
-  --color-moss: #5d7567;
+  --color-line: rgb(148 163 184 / 0.14);
+  --color-line-strong: rgb(148 163 184 / 0.26);
+  --color-line-cyan: rgb(0 240 255 / 0.22);
 
-  --color-soil: #8a6a44;
-  --color-water: #38bdf8;
-
-  /* Typography — CSS variables are injected by next/font in [locale]/layout.tsx */
-  --font-display: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  /* Typography — variables injected by next/font in [locale]/layout.tsx */
+  --font-display: var(--font-geologica), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
-
-  --text-display-xl: clamp(2.35rem, 1.1rem + 5.2vw, 5.6rem);
-  --text-display-xl--line-height: 1.02;
-  --text-display-xl--letter-spacing: -0.035em;
-  --text-display-lg: clamp(2rem, 1.2rem + 3.4vw, 4rem);
-  --text-display-lg--line-height: 1.05;
-  --text-display-lg--letter-spacing: -0.03em;
 
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-liquid: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --animate-marquee: marquee 38s linear infinite;
   --animate-shimmer: shimmer 2.4s var(--ease-liquid) infinite;
   --animate-pulse-ring: pulse-ring 2.2s var(--ease-out-expo) infinite;
-  --animate-float: float 7s ease-in-out infinite;
-  --animate-spin-slow: spin 14s linear infinite;
-  --animate-border-spin: border-spin 4s linear infinite;
-  --animate-drip: drip 1.6s cubic-bezier(0.55, 0, 1, 0.45) infinite;
-  --animate-wave: wave 5s linear infinite;
+  --animate-border-spin: border-spin 5s linear infinite;
   --animate-word-up: word-up 1.15s var(--ease-out-expo) both;
   --animate-fade-up: fade-up 1s var(--ease-out-expo) both;
+  --animate-scan: scan 3.2s var(--ease-liquid) infinite;
+  --animate-beam: beam 6s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
 
-  @keyframes marquee {
-    to { transform: translateX(-50%); }
-  }
   @keyframes shimmer {
     from { transform: translateX(-120%) skewX(-18deg); }
-    to { transform: translateX(220%) skewX(-18deg); }
+    to { transform: translateX(260%) skewX(-18deg); }
   }
   @keyframes pulse-ring {
     0% { transform: scale(0.6); opacity: 0.9; }
     100% { transform: scale(2.4); opacity: 0; }
   }
-  @keyframes float {
-    0%, 100% { transform: translate3d(0, 0, 0); }
-    50% { transform: translate3d(0, -10px, 0); }
-  }
   @keyframes border-spin {
     to { --border-angle: 360deg; }
   }
-  @keyframes drip {
-    0% { transform: translateY(0) scale(1, 1); opacity: 0; }
-    15% { opacity: 1; }
-    85% { transform: translateY(46px) scale(0.9, 1.15); opacity: 1; }
-    100% { transform: translateY(52px) scale(1.4, 0.4); opacity: 0; }
-  }
-  @keyframes wave {
-    to { transform: translateX(-50%); }
-  }
   /* Hero headline runs on CSS (not JS) so the LCP text paints before hydration */
   @keyframes word-up {
-    from { transform: translateY(108%) rotate(3deg); }
+    from { transform: translateY(108%); }
     to { transform: none; }
   }
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
     to { opacity: 1; transform: none; filter: none; }
   }
+  @keyframes scan {
+    0% { transform: translateY(-100%); opacity: 0; }
+    15%, 85% { opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
+  }
+  @keyframes beam {
+    0%, 100% { transform: rotate(-9deg); opacity: 0.55; }
+    50% { transform: rotate(7deg); opacity: 0.9; }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
 }
 
-/* shadcn/ui semantic tokens, mapped onto the palette (so `npx shadcn add` just works) */
+/* shadcn/ui semantic tokens mapped onto the palette */
 :root {
-  --background: var(--color-forest-950);
+  --background: var(--color-obsidian-900);
   --foreground: var(--color-mist);
-  --card: rgb(13 33 23 / 0.6);
+  --card: rgb(18 25 38 / 0.6);
   --card-foreground: var(--color-mist);
   --primary: var(--color-gold);
-  --primary-foreground: var(--color-forest-950);
-  --secondary: var(--color-forest-800);
+  --primary-foreground: var(--color-obsidian-900);
+  --secondary: var(--color-titanium-800);
   --secondary-foreground: var(--color-mist);
-  --muted: var(--color-forest-850);
-  --muted-foreground: var(--color-sage);
-  --accent: var(--color-lime);
-  --accent-foreground: var(--color-forest-950);
-  --destructive: #ff5a5a;
-  --border: var(--color-emerald-line);
-  --input: rgb(110 231 183 / 0.2);
-  --ring: var(--color-lime);
+  --muted: var(--color-obsidian-850);
+  --muted-foreground: var(--color-steel);
+  --accent: var(--color-cyan);
+  --accent-foreground: var(--color-obsidian-900);
+  --destructive: #ff6b6b;
+  --border: var(--color-line);
+  --input: var(--color-line-strong);
+  --ring: var(--color-cyan);
   --radius: 1.25rem;
   color-scheme: dark;
 }
@@ -142,7 +130,6 @@
   --radius-xl: calc(var(--radius) + 6px);
 }
 
-/* Animatable angle for the rotating conic border */
 @property --border-angle {
   syntax: "<angle>";
   inherits: false;
@@ -151,54 +138,63 @@
 
 /* ─── Custom utilities ──────────────────────────────────────────────────── */
 
-/* Emerald glassmorphism — the base surface of every HUD and card */
+/* Titanium glassmorphism — base surface for HUDs, cards, header */
 @utility glass {
   background:
-    linear-gradient(135deg, rgb(16 185 129 / 0.09), rgb(10 26 18 / 0.42) 60%),
-    rgb(10 26 18 / 0.35);
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-  border: 1px solid var(--color-emerald-line);
+    linear-gradient(135deg, rgb(148 163 184 / 0.08), rgb(11 15 23 / 0.5) 60%),
+    rgb(11 15 23 / 0.4);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--color-line);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.06),
-    0 24px 60px -24px rgb(0 0 0 / 0.7);
+    0 24px 60px -24px rgb(0 0 0 / 0.75);
 }
 
 @utility glass-strong {
   background:
-    linear-gradient(135deg, rgb(16 185 129 / 0.14), rgb(10 26 18 / 0.7) 55%),
-    rgb(10 26 18 / 0.65);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgb(110 231 183 / 0.22);
+    linear-gradient(135deg, rgb(148 163 184 / 0.12), rgb(11 15 23 / 0.78) 55%),
+    rgb(11 15 23 / 0.7);
+  backdrop-filter: blur(26px) saturate(150%);
+  border: 1px solid var(--color-line-strong);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.08),
-    0 30px 80px -30px rgb(0 0 0 / 0.8);
+    0 30px 80px -30px rgb(0 0 0 / 0.85);
+}
+
+/* Blueprint glass — cyan-tinted variant for technical overlays */
+@utility glass-cyan {
+  background: linear-gradient(135deg, rgb(0 240 255 / 0.08), rgb(11 15 23 / 0.55) 60%);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-line-cyan);
 }
 
 @utility text-gold-gradient {
-  background: linear-gradient(100deg, #f6e7a8 0%, var(--color-gold) 38%, #b8912a 62%, #f1dc8c 100%);
-  background-size: 200% 100%;
+  background: linear-gradient(100deg, #f7e5b5 0%, var(--color-gold) 40%, #b98f36 65%, #f3dc9f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-@utility text-lime-glow {
-  color: var(--color-lime);
-  text-shadow: 0 0 18px rgb(0 255 102 / 0.55);
+@utility text-cyan-glow {
+  color: var(--color-cyan);
+  text-shadow: 0 0 18px rgb(0 240 255 / 0.55);
 }
 
-/* Cursor spotlight — set --mx / --my on the element (see <SpotlightCard />) */
+/* Sharpened display type (Geologica SHRP axis) — crisp architectural corners */
+@utility font-sharp {
+  font-family: var(--font-display);
+  font-variation-settings: "SHRP" 70;
+}
+
 @utility spotlight {
   background-image: radial-gradient(
     520px circle at var(--mx, 50%) var(--my, 50%),
-    rgb(0 255 102 / 0.09),
+    rgb(0 240 255 / 0.08),
     transparent 42%
   );
 }
 
-/* Rotating gold→lime hairline border. Needs `relative` + rounded corners. */
+/* Rotating gold→cyan hairline border on hover. Needs `relative` + rounding. */
 @utility shimmer-border {
   &::before {
     content: "";
@@ -209,8 +205,8 @@
     background: conic-gradient(
       from var(--border-angle),
       transparent 0deg,
-      rgb(212 175 55 / 0.9) 50deg,
-      rgb(0 255 102 / 0.8) 90deg,
+      rgb(226 184 89 / 0.9) 50deg,
+      rgb(0 240 255 / 0.8) 90deg,
       transparent 140deg
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -227,10 +223,14 @@
   }
 }
 
-/* Faint dot grid, like a field survey map */
-@utility bg-field-grid {
-  background-image: radial-gradient(rgb(143 168 154 / 0.14) 1px, transparent 1px);
-  background-size: 22px 22px;
+/* Engineering drawing grid (minor + major lines) */
+@utility bg-blueprint {
+  background-image:
+    linear-gradient(rgb(0 240 255 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 240 255 / 0.07) 1px, transparent 1px),
+    linear-gradient(rgb(0 240 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 240 255 / 0.035) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
 }
 
 @utility no-scrollbar {
@@ -242,53 +242,50 @@
 
 @layer base {
   html {
-    background: var(--color-forest-950);
+    background: var(--color-obsidian-900);
     color: var(--color-mist);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
   }
 
   body {
     font-family: var(--font-sans);
     background:
-      radial-gradient(1200px 800px at 85% -10%, rgb(16 185 129 / 0.12), transparent 60%),
-      radial-gradient(900px 700px at -10% 30%, rgb(212 175 55 / 0.05), transparent 60%),
-      var(--color-forest-950);
+      radial-gradient(1200px 800px at 80% -10%, rgb(0 240 255 / 0.06), transparent 60%),
+      radial-gradient(900px 700px at -10% 30%, rgb(226 184 89 / 0.05), transparent 60%),
+      var(--color-obsidian-900);
     overflow-x: clip;
   }
 
   ::selection {
-    background: var(--color-lime);
-    color: var(--color-forest-950);
+    background: var(--color-gold);
+    color: var(--color-obsidian-900);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-lime);
+    outline: 2px solid var(--color-cyan);
     outline-offset: 3px;
     border-radius: 6px;
   }
 
-  /* Film-grain overlay — adds tactile depth to flat dark surfaces */
+  /* Film grain — tactile depth on flat dark surfaces */
   body::after {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 100;
-    opacity: 0.045;
+    opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: var(--color-forest-950); }
+  ::-webkit-scrollbar-track { background: var(--color-obsidian-900); }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-forest-700);
-    border: 3px solid var(--color-forest-950);
+    background: var(--color-titanium-700);
+    border: 3px solid var(--color-obsidian-900);
     border-radius: 99px;
   }
-
-  input[type="range"] { accent-color: var(--color-lime); }
 }
 
 /* Lenis — recommended base styles */

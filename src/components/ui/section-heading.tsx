@@ -33,15 +33,15 @@ export function SectionHeading({
       <motion.p
         variants={fadeUp}
         className={cn(
-          "flex items-center gap-3 font-mono text-[11px] tracking-[0.22em] text-sage uppercase",
+          "flex items-center gap-3 font-mono text-[11px] tracking-[0.22em] text-steel uppercase",
           align === "center" && "justify-center",
         )}
       >
-        <span className="text-lime">{index}</span>
-        <span className="h-px w-8 bg-gradient-to-r from-lime to-transparent" />
+        <span className="text-cyan">{index}</span>
+        <span className="h-px w-8 bg-gradient-to-r from-cyan to-transparent" />
         {eyebrow}
       </motion.p>
-      <h2 className="mt-5 font-display text-[clamp(1.75rem,1rem+2.6vw,3.25rem)] leading-[1.08] font-normal tracking-[-0.03em] text-balance text-mist">
+      <h2 className="font-sharp mt-5 text-[clamp(1.85rem,1rem+2.8vw,3.5rem)] leading-[1.05] font-light tracking-[-0.035em] text-balance text-mist">
         <span className="block overflow-hidden pb-[0.06em]">
           <motion.span variants={lineReveal} className="block">
             {title} {accent && <span className="text-gold-gradient">{accent}</span>}
@@ -51,7 +51,7 @@ export function SectionHeading({
       {description && (
         <motion.p
           variants={fadeUp}
-          className={cn("mt-5 max-w-xl text-[15px] leading-relaxed text-sage sm:text-base", align === "center" && "mx-auto")}
+          className={cn("mt-5 max-w-xl text-[15px] leading-relaxed text-steel sm:text-base", align === "center" && "mx-auto")}
         >
           {description}
         </motion.p>

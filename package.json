@@ -1,8 +1,8 @@
 {
-  "name": "agcg-impossible",
+  "name": "atlant-impossible",
   "version": "0.1.0",
   "private": true,
-  "description": "Agro Global Consulting Group — next-generation interactive agro-consulting web experience",
+  "description": "Atlant Construction Group — interactive 3D architectural web showcase",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

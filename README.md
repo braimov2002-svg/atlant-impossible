@@ -1,47 +1,46 @@
-# AGCG — Impossible Edition
+# ATLANT — Construction Group · Impossible Edition
 
-Next-generation interactive web experience for **Agro Global Consulting Group** (agcg.uz): smart farming meets high-tech futuristic luxe.
-Uzbek-first (`/uz`), statically generated, with three lazily-loaded WebGL scenes.
+Interactive 3D web showcase for **Atlant Construction Group** (agcg.uz): "Architectural Grandeur Meets Cyber-Futurism".
+Uzbek-first (`/uz`), statically generated, four routes, one procedural 3D building engine.
 
-![Hero](docs/screenshots/hero.jpg)
-
-| Region focus | 3D greenhouse | ROI calculator |
+| Scroll-to-build hero | | |
 | --- | --- | --- |
-| ![](docs/screenshots/hero-region.jpg) | ![](docs/screenshots/greenhouse.jpg) | ![](docs/screenshots/calculator.jpg) |
+| ![](docs/screenshots/hero-blueprint.jpg) | ![](docs/screenshots/hero-building.jpg) | ![](docs/screenshots/hero-complete.jpg) |
+| **Blueprint / realistic showcase** | **Services matrix** | **Tashkent footprint map** |
+| ![](docs/screenshots/showcase-blueprint.jpg) | ![](docs/screenshots/services-matrix.jpg) | ![](docs/screenshots/map-tashkent.jpg) |
+| **/projects** | **/services** | **/about** |
+| ![](docs/screenshots/projects-gallery.jpg) | ![](docs/screenshots/services-page.jpg) | ![](docs/screenshots/about-timeline.jpg) |
 
-| Before / after | Mobile |
-| --- | --- |
-| ![](docs/screenshots/projects.jpg) | <img src="docs/screenshots/mobile.jpg" width="220"> |
+<img src="docs/screenshots/mobile.jpg" width="360" alt="Mobile">
 
 ## Quick start
 
 ```bash
 # Node ≥ 20.9
 npm install
-npm run dev          # http://localhost:3000 → redirects to /uz
+npm run dev              # http://localhost:3000 → /uz
 npm run build && npm start
 npm run typecheck
+cp .env.example .env.local   # optional: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID for bookings
 ```
 
-Optional — forward consultation requests to Telegram:
+QA helper: append `?lod=high|mid|low|none` to any URL to force a 3D level-of-detail tier.
 
-```bash
-cp .env.example .env.local   # fill TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
-```
+## Routes
 
-QA helper: append `?lod=high|mid|low|none` to force a 3D level-of-detail tier (`none` = no-WebGL fallback).
+| Route | What it is |
+| --- | --- |
+| `/uz` | Scroll-built 3D hero, flagship showcase, services matrix, cost & timeline estimator, 3D map, booking portal |
+| `/uz/projects` | Filterable gallery. Every card is a live 3D model with its own Blueprint ⇄ Realistic switch (plus a global switch) |
+| `/uz/services` | Bento of BIM · General construction · Heavy infrastructure over live material shaders |
+| `/uz/about` | GSAP ScrollTrigger timeline with a sticky map that lights up the company footprint |
+
+`/`, `/projects`, `/services`, `/about` redirect to the `/uz/…` equivalents.
 
 ## Stack
 
-| Layer | Choice |
-| --- | --- |
-| Framework | **Next.js 15.5** (App Router, RSC, Server Actions, SSG via `generateStaticParams`), **React 19** |
-| Styling | **Tailwind CSS v4** (CSS-first `@theme` config), shadcn/ui (new-york, custom glass variants), `class-variance-authority` |
-| 3D | **three r186**, **@react-three/fiber 9**, **@react-three/drei 10**, custom GLSL |
-| Motion | **GSAP 3** + ScrollTrigger + `@gsap/react`, **Framer Motion**, **Lenis** smooth scroll (driven by GSAP's ticker) |
-| UI | lucide-react, Radix Slider |
-| Validation | zod 4 (server action) |
-| Fonts | Unbounded · Manrope · JetBrains Mono via `next/font/google` (self-hosted at build, **Latin + Cyrillic** so a Russian locale needs no font work) |
+Next.js 15.5 (App Router, RSC, Server Actions, SSG) · React 19 · Tailwind CSS v4 (`@theme` config) · three r186 · @react-three/fiber 9 · @react-three/drei 10 · GSAP 3 + ScrollTrigger + @gsap/react · Framer Motion · Lenis · Radix Slider · lucide-react · zod 4.
+Fonts (self-hosted via `next/font`, all with Cyrillic): **Geologica** (variable, `SHRP` sharpness axis → `font-sharp` utility), **Onest**, **JetBrains Mono**.
 
 ## Architecture
 
@@ -49,78 +48,80 @@ QA helper: append `?lod=high|mid|low|none` to force a 3D level-of-detail tier (`
 src/
 ├─ app/
 │  ├─ [locale]/
-│  │  ├─ layout.tsx        # root layout: fonts, metadata, JSON-LD, Lenis, cursor
-│  │  ├─ page.tsx          # Server Component — loads dictionary, composes sections
-│  │  └─ not-found.tsx
-│  ├─ actions/consultation.ts   # "use server" — zod validation, honeypot, Telegram (fetch-only → Edge-ready)
-│  ├─ globals.css          # ★ design system: Tailwind v4 @theme tokens, glass/shimmer/spotlight utilities
-│  └─ icon.svg
+│  │  ├─ layout.tsx          # root layout: fonts, metadata, Header + Footer + Lenis (persist across routes)
+│  │  ├─ template.tsx        # route transition: obsidian curtain + gold/cyan blade (opacity-only wrapper)
+│  │  ├─ page.tsx            # ★ home (Server Component)
+│  │  ├─ projects/page.tsx   # gallery
+│  │  ├─ services/page.tsx   # services bento
+│  │  └─ about/page.tsx      # timeline
+│  ├─ actions/inquiry.ts     # "use server" booking: zod, Tashkent-time slot validation, honeypot, Telegram
+│  └─ globals.css            # ★ design system (Tailwind v4 @theme tokens + glass/shimmer/blueprint utilities)
 ├─ components/
 │  ├─ three/
-│  │  ├─ AgroGlobe.tsx     # ★ hero globe: land dots, UZ dot-matrix, region nodes, tech-hub arcs
-│  │  ├─ shaders.ts        # GLSL for globe (reveal, ripples, atmosphere, beams)
-│  │  ├─ GreenhouseScene.tsx  # procedural Venlo greenhouse + 4 interactive systems
-│  │  ├─ ContactPortal.tsx    # extruded UZ map + dropping Tashkent pin
-│  │  ├─ SceneCanvas.tsx      # shared Canvas shell: lazy mount, offscreen pause, LOD, fallback
-│  │  └─ data/globe-data.json # 12 KB bitmask geo dataset (see scripts/)
-│  ├─ sections/            # hero/, services/, greenhouse/, calculator/, projects/, contact/, Marquee
-│  ├─ layout/              # Navbar, Footer, SmoothScroll (Lenis×GSAP), CursorFollower
-│  └─ ui/                  # shadcn-style primitives: button, slider, spotlight-card, magnetic, …
-├─ hooks/                  # useDeviceTier (LOD), useInViewport, useReducedMotion
-├─ i18n/                   # config, get-dictionary, dictionaries/uz.ts (all copy lives here)
-└─ lib/                    # roi.ts (pure ROI model), regions.ts, geo.ts, motion.ts (variants), site.ts
-scripts/generate-globe-data.mjs   # world-atlas → bitmask dataset (npm run globe:data)
+│  │  ├─ BuildingHero3D.tsx  # ★ scroll-driven construction of the Atlant Tower
+│  │  ├─ building/
+│  │  │  ├─ geometry.ts      # procedural generators: twist-tower, twin-residential, stepped-office, industrial, courtyard, bridge
+│  │  │  ├─ textures.ts      # canvas-drawn facade textures (curtain/residential/office/industrial/stone) + lit windows
+│  │  │  ├─ materials.ts     # role materials, blueprint-line / grid-ground / volumetric-beam GLSL
+│  │  │  ├─ Building.tsx     # reusable model with the Blueprint ⇄ Realistic clip-plane scan
+│  │  │  └─ Stage.tsx        # environment (procedural light-formers), lights, blueprint ground
+│  │  ├─ ShowcaseScene.tsx / ShowcaseStage.tsx   # single-model stage (home showcase)
+│  │  ├─ GalleryViews.tsx    # ONE shared canvas + drei <View> per gallery card
+│  │  ├─ UzMap3D.tsx / MapStage.tsx               # country dot-bars ⇄ Tashkent city dive, projected DOM pins
+│  │  └─ SceneCanvas.tsx     # lazy mount, offscreen pause, LOD, PerformanceMonitor, fallbacks
+│  ├─ shader/MaterialSurface.tsx   # raw-WebGL material shader (concrete/steel/glass/granite/blueprint), cursor-lit
+│  ├─ sections/home/…, projects/…, services/…, about/…
+│  ├─ layout/                # Header, Footer, NavLink (Lenis-aware), SmoothScroll (+ route scroll manager), cursor
+│  └─ ui/                    # button, mode-toggle, page-header, section-heading, slider, spotlight-card, …
+├─ data/projects.ts          # portfolio facts + 3D specs (language-neutral) · cities
+├─ lib/                      # estimator.ts (pure model), booking.ts (slots, ICS), geo, motion variants, utils, site
+├─ i18n/                     # config, get-dictionary, dictionaries/uz.ts (all copy)
+└─ hooks/                    # useDeviceTier, useInViewport, useReducedMotion
 ```
 
-### Rendering strategy
+### How the scroll-built hero works
 
-- `page.tsx` is a **Server Component**; each client section receives only its own dictionary slice.
-- Every WebGL scene is a separate **`next/dynamic({ ssr: false })` chunk**. The first-load JS for `/uz` is ~250 KB. three/R3F (~180 KB gzip) loads after hydration.
-- `SceneCanvas` mounts each `<Canvas>` only when its section nears the viewport. It sets `frameloop="never"` while offscreen and wraps drei's `PerformanceMonitor` + `AdaptiveDpr`.
-- The hero headline animates with **pure CSS** keyframes, so the LCP text paints before JS; GSAP drives the HUD timeline, counters and scroll-scrub.
+The hero section is ~3.4 viewports tall and its stage is `position: sticky`. One GSAP ScrollTrigger (`scrub`) produces `progress ∈ [0,1]`, and both the WebGL scene and a scrubbed GSAP DOM timeline read it:
 
-### Level of detail (`hooks/useDeviceTier.ts`)
-
-| Tier | Detected when | Effect |
+| progress | stage | 3D |
 | --- | --- | --- |
-| `none` | no WebGL | static CSS fallbacks, no three.js download |
-| `low` | ≤4 cores, ≤4 GB RAM, Save-Data, small touch screens, reduced motion | DPR 1, no AA, no env-map / contact shadows / orbit halo, sparser UZ grid |
-| `mid` | tablets, ≤8 cores, <1280 px | DPR ≤1.5 |
-| `high` | desktop GPUs | DPR ≤2, all effects |
+| 0 | — | BIM wireframe draws itself on load (custom line shader, reveal by world-Y) |
+| 0–0.10 | Poydevor | raft slab revealed by a clipping plane; pile lines glow below the grid |
+| 0.08–0.55 | Karkas | core, instanced floor plates and twisting columns climb (clip plane #1) + tower crane |
+| 0.30–0.86 | Fasad | curtain-wall skin climbs behind a glowing build-line ring (clip plane #2) |
+| 0.82–1 | Topshirish | crown and spire scale in, crane dismantles, window lights and volumetric beams turn on |
 
-At runtime `PerformanceMonitor` can lower DPR further.
+The camera follows keyframes (wide → foundation → rising → hero shot). A film/view offset places the tower beside the headline on desktop and below it on phones. Readouts (height, floor, %) are written to the DOM through `requestAnimationFrame`, with no React re-renders.
 
-### The globe (`AgroGlobe.tsx`)
+### Blueprint ⇄ Realistic
 
-- **Land**: 42 000-point Fibonacci sphere, stored as a **bitmask** (1 bit/point). The client rebuilds positions from indices, so geometry isn't shipped as JSON.
-- **Uzbekistan**: a dense 0.16° hex dot-matrix with ripples radiating from Tashkent. The selected region glows gold (shader uniforms).
-- **Regions**: 13 viloyat centres with pulse rings and data beams. Labels are plain DOM elements that the scene projects each frame (no nested React roots).
-- **Arcs**: dashed flowing curves from global agro-tech hubs (NL, IL, ES, TR, CN, AE) to Tashkent HQ.
-- **Camera**: telephoto (z=10, fov 15). Region focus zooms ~2× without perspective blow-up, and markers are counter-scaled.
-- **Motion**: intro bloom outward from UZ, idle sway, pointer parallax, drag-to-rotate with spring-back on fine pointers, and a scroll-out scrub.
+`<Building>` renders every part twice: realistic materials clipped to `y ≤ h`, and a cyan ghost clipped to `y ≥ h`, plus structural lines shown above `h`. Toggling the mode sweeps `h` from the ground to the roof (or back) with a glowing scan plane. The home showcase, all gallery cards and the Tashkent map share this engine.
 
-### Consultation flow
+### Performance / LOD
 
-A 3-step form (`useActionState`) posts to the `submitConsultation` Server Action, which does zod validation, a silent honeypot, and a Telegram Bot API call (or a console log when unconfigured). It only uses `fetch`, so it runs on the Node or Edge runtime.
+- Every WebGL scene is a `next/dynamic({ ssr: false })` chunk. Home first-load JS is ~246 kB; three.js loads after hydration.
+- Canvases mount near the viewport and pause (`frameloop="never"`) when offscreen. `PerformanceMonitor` lowers DPR under load.
+- `/projects` renders 10 live buildings through **one** WebGL context (drei `View` scissor viewports).
+- Tiers (`hooks/useDeviceTier.ts`) control DPR, antialiasing, environment maps, tower floor count (48/40/30) and map density. The `none` tier gets static SVG fallbacks.
+- `prefers-reduced-motion` is honoured by Lenis, CSS, GSAP idle loops and 3D auto-motion.
+
+### Routing & smooth scroll
+
+Lenis lives in the root layout and persists across routes. `RouteScrollManager` resets its target on every navigation and resolves cross-page hashes (`/uz#contact` from `/uz/about`) after re-measuring. `NavLink` stops Next from double-handling same-page hashes so Lenis glides instead. Tested: client-side navigation (no reloads), scroll reset, cross-page and same-page anchors, back button.
 
 ## Content to replace before launch
 
-agcg.uz could not be reached from the build environment, so:
+agcg.uz was not reachable from the build environment. Every placeholder is flagged in code and badged **"Namuna"** in the UI:
 
-- **Contacts** — `src/lib/site.ts`: address, phone, email, telegram are `null`. They're hidden in the UI until filled.
-- **Case studies** — `projects.items` in `src/i18n/dictionaries/uz.ts` are **sample data**. They're badged *“Namuna”* in the UI, and the satellite tiles are procedural SVG illustrations. Drop real imagery into `public/projects/` and swap `SatelliteMap` for `next/image`.
-- **ROI coefficients** — `src/lib/roi.ts` holds planning-grade assumptions (yields, prices, capex/ha). Have AGCG agronomists tune them.
-- **Logo** — `src/components/ui/logo.tsx` + `src/app/icon.svg` are placeholder marks.
-- **Sensor feed** — the hero telemetry is simulated and labelled *“Simulyatsiya”*. Wire it to SSE/WebSocket when field sensors exist.
-
-## Adding a locale (ru / en)
-
-1. Create `src/i18n/dictionaries/ru.ts` exporting an object typed as `Dictionary`.
-2. Register it in `get-dictionary.ts` and add `"ru"` to `locales` in `i18n/config.ts`.
-3. Fonts already include Cyrillic.
+- **Portfolio** (`src/data/projects.ts` + `projectsText` in the dictionary): the 10 projects are samples (incl. *Atlant Tower* / *Luxury Residence* from the brief).
+- **Timeline** (`aboutPage.milestones`): sample company history, years and cities.
+- **Contacts** (`src/lib/site.ts`): `null` values are hidden until filled.
+- **Estimator** (`src/lib/estimator.ts`): cost/m², duration curve and warranty terms are planning assumptions.
+- **Logo** (`components/ui/logo.tsx`, `app/icon.svg`): placeholder mark.
 
 ## Notes
 
-- Next.js is pinned to **15.x** as specified; `overrides.next.postcss` lifts Next's bundled PostCSS to a patched release (`npm audit` → 0 vulnerabilities).
-- Uzbek typography uses `‘` (U+2018) for oʻ/gʻ and `’` (U+2019) for the tutuq belgisi.
-- `prefers-reduced-motion` is respected: Lenis, CSS animations, GSAP idle loops and 3D auto-motion all stand down.
+- Next.js is pinned to **15.x**. `overrides.next.postcss` lifts Next's bundled PostCSS to a patched release (`npm audit` → 0 vulnerabilities).
+- Glassmorphism uses only the standard `backdrop-filter`. Next's CSS minifier otherwise keeps just the `-webkit-` form, which Chrome ignores.
+- Adding a locale: create `i18n/dictionaries/ru.ts` typed as `Dictionary`, then register it in `get-dictionary.ts` and `i18n/config.ts`.
+- The earlier *Agro Global Consulting Group* build lives on branch `feat/agcg-impossible-web`.

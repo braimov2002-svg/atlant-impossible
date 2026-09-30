@@ -1,6 +1,6 @@
 # ATLANT — Group of Companies · Impossible Edition
 
-Interactive 3D web showcase for **Atlant Group of Companies** (AGC, agcg.uz): construction, engineering, logistics and trade: "Architectural Grandeur Meets Cyber-Futurism".
+Interactive 3D web showcase for **Atlant Group of Companies** (AGC, agcg.uz): construction, engineering, logistics and trade. Design direction: "Architectural Grandeur Meets Cyber-Futurism".
 Uzbek-first (`/uz`), statically generated, four routes, one procedural 3D building engine, and a scroll-scrubbed construction film on the home page.
 
 | Scroll-scrubbed construction film (hero) | | |

@@ -1,6 +1,6 @@
-# ATLANT — Construction Group · Impossible Edition
+# ATLANT — Group of Companies · Impossible Edition
 
-Interactive 3D web showcase for **Atlant Construction Group** (agcg.uz): "Architectural Grandeur Meets Cyber-Futurism".
+Interactive 3D web showcase for **Atlant Group of Companies** (AGC, agcg.uz): construction, engineering, logistics and trade: "Architectural Grandeur Meets Cyber-Futurism".
 Uzbek-first (`/uz`), statically generated, four routes, one procedural 3D building engine, and a scroll-scrubbed construction film on the home page.
 
 | Scroll-scrubbed construction film (hero) | | |
@@ -134,16 +134,27 @@ The home hero follows the "scroll a construction timelapse" pattern: an empty pl
 
 Lenis lives in the root layout and persists across routes. `RouteScrollManager` resets its target on every navigation and resolves cross-page hashes (`/uz#contact` from `/uz/about`) after re-measuring. `NavLink` stops Next from double-handling same-page hashes so Lenis glides instead. Tested: client-side navigation (no reloads), scroll reset, cross-page and same-page anchors, back button.
 
-## Content to replace before launch
+## Content
 
-agcg.uz was not reachable from the build environment. Every placeholder is flagged in code and badged **"Namuna"** in the UI:
+**From agcg.uz.** The site itself is blocked by the build environment's network policy, so these facts were collected from its search-indexed pages:
 
-- **Portfolio** (`src/data/projects.ts` + `projectsText` in the dictionary): the 10 projects are samples (incl. *Atlant Tower* / *Luxury Residence* from the brief).
+- Group name (Atlant Group of Companies, AGC) and slogan: "Biz kelajakni yaratamiz, muvaffaqiyatga erishamiz!"
+- Group description and mission.
+- Member companies: Atlant Construction, ENS, Deal Zone Imex, Computrols, Balton Trading (Asia), M. X. Vohidov ustaxonasi.
+- Figures: 50+ projects, 1200+ clients.
+- The «Lift» logistics complex (2021–2024).
+- Contacts: three phone numbers, office@agcg.uz, Farg‘ona yo‘li 94, Mirobod.
+
+Please check the figures against the live site: one indexed snippet swapped them (1200+ projects / 50+ partners).
+
+**Still placeholders.** Each is flagged in code and badged **"Namuna"** in the UI:
+
+- **Portfolio** (`src/data/projects.ts` + `projectsText` in the dictionary): the 10 projects are samples. The real list and photos are on agcg.uz.
 - **Timeline** (`aboutPage.milestones`): sample company history, years and cities.
-- **Contacts** (`src/lib/site.ts`): `null` values are hidden until filled.
+- **Hero film** (`public/sequence/…`, `hero.facts`): a 3D visualisation of a sample residence. Replace it with real CGI or drone frames (see above).
 - **Estimator** (`src/lib/estimator.ts`): cost/m², duration curve and warranty terms are planning assumptions.
-- **Logo** (`components/ui/logo.tsx`, `app/icon.svg`): placeholder mark.
-- **Hero film** (`public/sequence/…`, `hero.facts` in the dictionary): a 3D visualisation of a sample residence, badged "Namuna · 3D vizualizatsiya". Replace it with real CGI or drone frames (see above).
+- **Logo** (`components/ui/logo.tsx`, `app/icon.svg`): a placeholder mark. The real AGC logo is on agcg.uz.
+- **Map pin / socials** (`src/lib/site.ts`): the office pin uses the city centre, and Telegram is not filled in.
 
 ## Notes
 

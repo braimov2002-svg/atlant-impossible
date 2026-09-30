@@ -5,7 +5,7 @@ import { Clock3, Globe, Mail, MapPin, Phone, PencilRuler, Send } from "lucide-re
 import { SectionHeading } from "@/components/ui/section-heading";
 import { InquiryForm } from "./InquiryForm";
 import { EASE_OUT_EXPO } from "@/lib/motion";
-import { site } from "@/lib/site";
+import { site, telHref } from "@/lib/site";
 import type { Dictionary } from "@/i18n/dictionaries/uz";
 
 export function ConsultationPortal({
@@ -18,7 +18,7 @@ export function ConsultationPortal({
   cities: Record<string, string>;
 }) {
   const contacts = [
-    site.phone && { icon: Phone, label: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+    ...site.phones.map((p) => ({ icon: Phone, label: p, href: telHref(p) })),
     site.email && { icon: Mail, label: site.email, href: `mailto:${site.email}` },
     site.telegram && { icon: Send, label: site.telegram, href: `https://t.me/${site.telegram.replace("@", "")}` },
   ].filter(Boolean) as { icon: typeof Phone; label: string; href: string }[];

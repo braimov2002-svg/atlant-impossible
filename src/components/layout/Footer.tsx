@@ -2,13 +2,13 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { NavLink } from "./NavLink";
 import { BackToTop } from "./BackToTop";
-import { site } from "@/lib/site";
+import { site, telHref } from "@/lib/site";
 import type { Dictionary } from "@/i18n/dictionaries/uz";
 
 export function Footer({ t, nav, locale }: { t: Dictionary["footer"]; nav: Dictionary["nav"]; locale: string }) {
   const contacts = [
     site.office.address && { icon: MapPin, label: site.office.address, href: undefined },
-    site.phone && { icon: Phone, label: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+    ...site.phones.map((p) => ({ icon: Phone, label: p, href: telHref(p) })),
     site.email && { icon: Mail, label: site.email, href: `mailto:${site.email}` },
     site.telegram && { icon: Send, label: site.telegram, href: `https://t.me/${site.telegram.replace("@", "")}` },
   ].filter(Boolean) as { icon: typeof MapPin; label: string; href?: string }[];
@@ -22,7 +22,7 @@ export function Footer({ t, nav, locale }: { t: Dictionary["footer"]; nav: Dicti
             <Logo className="h-11 w-11" />
             <div className="leading-none">
               <p className="font-sharp text-lg font-medium tracking-[0.28em] text-mist">ATLANT</p>
-              <p className="pt-1 font-mono text-[10px] tracking-[0.26em] text-steel uppercase">Construction Group</p>
+              <p className="pt-1 font-mono text-[10px] tracking-[0.26em] text-steel uppercase">Group of Companies</p>
             </div>
           </div>
           <p className="mt-5 text-sm leading-relaxed text-steel">{t.tagline}</p>

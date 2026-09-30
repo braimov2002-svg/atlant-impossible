@@ -50,7 +50,7 @@ export function buildIcs({ ticket, date, time, summary, description }: { ticket:
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Atlant Construction Group//Consultation//UZ",
+    "PRODID:-//Atlant Group of Companies//Consultation//UZ",
     "CALSCALE:GREGORIAN",
     "BEGIN:VTIMEZONE",
     "TZID:Asia/Tashkent",

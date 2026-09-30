@@ -69,11 +69,20 @@ export default async function LocaleLayout({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "GeneralContractor",
+    "@type": "Corporation",
     name: site.name,
+    alternateName: "AGC",
     url: site.url,
+    email: site.email ?? undefined,
+    telephone: site.phones[0],
     areaServed: "UZ",
-    address: { "@type": "PostalAddress", addressLocality: "Tashkent", addressCountry: "UZ" },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Farg‘ona yo‘li ko‘chasi, 94",
+      addressRegion: "Mirobod tumani",
+      addressLocality: "Toshkent",
+      addressCountry: "UZ",
+    },
   };
 
   return (

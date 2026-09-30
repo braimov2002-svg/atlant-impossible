@@ -2,18 +2,20 @@
  * Uzbek (Latin) copy for every page. Typography: oʻ/gʻ use U+2018 (‘) and the
  * tutuq belgisi uses U+2019 (’) — both exist in every font we load.
  *
- * Items marked SAMPLE (projects, milestones, map sites) are placeholders
- * until Atlant's real portfolio/history is supplied; the UI badges them.
+ * Company facts (name, slogan, group companies, mission, figures, contacts)
+ * come from agcg.uz. Items marked SAMPLE (projects, milestones, map sites,
+ * the hero film) are placeholders until Atlant's real portfolio/history is
+ * supplied; the UI badges them.
  */
 const uz = {
   meta: {
-    title: "Atlant Construction Group — kelajak arxitekturasi",
+    title: "Atlant Group of Companies — biz kelajakni yaratamiz",
     description:
-      "Turar joy, tijorat va sanoat binolari, BIM loyihalash va og‘ir infratuzilma. O‘zbekistondagi premium bosh pudrat qurilish kompaniyasi.",
+      "Qurilish, muhandislik, logistika va savdo sohalarini birlashtirgan kompaniyalar guruhi: loyihalash va qurilishdan yetkazib berish va avtomatlashtirishgacha. Toshkent, O‘zbekiston.",
     pages: {
-      projects: "Loyihalar — Atlant Construction Group",
-      services: "Xizmatlar — Atlant Construction Group",
-      about: "Biz haqimizda — Atlant Construction Group",
+      projects: "Loyihalar — Atlant Group of Companies",
+      services: "Xizmatlar — Atlant Group of Companies",
+      about: "Kompaniya guruhi haqida — Atlant Group of Companies",
     },
   },
   nav: {
@@ -55,16 +57,16 @@ const uz = {
     dragHint: "Aylantirish uchun torting",
   },
   hero: {
-    eyebrow: "Atlant Construction Group",
-    titleA: "Kelajak arxitekturasi,",
-    titleB: "mustahkam poydevor",
+    eyebrow: "Atlant Group of Companies",
+    titleA: "Biz kelajakni yaratamiz,",
+    titleB: "muvaffaqiyatga erishamiz!",
     ctaPrimary: "Loyihalarni ko‘rish",
     ctaSecondary: "Uchrashuv belgilash",
-    /** Company-wide figures (also shown on /about). */
+    /** Group-wide figures from agcg.uz (shown on /about). */
     metrics: [
-      { value: 150, prefix: "", suffix: "+", label: "Bajarilgan loyihalar", decimals: 0 },
-      { value: 2.5, prefix: "", suffix: "M+ m²", label: "Qurilish maydoni", decimals: 1 },
-      { value: 15, prefix: "", suffix: " yil", label: "Kafolatlangan sifat", decimals: 0 },
+      { value: 50, prefix: "", suffix: "+", label: "Amalga oshirilgan loyihalar", decimals: 0 },
+      { value: 1200, prefix: "", suffix: "+", label: "Mijozlar", decimals: 0 },
+      { value: 6, prefix: "", suffix: "", label: "Guruh kompaniyalari", decimals: 0 },
     ],
     /** Scroll chapters of the construction film (boundaries: lib/sequence.ts). */
     chapters: [
@@ -305,10 +307,31 @@ const uz = {
     cta: { title: "Loyihangizni muhokama qilamiz", button: "Uchrashuv belgilash" },
   },
   aboutPage: {
-    eyebrow: "Biz haqimizda",
-    title: "Poydevordan",
-    accent: "osmono‘par binolargacha",
-    description: "Atlant Construction Group — O‘zbekiston bo‘ylab turar joy, tijorat, sanoat va infratuzilma obyektlarini quruvchi bosh pudrat kompaniyasi.",
+    eyebrow: "Kompaniya guruhi haqida",
+    title: "Qurilish, muhandislik,",
+    accent: "logistika va savdo",
+    description:
+      "AGC — qurilish, muhandislik, logistika va savdo sohalarining yetakchi ishtirokchilarini birlashtirgan, jadal rivojlanayotgan kompaniyalar guruhi. Loyihalash va qurilishdan yetkazib berish va avtomatlashtirishgacha — biznes ehtiyojlarini qamrab oluvchi to‘liq sikl.",
+    group: {
+      eyebrow: "Missiyamiz",
+      mission:
+        "Hamkorlarimizga muvaffaqiyatli biznes qurish va eng yuqori maqsadlarga erishishda yordam beradigan samarali, texnologik va barqaror yechimlarni yaratish va rivojlantirish.",
+      companiesTitle: "Guruh tarkibi",
+      companies: [
+        { name: "Atlant Construction", sector: "Qurilish", text: "Turar-joy majmualaridan noyob tijorat va sanoat obyektlarigacha — har qanday murakkablikdagi loyihalash va qurilish." },
+        { name: "ENS", sector: "Muhandislik", text: "Zamonaviy muhandislik tizimlarini loyihalash, ishlab chiqish va joriy etish — aniqlik, ishonchlilik va jarayonlarni optimallashtirish." },
+        { name: "Deal Zone Imex", sector: "Savdo va logistika", text: "Guruhning savdo va logistika kompaniyasi: import, yetkazib berish va ta’minot zanjiri." },
+        { name: "Computrols", sector: "Avtomatlashtirish", text: "Avtomatlashtirish, boshqaruv va monitoring sohasidagi yechimlarni ishlab chiqish va yetkazib berish." },
+        { name: "Balton Trading (Asia)", sector: "Distribyutsiya · FMCG", text: "O‘zbekistondagi birinchi milliy distribyutor: iste’mol tovarlari importi va distribyutsiyasida 29 yillik tajriba." },
+        { name: "M. X. Vohidov ustaxonasi", sector: "Ustaxona", text: "Atlant kompaniyalar guruhi a’zosi." },
+      ],
+      featured: {
+        label: "Tanlangan loyiha",
+        name: "«Lift» logistika majmuasi",
+        years: "2021–2024",
+        scope: "Loyihalash, qurilish va jihozlarni yetkazib berish — kalit topshirish.",
+      },
+    },
     timelineTitle: "Yo‘l xaritasi",
     timelineHint: "Skroll qiling — har bir bosqichda kompaniya geografiyasi kengayadi",
     footprint: "Kompaniya geografiyasi",
@@ -320,16 +343,16 @@ const uz = {
       { year: "2018", title: "Sanoat qurilishi", text: "Chirchiqda sanoat parki va o‘z beton zavodi.", cities: ["chirchiq", "navoi"] },
       { year: "2020", title: "Farg‘ona vodiysi", text: "Vodiy shaharlarida turar joy va ijtimoiy obyektlar.", cities: ["fergana", "namangan", "andijan"] },
       { year: "2022", title: "Infratuzilma bo‘limi", text: "Ko‘prik va yo‘l o‘tkazgichlar: og‘ir texnika parki kengaydi.", cities: ["karshi", "termez"] },
-      { year: "2024", title: "150+ loyiha", text: "2.5 mln m² dan ortiq qurilish maydoni, 12 ta shahar.", cities: ["nukus", "urgench"] },
+      { year: "2024", title: "50+ loyiha", text: "1200+ mijoz: qurilishdan logistika va avtomatlashtirishgacha to‘liq sikl.", cities: ["nukus", "urgench"] },
       { year: "2026", title: "Atlant Tower", text: "48 qavatli flagman minora — kelajak arxitekturasi.", cities: [] as string[] },
     ],
     values: {
       title: "Qadriyatlarimiz",
       items: [
-        { title: "Sifat", text: "Har bir bosqichda laboratoriya nazorati va 15 yillik konstruktiv kafolat." },
+        { title: "Sifat", text: "Faqat yuqori sifatli materiallar va ilg‘or qurilish texnologiyalari — obyektlarning uzoq xizmat qilishi va xavfsizligi uchun." },
         { title: "Xavfsizlik", text: "Nol baxtsiz hodisa maqsadi va xalqaro mehnat xavfsizligi standartlari." },
         { title: "Innovatsiya", text: "BIM, dronlar bilan monitoring va raqamli ijro hujjatlari." },
-        { title: "Mas’uliyat", text: "Shartnoma muddatlari va smetaga qat’iy rioya qilish." },
+        { title: "Moslashuvchanlik", text: "Mijozning har qanday talab va istaklariga moslashib, turli obyekt va sharoitlar uchun optimal yechim topamiz." },
       ],
     },
     cta: { title: "Keyingi bosqichni birga quramiz", button: "Uchrashuv belgilash" },
@@ -347,7 +370,7 @@ const uz = {
     "nukus-logistics": { name: "Nukus logistika markazi", location: "Nukus", summary: "Yuqori tokchali ombor va ma’muriy blok." },
   } as Record<string, { name: string; location: string; summary: string }>,
   footer: {
-    tagline: "Kelajak arxitekturasi va mustahkam poydevor.",
+    tagline: "Biz kelajakni yaratamiz, muvaffaqiyatga erishamiz! Qurilish, muhandislik, logistika va savdo — bitta guruhda.",
     pages: "Sahifalar",
     contact: "Aloqa",
     rights: "Barcha huquqlar himoyalangan.",

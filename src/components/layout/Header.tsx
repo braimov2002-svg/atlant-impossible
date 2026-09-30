@@ -70,7 +70,7 @@ export function Header({ t, locale }: { t: Dictionary["nav"]; locale: string }) 
             <Logo className="h-9 w-9" />
             <span className="hidden leading-none sm:block">
               <span className="font-sharp block text-[15px] font-medium tracking-[0.28em] text-mist">ATLANT</span>
-              <span className="block pt-1 font-mono text-[9px] tracking-[0.26em] text-steel uppercase">Construction Group</span>
+              <span className="block pt-1 font-mono text-[9px] tracking-[0.26em] text-steel uppercase">Group of Companies</span>
             </span>
           </NavLink>
 

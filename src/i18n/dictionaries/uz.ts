@@ -55,28 +55,35 @@ const uz = {
     dragHint: "Aylantirish uchun torting",
   },
   hero: {
-    eyebrow: "Atlant Construction Group · Toshkent",
-    brand: "Atlant Construction —",
-    lineA: "Kelajak arxitekturasi",
-    lineB: "va mustahkam",
-    accent: "poydevor",
-    sub: "BIM loyihalashdan kalit topshirishgacha: turar joy, tijorat va sanoat obyektlarini xalqaro standartlarda quramiz.",
+    eyebrow: "Atlant Construction Group",
+    titleA: "Kelajak arxitekturasi,",
+    titleB: "mustahkam poydevor",
     ctaPrimary: "Loyihalarni ko‘rish",
     ctaSecondary: "Uchrashuv belgilash",
+    /** Company-wide figures (also shown on /about). */
     metrics: [
       { value: 150, prefix: "", suffix: "+", label: "Bajarilgan loyihalar", decimals: 0 },
       { value: 2.5, prefix: "", suffix: "M+ m²", label: "Qurilish maydoni", decimals: 1 },
       { value: 15, prefix: "", suffix: " yil", label: "Kafolatlangan sifat", decimals: 0 },
     ],
-    stages: [
-      { key: "foundation", title: "Poydevor", text: "Qoziqlar va monolit plita" },
-      { key: "frame", title: "Karkas", text: "Temir-beton ustunlar va yadro" },
-      { key: "facade", title: "Fasad", text: "Energiya tejovchi shisha qoplama" },
-      { key: "handover", title: "Topshirish", text: "Tojdor yakun va yoritish" },
+    /** Scroll chapters of the construction film (boundaries: lib/sequence.ts). */
+    chapters: [
+      { key: "site", label: "Yer uchastkasi", text: "Har bir loyiha yerdan boshlanadi: geologiya, geodeziya va ruxsatnomalar — birinchi qoziqdan oldin." },
+      { key: "foundation", label: "Poydevor", text: "Monolit plita va armatura karkasi — bino o‘nlab yillar tayanadigan asos." },
+      { key: "frame", label: "Karkas", text: "Temir-beton ustunlar, yadro va orayopmalar qavatma-qavat ko‘tariladi — minorali kran va BIM nazorati ostida." },
+      { key: "facade", label: "Fasad", text: "Tabiiy ohaktosh qoplama, panoramali oynalar va shisha to‘siqlar: energiya samaradorligi A sinfi." },
+      { key: "landscape", label: "Obodonlashtirish", text: "Terrasalardagi bog‘lar, daraxtlar va piyodalar yo‘laklari — bino shahar bilan uyg‘unlashadi." },
+      { key: "interior", label: "Interyer", text: "Kalit topshirish: yog‘och pollar, iliq yoritish va har bir detal — yashashga tayyor." },
     ],
-    readouts: { height: "Balandlik", floor: "Qavat", progress: "Jarayon" },
-    scrollHint: "Skroll qiling — binoni quring",
-    bim: "BIM model · LOD 400",
+    /** SAMPLE project facts for the showcased residence. */
+    facts: [
+      { value: 16, label: "Xonadon" },
+      { value: 5, label: "Qavat" },
+      { value: 2027, label: "Topshirish" },
+      { text: "A", label: "Energiya sinfi" },
+    ],
+    scrollHint: "Skroll",
+    sample: "Namuna · 3D vizualizatsiya",
   },
   showcase: {
     eyebrow: "Flagman loyihalar",

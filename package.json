@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "globe:data": "node scripts/generate-globe-data.mjs"
+    "globe:data": "node scripts/generate-globe-data.mjs",
+    "render:sequence": "node scripts/render-sequence.mjs"
   },
   "engines": {
     "node": ">=20.9.0"
@@ -34,12 +35,15 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@react-three/postprocessing": "^3.1.3",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22.20.4",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.186.0",
     "d3-geo": "^3.1.1",
+    "playwright": "^1.63.0",
+    "postprocessing": "^6.39.5",
     "tailwindcss": "^4.3.3",
     "topojson-client": "^3.1.0",
     "typescript": "~5.9.3",

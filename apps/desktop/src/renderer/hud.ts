@@ -24,7 +24,8 @@ function render(state: HudState): void {
       badge.textContent = state.badge;
       break;
     default:
-      text.textContent = state.message;
+      text.textContent = state.message.length > 160 ? `${state.message.slice(0, 157)}…` : state.message;
+      text.title = state.message;
       badge.textContent = '';
   }
 }

@@ -56,6 +56,7 @@ try {
   await page.route('https://generativelanguage.googleapis.com/**', async (route) => {
     const body = JSON.parse(route.request().postData());
     requests.push({ url: route.request().url(), headers: route.request().headers(), body });
+    if (mode === 'offline') return route.abort('internetdisconnected');
     if (mode === 'badkey') {
       return route.fulfill({ status: 400, contentType: 'application/json', body: JSON.stringify({ error: { code: 400, message: 'API key not valid. Please pass a valid API key.' } }) });
     }
@@ -108,6 +109,19 @@ try {
   await page.reload();
   await page.getByText('Oldingi yozuvlar').waitFor();
   check('settings persisted', (await page.getByRole('radio', { name: /RU/ }).getAttribute('aria-checked')) === 'true');
+
+  mode = 'offline';
+  await record(1500);
+  await page.getByText("Internetga ulanib bo'lmadi. Aloqani tekshiring.").waitFor({ timeout: 10_000 });
+  const retryButton = page.getByRole('button', { name: /Qayta urinish/ });
+  await retryButton.waitFor({ timeout: 5_000 });
+  check('offline keeps the recording for a retry', true);
+  mode = 'ok';
+  const before = requests.length;
+  await retryButton.click();
+  await page.waitForFunction(() => document.querySelector('#result')?.value.startsWith('Привет'), null, { timeout: 15_000 });
+  check('retry re-sends the same audio', requests.length === before + 1 && requests.at(-1).body.contents[0].parts[0].inlineData.data === requests.at(-2).body.contents[0].parts[0].inlineData.data);
+  check('retry button gone after success', (await retryButton.count()) === 0);
 
   mode = 'badkey';
   await record(1200);

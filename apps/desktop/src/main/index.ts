@@ -491,6 +491,17 @@ function openSettings(): void {
   });
   const win = settingsWindow;
   win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+  // Electron has no context menu by default; people paste the key with the mouse.
+  win.webContents.on('context-menu', (_event, params) => {
+    if (!params.isEditable) return;
+    Menu.buildFromTemplate([
+      { role: 'cut', label: 'Kesish' },
+      { role: 'copy', label: 'Nusxalash' },
+      { role: 'paste', label: 'Joylash' },
+      { type: 'separator' },
+      { role: 'selectAll', label: 'Hammasini belgilash' },
+    ]).popup({ window: win });
+  });
   win.webContents.on('will-navigate', (event) => event.preventDefault());
   win.once('ready-to-show', () => {
     win.show();

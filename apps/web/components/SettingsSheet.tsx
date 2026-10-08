@@ -2,7 +2,7 @@
 
 import { PROVIDERS, type ApostropheStyle, type DictationSettings, type ProviderId } from '@ovozyoz/core';
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ApiKeys, Prefs } from '@/lib/storage';
 
 interface Props {
@@ -25,6 +25,7 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
   const [keys, setKeys] = useState(apiKeys);
   const [draftPrefs, setDraftPrefs] = useState(prefs);
   const [showKey, setShowKey] = useState(false);
+  const keyInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (open) {
@@ -39,7 +40,14 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    // Move focus into the dialog and give it back to the opener on close.
+    const opener = document.activeElement as HTMLElement | null;
+    const timer = setTimeout(() => keyInput.current?.focus({ preventScroll: true }), 50);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      clearTimeout(timer);
+      opener?.focus?.({ preventScroll: true });
+    };
   }, [open, onClose]);
 
   const provider = PROVIDERS[draft.provider];
@@ -103,6 +111,7 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
             </label>
             <div className="mb-1 flex gap-2">
               <input
+                ref={keyInput}
                 id="api-key"
                 type={showKey ? 'text' : 'password'}
                 autoComplete="off"
@@ -215,7 +224,7 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
               />
             </label>
 
-            <button type="submit" className="w-full rounded-2xl bg-gradient-to-r from-sky-500 to-emerald-500 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20">
+            <button type="submit" className="w-full rounded-2xl bg-gradient-to-r from-sky-700 to-emerald-700 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20">
               Saqlash
             </button>
           </motion.form>

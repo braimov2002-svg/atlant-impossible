@@ -2,7 +2,7 @@
 
 import { DEFAULT_SETTINGS, outputLanguage, PROVIDERS, type DictationSettings, type OutputLanguage } from '@ovozyoz/core';
 import { AnimatePresence, motion } from 'motion/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { copyText } from '@/lib/clipboard';
 import {
   HISTORY_LIMIT,
@@ -91,6 +91,9 @@ export function Dictation() {
           return next;
         });
         if (copied) showToast('ok', 'Matn nusxalandi — istalgan joyga joylang');
+        else if (latest.current.prefs.autoCopy) {
+          showToast('error', "Avtomatik nusxalab bo'lmadi — «Nusxalash» tugmasini bosing");
+        }
       },
       [showToast],
     ),
@@ -113,11 +116,29 @@ export function Dictation() {
     saveSettings(next);
   };
 
-  const copy = async (value: string) => {
-    if (!value) return;
-    if (await copyText(value)) showToast('ok', 'Nusxalandi');
-    else showToast('error', "Nusxalab bo'lmadi — matnni belgilab, qo'lda nusxalang");
-  };
+  const copy = useCallback(
+    async (value: string) => {
+      if (!value) return;
+      if (await copyText(value)) showToast('ok', 'Nusxalandi');
+      else showToast('error', "Nusxalab bo'lmadi — matnni belgilab, qo'lda nusxalang");
+    },
+    [showToast],
+  );
+
+  const pickHistory = useCallback(
+    (value: string) => {
+      setText(value);
+      void copy(value);
+    },
+    [copy],
+  );
+
+  const clearHistory = useCallback(() => {
+    if (window.confirm("Barcha yozuvlar o'chirilsinmi?")) {
+      setHistory([]);
+      saveHistory([]);
+    }
+  }, []);
 
   const share = async (value: string) => {
     if (!value) return;
@@ -184,7 +205,7 @@ export function Dictation() {
           <button
             type="button"
             onClick={() => setSettingsOpen(true)}
-            className="rounded-xl bg-amber-500 px-4 py-2 font-semibold text-white"
+            className="rounded-xl bg-amber-700 px-4 py-2 font-semibold text-white"
           >
             Kalitni kiritish
           </button>
@@ -224,14 +245,14 @@ export function Dictation() {
 
       <section className="flex flex-col items-center py-6">
         <MicButton phase={dictation.phase} level={dictation.level} onPress={dictation.toggle} />
-        <p className="mt-2 min-h-6 text-center font-medium" aria-live="polite">
+        <p className="mt-2 min-h-6 text-center font-medium">
           {dictation.phase === 'recording' && (
-            <span className="mr-2 inline-flex items-center gap-1.5 text-rose-500">
+            <span aria-hidden className="mr-2 inline-flex items-center gap-1.5 text-rose-600 dark:text-rose-400">
               <span className="size-2.5 animate-pulse rounded-full bg-rose-500" />
               {formatTime(dictation.elapsed)}
             </span>
           )}
-          {STATUS[dictation.phase]}
+          <span aria-live="polite">{STATUS[dictation.phase]}</span>
         </p>
         <p className="mt-1 text-xs text-[var(--muted)]">
           {PROVIDERS[settings.provider].label} · natija: {out.label}
@@ -239,6 +260,15 @@ export function Dictation() {
         {busy && dictation.phase !== 'starting' && (
           <button type="button" onClick={dictation.cancel} className="mt-3 rounded-full px-4 py-1.5 text-sm text-[var(--muted)] ring-1 ring-[var(--line)]">
             Bekor qilish
+          </button>
+        )}
+        {!busy && dictation.canRetry && (
+          <button
+            type="button"
+            onClick={() => void dictation.retry()}
+            className="mt-3 rounded-full bg-amber-700 px-5 py-2 text-sm font-semibold text-white"
+          >
+            Qayta urinish (yozuv saqlangan)
           </button>
         )}
       </section>
@@ -256,10 +286,10 @@ export function Dictation() {
           className="w-full resize-y rounded-2xl border border-[var(--line)] bg-transparent p-3 text-base leading-relaxed"
         />
         <div className="mt-3 grid grid-cols-3 gap-2">
-          <button type="button" disabled={!text} onClick={() => copy(text)} className="rounded-xl bg-emerald-500 py-2.5 font-semibold text-white disabled:opacity-40">
+          <button type="button" disabled={!text} onClick={() => copy(text)} className="rounded-xl bg-emerald-700 py-2.5 font-semibold text-white disabled:opacity-40">
             Nusxalash
           </button>
-          <button type="button" disabled={!text} onClick={() => share(text)} className="rounded-xl bg-sky-500 py-2.5 font-semibold text-white disabled:opacity-40">
+          <button type="button" disabled={!text} onClick={() => share(text)} className="rounded-xl bg-sky-700 py-2.5 font-semibold text-white disabled:opacity-40">
             Ulashish
           </button>
           <button type="button" disabled={!text} onClick={() => setText('')} className="rounded-xl py-2.5 font-medium ring-1 ring-[var(--line)] disabled:opacity-40">
@@ -269,43 +299,7 @@ export function Dictation() {
       </section>
 
       {history.length > 0 && (
-        <section className="mt-6">
-          <div className="mb-2 flex items-center justify-between">
-            <h2 className="text-sm font-semibold">Oldingi yozuvlar</h2>
-            <button
-              type="button"
-              className="text-xs text-[var(--muted)] underline"
-              onClick={() => {
-                if (window.confirm("Barcha yozuvlar o'chirilsinmi?")) {
-                  setHistory([]);
-                  saveHistory([]);
-                }
-              }}
-            >
-              Tozalash
-            </button>
-          </div>
-          <ul className="space-y-2">
-            {history.map((item) => (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setText(item.text);
-                    void copy(item.text);
-                  }}
-                  className="w-full rounded-2xl bg-[var(--card)] p-3 text-left ring-1 ring-[var(--line)] hover:ring-emerald-500/50"
-                >
-                  <span className="mb-1 flex items-center gap-2 text-[11px] text-[var(--muted)]">
-                    <span className="rounded-md bg-[var(--chip)] px-1.5 py-0.5 font-semibold">{outputLanguage(item.output).short}</span>
-                    {new Date(item.at).toLocaleString('uz-UZ', { dateStyle: 'short', timeStyle: 'short' })}
-                  </span>
-                  <span className="line-clamp-3 text-sm">{item.text}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <HistoryList items={history} onPick={pickHistory} onClear={clearHistory} />
       )}
 
       <footer className="mt-auto pt-8 text-center text-xs text-[var(--muted)]">
@@ -321,7 +315,7 @@ export function Dictation() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -30, opacity: 0 }}
             className={`fixed inset-x-4 top-[max(0.75rem,env(safe-area-inset-top))] z-50 mx-auto max-w-md rounded-2xl px-4 py-3 text-center text-sm font-medium text-white shadow-xl ${
-              toast.kind === 'error' ? 'bg-rose-600' : 'bg-emerald-600'
+              toast.kind === 'error' ? 'bg-rose-700' : 'bg-emerald-700'
             }`}
           >
             {toast.message}
@@ -358,3 +352,44 @@ function isIosSafariBrowser(): boolean {
     window.matchMedia('(display-mode: standalone)').matches;
   return ios && !standalone;
 }
+
+const DATE_FORMAT = new Intl.DateTimeFormat('uz-UZ', { dateStyle: 'short', timeStyle: 'short' });
+
+/** Memoised so the list is not re-rendered while the recording timer ticks. */
+const HistoryList = memo(function HistoryList({
+  items,
+  onPick,
+  onClear,
+}: {
+  items: HistoryItem[];
+  onPick: (text: string) => void;
+  onClear: () => void;
+}) {
+  return (
+    <section className="mt-6">
+      <div className="mb-2 flex items-center justify-between">
+        <h2 className="text-sm font-semibold">Oldingi yozuvlar</h2>
+        <button type="button" className="text-xs text-[var(--muted)] underline" onClick={onClear}>
+          Tozalash
+        </button>
+      </div>
+      <ul className="space-y-2">
+        {items.map((item) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              onClick={() => onPick(item.text)}
+              className="w-full rounded-2xl bg-[var(--card)] p-3 text-left ring-1 ring-[var(--line)] hover:ring-emerald-500/50"
+            >
+              <span className="mb-1 flex items-center gap-2 text-[11px] text-[var(--muted)]">
+                <span className="rounded-md bg-[var(--chip)] px-1.5 py-0.5 font-semibold">{outputLanguage(item.output).short}</span>
+                {DATE_FORMAT.format(item.at)}
+              </span>
+              <span className="line-clamp-3 text-sm">{item.text}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+});

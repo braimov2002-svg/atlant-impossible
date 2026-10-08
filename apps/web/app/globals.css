@@ -39,6 +39,13 @@ button {
   cursor: pointer;
 }
 
+/* iOS Safari zooms into any field under 16px and stays zoomed. */
+input,
+select,
+textarea {
+  font-size: max(16px, 1em);
+}
+
 button:disabled {
   cursor: not-allowed;
 }

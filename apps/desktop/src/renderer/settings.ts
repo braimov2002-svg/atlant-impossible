@@ -25,6 +25,8 @@ let snapshot: SettingsSnapshot;
 let draft: DesktopSettings;
 /** Keys typed in this session; '' means "remove the stored key". */
 const typedKeys: Partial<Record<ProviderId, string>> = {};
+/** Providers whose stored key the user asked to remove. */
+const removing = new Set<ProviderId>();
 
 function option(value: string, text: string, selected: boolean): HTMLOptionElement {
   const el = document.createElement('option');
@@ -61,6 +63,12 @@ function renderKey(): void {
   keyLabel.textContent = `${PROVIDERS[provider].label} API kaliti`;
   keyInput.placeholder = provider === 'gemini' ? 'AIza...' : 'sk-...';
   keyInput.value = typedKeys[provider] ?? '';
+  renderKeyStatus();
+  $('gemini-steps').hidden = provider !== 'gemini';
+}
+
+function renderKeyStatus(): void {
+  const provider = draft.provider;
   const saved = snapshot.keyPreview[provider];
   const removing = typedKeys[provider] === '';
   keyStatus.textContent = removing
@@ -70,7 +78,6 @@ function renderKey(): void {
       : `${PROVIDERS[provider].keyHint}.`;
   if (!snapshot.secureStorage) keyStatus.textContent += ' (Diqqat: tizim shifrlashi mavjud emas.)';
   $('remove-key').hidden = !saved;
-  $('gemini-steps').hidden = provider !== 'gemini';
 }
 
 function hotkeyOptions(select: HTMLSelectElement, presets: readonly string[], current: string, allowOff: boolean): void {
@@ -107,13 +114,21 @@ function render(): void {
     }),
   );
 
-  hotkeyOptions(hotkeySelect, HOTKEY_PRESETS, draft.hotkey, false);
-  hotkeyOptions(cycleSelect, CYCLE_PRESETS, draft.cycleHotkey, true);
+  // Mac function keys are media keys by default, so bare F-keys never arrive.
+  const usable = (list: readonly string[]) =>
+    snapshot.platform === 'darwin' ? list.filter((accel) => !/^F\d+$/.test(accel)) : list;
+  hotkeyOptions(hotkeySelect, usable(HOTKEY_PRESETS), draft.hotkey, false);
+  hotkeyOptions(cycleSelect, usable(CYCLE_PRESETS), draft.cycleHotkey, true);
   $<HTMLInputElement>('auto-paste').checked = draft.autoPaste;
   $<HTMLInputElement>('restore-clipboard').checked = draft.restoreClipboard;
   $<HTMLInputElement>('restore-clipboard').disabled = !draft.autoPaste;
   $<HTMLInputElement>('open-at-login').checked = draft.openAtLogin;
-  $('permissions').hidden = snapshot.platform !== 'darwin';
+  const mac = snapshot.platform === 'darwin';
+  $('permissions').hidden = !mac && snapshot.platform !== 'win32';
+  $('perm-ax').hidden = !mac;
+  $('perm-hint').textContent = mac
+    ? 'Mikrofon — ovozni yozish uchun. Accessibility (Universal access) — matnni avtomatik joylash uchun.'
+    : "Ovoz yozilmasa: Windows sozlamalari → Maxfiylik → Mikrofon → «Ish stoli ilovalariga ruxsat» ni yoqing.";
   showErrors(snapshot.hotkeyErrors);
 }
 
@@ -158,8 +173,11 @@ form.addEventListener('change', (event) => {
 });
 
 keyInput.addEventListener('input', () => {
-  typedKeys[draft.provider] = keyInput.value.trim();
-  if (!typedKeys[draft.provider]) delete typedKeys[draft.provider];
+  const value = keyInput.value.trim();
+  if (value) typedKeys[draft.provider] = value;
+  else if (removing.has(draft.provider)) typedKeys[draft.provider] = '';
+  else delete typedKeys[draft.provider];
+  renderKeyStatus();
 });
 
 $('toggle-key').addEventListener('click', () => {
@@ -170,6 +188,7 @@ $('toggle-key').addEventListener('click', () => {
 
 $('get-key').addEventListener('click', () => bridge.openKeyPage(draft.provider));
 $('remove-key').addEventListener('click', () => {
+  removing.add(draft.provider);
   typedKeys[draft.provider] = '';
   renderKey();
 });
@@ -201,6 +220,7 @@ form.addEventListener('submit', async (event) => {
       return;
     }
     for (const key of Object.keys(typedKeys) as ProviderId[]) delete typedKeys[key];
+    removing.clear();
     snapshot = await bridge.get();
     draft = snapshot.settings;
     render();
@@ -219,5 +239,6 @@ void (async () => {
   snapshot = await bridge.get();
   draft = snapshot.settings;
   render();
+  form.inert = false; // inert until the settings arrived, so nothing typed is lost
   if (!snapshot.keyPreview[draft.provider]) keyInput.focus();
 })();

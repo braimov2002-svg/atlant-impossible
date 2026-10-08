@@ -34,6 +34,7 @@ body {
 }
 
 .pill {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -63,6 +64,12 @@ body {
 .pill.info .text {
   white-space: normal;
   font-size: 13px;
+  /* the window is only 72px tall: at most two lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .icon {

@@ -89,6 +89,7 @@ Veb-ilovani brauzerda oching. Repozitoriy egasi GitHub Pages'ni yoqqanidan keyin
 `https://braimov2002-svg.github.io/atlant-impossible/`
 
 1. Sahifani oching, ⚙️ **Sozlamalar** ga kiring va API kalitni joylang.
+   > Kalit brauzer xotirasida saqlanadi. `*.github.io` manzilida bir egasining barcha saytlari shu xotirani bo'lishadi. Shuning uchun pullik kalitni faqat o'zingizning domeningizdagi nusxada ishlating yoki Google AI Studio'da kalitni faqat Gemini API va shu sayt manzili bilan cheklang.
 2. Ilova kabi ishlatish uchun:
    - **iPhone (Safari):** **Ulashish** → **Bosh ekranga** (Add to Home Screen).
    - **Android (Chrome):** ⋮ menyu → **Ilovani o'rnatish** / **Bosh ekranga qo'shish**.

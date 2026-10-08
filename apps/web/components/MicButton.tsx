@@ -1,11 +1,12 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useSpring, useTransform, type MotionValue } from 'motion/react';
 import type { Phase } from '@/lib/useDictation';
 
 interface Props {
   phase: Phase;
-  level: number;
+  /** Microphone loudness 0..1, updated every frame without re-rendering. */
+  level: MotionValue<number>;
   onPress: () => void;
 }
 
@@ -19,6 +20,7 @@ const LABELS: Record<Phase, string> = {
 export function MicButton({ phase, level, onPress }: Props) {
   const recording = phase === 'recording';
   const busy = phase === 'processing' || phase === 'starting';
+  const ringScale = useSpring(useTransform(level, (l) => 1 + l * 0.45), { stiffness: 300, damping: 20 });
 
   return (
     <div className="relative grid size-56 place-items-center">
@@ -27,8 +29,7 @@ export function MicButton({ phase, level, onPress }: Props) {
           <motion.span
             aria-hidden
             className="absolute inset-0 rounded-full bg-rose-500/20"
-            animate={{ scale: 1 + level * 0.45 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            style={{ scale: ringScale }}
           />
           <motion.span
             aria-hidden
@@ -55,8 +56,8 @@ export function MicButton({ phase, level, onPress }: Props) {
         whileTap={{ scale: 0.94 }}
         className={`relative grid size-36 place-items-center rounded-full text-white shadow-xl outline-none transition-colors focus-visible:ring-4 focus-visible:ring-sky-400/60 disabled:cursor-wait ${
           recording
-            ? 'bg-rose-500 shadow-rose-500/40'
-            : 'bg-gradient-to-br from-sky-500 to-emerald-500 shadow-emerald-500/30'
+            ? 'bg-rose-600 shadow-rose-500/40'
+            : 'bg-gradient-to-br from-sky-600 to-emerald-600 shadow-emerald-500/30'
         }`}
       >
         {recording ? (

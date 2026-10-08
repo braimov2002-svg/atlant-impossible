@@ -16,7 +16,7 @@
         </div>
       </header>
 
-      <form id="form" autocomplete="off">
+      <form id="form" autocomplete="off" inert>
         <section>
           <h2>1. Xizmat va API kalit</h2>
           <div class="segmented" role="radiogroup" aria-label="Xizmat">
@@ -89,8 +89,8 @@
         </section>
 
         <section id="permissions">
-          <h2>5. macOS ruxsatlari</h2>
-          <p class="muted small">Mikrofon — ovozni yozish uchun. Accessibility (Universal access) — matnni avtomatik joylash uchun.</p>
+          <h2>5. Ruxsatlar</h2>
+          <p class="muted small" id="perm-hint">Mikrofon — ovozni yozish uchun. Accessibility (Universal access) — matnni avtomatik joylash uchun.</p>
           <div class="row wrap">
             <button type="button" class="secondary" id="perm-mic">Mikrofon ruxsati</button>
             <button type="button" class="secondary" id="perm-ax">Accessibility ruxsati</button>

@@ -114,15 +114,22 @@ export class MicRecorder {
       void meterContext?.close().catch(() => undefined);
       throw new DictationError('unsupported');
     }
-    this.stream = stream;
-    this.recorder = recorder;
     this.chunks = [];
     recorder.ondataavailable = (event) => {
       if (event.data && event.data.size > 0) this.chunks.push(event.data);
     };
-    // A timeslice makes the browser hand over data regularly, so a long
-    // recording is never lost to a single giant final chunk.
-    recorder.start(1000);
+    try {
+      // A timeslice makes the browser hand over data regularly, so a long
+      // recording is never lost to a single giant final chunk.
+      recorder.start(1000);
+    } catch {
+      // e.g. the track ended between getUserMedia and start (incoming call)
+      stream.getTracks().forEach((track) => track.stop());
+      void meterContext?.close().catch(() => undefined);
+      throw new DictationError('mic-unavailable');
+    }
+    this.stream = stream;
+    this.recorder = recorder;
     this.startedAt = Date.now();
     this.startMeter(meterContext, stream);
   }

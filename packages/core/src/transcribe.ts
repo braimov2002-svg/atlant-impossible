@@ -83,9 +83,20 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
       model = heard.model;
       source = cleanModelText(heard.text);
       if (!source || source.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
-      text = cleanModelText(await rewrite(source, false, heard.model));
-      if (!text || text.includes(EMPTY_SENTINEL)) throw new DictationError('translate-failed');
-      translated = true;
+      // The transcript is already worth keeping: if the translation request
+      // fails (quota, busy, deadline), fall back to the best-effort fix-up
+      // below, which keeps the transcript if that fails too.
+      text = source;
+      translated = false;
+      try {
+        const answer = cleanModelText(await rewrite(source, false, heard.model));
+        if (answer && !answer.includes(EMPTY_SENTINEL)) {
+          text = answer;
+          translated = true;
+        }
+      } catch (error) {
+        if (options.signal?.aborted) throw error;
+      }
     } else {
       const result = provider === 'openai' ? await openaiTranscribe(request) : await geminiTranscribe(request);
       model = result.model;
@@ -104,6 +115,8 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   // Models sometimes still answer in the wrong language: check and fix it.
   const audioModel = model;
   try {
+    // Out of time already (e.g. the translation step used it up): keep the text.
+    if (signal.aborted) throw signal.reason;
     text = await ensureLanguage(text, options.output, (src, strict) => rewrite(src, strict, textModel(audioModel)), {
       source,
       // A translation that already ran gets one stricter retry; a plain

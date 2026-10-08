@@ -117,6 +117,7 @@ describe('transcribe: output language', () => {
     const fetch = (async (_url: string, init?: RequestInit) => {
       if (n++ === 0) return gemini(UZ);
       return new Promise<Response>((_resolve, reject) => {
+        if (init?.signal?.aborted) reject(new DOMException('aborted', 'AbortError'));
         init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
       });
     }) as unknown as typeof globalThis.fetch;
@@ -178,5 +179,45 @@ describe('translateText', () => {
     await expect(translateText({ text: '   ', output: 'ru', provider: 'gemini', apiKey: 'k' })).rejects.toMatchObject({ code: 'empty-text' });
     await expect(translateText({ text: 'Salom', output: 'ru', provider: 'gemini', apiKey: '' })).rejects.toMatchObject({ code: 'no-api-key' });
     await expect(translateText({ text: 'a'.repeat(10_001), output: 'ru', provider: 'gemini', apiKey: 'k' })).rejects.toBeInstanceOf(DictationError);
+  });
+});
+
+describe('transcribe: two-step failures keep the transcript', () => {
+  it('returns the transcript when the translation step hits the quota', async () => {
+    const quota = () => json({ error: { code: 429, message: 'Resource exhausted', status: 'RESOURCE_EXHAUSTED' } }, 429);
+    const { fetch } = mockFetch([gemini(UZ), quota(), quota(), quota(), quota()]);
+    const result = await transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch });
+    expect(result.text).toBe(UZ);
+  });
+
+  it('returns the transcript when the deadline runs out during the translation step', async () => {
+    let n = 0;
+    const fetch = (async (_url: string, init?: RequestInit) => {
+      if (n++ === 0) return gemini(UZ);
+      return new Promise<Response>((_resolve, reject) => {
+        if (init?.signal?.aborted) reject(new DOMException('aborted', 'AbortError'));
+        init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
+      });
+    }) as unknown as typeof globalThis.fetch;
+    const result = await transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch, timeoutMs: 200 });
+    expect(result.text).toBe(UZ);
+  });
+
+  it('still reports cancellation by the user', async () => {
+    const controller = new AbortController();
+    let n = 0;
+    const fetch = (async (_url: string, init?: RequestInit) => {
+      if (n++ === 0) {
+        setTimeout(() => controller.abort(), 10);
+        return gemini(UZ);
+      }
+      return new Promise<Response>((_resolve, reject) => {
+        if (init?.signal?.aborted) reject(new DOMException('aborted', 'AbortError'));
+        init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
+      });
+    }) as unknown as typeof globalThis.fetch;
+    await expect(
+      transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch, signal: controller.signal }),
+    ).rejects.toMatchObject({ code: 'cancelled' });
   });
 });

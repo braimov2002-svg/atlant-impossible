@@ -56,30 +56,27 @@ export function TranslateBox({ output, translating, disabled, onTranslate, onCan
         </p>
       )}
       <div className="mt-3 flex gap-2">
-        {canPaste && !translating && (
-          <button type="button" onClick={paste} className="rounded-xl px-4 py-2.5 font-medium ring-1 ring-[var(--line)]">
-            Joylash
-          </button>
-        )}
         {translating ? (
-          <>
-            <p aria-live="polite" className="flex-1 self-center text-center font-medium">
-              Tarjima qilinmoqda...
-            </p>
-            <button type="button" onClick={onCancel} className="rounded-xl px-4 py-2.5 font-medium ring-1 ring-[var(--line)]">
-              Bekor qilish
-            </button>
-          </>
-        ) : (
-          <button
-            type="button"
-            disabled={!input.trim() || tooLong || disabled}
-            onClick={() => onTranslate(input)}
-            className="flex-1 rounded-xl bg-indigo-700 py-2.5 font-semibold text-white disabled:opacity-40"
-          >
-            {`Tarjima qilish → ${out.short}`}
+          <button type="button" onClick={onCancel} className="rounded-xl px-4 py-2.5 font-medium ring-1 ring-[var(--line)]">
+            Bekor qilish
           </button>
+        ) : (
+          canPaste && (
+            <button type="button" onClick={paste} className="rounded-xl px-4 py-2.5 font-medium ring-1 ring-[var(--line)]">
+              Joylash
+            </button>
+          )
         )}
+        {/* Stays in place while translating, so a double tap cannot hit "Bekor qilish". */}
+        <button
+          type="button"
+          disabled={!input.trim() || tooLong || disabled || translating}
+          onClick={() => onTranslate(input)}
+          aria-busy={translating}
+          className="flex-1 rounded-xl bg-indigo-700 py-2.5 font-semibold text-white disabled:opacity-40"
+        >
+          {translating ? 'Tarjima qilinmoqda...' : `Tarjima qilish → ${out.short}`}
+        </button>
       </div>
     </section>
   );

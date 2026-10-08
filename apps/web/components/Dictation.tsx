@@ -324,7 +324,7 @@ export function Dictation() {
             Bekor qilish
           </button>
         )}
-        {!busy && dictation.canRetry && (
+        {!busy && !translating && dictation.canRetry && (
           <button
             type="button"
             onClick={() => void dictation.retry()}

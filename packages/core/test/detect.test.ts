@@ -126,3 +126,13 @@ describe('looksLikeUzbekCyrillic', () => {
     expect(looksLikeUzbekCyrillic('Пожалуйста, возьмите документы завтра утром. Ўзим олиб бораман.')).toBe(false);
   });
 });
+
+describe('languageMatches on the review corpus', async () => {
+  const { CORPUS } = await import('./fixtures/language-corpus');
+  for (const target of ['uz-latn', 'uz-cyrl', 'ru', 'en'] as const) {
+    it(`${target}: accepts its own language and rejects the others`, () => {
+      const wrong = CORPUS.filter(([lang, text]) => lang !== 'neutral' && languageMatches(text, target) !== (lang === target));
+      expect(wrong.map(([lang, text]) => `${lang}: ${text}`)).toEqual([]);
+    });
+  }
+});

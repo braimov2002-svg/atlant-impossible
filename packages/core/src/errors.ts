@@ -12,6 +12,7 @@ export type DictationErrorCode =
   | 'mic-denied'
   | 'mic-unavailable'
   | 'unsupported'
+  | 'region'
   | 'provider'
   | 'cancelled';
 
@@ -47,6 +48,7 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   'mic-denied': 'Mikrofonga ruxsat berilmagan. Brauzer yoki tizim sozlamalarida ruxsat bering.',
   'mic-unavailable': 'Mikrofon topilmadi yoki band.',
   unsupported: "Bu brauzer ovoz yozishni qo'llab-quvvatlamaydi.",
+  region: "Bu xizmat sizning hududingizda ishlamayapti. Sozlamalarda boshqa xizmatni tanlab ko'ring.",
   provider: 'Xizmatda xatolik yuz berdi.',
   cancelled: 'Bekor qilindi.',
 };
@@ -67,6 +69,9 @@ export function httpError(status: number, providerMessage: string | undefined): 
   const detail = providerMessage?.slice(0, 300);
   if (status === 401 || status === 403) return new DictationError('invalid-api-key', detail, status);
   if (status === 429) return new DictationError('quota', detail, status);
+  if (detail && /location is not supported|unsupported_country|country, region, or territory not supported/i.test(detail)) {
+    return new DictationError('region', detail, status);
+  }
   if (status === 400 && detail && /api[ _-]?key/i.test(detail)) {
     // Gemini answers an invalid key with 400 INVALID_ARGUMENT "API key not valid".
     return new DictationError('invalid-api-key', detail, status);

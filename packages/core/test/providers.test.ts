@@ -31,23 +31,24 @@ describe('gemini', () => {
     });
 
     expect(result.text).toBe('Salom, dunyo.');
-    expect(result.model).toBe('gemini-2.5-flash');
+    expect(result.model).toBe('gemini-3.5-flash');
     const [url, init] = fetchMock.mock.calls[0];
     expect(String(url)).toBe(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent',
     );
     expect((init!.headers as Record<string, string>)['x-goog-api-key']).toBe('AIzaTEST');
     const body = JSON.parse(init!.body as string);
     const inline = body.contents[0].parts[0].inlineData;
     expect(inline.mimeType).toBe('audio/wav');
     expect(atob(inline.data).slice(0, 4)).toBe('RIFF');
-    expect(body.generationConfig.thinkingConfig).toEqual({ thinkingBudget: 0 });
+    expect(body.generationConfig.thinkingConfig).toEqual({ thinkingLevel: 'minimal' });
+    expect(body.generationConfig.temperature).toBeUndefined();
   });
 
   it('describes the requested output language in the prompt', () => {
     const body = geminiRequestBody(
       { audio, spoken: 'uz', output: 'ru', apiKey: 'k' },
-      'gemini-2.5-flash',
+      'gemini-3.5-flash',
     ) as { systemInstruction: { parts: Array<{ text: string }> } };
     const prompt = body.systemInstruction.parts[0].text;
     expect(prompt).toContain('speaks Uzbek');
@@ -59,8 +60,61 @@ describe('gemini', () => {
   it('picks a thinking config per model family', () => {
     expect(thinkingConfig('gemini-2.5-flash-lite')).toEqual({ thinkingBudget: 0 });
     expect(thinkingConfig('gemini-2.5-pro')).toEqual({ thinkingBudget: 128 });
-    expect(thinkingConfig('gemini-3-flash-preview')).toEqual({ thinkingLevel: 'low' });
+    expect(thinkingConfig('gemini-3.5-flash-lite')).toEqual({ thinkingLevel: 'minimal' });
+    expect(thinkingConfig('gemini-flash-latest')).toEqual({ thinkingLevel: 'minimal' });
+    expect(thinkingConfig('gemini-3.5-pro')).toEqual({ thinkingLevel: 'low' });
     expect(thinkingConfig('gemini-2.0-flash')).toBeUndefined();
+    const old = geminiRequestBody({ audio, spoken: 'uz', output: 'en', apiKey: 'k' }, 'gemini-2.5-flash') as {
+      generationConfig: Record<string, unknown>;
+    };
+    expect(old.generationConfig.temperature).toBe(0);
+  });
+
+  it('falls back to the latest alias when a model was retired', async () => {
+    const urls: string[] = [];
+    const fetchMock = vi.fn(async (url: string | URL | Request) => {
+      urls.push(String(url));
+      if (String(url).includes('gemini-2.5-flash')) {
+        return jsonResponse({ error: { code: 404, message: 'models/gemini-2.5-flash is not found', status: 'NOT_FOUND' } }, 404);
+      }
+      return jsonResponse(geminiAnswer('Salom'));
+    });
+    const result = await transcribe({
+      provider: 'gemini', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'k', model: 'gemini-2.5-flash',
+      fetch: fetchMock as never,
+    });
+    expect(result.text).toBe('Salom');
+    expect(result.model).toBe('gemini-flash-latest');
+    expect(urls[1]).toContain('/models/gemini-flash-latest:generateContent');
+  });
+
+  it('retries without thinkingConfig when a model rejects it', async () => {
+    const bodies: Array<Record<string, any>> = [];
+    const fetchMock = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
+      const body = JSON.parse(init!.body as string);
+      bodies.push(body);
+      if (body.generationConfig.thinkingConfig) {
+        return jsonResponse({ error: { code: 400, message: 'thinking_level is not supported for this model.' } }, 400);
+      }
+      return jsonResponse(geminiAnswer('Salom'));
+    });
+    const result = await transcribe({
+      provider: 'gemini', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'k', fetch: fetchMock as never,
+    });
+    expect(result.text).toBe('Salom');
+    expect(bodies).toHaveLength(2);
+    expect(bodies[1].generationConfig.thinkingConfig).toBeUndefined();
+  });
+
+  it('explains region blocks', async () => {
+    const fetchMock = vi.fn(async () =>
+      jsonResponse({ error: { code: 400, message: 'User location is not supported for the API use.', status: 'FAILED_PRECONDITION' } }, 400),
+    );
+    const error = await transcribe({
+      provider: 'gemini', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'k', fetch: fetchMock as never,
+    }).catch((e) => e);
+    expect(error.code).toBe('region');
+    expect(userMessage(error)).toContain('hududingizda');
   });
 
   it('ignores thought parts and reports blocks', () => {

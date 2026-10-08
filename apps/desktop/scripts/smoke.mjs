@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import os from 'node:os';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const electron = createRequire(import.meta.url)('electron');
@@ -20,6 +21,11 @@ await esbuild.build({
   external: ['electron'],
   logLevel: 'warning',
 });
+if (!process.env.SMOKE_AUDIO) {
+  const audio = path.join(os.tmpdir(), 'ovozyoz-smoke-speech.wav');
+  spawnSync(process.execPath, [path.join(root, '../../scripts/make-test-audio.mjs'), audio], { stdio: 'inherit' });
+  process.env.SMOKE_AUDIO = audio;
+}
 const args = [path.join(root, 'dist/smoke.js')];
 if (process.platform === 'linux') args.push('--no-sandbox');
 const run = spawnSync(electron, args, { stdio: 'inherit', env: process.env });

@@ -88,6 +88,8 @@ export interface TranslateOptions {
 export interface TranslateResult {
   text: string;
   model: string;
+  /** False when the answer is still not in the requested language (see TranscribeResult). */
+  languageOk: boolean;
 }
 
 /**
@@ -152,7 +154,7 @@ export async function translateText(options: TranslateOptions): Promise<Translat
     clearTimeout(timer);
   }
   if (options.output === 'uz-latn') text = normalizeUzbekApostrophes(text, options.apostrophes ?? 'ascii');
-  return { text, model };
+  return { text, model, languageOk: languageMatches(text, options.output) };
 }
 
 /** AbortSignal.any() with a fallback for Safari < 17.4. */

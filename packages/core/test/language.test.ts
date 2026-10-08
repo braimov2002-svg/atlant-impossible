@@ -67,6 +67,7 @@ describe('transcribe: output language', () => {
     const { fetch, calls } = mockFetch([gemini(UZ), gemini(RU)]);
     const result = await transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch });
     expect(result.text).toBe(RU);
+    expect(result.languageOk).toBe(true);
     expect(calls).toHaveLength(2);
     expect(calls[0].body.contents[0].parts[0].inlineData).toBeDefined();
     expect(calls[0].body.systemInstruction.parts[0].text).toContain('Latin alphabet');
@@ -110,6 +111,8 @@ describe('transcribe: output language', () => {
     const { fetch } = mockFetch([gemini(UZ), quota(), quota()]);
     const result = await transcribe({ provider: 'gemini', audio, spoken: 'auto', output: 'ru', apiKey: 'k', fetch });
     expect(result.text).toBe(UZ);
+    // Kept for checking, but flagged: never shown as if it were Russian.
+    expect(result.languageOk).toBe(false);
   });
 
   it('keeps the text when the deadline runs out during the fix-up', async () => {
@@ -157,7 +160,7 @@ describe('translateText', () => {
   it('uses the OpenAI chat model', async () => {
     const { fetch, calls } = mockFetch([chat(EN)]);
     const result = await translateText({ text: UZ, output: 'en', provider: 'openai', apiKey: 'sk', fetch });
-    expect(result).toEqual({ text: EN, model: 'gpt-5-mini' });
+    expect(result).toEqual({ text: EN, model: 'gpt-5-mini', languageOk: true });
     expect(calls[0].url).toBe('https://api.openai.com/v1/chat/completions');
     expect(calls[0].body.messages[1].content).toBe(UZ);
   });
@@ -173,6 +176,7 @@ describe('translateText', () => {
     const { fetch } = mockFetch([gemini(RU), busy(), busy()]);
     const result = await translateText({ text: RU, output: 'uz-latn', provider: 'gemini', apiKey: 'k', fetch });
     expect(result.text).toBe(RU);
+    expect(result.languageOk).toBe(false);
   });
 
   it('explains empty input, missing key and over-long text in Uzbek', async () => {
@@ -188,6 +192,7 @@ describe('transcribe: two-step failures keep the transcript', () => {
     const { fetch } = mockFetch([gemini(UZ), quota(), quota(), quota(), quota()]);
     const result = await transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch });
     expect(result.text).toBe(UZ);
+    expect(result.languageOk).toBe(false);
   });
 
   it('returns the transcript when the deadline runs out during the translation step', async () => {
@@ -274,5 +279,25 @@ describe('pipeline details (third review)', () => {
     const result = await translateText({ text: RU, output: 'uz-latn', provider: 'gemini', apiKey: 'k', fetch });
     expect(result.text).toBe(UZ);
     expect(calls).toHaveLength(2);
+  });
+});
+
+describe('wrong-language flag', () => {
+  it('names the target language in the message', async () => {
+    const { wrongLanguageMessage } = await import('../src/errors');
+    expect(wrongLanguageMessage('ru')).toBe("Ruschaga o'girib bo'lmadi.");
+    expect(wrongLanguageMessage('uz-latn')).toBe("Lotin o'zbekchaga o'girib bo'lmadi.");
+  });
+
+  it('flags a translation that is still Uzbek after the strict retry', async () => {
+    const { fetch } = mockFetch([gemini(UZ), gemini(UZ), gemini(UZ)]);
+    const result = await transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch });
+    expect(result.languageOk).toBe(false);
+  });
+
+  it('does not flag short or neutral answers', async () => {
+    const { fetch } = mockFetch([gemini('OK')]);
+    const result = await transcribe({ provider: 'gemini', audio, spoken: 'auto', output: 'ru', apiKey: 'k', fetch });
+    expect(result.languageOk).toBe(true);
   });
 });

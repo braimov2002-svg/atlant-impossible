@@ -1,3 +1,4 @@
+import { languageMatches } from './detect';
 import { DictationError, MAX_RECORDING_SECONDS, MIN_RECORDING_SECONDS } from './errors';
 import { readWavInfo } from './audio/wav';
 import { EMPTY_SENTINEL } from './prompt';
@@ -25,6 +26,12 @@ export interface TranscribeResult {
   provider: ProviderId;
   model: string;
   durationSec: number;
+  /**
+   * False when the text is still not in the requested output language after
+   * every retry (e.g. the translation failed and only the Uzbek transcript is
+   * left). Apps must then show it for checking instead of copying or pasting it.
+   */
+  languageOk: boolean;
 }
 
 /**
@@ -140,7 +147,7 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   for (const m of rewriteModels) if (m !== model && !model.includes(` + ${m}`)) model = `${model} + ${m}`;
 
   if (options.output === 'uz-latn') text = normalizeUzbekApostrophes(text, apostrophes);
-  return { text, provider, model, durationSec };
+  return { text, provider, model, durationSec, languageOk: languageMatches(text, options.output) };
 }
 
 /** Failures that another request cannot fix right now. */

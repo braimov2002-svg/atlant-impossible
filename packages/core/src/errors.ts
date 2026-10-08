@@ -1,3 +1,5 @@
+import { outputLanguage, type OutputLanguage } from './languages';
+
 export type DictationErrorCode =
   | 'no-api-key'
   | 'invalid-api-key'
@@ -69,6 +71,16 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   'translate-failed': "Tarjima qilib bo'lmadi. Qayta urinib ko'ring.",
   cancelled: 'Bekor qilindi.',
 };
+
+/**
+ * Shown when the answer is still not in the chosen output language after
+ * every retry: the text is shown for checking, never copied or pasted as if
+ * it were a success.
+ */
+export function wrongLanguageMessage(output: OutputLanguage): string {
+  const into = outputLanguage(output).into;
+  return `${into.charAt(0).toUpperCase()}${into.slice(1)} o'girib bo'lmadi.`;
+}
 
 /** Human-readable Uzbek message for any thrown value. */
 export function userMessage(error: unknown): string {

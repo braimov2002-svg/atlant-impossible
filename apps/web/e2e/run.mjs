@@ -71,7 +71,10 @@ try {
     const system = body.systemInstruction.parts[0].text;
     const textOnly = !body.contents[0].parts.some((part) => part.inlineData);
     let text;
-    if (textOnly) {
+    if (mode === 'uzbekonly') {
+      // every answer, translations included, comes back in Uzbek
+      text = 'Salom, qalaysan? Bugun havo juda yaxshi.';
+    } else if (textOnly) {
       // translation step / translate box
       text = system.includes('Target language: Russian')
         ? 'Привет, как дела? Сегодня очень хорошая погода.'
@@ -210,6 +213,25 @@ try {
   );
   mode = 'ok';
   await page.getByRole('radio', { name: /^RU/ }).click();
+
+  // The model answers in Uzbek even though Russian was chosen: the app must
+  // say so instead of copying Uzbek text as if it were Russian.
+  mode = 'uzbekonly';
+  await page.evaluate(() => navigator.clipboard.writeText('CLIPBOARD-BEFORE'));
+  await record(1200);
+  await page.getByText(/Natija boshqa tilda chiqdi/).waitFor({ timeout: 15_000 });
+  const wrongClip = await page.evaluate(() => navigator.clipboard.readText().catch(() => ''));
+  const wrongText = await page.inputValue('#result');
+  check(
+    'wrong language is flagged, not copied',
+    wrongClip === 'CLIPBOARD-BEFORE' && wrongText.startsWith('Salom') && (await page.getByText("Ruschaga o'girib bo'lmadi. Natijani tekshiring.").count()) === 1,
+    JSON.stringify({ wrongClip, wrongText }),
+  );
+  if (shots) await page.screenshot({ path: path.join(shots, 'web-wrong-language.png') });
+  mode = 'ok';
+  await page.getByRole('button', { name: /Qayta tarjima qilish/ }).click();
+  await page.waitForFunction(() => document.querySelector('#result')?.value.startsWith('Привет, как дела? Сегодня'), null, { timeout: 15_000 });
+  check('re-translate fixes it', (await page.getByRole('button', { name: /Qayta tarjima qilish/ }).count()) === 0);
 
   mode = 'badkey';
   await record(1200);

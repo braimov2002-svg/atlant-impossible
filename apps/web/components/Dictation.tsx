@@ -8,6 +8,7 @@ import {
   PROVIDERS,
   translateText,
   userMessage,
+  wrongLanguageMessage,
   type DictationSettings,
   type OutputLanguage,
 } from '@ovozyoz/core';
@@ -63,6 +64,8 @@ export function Dictation() {
   const [toast, setToast] = useState<{ kind: 'ok' | 'error'; message: string } | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [showInstallTip, setShowInstallTip] = useState(false);
+  /** The last result was not in the chosen language: shown with a warning, not copied. */
+  const [wrongLanguage, setWrongLanguage] = useState<{ text: string; output: OutputLanguage } | null>(null);
 
   // localStorage is only available in the browser, after hydration.
   useEffect(() => {
@@ -87,17 +90,16 @@ export function Dictation() {
   }, []);
 
   const handleResult = useCallback(
-    ({ text: result, copied, output }: { text: string; copied: boolean; output?: OutputLanguage }) => {
+    ({ text: result, copied, languageOk, output }: { text: string; copied: boolean; languageOk: boolean; output: OutputLanguage }) => {
       setText(result);
+      setWrongLanguage(languageOk ? null : { text: result, output });
       setHistory((items) => {
-        const next = [
-          { id: newId(), text: result, output: output ?? latest.current.settings.output, at: Date.now() },
-          ...items,
-        ].slice(0, HISTORY_LIMIT);
+        const next = [{ id: newId(), text: result, output, at: Date.now() }, ...items].slice(0, HISTORY_LIMIT);
         saveHistory(next);
         return next;
       });
-      if (copied) showToast('ok', 'Matn nusxalandi — istalgan joyga joylang');
+      if (!languageOk) showToast('error', `${wrongLanguageMessage(output)} Natijani tekshiring.`);
+      else if (copied) showToast('ok', 'Matn nusxalandi — istalgan joyga joylang');
       else if (latest.current.prefs.autoCopy) {
         showToast('error', "Avtomatik nusxalab bo'lmadi — «Nusxalash» tugmasini bosing");
       }
@@ -149,15 +151,19 @@ export function Dictation() {
         apostrophes: s.apostrophes,
         signal: controller.signal,
         ...(s.provider === 'openai' ? { textModel: modelOverrides(s).textModel } : modelOverrides(s)),
-      }).then((r) => r.text);
+      });
       // Started inside the tap: iOS only allows clipboard writes from a gesture.
-      // A cancelled translation rejects the promise, so nothing is copied.
-      const scheduledCopy = p.autoCopy ? copyWhenReady(textPromise) : null;
+      // A cancelled translation, or one in the wrong language, rejects the
+      // promise, so nothing is copied.
+      const scheduledCopy = p.autoCopy
+        ? copyWhenReady(textPromise.then((r) => (r.languageOk ? r.text : Promise.reject(new Error('wrong-language')))))
+        : null;
       void (async () => {
         try {
-          const result = await textPromise;
-          const copied = scheduledCopy ? await scheduledCopy : p.autoCopy ? await copyText(result) : false;
-          handleResult({ text: result, copied, output: s.output });
+          const { text: result, languageOk } = await textPromise;
+          let copied = scheduledCopy ? await scheduledCopy : false;
+          if (!copied && !scheduledCopy && p.autoCopy && languageOk) copied = await copyText(result);
+          handleResult({ text: result, copied, languageOk, output: s.output });
         } catch (error) {
           if (!controller.signal.aborted) handleError(userMessage(error), error);
         } finally {
@@ -339,6 +345,21 @@ export function Dictation() {
         <label htmlFor="result" className="mb-2 block text-sm text-[var(--muted)]">
           Natija (tahrirlash mumkin)
         </label>
+        {wrongLanguage && wrongLanguage.text === text && (
+          <div role="alert" className="mb-3 rounded-2xl border border-amber-400/50 bg-amber-400/10 p-3 text-sm">
+            <p className="font-medium">
+              ⚠️ {wrongLanguageMessage(wrongLanguage.output)} Natija boshqa tilda chiqdi, shuning uchun nusxalanmadi.
+            </p>
+            <button
+              type="button"
+              disabled={busy || translating}
+              onClick={() => translate(text)}
+              className="mt-2 rounded-xl bg-amber-700 px-4 py-2 font-semibold text-white disabled:opacity-40"
+            >
+              Qayta tarjima qilish → {outputLanguage(settings.output).short}
+            </button>
+          </div>
+        )}
         <textarea
           id="result"
           value={text}

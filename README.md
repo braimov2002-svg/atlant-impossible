@@ -102,6 +102,7 @@ Veb-ilovani brauzerda oching. Repozitoriy egasi GitHub Pages'ni yoqqanidan keyin
 ```
 apps/desktop   Electron ilova (macOS + Windows): tray, global tugma, HUD, avtomatik joylash
 apps/web       Next.js 16 PWA (telefon va brauzer), statik eksport
+apps/atlant    Atlant Group of Companies (agcg.uz) korporativ sayti — alohida loyiha, qarang: apps/atlant/README.md
 packages/core  Umumiy yadro: ovoz yozish, 16 kHz WAV, Gemini/OpenAI, tillar, xatolar
 scripts/       Ikonkalar va sinov audiosini yaratish
 ```

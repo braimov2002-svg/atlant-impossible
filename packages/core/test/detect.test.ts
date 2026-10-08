@@ -127,12 +127,25 @@ describe('looksLikeUzbekCyrillic', () => {
   });
 });
 
-describe('languageMatches on the review corpus', async () => {
+describe('languageMatches on the held-out corpora', async () => {
+  const { GENERAL, HARD } = await import('./fixtures/language-corpus-2');
   const { CORPUS } = await import('./fixtures/language-corpus');
-  for (const target of ['uz-latn', 'uz-cyrl', 'ru', 'en'] as const) {
-    it(`${target}: accepts its own language and rejects the others`, () => {
-      const wrong = CORPUS.filter(([lang, text]) => lang !== 'neutral' && languageMatches(text, target) !== (lang === target));
-      expect(wrong.map(([lang, text]) => `${lang}: ${text}`)).toEqual([]);
-    });
+  // Uzbek words everyday Tashkent Russian uses too: accepted for ru by design.
+  const SHARED = new Set(['Майли', 'Салом!']);
+  for (const [name, set] of [['review corpus', CORPUS], ['general', GENERAL], ['hard cases', HARD]] as const) {
+    for (const target of ['uz-latn', 'uz-cyrl', 'ru', 'en'] as const) {
+      it(`${name} → ${target}`, () => {
+        const wrong = set.filter(
+          ([lang, text]) =>
+            ['uz-latn', 'uz-cyrl', 'ru', 'en'].includes(lang) &&
+            !(target === 'ru' && SHARED.has(text)) &&
+            languageMatches(text, target) !== (lang === target),
+        );
+        expect(wrong.map(([lang, text]) => `${lang}: ${text}`)).toEqual([]);
+      });
+    }
   }
+  it('never transliterates Russian as Uzbek', () => {
+    for (const [lang, text] of [...CORPUS, ...GENERAL, ...HARD]) if (lang === 'ru') expect(looksLikeUzbekCyrillic(text), text).toBe(false);
+  });
 });

@@ -1,5 +1,6 @@
 import { outputLanguage, spokenLanguage } from '../languages';
 import { rewriteSystemPrompt, transcriptionStylePrompt } from '../prompt';
+import { looksLikeUzbekCyrillic } from '../detect';
 import { cyrillicRatio, uzCyrillicToLatin } from '../transliterate';
 import { DictationError } from '../errors';
 import { request } from './http';
@@ -30,10 +31,21 @@ export function rewriteNeeded(
   const out = outputLanguage(req.output);
   // Without a language hint the model may have written another language.
   if (req.spoken === 'auto' || languageHintDropped || out.sameAs !== req.spoken) return 'model';
-  // Transliteration leaves Latin text alone, so any Cyrillic at all is worth it.
-  if (req.output === 'uz-latn') return cyrillicRatio(transcript) > 0 ? 'local-latin' : 'none';
+  // Uzbek Cyrillic is transliterated locally; Russian (or anything unsure) is
+  // translated, never turned into Russian written in Latin letters.
+  if (req.output === 'uz-latn') {
+    if (cyrillicRatio(transcript) === 0) return 'none';
+    return looksLikeUzbekCyrillic(transcript) || onlyCyrillicNames(transcript) ? 'local-latin' : 'model';
+  }
   if (req.output === 'uz-cyrl') return cyrillicRatio(transcript) < 0.8 ? 'model' : 'none';
   return 'none';
+}
+
+/** Latin text whose only Cyrillic words are capitalised names ("Men Петров bilan gaplashdim"). */
+function onlyCyrillicNames(text: string): boolean {
+  const words = text.split(/[^\p{L}'ʻʼ‘’]+/u).filter(Boolean);
+  const cyrillic = words.filter((w) => /[Ѐ-ӿ]/u.test(w));
+  return cyrillic.length * 2 < words.length && cyrillic.every((w) => /^\p{Lu}\p{Ll}/u.test(w));
 }
 
 /**
@@ -113,15 +125,28 @@ export async function openaiTranscribe(req: ProviderRequest): Promise<ProviderRe
   if (rewrite === 'none') return { text: transcript, model };
   if (rewrite === 'local-latin') return { text: uzCyrillicToLatin(transcript), model };
 
-  const rewritten = await openaiRewrite({
-    text: transcript,
-    output: req.output,
-    apiKey: req.apiKey,
-    model: req.textModel,
-    signal: req.signal,
-    fetch: req.fetch,
-  });
-  return { text: rewritten.text, model: `${model} + ${rewritten.model}`, translated: true, source: transcript };
+  try {
+    const rewritten = await openaiRewrite({
+      text: transcript,
+      output: req.output,
+      apiKey: req.apiKey,
+      model: req.textModel,
+      signal: req.signal,
+      fetch: req.fetch,
+    });
+    if (rewritten.text.trim()) {
+      return { text: rewritten.text, model: `${model} + ${rewritten.model}`, translated: true, source: transcript };
+    }
+  } catch (error) {
+    if (req.signal?.aborted) throw error;
+    // The transcription succeeded: keep it, transcribe() tries the fix-up once more.
+    return { text: transcript, model, translated: false, source: transcript, rewriteFailed: errorCode(error) };
+  }
+  return { text: transcript, model, translated: false, source: transcript };
+}
+
+function errorCode(error: unknown): string | undefined {
+  return error instanceof DictationError ? error.code : undefined;
 }
 
 type ChatCompletion = { choices?: Array<{ message?: { content?: string | null } }> };

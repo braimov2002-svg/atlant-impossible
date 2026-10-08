@@ -221,3 +221,58 @@ describe('transcribe: two-step failures keep the transcript', () => {
     ).rejects.toMatchObject({ code: 'cancelled' });
   });
 });
+
+describe('pipeline details (third review)', () => {
+  const quota = () => json({ error: { code: 429, message: 'Resource exhausted', status: 'RESOURCE_EXHAUSTED' } }, 429);
+
+  it('asks the first step of a translation not to translate', async () => {
+    const { fetch, calls } = mockFetch([gemini(UZ), gemini(RU)]);
+    await transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch });
+    const prompt = calls[0].body.systemInstruction.parts[0].text;
+    expect(prompt).toContain('Do NOT translate anything');
+    expect(prompt).not.toContain('translate it faithfully');
+  });
+
+  it('stops after a quota error in the translation step instead of repeating it', async () => {
+    const { fetch, calls } = mockFetch([gemini(UZ), quota(), quota()]);
+    const result = await transcribe({ provider: 'gemini', audio, spoken: 'uz', output: 'ru', apiKey: 'k', fetch });
+    expect(result.text).toBe(UZ);
+    expect(calls).toHaveLength(3); // audio + translation on flash + its lite fallback, nothing more
+  });
+
+  it('OpenAI keeps the transcript when its translation step fails', async () => {
+    const busy = () => json({ error: { message: 'overloaded', type: 'server_error' } }, 503);
+    const { fetch } = mockFetch([json({ text: UZ }), busy(), busy(), busy()]);
+    const result = await transcribe({ provider: 'openai', audio, spoken: 'uz', output: 'ru', apiKey: 'sk', fetch });
+    expect(result.text).toBe(UZ);
+  });
+
+  it('OpenAI translates a Russian transcript for Uzbek Latin instead of transliterating it', async () => {
+    const { fetch, calls } = mockFetch([json({ text: RU }), chat(UZ)]);
+    const result = await transcribe({ provider: 'openai', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'sk', fetch });
+    expect(result.text).toBe(UZ);
+    expect(calls[1].url).toContain('/chat/completions');
+  });
+
+  it('prefers a translation in the right script over a candidate in the wrong one', async () => {
+    // auto → ru: Uzbek Latin comes back, and both fix-up answers are Uzbek Cyrillic
+    // (still not Russian, but at least Cyrillic): the Cyrillic answer wins.
+    const { fetch } = mockFetch([gemini(UZ), gemini(UZ_CYRL), gemini(UZ_CYRL)]);
+    const result = await transcribe({ provider: 'gemini', audio, spoken: 'auto', output: 'ru', apiKey: 'k', fetch });
+    expect(result.text).toBe(UZ_CYRL);
+  });
+
+  it('keeps a candidate in the right script when the fix-up does not help', async () => {
+    const { fetch } = mockFetch([gemini(UZ_CYRL), gemini(UZ), gemini(UZ)]);
+    const result = await transcribe({ provider: 'gemini', audio, spoken: 'auto', output: 'ru', apiKey: 'k', fetch });
+    expect(result.text).toBe(UZ_CYRL);
+  });
+
+  it('translateText retries an empty answer once', async () => {
+    const empty = json({ candidates: [{ content: { parts: [{ text: '' }] }, finishReason: 'STOP' }] });
+    const { fetch, calls } = mockFetch([empty, gemini(UZ)]);
+    const result = await translateText({ text: RU, output: 'uz-latn', provider: 'gemini', apiKey: 'k', fetch });
+    expect(result.text).toBe(UZ);
+    expect(calls).toHaveLength(2);
+  });
+});

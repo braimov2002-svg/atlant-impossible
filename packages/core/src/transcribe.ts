@@ -74,12 +74,14 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   let model: string;
   let source: string;
   let translated: boolean;
+  /** Error code of a translation request that already failed. */
+  let stepFailed: string | undefined;
   try {
     if (provider === 'gemini' && needsTranslation(options.spoken, options.output)) {
       // Known translation (e.g. Uzbek speech → Russian): write down exactly
       // what was said first, then translate it in a text-only request. Asking
       // for both in one audio request is what failed ("RU" chosen, Uzbek back).
-      const heard = await geminiTranscribe({ ...request, output: transcriptLanguage(options.spoken) });
+      const heard = await geminiTranscribe({ ...request, output: transcriptLanguage(options.spoken), transcriptOnly: true });
       model = heard.model;
       source = cleanModelText(heard.text);
       if (!source || source.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
@@ -96,6 +98,7 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
         }
       } catch (error) {
         if (options.signal?.aborted) throw error;
+        stepFailed = error instanceof DictationError ? error.code : 'unknown';
       }
     } else {
       const result = provider === 'openai' ? await openaiTranscribe(request) : await geminiTranscribe(request);
@@ -104,6 +107,7 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
       if (!text || text.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
       source = result.source ?? text;
       translated = !!result.translated;
+      stepFailed = result.rewriteFailed;
     }
   } catch (error) {
     clearTimeout(timer);
@@ -117,11 +121,14 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   try {
     // Out of time already (e.g. the translation step used it up): keep the text.
     if (signal.aborted) throw signal.reason;
+    // After a quota, billing or key error more requests cannot help: only the
+    // local Uzbek Cyrillic → Latin conversion is still tried.
+    const hopeless = stepFailed !== undefined && HOPELESS.has(stepFailed);
     text = await ensureLanguage(text, options.output, (src, strict) => rewrite(src, strict, textModel(audioModel)), {
       source,
       // A translation that already ran gets one stricter retry; a plain
       // transcription gets a normal translation, then a strict one.
-      passes: translated ? [true] : [false, true],
+      passes: hopeless ? [] : translated ? [true] : [false, true],
       keep: translated ? 'last' : 'candidate',
     });
   } catch (error) {
@@ -135,6 +142,9 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   if (options.output === 'uz-latn') text = normalizeUzbekApostrophes(text, apostrophes);
   return { text, provider, model, durationSec };
 }
+
+/** Failures that another request cannot fix right now. */
+const HOPELESS = new Set(['quota', 'billing', 'invalid-api-key', 'region', 'no-api-key']);
 
 /** Whether the spoken language differs from the requested output (a translation). */
 export function needsTranslation(spoken: SpokenLanguage, output: OutputLanguage): boolean {

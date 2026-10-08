@@ -1,5 +1,5 @@
 import { DictationError } from '../errors';
-import { audioSystemPrompt, audioUserPrompt, rewriteSystemPrompt } from '../prompt';
+import { audioSystemPrompt, audioUserPrompt, rewriteSystemPrompt, transcriptSystemPrompt, transcriptUserPrompt } from '../prompt';
 import { bytesToBase64, request } from './http';
 import type { ProviderInfo, ProviderRequest, ProviderResult, TextRequest } from './types';
 
@@ -67,13 +67,15 @@ export function geminiRequestBody(
   thinking: ThinkingConfig,
 ): Record<string, unknown> {
   return {
-    systemInstruction: { parts: [{ text: audioSystemPrompt(req.spoken, req.output) }] },
+    systemInstruction: {
+      parts: [{ text: req.transcriptOnly ? transcriptSystemPrompt(req.spoken) : audioSystemPrompt(req.spoken, req.output) }],
+    },
     contents: [
       {
         role: 'user',
         parts: [
           { inlineData: { mimeType: 'audio/wav', data: bytesToBase64(req.audio) } },
-          { text: audioUserPrompt(req.output) },
+          { text: req.transcriptOnly ? transcriptUserPrompt() : audioUserPrompt(req.output) },
         ],
       },
     ],

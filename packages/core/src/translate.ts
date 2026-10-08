@@ -1,4 +1,4 @@
-import { languageMatches, looksLikeUzbekCyrillic } from './detect';
+import { evidence, languageMatches, looksLikeUzbekCyrillic } from './detect';
 import { DictationError } from './errors';
 import type { OutputLanguage } from './languages';
 import { EMPTY_SENTINEL } from './prompt';
@@ -49,14 +49,25 @@ export async function ensureLanguage(
     const latin = uzCyrillicToLatin(candidate);
     if (languageMatches(latin, output)) return latin;
   }
-  let last = candidate;
+  let last: string | undefined;
   for (const strict of passes) {
     const answer = cleanModelText(await rewrite(source, strict));
     if (!answer || answer.includes(EMPTY_SENTINEL)) continue;
     last = answer;
     if (languageMatches(answer, output)) return answer;
   }
-  return keep === 'last' ? last : candidate;
+  if (last === undefined) return candidate;
+  if (keep === 'last') return last;
+  // The check may be wrong about unusual text, so the candidate is kept —
+  // unless it is not even in the target's script and the translation is.
+  return scriptFits(candidate, output) || !scriptFits(last, output) ? candidate : last;
+}
+
+/** Whether most words are in the target's script (Cyrillic for ru/uz-cyrl). */
+function scriptFits(text: string, output: OutputLanguage): boolean {
+  const e = evidence(text);
+  const cyrillicTarget = output === 'ru' || output === 'uz-cyrl';
+  return cyrillicTarget ? e.cyrlWords >= e.latnWords : e.latnWords >= e.cyrlWords;
 }
 
 export interface TranslateOptions {
@@ -121,15 +132,21 @@ export async function translateText(options: TranslateOptions): Promise<Translat
     }
     throw error;
   }
-  if (!text || text.includes(EMPTY_SENTINEL)) {
-    clearTimeout(timer);
-    throw new DictationError('translate-failed');
-  }
   try {
-    // One stricter retry if the answer is still not in the target language.
-    text = await ensureLanguage(text, options.output, rewrite, { source: input, passes: [true], keep: 'last' });
-  } catch {
+    if (!text || text.includes(EMPTY_SENTINEL)) {
+      // An empty answer is usually transient: one stricter retry.
+      text = cleanModelText(await rewrite(input, true));
+      if (!text || text.includes(EMPTY_SENTINEL)) throw new DictationError('translate-failed');
+    } else {
+      // One stricter retry if the answer is still not in the target language.
+      text = await ensureLanguage(text, options.output, rewrite, { source: input, passes: [true], keep: 'last' });
+    }
+  } catch (error) {
     if (options.signal?.aborted) throw new DictationError('cancelled');
+    if (!text || text.includes(EMPTY_SENTINEL)) {
+      if (timeout.signal.aborted) throw new DictationError('timeout');
+      throw error instanceof DictationError && error.code === 'translate-failed' ? error : new DictationError('translate-failed');
+    }
     // The retry failed (quota, network, deadline): keep the first translation.
   } finally {
     clearTimeout(timer);

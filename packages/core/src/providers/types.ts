@@ -12,6 +12,8 @@ export interface ProviderRequest {
   model?: string;
   /** OpenAI only: model used to translate / convert the script. */
   textModel?: string;
+  /** Gemini: write down exactly what was said, without translating (step 1 of a translation). */
+  transcriptOnly?: boolean;
   signal?: AbortSignal;
   /** Injectable for tests; defaults to the global fetch. */
   fetch?: typeof fetch;
@@ -38,6 +40,8 @@ export interface ProviderResult {
   translated?: boolean;
   /** The untranslated transcript, when a translation happened. */
   source?: string;
+  /** Error code of a failed translation step (the transcript was kept). */
+  rewriteFailed?: string;
 }
 
 export interface ProviderInfo {

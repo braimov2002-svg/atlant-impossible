@@ -29,6 +29,8 @@ export interface ProviderInfo {
   defaultModel: string;
   /** Suggested alternatives shown in settings; free text is also allowed. */
   models: readonly string[];
+  /** Optional Uzbek descriptions for the model picker. */
+  modelLabels?: Readonly<Record<string, string>>;
   defaultTextModel?: string;
   textModels?: readonly string[];
   keyUrl: string;

@@ -20,6 +20,7 @@ import {
   ipcMain,
   Menu,
   nativeImage,
+  net,
   session,
   shell,
   systemPreferences,
@@ -201,7 +202,8 @@ async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
       output: settings.output,
       apostrophes: settings.apostrophes,
       signal: controller.signal,
-      fetch: options.fetch,
+      // net.fetch uses Chromium's network stack, so system proxies work too.
+      fetch: options.fetch ?? ((input, init) => net.fetch(input as string, init)),
       ...modelOverrides(settings),
     });
     if (sessionId !== recordingSession) return;

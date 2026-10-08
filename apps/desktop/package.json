@@ -49,12 +49,6 @@
           "arch": [
             "universal"
           ]
-        },
-        {
-          "target": "zip",
-          "arch": [
-            "universal"
-          ]
         }
       ],
       "artifactName": "OvozYoz-${version}-mac.${ext}",

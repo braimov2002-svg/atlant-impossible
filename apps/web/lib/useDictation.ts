@@ -141,6 +141,16 @@ export function useDictation({ config, onResult, onError }: Options) {
     else if (phaseRef.current === 'recording') void stop();
   }, [start, stop]);
 
+  // iOS mutes the microphone as soon as the app goes to the background, so
+  // finish the recording (and transcribe what was said) instead of losing it.
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden && phaseRef.current === 'recording') stopRef.current();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
+
   useEffect(
     () => () => {
       cancelAnimationFrame(frame.current);

@@ -11,8 +11,8 @@ export const OPENAI: ProviderInfo = {
   // whisper-1 is left out on purpose: its Uzbek error rate is around 90%.
   defaultModel: 'gpt-transcribe',
   models: ['gpt-transcribe', 'gpt-4o-transcribe', 'gpt-4o-mini-transcribe'],
-  defaultTextModel: 'gpt-4.1-mini',
-  textModels: ['gpt-4.1-mini', 'gpt-4.1', 'gpt-4o-mini'],
+  defaultTextModel: 'gpt-5-mini',
+  textModels: ['gpt-5-mini', 'gpt-4.1-mini', 'gpt-6-luna'],
   keyUrl: 'https://platform.openai.com/api-keys',
   keyHint: 'OpenAI platformasidan olinadi (sk-... bilan boshlanadi), pullik',
 };
@@ -28,6 +28,16 @@ export function rewriteNeeded(req: Pick<ProviderRequest, 'spoken' | 'output'>, t
   if (req.output === 'uz-latn') return cyrillicRatio(transcript) > 0.2 ? 'local-latin' : 'none';
   if (req.output === 'uz-cyrl') return cyrillicRatio(transcript) < 0.8 ? 'model' : 'none';
   return 'none';
+}
+
+/**
+ * Lowest reasoning effort each text-model family accepts; translation needs
+ * none and every bit of reasoning adds seconds. Unknown models get none sent.
+ */
+export function reasoningEffort(model: string): string | undefined {
+  if (/^gpt-5(-mini|-nano)?$|^gpt-5-(mini|nano)-\d/.test(model)) return 'minimal';
+  if (/^gpt-(5\.[4-9]|6-(luna|sol))/.test(model)) return 'none';
+  return undefined;
 }
 
 export function transcriptionForm(req: ProviderRequest, model: string, iso: string | undefined): FormData {
@@ -77,19 +87,32 @@ export async function openaiTranscribe(req: ProviderRequest): Promise<ProviderRe
   if (rewrite === 'local-latin') return { text: uzCyrillicToLatin(transcript), model };
 
   const textModel = req.textModel?.trim() || OPENAI.defaultTextModel!;
-  const completion = (await request(fetchImpl, `${API}/chat/completions`, {
-    method: 'POST',
-    headers: { ...auth, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: textModel,
-      temperature: 0,
-      messages: [
-        { role: 'system', content: rewriteSystemPrompt(req.output) },
-        { role: 'user', content: transcript },
-      ],
-    }),
-    signal: req.signal,
-  })) as { choices?: Array<{ message?: { content?: string | null } }> };
+  const rewriteOnce = (effort: string | undefined) =>
+    request(fetchImpl, `${API}/chat/completions`, {
+      method: 'POST',
+      headers: { ...auth, 'Content-Type': 'application/json' },
+      // No temperature: reasoning models reject it; the prompt keeps output literal.
+      body: JSON.stringify({
+        model: textModel,
+        ...(effort ? { reasoning_effort: effort } : {}),
+        messages: [
+          { role: 'system', content: rewriteSystemPrompt(req.output) },
+          { role: 'user', content: transcript },
+        ],
+      }),
+      signal: req.signal,
+    }) as Promise<{ choices?: Array<{ message?: { content?: string | null } }> }>;
+
+  let completion: { choices?: Array<{ message?: { content?: string | null } }> };
+  const effort = reasoningEffort(textModel);
+  try {
+    completion = await rewriteOnce(effort);
+  } catch (error) {
+    const effortRejected =
+      effort && error instanceof DictationError && error.status === 400 && /reasoning/i.test(error.detail ?? '');
+    if (!effortRejected) throw error;
+    completion = await rewriteOnce(undefined);
+  }
 
   return { text: completion.choices?.[0]?.message?.content ?? '', model: `${model} + ${textModel}` };
 }

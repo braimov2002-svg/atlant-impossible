@@ -13,6 +13,7 @@ export type DictationErrorCode =
   | 'mic-unavailable'
   | 'unsupported'
   | 'region'
+  | 'unsupported-language'
   | 'provider'
   | 'cancelled';
 
@@ -31,7 +32,8 @@ export class DictationError extends Error {
   }
 }
 
-export const MAX_RECORDING_SECONDS = 10 * 60;
+// Long enough for dictation, short enough for every provider's output limits.
+export const MAX_RECORDING_SECONDS = 5 * 60;
 export const MIN_RECORDING_SECONDS = 0.4;
 
 const MESSAGES: Record<DictationErrorCode, string> = {
@@ -49,6 +51,7 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   'mic-unavailable': 'Mikrofon topilmadi yoki band.',
   unsupported: "Bu brauzer ovoz yozishni qo'llab-quvvatlamaydi.",
   region: "Bu xizmat sizning hududingizda ishlamayapti. Sozlamalarda boshqa xizmatni tanlab ko'ring.",
+  'unsupported-language': "Tanlangan model bu tilni tushunmadi. Sozlamalarda boshqa modelni tanlab ko'ring.",
   provider: 'Xizmatda xatolik yuz berdi.',
   cancelled: 'Bekor qilindi.',
 };

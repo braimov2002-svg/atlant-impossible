@@ -6,8 +6,15 @@ import { encodeWavPcm16, SPEECH_SAMPLE_RATE } from './wav';
 /** Peak level below which a recording is treated as silence. */
 export const SILENCE_PEAK = 0.015;
 
-// Chrome/Edge/Electron record webm/opus, Safari (iOS + macOS) records mp4/AAC.
-const PREFERRED_TYPES = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus', 'audio/webm'];
+// Chrome/Edge/Electron record webm/opus; Safari records mp4/AAC. Safari 18.4+
+// can also record webm, but its own decoder is only reliable with mp4/AAC, so
+// WebKit asks for mp4 first. Never ask for mp4+opus (Safari < 27 cannot decode it).
+const CHROMIUM_TYPES = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus', 'audio/webm'];
+const WEBKIT_TYPES = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm'];
+
+function isWebKit(): boolean {
+  return typeof navigator !== 'undefined' && /Apple/.test(navigator.vendor ?? '');
+}
 
 export interface PreparedRecording {
   wav: Uint8Array;
@@ -19,7 +26,7 @@ export function pickMimeType(): string | undefined {
   if (typeof MediaRecorder === 'undefined' || typeof MediaRecorder.isTypeSupported !== 'function') {
     return undefined;
   }
-  return PREFERRED_TYPES.find((type) => MediaRecorder.isTypeSupported(type));
+  return (isWebKit() ? WEBKIT_TYPES : CHROMIUM_TYPES).find((type) => MediaRecorder.isTypeSupported(type));
 }
 
 export function isRecordingSupported(): boolean {
@@ -194,9 +201,12 @@ export async function prepareRecording(blob: Blob): Promise<PreparedRecording> {
   const data = await blob.arrayBuffer();
   if (data.byteLength === 0) throw new DictationError('too-short');
 
+  // An OfflineAudioContext at 16 kHz decodes and resamples in one go, needs no
+  // user gesture and does not touch the iOS audio session.
+  const Offline = (globalThis as unknown as { OfflineAudioContext?: typeof OfflineAudioContext }).OfflineAudioContext;
   const Ctor = audioContextCtor();
-  if (!Ctor) throw new DictationError('unsupported');
-  const context = new Ctor();
+  if (!Offline && !Ctor) throw new DictationError('unsupported');
+  const context: BaseAudioContext = Offline ? new Offline(1, 1, SPEECH_SAMPLE_RATE) : new Ctor!();
   let decoded: AudioBuffer;
   try {
     decoded = await new Promise<AudioBuffer>((resolve, reject) => {
@@ -207,7 +217,7 @@ export async function prepareRecording(blob: Blob): Promise<PreparedRecording> {
   } catch {
     throw new DictationError('too-short', 'Audio could not be decoded');
   } finally {
-    void context.close?.().catch(() => undefined);
+    if (!Offline) void (context as AudioContext).close().catch(() => undefined);
   }
 
   const channels = Array.from({ length: decoded.numberOfChannels }, (_, i) => decoded.getChannelData(i));

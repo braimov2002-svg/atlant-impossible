@@ -2,8 +2,8 @@ import { describe, expect, it, vi } from 'vitest';
 import { encodeWavPcm16 } from '../src/audio/wav';
 import { DictationError, userMessage } from '../src/errors';
 import { EMPTY_SENTINEL, audioSystemPrompt } from '../src/prompt';
-import { geminiRequestBody, parseGeminiResponse, thinkingConfig } from '../src/providers/gemini';
-import { rewriteNeeded } from '../src/providers/openai';
+import { geminiRequestBody, parseGeminiResponse, thinkingConfig, thinkingLadder } from '../src/providers/gemini';
+import { reasoningEffort, rewriteNeeded } from '../src/providers/openai';
 import { transcribe } from '../src/transcribe';
 
 const audio = encodeWavPcm16(new Float32Array(16_000).fill(0.2), 16_000); // 1 s
@@ -49,6 +49,7 @@ describe('gemini', () => {
     const body = geminiRequestBody(
       { audio, spoken: 'uz', output: 'ru', apiKey: 'k' },
       'gemini-3.5-flash',
+      thinkingConfig('gemini-3.5-flash'),
     ) as { systemInstruction: { parts: Array<{ text: string }> } };
     const prompt = body.systemInstruction.parts[0].text;
     expect(prompt).toContain('speaks Uzbek');
@@ -65,8 +66,10 @@ describe('gemini', () => {
     expect(thinkingConfig('gemini-3.8-flash')).toEqual({ thinkingLevel: 'low' });
     expect(thinkingConfig('gemini-3.5-flash')).toEqual({ thinkingLevel: 'minimal' });
     expect(thinkingConfig('gemini-3.5-pro')).toEqual({ thinkingLevel: 'low' });
+    expect(thinkingConfig('gemini-3.6-flash')).toEqual({ thinkingLevel: 'minimal' });
+    expect(thinkingLadder('gemini-3.5-flash')).toEqual([{ thinkingLevel: 'minimal' }, { thinkingLevel: 'low' }, undefined]);
     expect(thinkingConfig('gemini-2.0-flash')).toBeUndefined();
-    const old = geminiRequestBody({ audio, spoken: 'uz', output: 'en', apiKey: 'k' }, 'gemini-2.5-flash') as {
+    const old = geminiRequestBody({ audio, spoken: 'uz', output: 'en', apiKey: 'k' }, 'gemini-2.5-flash', undefined) as {
       generationConfig: Record<string, unknown>;
     };
     expect(old.generationConfig.temperature).toBe(0);
@@ -90,7 +93,7 @@ describe('gemini', () => {
     expect(urls[1]).toContain('/models/gemini-flash-latest:generateContent');
   });
 
-  it('retries without thinkingConfig when a model rejects it', async () => {
+  it('walks the thinking ladder when a model rejects a level', async () => {
     const bodies: Array<Record<string, any>> = [];
     const fetchMock = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
       const body = JSON.parse(init!.body as string);
@@ -104,8 +107,30 @@ describe('gemini', () => {
       provider: 'gemini', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'k', fetch: fetchMock as never,
     });
     expect(result.text).toBe('Salom');
-    expect(bodies).toHaveLength(2);
-    expect(bodies[1].generationConfig.thinkingConfig).toBeUndefined();
+    expect(bodies.map((b) => b.generationConfig.thinkingConfig)).toEqual([
+      { thinkingLevel: 'minimal' },
+      { thinkingLevel: 'low' },
+      undefined,
+    ]);
+  });
+
+  it('moves to Flash-Lite when the free quota is used up', async () => {
+    const urls: string[] = [];
+    const fetchMock = vi.fn(async (url: string | URL | Request) => {
+      urls.push(String(url));
+      if (!String(url).includes('lite')) return jsonResponse({ error: { code: 429, message: 'Resource exhausted' } }, 429);
+      return jsonResponse(geminiAnswer('Salom'));
+    });
+    const result = await transcribe({
+      provider: 'gemini', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'k', fetch: fetchMock as never,
+    });
+    expect(result.model).toBe('gemini-3.5-flash-lite');
+    expect(urls).toHaveLength(2);
+  });
+
+  it('explains unsupported languages and truncated answers', () => {
+    expect(() => parseGeminiResponse({ candidates: [{ finishReason: 'LANGUAGE' }] })).toThrow('unsupported-language');
+    expect(() => parseGeminiResponse({ candidates: [{ finishReason: 'MAX_TOKENS' }] })).toThrow('too-long');
   });
 
   it('explains region blocks', async () => {
@@ -209,7 +234,9 @@ describe('openai', () => {
     const fetchMock = vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
       if (String(url).endsWith('/audio/transcriptions')) return jsonResponse({ text: 'Salom, qalaysan?' });
       const body = JSON.parse(init!.body as string);
-      expect(body.model).toBe('gpt-4.1-mini');
+      expect(body.model).toBe('gpt-5-mini');
+      expect(body.reasoning_effort).toBe('minimal');
+      expect(body.temperature).toBeUndefined();
       expect(body.messages[0].content).toContain('English');
       expect(body.messages[1].content).toBe('Salom, qalaysan?');
       return jsonResponse({ choices: [{ message: { content: 'Hi, how are you?' } }] });
@@ -218,7 +245,7 @@ describe('openai', () => {
       provider: 'openai', audio, spoken: 'uz', output: 'en', apiKey: 'sk', fetch: fetchMock as never,
     });
     expect(result.text).toBe('Hi, how are you?');
-    expect(result.model).toBe('gpt-transcribe + gpt-4.1-mini');
+    expect(result.model).toBe('gpt-transcribe + gpt-5-mini');
   });
 
   it('transliterates a Cyrillic Uzbek transcript locally', async () => {
@@ -268,6 +295,25 @@ describe('openai', () => {
       transcribe({ provider: 'openai', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'sk', fetch: fetchMock as never }),
     ).rejects.toMatchObject({ code: 'provider' });
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('sends the lowest reasoning effort each text model accepts', async () => {
+    expect(reasoningEffort('gpt-5-mini')).toBe('minimal');
+    expect(reasoningEffort('gpt-6-luna')).toBe('none');
+    expect(reasoningEffort('gpt-4.1-mini')).toBeUndefined();
+    const bodies: Array<Record<string, any>> = [];
+    const fetchMock = vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
+      if (String(url).endsWith('/audio/transcriptions')) return jsonResponse({ text: 'Salom' });
+      const body = JSON.parse(init!.body as string);
+      bodies.push(body);
+      if (body.reasoning_effort) return jsonResponse({ error: { message: "Unsupported value: 'reasoning_effort'" } }, 400);
+      return jsonResponse({ choices: [{ message: { content: 'Hello' } }] });
+    });
+    const result = await transcribe({
+      provider: 'openai', audio, spoken: 'uz', output: 'en', apiKey: 'sk', fetch: fetchMock as never,
+    });
+    expect(result.text).toBe('Hello');
+    expect(bodies.map((b) => b.reasoning_effort)).toEqual(['minimal', undefined]);
   });
 
   it('decides when a rewrite is needed', () => {

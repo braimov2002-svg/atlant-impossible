@@ -1,8 +1,12 @@
 import { clipboard, ClipboardItem, systemPreferences } from 'electron';
 import { execFile, spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import path from 'node:path';
+import { WINDOWS_PASTE_HELPER } from './paste-helper';
 
-export type PasteOutcome = 'pasted' | 'copied' | 'needs-accessibility';
+export type PasteOutcome = 'pasted' | 'copied' | 'needs-accessibility' | 'needs-automation' | 'blocked';
+
+/** The foreground window runs as administrator: synthetic keys would be dropped. */
+class PasteBlockedError extends Error {}
 
 type Payload = ConstructorParameters<typeof ClipboardItem>[0];
 
@@ -86,35 +90,6 @@ async function restore(saved: Payload[]): Promise<void> {
  */
 export const MAC_PASTE_SCRIPT = 'tell application "System Events" to key code 9 using {command down}';
 
-/**
- * Windows: SendInput with virtual keys VK_CONTROL (0x11) + VK_V (0x56), which
- * do not depend on the keyboard layout (SendKeys('^v') breaks on Cyrillic).
- * Runs in one long-lived PowerShell so each paste is instant.
- */
-export const WINDOWS_PASTE_HELPER = String.raw`
-$ErrorActionPreference = 'Stop'
-Add-Type -TypeDefinition @"
-using System;
-using System.Runtime.InteropServices;
-public static class OvozYozKeys {
-  [StructLayout(LayoutKind.Sequential)] struct KEYBDINPUT { public ushort wVk; public ushort wScan; public uint dwFlags; public uint time; public IntPtr dwExtraInfo; }
-  [StructLayout(LayoutKind.Sequential)] struct MOUSEINPUT { public int dx; public int dy; public uint mouseData; public uint dwFlags; public uint time; public IntPtr dwExtraInfo; }
-  [StructLayout(LayoutKind.Explicit)] struct InputUnion { [FieldOffset(0)] public MOUSEINPUT mi; [FieldOffset(0)] public KEYBDINPUT ki; }
-  [StructLayout(LayoutKind.Sequential)] struct INPUT { public uint type; public InputUnion u; }
-  [DllImport("user32.dll", SetLastError = true)] static extern uint SendInput(uint count, INPUT[] inputs, int size);
-  static INPUT Key(ushort vk, bool up) { INPUT i = new INPUT(); i.type = 1; i.u.ki.wVk = vk; i.u.ki.dwFlags = up ? 2u : 0u; return i; }
-  public static uint Paste() {
-    INPUT[] inputs = { Key(0x11, false), Key(0x56, false), Key(0x56, true), Key(0x11, true) };
-    return SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(INPUT)));
-  }
-}
-"@
-[Console]::Out.WriteLine('READY')
-while ($null -ne ($line = [Console]::In.ReadLine())) {
-  if ($line -eq 'paste') { [Console]::Out.WriteLine('DONE ' + [OvozYozKeys]::Paste()) }
-}
-`;
-
 class WindowsPaster {
   private child: ChildProcessWithoutNullStreams | null = null;
   private ready: Promise<void> | null = null;
@@ -136,6 +111,7 @@ class WindowsPaster {
       this.reset(); // a stuck helper must not fire a late Ctrl+V
       throw error;
     }
+    if (line === 'BLOCKED') throw new PasteBlockedError('target window is elevated');
     if (!line.startsWith('DONE') || line.trim() === 'DONE 0') throw new Error(`paste failed: ${line}`);
   }
 
@@ -221,8 +197,16 @@ export function disposePaster(): void {
 
 function run(file: string, args: string[]): Promise<void> {
   return new Promise((resolve, reject) => {
-    execFile(file, args, { timeout: 5000, windowsHide: true }, (error) => (error ? reject(error) : resolve()));
+    execFile(file, args, { timeout: 5000, windowsHide: true }, (error, _stdout, stderr) =>
+      error ? reject(Object.assign(error, { stderr: String(stderr ?? '') })) : resolve(),
+    );
   });
+}
+
+/** osascript error -1743: the user declined "OvozYoz wants to control System Events". */
+function isAutomationDenied(error: unknown): boolean {
+  const text = `${(error as { stderr?: string })?.stderr ?? ''} ${(error as Error)?.message ?? ''}`;
+  return /-1743|Not authori[sz]ed to send Apple events/i.test(text);
 }
 
 async function pressPaste(): Promise<void> {
@@ -265,7 +249,10 @@ export async function insertText(
   if (options.isCancelled?.()) return 'copied'; // Esc arrived after the text was ready
   try {
     await pressPaste();
-  } catch {
+  } catch (error) {
+    // The dictated text stays on the clipboard in every one of these cases.
+    if (error instanceof PasteBlockedError) return 'blocked';
+    if (process.platform === 'darwin' && isAutomationDenied(error)) return 'needs-automation';
     return 'copied';
   }
 

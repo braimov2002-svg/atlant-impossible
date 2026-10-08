@@ -25,7 +25,7 @@ export async function request(
   }
 
   if (!response.ok) {
-    throw httpError(response.status, errorMessage(json) ?? (body.slice(0, 200) || response.statusText));
+    throw httpError(response.status, errorMessage(json) ?? (body.slice(0, 200) || response.statusText), errorCode(json));
   }
   if (json === undefined) throw new DictationError('provider', 'Invalid JSON response');
   return json;
@@ -38,6 +38,18 @@ function errorMessage(json: unknown): string | undefined {
     if (typeof error === 'string') return error;
     if (error && typeof error === 'object' && 'message' in error) {
       return String((error as { message: unknown }).message);
+    }
+  }
+  return undefined;
+}
+
+/** Machine-readable error code (OpenAI's error.code / error.type, Gemini's error.status). */
+function errorCode(json: unknown): string | undefined {
+  if (json && typeof json === 'object' && 'error' in json) {
+    const error = (json as { error: unknown }).error;
+    if (error && typeof error === 'object') {
+      const { code, type, status } = error as { code?: unknown; type?: unknown; status?: unknown };
+      for (const value of [code, type, status]) if (typeof value === 'string') return value;
     }
   }
   return undefined;

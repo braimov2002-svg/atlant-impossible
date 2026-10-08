@@ -14,6 +14,7 @@ export interface DesktopSettings extends DictationSettings {
 }
 
 export type HudState =
+  | { kind: 'starting'; badge: string }
   | { kind: 'recording'; hotkey: string; badge: string }
   | { kind: 'transcribing'; badge: string }
   | { kind: 'done'; message: string }
@@ -38,6 +39,8 @@ export interface SettingsSnapshot {
   settings: DesktopSettings;
   /** Masked keys ("AIza…3kQ"), never the full key. */
   keyPreview: Record<ProviderId, string>;
+  /** Providers whose key is stored but could not be decrypted (keychain denied). */
+  keyUnreadable: ProviderId[];
   platform: NodeJS.Platform;
   /** Problems with the current hotkeys, shown in the settings window. */
   hotkeyErrors: string[];
@@ -61,7 +64,7 @@ export interface SaveResult {
   error?: string;
 }
 
-export type PermissionKind = 'microphone' | 'accessibility';
+export type PermissionKind = 'microphone' | 'accessibility' | 'automation';
 
 /** API exposed to the HUD renderer by its preload script. */
 export interface HudBridge {

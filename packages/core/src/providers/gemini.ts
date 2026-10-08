@@ -146,11 +146,12 @@ export async function geminiTranscribe(req: ProviderRequest): Promise<ProviderRe
     } catch (error) {
       if (!(error instanceof DictationError)) throw error;
       // A retired model (404) moves to the live alias; a used-up free quota
-      // (429) moves to Flash-Lite, which has the largest free allowance.
+      // (429) or an overloaded model (503) moves to Flash-Lite, which has the
+      // largest free allowance and separate capacity.
       const next =
         error.status === 404
           ? GEMINI_FALLBACK_MODEL
-          : error.code === 'quota' && !model.includes('lite')
+          : (error.code === 'quota' || error.code === 'busy') && !model.includes('lite')
             ? GEMINI_QUOTA_FALLBACK_MODEL
             : undefined;
       if (!next || tried.has(next)) throw error;

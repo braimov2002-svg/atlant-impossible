@@ -91,6 +91,7 @@ body {
   animation: pulse 1.2s ease-out infinite;
 }
 
+.pill.starting .icon::before { content: '🎙️'; }
 .pill.transcribing .icon::before { content: '✍️'; }
 .pill.done .icon::before { content: '✅'; }
 .pill.info .icon::before { content: 'ℹ️'; }

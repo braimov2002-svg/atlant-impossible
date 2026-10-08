@@ -173,6 +173,19 @@ describe('gemini', () => {
     expect(userMessage(error)).toContain('API kalit');
   });
 
+  it('separates billing, overload and rate limits', async () => {
+    expect(httpError(429, 'You exceeded your current quota, please check your plan and billing details.', 'insufficient_quota').code).toBe('billing');
+    expect(httpError(429, 'You exceeded your current quota, please check your plan and billing details.', 'RESOURCE_EXHAUSTED').code).toBe('quota');
+    expect(httpError(503, 'The model is overloaded. Please try again later.', 'UNAVAILABLE').code).toBe('busy');
+    const fetchMock = vi.fn(async () =>
+      jsonResponse({ error: { message: 'You exceeded your current quota', type: 'insufficient_quota', code: 'insufficient_quota' } }, 429),
+    );
+    await expect(
+      transcribe({ provider: 'openai', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'sk', fetch: fetchMock as never }),
+    ).rejects.toMatchObject({ code: 'billing' });
+    expect(userMessage(new DictationError('busy', 'The model is overloaded.'))).not.toContain('overloaded');
+  });
+
   it('tells region blocks and model access apart from bad keys', () => {
     expect(httpError(403, 'Country, region, or territory not supported').code).toBe('region');
     expect(httpError(403, 'Project proj_1 does not have access to model gpt-transcribe').code).toBe('provider');

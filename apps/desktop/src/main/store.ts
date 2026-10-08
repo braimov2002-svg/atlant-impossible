@@ -77,6 +77,8 @@ type StoredKeys = Partial<Record<ProviderId, StoredKey>>;
 
 // Decrypting can show a keychain prompt, so do it once per key and remember it.
 const keyCache = new Map<ProviderId, string>();
+/** Keys that are stored but could not be decrypted the last time we tried. */
+const unreadable = new Set<ProviderId>();
 
 export async function loadApiKey(provider: ProviderId): Promise<string> {
   const cached = keyCache.get(provider);
@@ -89,12 +91,19 @@ export async function loadApiKey(provider: ProviderId): Promise<string> {
       try {
         key = (await safeStorage.decryptStringAsync(Buffer.from(stored.value, 'base64'))).result;
       } catch {
-        return ''; // e.g. keychain access denied; ask again next time
+        unreadable.add(provider); // e.g. keychain access denied; ask again next time
+        return '';
       }
     }
   }
+  unreadable.delete(provider);
   keyCache.set(provider, key);
   return key;
+}
+
+/** True when a key is saved for the provider but could not be decrypted. */
+export function isKeyUnreadable(provider: ProviderId): boolean {
+  return unreadable.has(provider);
 }
 
 export async function saveApiKeys(keys: Partial<Record<ProviderId, string>>): Promise<void> {
@@ -118,7 +127,10 @@ export async function saveApiKeys(keys: Partial<Record<ProviderId, string>>): Pr
   if (changed.size === 0) return;
   writeJson('keys.json', current);
   // Only after the write succeeded, so the cache never holds an unsaved key.
-  for (const [provider, key] of changed) keyCache.set(provider, key);
+  for (const [provider, key] of changed) {
+    keyCache.set(provider, key);
+    unreadable.delete(provider);
+  }
 }
 
 /** "AIzaSyD…k3Q" — enough to recognise a key without revealing it. */

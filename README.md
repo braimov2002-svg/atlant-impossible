@@ -120,7 +120,7 @@ npm run dist -w @ovozyoz/desktop -- --win      # .exe (faqat Windows'da)
 
 **CI** (`.github/workflows/ci.yml`) har push'da testlarni, veb e2e'ni va Electron smoke testini ishga tushiradi, keyin macOS va Windows o'rnatuvchilarini yig'adi.
 
-- **Reliz:** `git tag v0.1.0 && git push origin v0.1.0` — fayllar **Releases** sahifasiga chiqadi.
+- **Reliz:** avval `apps/desktop/package.json` dagi `version` ni oshiring, keyin `git tag v0.1.0 && git push origin v0.1.0` (teg versiya bilan bir xil bo'lishi kerak). Fayllar **Releases** sahifasiga chiqadi.
 - **Veb-ilovani joylash:** **Settings → Pages → Source: GitHub Actions** ni bir marta yoqing. Shundan keyin `main` branchga har push qilinganda sayt yangilanadi.
 
 ### Ma'lum cheklovlar

@@ -41,9 +41,10 @@ function fillModels(): void {
   const current = draft.provider === 'openai' ? draft.openaiModel : draft.geminiModel;
   const models = [...provider.models];
   if (current && !models.includes(current)) models.push(current);
+  const describe = (model: string) => provider.modelLabels?.[model] ?? model;
   modelSelect.replaceChildren(
-    option('', `Standart (${provider.defaultModel})`, !current),
-    ...models.filter((m) => m !== provider.defaultModel).map((m) => option(m, m, m === current)),
+    option('', `Standart: ${describe(provider.defaultModel)}`, !current),
+    ...models.filter((m) => m !== provider.defaultModel).map((m) => option(m, describe(m), m === current)),
   );
 
   textModelField.hidden = draft.provider !== 'openai';
@@ -70,14 +71,17 @@ function renderKey(): void {
 function renderKeyStatus(): void {
   const provider = draft.provider;
   const saved = snapshot.keyPreview[provider];
+  const unreadable = snapshot.keyUnreadable.includes(provider);
   const removing = typedKeys[provider] === '';
   keyStatus.textContent = removing
     ? "Saqlaganingizda kalit o'chiriladi."
-    : saved
-      ? `Saqlangan kalit: ${saved}. Almashtirish uchun yangisini kiriting.`
-      : `${PROVIDERS[provider].keyHint}.`;
+    : unreadable
+      ? "Kalit saqlangan, lekin tizim kalitlar ombori uni o'qishga ruxsat bermadi. Qayta kiriting yoki keyingi so'rovda «Allow» ni bosing."
+      : saved
+        ? `Saqlangan kalit: ${saved}. Almashtirish uchun yangisini kiriting.`
+        : `${PROVIDERS[provider].keyHint}.`;
   if (!snapshot.secureStorage) keyStatus.textContent += ' (Diqqat: tizim shifrlashi mavjud emas.)';
-  $('remove-key').hidden = !saved;
+  $('remove-key').hidden = !saved && !unreadable;
 }
 
 function hotkeyOptions(select: HTMLSelectElement, presets: readonly string[], current: string, allowOff: boolean): void {
@@ -126,6 +130,7 @@ function render(): void {
   const mac = snapshot.platform === 'darwin';
   $('permissions').hidden = !mac && snapshot.platform !== 'win32';
   $('perm-ax').hidden = !mac;
+  $('perm-auto').hidden = !mac;
   $('perm-hint').textContent = mac
     ? 'Mikrofon — ovozni yozish uchun. Accessibility (Universal access) — matnni avtomatik joylash uchun.'
     : "Ovoz yozilmasa: Windows sozlamalari → Maxfiylik → Mikrofon → «Ish stoli ilovalariga ruxsat» ni yoqing.";
@@ -194,6 +199,7 @@ $('remove-key').addEventListener('click', () => {
 });
 $('perm-mic').addEventListener('click', () => bridge.openPermission('microphone'));
 $('perm-ax').addEventListener('click', () => bridge.openPermission('accessibility'));
+$('perm-auto').addEventListener('click', () => bridge.openPermission('automation'));
 $('close').addEventListener('click', () => bridge.close());
 
 /** Fields the user changed since the window loaded the settings. */

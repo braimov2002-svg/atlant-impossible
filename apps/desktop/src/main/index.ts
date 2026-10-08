@@ -43,6 +43,7 @@ import {
 import { Hud } from './hud';
 import { canSendKeystrokes, disposePaster, insertText, warmUpPaster } from './paste';
 import {
+  isKeyUnreadable,
   loadApiKey,
   loadSettings,
   maskKey,
@@ -96,6 +97,7 @@ const START_DEADLINE_MS = 15_000;
 
 /** What started/stopped a recording; matters for where the paste lands. */
 type Trigger = 'hotkey' | 'tray';
+let startTrigger: Trigger = 'hotkey';
 let stopTrigger: Trigger = 'hotkey';
 let recordingStartedAt = 0;
 
@@ -142,7 +144,7 @@ async function microphoneAllowed(): Promise<boolean> {
 }
 
 async function toggle(trigger: Trigger = 'hotkey'): Promise<void> {
-  if (phase === 'idle') return startRecording();
+  if (phase === 'idle') return startRecording(trigger);
   if (phase === 'recording') return stopRecording(trigger);
   if (phase === 'starting') {
     stopWhenStarted = true;
@@ -157,8 +159,10 @@ async function toggle(trigger: Trigger = 'hotkey'): Promise<void> {
   }, 1500);
 }
 
-async function startRecording(): Promise<void> {
+async function startRecording(trigger: Trigger): Promise<void> {
   const sessionId = ++recordingSession;
+  startTrigger = trigger;
+  stopTrigger = 'hotkey';
   stopWhenStarted = false;
   // Enter 'starting' before any await so Esc and the tray work while the
   // keychain or the macOS microphone prompt is open.
@@ -168,7 +172,8 @@ async function startRecording(): Promise<void> {
   if (!(await loadApiKey(settings.provider))) {
     if (cancelled()) return;
     setPhase('idle');
-    hud.show({ kind: 'error', message: userMessage(new DictationError('no-api-key')) }, 4000);
+    const code = isKeyUnreadable(settings.provider) ? 'key-unreadable' : 'no-api-key';
+    hud.show({ kind: 'error', message: userMessage(new DictationError(code)) }, 5000);
     openSettings();
     return;
   }
@@ -184,7 +189,8 @@ async function startRecording(): Promise<void> {
   }
   if (cancelled()) return;
 
-  hud.show({ kind: 'recording', hotkey: label(settings.hotkey), badge: badge() });
+  // "Yozilmoqda" only once the microphone really records, so no words are lost.
+  hud.show({ kind: 'starting', badge: badge() });
   hud.send({ type: 'start', session: sessionId });
   phaseTimer = setTimeout(() => {
     if (phase === 'starting' && sessionId === recordingSession) {
@@ -214,6 +220,7 @@ function onRecordingStarted(sessionId: number): void {
   if (sessionId !== recordingSession || phase !== 'starting') return;
   setPhase('recording');
   if (stopWhenStarted) stopRecording(stopTrigger);
+  else hud.show({ kind: 'recording', hotkey: label(settings.hotkey), badge: badge() });
 }
 
 function onRecordingFailed(sessionId: number, failure: RecordingFailure): void {
@@ -251,7 +258,8 @@ async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
     lastText = result.text;
     // On Windows, clicking the tray moves focus to the taskbar, so a Ctrl+V
     // would land nowhere: just copy the text in that case.
-    const autoPaste = settings.autoPaste && !(process.platform === 'win32' && stopTrigger === 'tray');
+    const fromTray = startTrigger === 'tray' || stopTrigger === 'tray';
+    const autoPaste = settings.autoPaste && !(process.platform === 'win32' && fromTray);
     const outcome = await insertText(result.text, {
       autoPaste,
       restoreClipboard: settings.restoreClipboard,
@@ -264,6 +272,13 @@ async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
         { kind: 'info', message: `Nusxalandi — ${pasteKeys} bosing. Avto-joylash uchun Accessibility ruxsatini bering` },
         6000,
       );
+    } else if (outcome === 'needs-automation') {
+      hud.show(
+        { kind: 'info', message: `Nusxalandi — ${pasteKeys} bosing. Avto-joylash: Sozlamalar → Automation → System Events` },
+        7000,
+      );
+    } else if (outcome === 'blocked') {
+      hud.show({ kind: 'info', message: `Nusxalandi — ${pasteKeys} bosing (administrator oynasiga avtomatik yozib bo'lmaydi)` }, 6000);
     } else hud.show({ kind: 'done', message: `Nusxalandi — ${pasteKeys} bilan joylang` }, 3000);
   } catch (error) {
     if (!isCurrent()) return;
@@ -441,6 +456,7 @@ async function snapshot(): Promise<SettingsSnapshot> {
   return {
     settings,
     keyPreview: Object.fromEntries(previews) as Record<ProviderId, string>,
+    keyUnreadable: providers.filter((p) => isKeyUnreadable(p)),
     platform: process.platform,
     hotkeyErrors,
     secureStorage: await secureStorageAvailable(),
@@ -516,7 +532,8 @@ function openSettings(): void {
 function openPermission(kind: PermissionKind): void {
   if (isMac) {
     if (kind === 'accessibility') canSendKeystrokes(true);
-    const pane = kind === 'microphone' ? 'Privacy_Microphone' : 'Privacy_Accessibility';
+    const pane =
+      kind === 'microphone' ? 'Privacy_Microphone' : kind === 'automation' ? 'Privacy_Automation' : 'Privacy_Accessibility';
     void shell.openExternal(`x-apple.systempreferences:com.apple.preference.security?${pane}`);
   } else if (process.platform === 'win32' && kind === 'microphone') {
     void shell.openExternal('ms-settings:privacy-microphone');
@@ -556,7 +573,7 @@ function registerIpc(): void {
     if (fromSettings(event) && provider in PROVIDERS) void shell.openExternal(PROVIDERS[provider].keyUrl);
   });
   ipcMain.on(IPC.settingsOpenPermission, (event, kind: PermissionKind) => {
-    if (fromSettings(event) && (kind === 'microphone' || kind === 'accessibility')) openPermission(kind);
+    if (fromSettings(event) && ['microphone', 'accessibility', 'automation'].includes(kind)) openPermission(kind);
   });
   ipcMain.on(IPC.settingsClose, (event) => {
     if (fromSettings(event)) settingsWindow?.close();
@@ -588,7 +605,8 @@ export function startApp(appOptions: AppOptions = {}): void {
     applyLoginItem();
     warmUpPaster();
 
-    const firstRun = !(await loadApiKey(settings.provider));
+    // A key the keychain refused to decrypt is not a first run: it is explained on use.
+    const firstRun = !(await loadApiKey(settings.provider)) && !isKeyUnreadable(settings.provider);
     if (firstRun || hotkeyErrors.length > 0) openSettings();
     else hud.show({ kind: 'info', message: `OvozYoz tayyor — ${label(settings.hotkey)} bosib gapiring` }, 2500);
 

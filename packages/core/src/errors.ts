@@ -15,6 +15,9 @@ export type DictationErrorCode =
   | 'region'
   | 'unsupported-language'
   | 'decode'
+  | 'billing'
+  | 'busy'
+  | 'key-unreadable'
   | 'provider'
   | 'cancelled';
 
@@ -53,6 +56,9 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   unsupported: "Bu brauzer ovoz yozishni qo'llab-quvvatlamaydi.",
   region: "Bu xizmat sizning hududingizda ishlamayapti. Sozlamalarda boshqa xizmatni tanlab ko'ring.",
   decode: "Yozuvni o'qib bo'lmadi. Qayta urinib ko'ring.",
+  billing: "Hisobingizda mablag' yo'q. Xizmat sahifasida (Billing) balansni to'ldiring yoki sozlamalarda Gemini'ni tanlang.",
+  busy: "Xizmat hozir band. Birozdan so'ng qayta urinib ko'ring.",
+  'key-unreadable': "Saqlangan kalitni o'qib bo'lmadi (tizim kalitlar ombori ruxsat bermadi). Qayta urinib ko'ring yoki kalitni qayta kiriting.",
   'unsupported-language': "Tanlangan model bu tilni tushunmadi. Sozlamalarda boshqa modelni tanlab ko'ring.",
   provider: 'Xizmatda xatolik yuz berdi.',
   cancelled: 'Bekor qilindi.',
@@ -70,8 +76,11 @@ export function userMessage(error: unknown): string {
 }
 
 /** Maps an HTTP failure from any provider to a DictationError. */
-export function httpError(status: number, providerMessage: string | undefined): DictationError {
+export function httpError(status: number, providerMessage: string | undefined, code?: string): DictationError {
   const detail = providerMessage?.slice(0, 300);
+  // No credit at all: waiting or retrying cannot help (Gemini's free-tier
+  // 429 says "check your plan and billing" too, so match the code, not text).
+  if (code === 'insufficient_quota') return new DictationError('billing', detail, status);
   // Region blocks arrive as 400 (Gemini) or 403 (OpenAI): check them before
   // treating 403 as a bad key, or users keep replacing a key that works.
   if (detail && /location is not supported|unsupported_country|country, region, or territory not supported/i.test(detail)) {
@@ -87,5 +96,8 @@ export function httpError(status: number, providerMessage: string | undefined): 
     return new DictationError('invalid-api-key', detail, status);
   }
   if (status === 408 || status === 504) return new DictationError('timeout', detail, status);
+  if (status === 500 || status === 502 || status === 503 || code === 'UNAVAILABLE') {
+    return new DictationError('busy', detail, status);
+  }
   return new DictationError('provider', detail ?? `HTTP ${status}`, status);
 }

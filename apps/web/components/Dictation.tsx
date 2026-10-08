@@ -100,7 +100,8 @@ export function Dictation() {
     onError: useCallback(
       (message: string, error: unknown) => {
         showToast('error', message);
-        if ((error as { code?: string })?.code === 'no-api-key' || (error as { code?: string })?.code === 'invalid-api-key') {
+        const code = (error as { code?: string })?.code;
+        if (code === 'no-api-key' || code === 'invalid-api-key' || code === 'billing' || code === 'key-unreadable') {
           setSettingsOpen(true);
         }
       },
@@ -215,7 +216,8 @@ export function Dictation() {
       {showInstallTip && (
         <div className="mb-4 flex items-start gap-3 rounded-2xl bg-[var(--chip)] p-3 text-sm">
           <p className="flex-1">
-            Ilova kabi ishlatish uchun: Safari&apos;da <b>Ulashish</b> ⎋ tugmasini bosing va <b>«Bosh ekranga»</b> ni tanlang.
+            Ilova kabi ishlatish uchun: pastdagi <b>Ulashish</b> (□↑) tugmasini bosing va{' '}
+            <b>«Add to Home Screen»</b> (<b>«На экран „Домой“»</b>) ni tanlang.
           </p>
           <button
             type="button"
@@ -303,7 +305,10 @@ export function Dictation() {
       )}
 
       <footer className="mt-auto pt-8 text-center text-xs text-[var(--muted)]">
-        Kompyuter uchun ilova ham bor: ⌃⌥D bosib gapiring, matn kursor turgan joyga yoziladi.
+        <a className="underline" href="https://github.com/braimov2002-svg/atlant-impossible/releases/latest" target="_blank" rel="noreferrer">
+          Kompyuter uchun ilova
+        </a>{' '}
+        ham bor: ⌃⌥D (Mac) yoki Ctrl+Alt+D (Windows) bosib gapiring, matn kursor turgan joyga yoziladi.
       </footer>
 
       <AnimatePresence>
@@ -347,6 +352,8 @@ export function Dictation() {
 function isIosSafariBrowser(): boolean {
   const ua = navigator.userAgent;
   const ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  // Other iOS browsers and in-app browsers (Telegram, Instagram) have different menus.
+  if (/CriOS|FxiOS|EdgiOS|Telegram|Instagram|FBAN|FBAV/.test(ua)) return false;
   const standalone =
     (navigator as Navigator & { standalone?: boolean }).standalone === true ||
     window.matchMedia('(display-mode: standalone)').matches;

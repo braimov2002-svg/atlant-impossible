@@ -15,6 +15,10 @@ let meterFrame = 0;
 function render(state: HudState): void {
   pill.className = `pill ${state.kind}`;
   switch (state.kind) {
+    case 'starting':
+      text.textContent = 'Mikrofon ochilmoqda...';
+      badge.textContent = state.badge;
+      break;
     case 'recording':
       text.textContent = `Yozilmoqda... (yana ${state.hotkey})`;
       badge.textContent = state.badge;

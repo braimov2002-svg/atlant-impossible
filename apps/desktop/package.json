@@ -11,7 +11,8 @@
     "start": "npm run build && electron .",
     "dist": "npm run build && electron-builder --publish never",
     "typecheck": "tsc --noEmit",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "check:paste-helper": "node scripts/check-paste-helper.mjs"
   },
   "devDependencies": {
     "@ovozyoz/core": "0.1.0",

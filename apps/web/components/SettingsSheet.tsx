@@ -26,6 +26,7 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
   const [draftPrefs, setDraftPrefs] = useState(prefs);
   const [showKey, setShowKey] = useState(false);
   const keyInput = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (open) {
@@ -36,9 +37,30 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
     }
   }, [open, settings, apiKeys, prefs]);
 
+  // Read through a ref so a new onClose identity does not re-run the focus effect.
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeRef.current();
+      // Keep Tab inside the dialog.
+      if (e.key === 'Tab' && formRef.current) {
+        const focusable = formRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([disabled]), select:not([disabled]), summary, a[href]',
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
     window.addEventListener('keydown', onKey);
     // Move focus into the dialog and give it back to the opener on close.
     const opener = document.activeElement as HTMLElement | null;
@@ -48,7 +70,7 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
       clearTimeout(timer);
       opener?.focus?.({ preventScroll: true });
     };
-  }, [open, onClose]);
+  }, [open]);
 
   const provider = PROVIDERS[draft.provider];
   const modelField = draft.provider === 'openai' ? 'openaiModel' : 'geminiModel';
@@ -65,6 +87,7 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
             onClick={onClose}
           />
           <motion.form
+            ref={formRef}
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 40, opacity: 0 }}
@@ -129,7 +152,12 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
                 {showKey ? 'Yashirish' : "Ko'rsatish"}
               </button>
             </div>
-            <p className="mb-2 text-xs text-[var(--muted)]">{provider.keyHint}. Kalit faqat shu qurilmada saqlanadi.</p>
+            <p className="mb-2 text-xs text-[var(--muted)]">
+              {provider.keyHint}. Kalit faqat shu brauzerda saqlanadi
+              {typeof location !== 'undefined' && location.hostname.endsWith('github.io')
+                ? " — github.io'dagi boshqa saytlaringiz ham uni o'qiy oladi, pullik kalitni bu yerda saqlamang."
+                : '.'}
+            </p>
             {draft.provider === 'gemini' ? (
               <details className="mb-5 rounded-2xl bg-[var(--chip)] p-3 text-sm">
                 <summary className="cursor-pointer font-medium">Bepul kalitni qanday olaman?</summary>
@@ -161,12 +189,12 @@ export function SettingsSheet({ open, settings, apiKeys, prefs, onClose, onSave 
               onChange={(e) => setDraft({ ...draft, [modelField]: e.target.value })}
               className="mb-5 w-full rounded-xl border border-[var(--line)] bg-[var(--card)] px-3 py-2.5 text-sm"
             >
-              <option value="">Standart ({provider.defaultModel})</option>
+              <option value="">Standart: {provider.modelLabels?.[provider.defaultModel] ?? provider.defaultModel}</option>
               {provider.models
                 .filter((m) => m !== provider.defaultModel)
                 .map((m) => (
                   <option key={m} value={m}>
-                    {m}
+                    {provider.modelLabels?.[m] ?? m}
                   </option>
                 ))}
             </select>

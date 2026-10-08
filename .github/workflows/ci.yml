@@ -111,21 +111,36 @@ jobs:
           retention-days: 30
           compression-level: 0
 
+  # A v* tag publishes that release. A push to main publishes v<version> from
+  # apps/desktop/package.json once: bump the version to ship the next one.
   release:
     name: Publish GitHub release
     needs: desktop
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: apps/desktop/package.json
+          sparse-checkout-cone-mode: false
       - uses: actions/download-artifact@v8
         with:
           path: out
           merge-multiple: true
-      - run: gh release create "$GITHUB_REF_NAME" out/* --repo "$GITHUB_REPOSITORY" --title "OvozYoz $GITHUB_REF_NAME" --generate-notes
-        env:
+      - env:
           GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="$GITHUB_REF_NAME"
+          if [ "$GITHUB_REF_TYPE" != tag ]; then
+            tag="v$(jq -r .version apps/desktop/package.json)"
+            if gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+              echo "$tag is already released; bump apps/desktop/package.json to publish a new one."
+              exit 0
+            fi
+          fi
+          gh release create "$tag" out/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "OvozYoz $tag" --generate-notes
 
   pages-check:
     name: Is GitHub Pages enabled?

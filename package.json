@@ -1,0 +1,29 @@
+{
+  "name": "ovozyoz",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OvozYoz — gapiring, matn o'zi yozilsin (o'zbek, rus, ingliz)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:web": "npm run dev -w @ovozyoz/web",
+    "build:web": "npm run build -w @ovozyoz/web",
+    "build:desktop": "npm run build -w @ovozyoz/desktop",
+    "dist:desktop": "npm run dist -w @ovozyoz/desktop",
+    "e2e:web": "node apps/web/e2e/run.mjs",
+    "smoke:desktop": "npm run smoke -w @ovozyoz/desktop"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "5.9.3",
+    "vitest": "^4.0.0",
+    "playwright": "1.56.1"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

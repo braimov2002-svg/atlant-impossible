@@ -1,7 +1,7 @@
 # Atlant Group of Companies — corporate website
 
 Website for **Atlant Group of Companies** (AGC, [agcg.uz](https://agcg.uz)): a group that brings together construction, engineering, logistics and trade companies.
-Uzbek-first (`/uz`), statically generated, four routes.
+Uzbek-first (`/uz`), statically generated, four routes. Lives in `apps/atlant` of this npm-workspaces repo (next to the OvozYoz apps) as the `@atlant/site` workspace.
 
 **Design direction.** Sober, architectural and corporate, to suit a group that delivers large projects:
 - neutral graphite surfaces, white type and a single restrained brass accent;
@@ -21,14 +21,22 @@ The only illustration is an architectural line drawing in the hero (a worm's-eye
 
 ## Quick start
 
+Run from the repository root (Node ≥ 22.12, as the monorepo requires):
+
 ```bash
-# Node ≥ 20.9
-npm install
-npm run dev              # http://localhost:3000 → /uz
-npm run build && npm start
-npm run typecheck
-cp .env.example .env.local   # optional: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID for inquiries
+npm ci
+npm run dev -w @atlant/site          # http://localhost:3000 → /uz
+npm run build -w @atlant/site && npm run start -w @atlant/site
+npm run typecheck                    # all workspaces
+cp apps/atlant/.env.example apps/atlant/.env.local   # optional: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID
 ```
+
+### Deploy (Vercel)
+
+1. On vercel.com: **Add New → Project**, then import `braimov2002-svg/atlant-impossible`.
+2. Set **Root Directory** to `apps/atlant`. Vercel detects Next.js and installs from the repository root.
+3. Add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` under Environment Variables if inquiries should reach Telegram.
+4. Click **Deploy**, then attach the `agcg.uz` domain under **Settings → Domains**.
 
 ## Routes
 
@@ -65,7 +73,7 @@ cp .env.example .env.local   # optional: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID f
 
 ## Stack
 
-- Next.js 15.5: App Router, React Server Components, Server Actions, SSG.
+- Next.js 16 (the same version as the OvozYoz web app, so the monorepo installs one copy): App Router, React Server Components, Server Actions, SSG.
 - React 19, Tailwind CSS v4 (CSS-first `@theme`), Framer Motion, Lenis, lucide-react, zod 4.
 - Fonts, self-hosted via `next/font` with Cyrillic: **Geologica** for display and **Onest** for text.
 
@@ -96,7 +104,7 @@ The form has four steps: facility type and services → region, area and budget 
 
 ## Notes
 
-- Next.js is pinned to **15.x**. `overrides.next.postcss` lifts Next's bundled PostCSS to a patched release.
+- `npm audit --omit=dev` reports 0 vulnerabilities for the whole workspace.
 - `prefers-reduced-motion` is honoured: Lenis, CSS animations, the hero drawing and count-ups all respect it, and the partner marquee becomes a static grid.
 - Adding a locale: create `i18n/dictionaries/ru.ts` typed as `Dictionary`, then register it in `get-dictionary.ts` and `i18n/config.ts`.
 - Earlier iterations are in this branch's history: the 3D "cyber" showcase in `e9025cb` and the rendered construction film in `46f953c`. They were replaced at the client's request ("no cartoon-like site").

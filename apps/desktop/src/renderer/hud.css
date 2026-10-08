@@ -1,0 +1,137 @@
+:root {
+  color-scheme: light dark;
+  --pill-bg: rgba(255, 255, 255, 0.92);
+  --pill-text: #111a18;
+  --pill-line: rgba(0, 0, 0, 0.08);
+  --badge-bg: rgba(16, 185, 129, 0.14);
+  --badge-text: #047857;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pill-bg: rgba(28, 33, 32, 0.92);
+    --pill-text: #eef3f2;
+    --pill-line: rgba(255, 255, 255, 0.1);
+    --badge-bg: rgba(16, 185, 129, 0.22);
+    --badge-text: #6ee7b7;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  font: 600 15px/1.2 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  user-select: none;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 440px;
+  padding: 11px 16px;
+  border-radius: 16px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  border: 1px solid var(--pill-line);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(20px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.pill.hidden {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pill.error .text,
+.pill.info .text {
+  white-space: normal;
+  font-size: 13px;
+  /* the window is only 72px tall: at most two lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 16px;
+}
+
+.pill.recording .icon::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff6b6b, #e11d48);
+  box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.5);
+  animation: pulse 1.2s ease-out infinite;
+}
+
+.pill.starting .icon::before { content: '🎙️'; }
+.pill.transcribing .icon::before { content: '✍️'; }
+.pill.done .icon::before { content: '✅'; }
+.pill.info .icon::before { content: 'ℹ️'; }
+.pill.error .icon::before { content: '⚠️'; }
+
+.badge {
+  flex: none;
+  padding: 3px 7px;
+  border-radius: 8px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.badge:empty {
+  display: none;
+}
+
+.meter {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  height: 18px;
+}
+
+.pill.recording .meter {
+  display: flex;
+}
+
+.meter i {
+  width: 3px;
+  height: 4px;
+  border-radius: 2px;
+  background: #e11d48;
+  transition: height 0.08s linear;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.55); }
+  100% { box-shadow: 0 0 0 9px rgba(225, 29, 72, 0); }
+}

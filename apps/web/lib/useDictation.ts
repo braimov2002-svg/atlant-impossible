@@ -7,6 +7,7 @@ import {
   transcribe,
   userMessage,
   type DictationSettings,
+  type OutputLanguage,
 } from '@ovozyoz/core';
 import { MicRecorder, prepareRecording } from '@ovozyoz/core/browser';
 import { useMotionValue, type MotionValue } from 'motion/react';
@@ -24,6 +25,9 @@ export interface DictationConfig {
 export interface DictationOutcome {
   text: string;
   copied: boolean;
+  /** False when the text is not in the chosen output language: it is shown, not copied. */
+  languageOk: boolean;
+  output: OutputLanguage;
 }
 
 interface Options {
@@ -126,10 +130,10 @@ export function useDictation({ config, onResult, onError }: Options) {
       const controller = new AbortController();
       abort.current = controller;
 
-      const textPromise = (async () => {
+      const resultPromise = (async () => {
         const audio = await getAudio();
         lastAudio.current = audio;
-        const result = await transcribe({
+        return transcribe({
           provider: settings.provider,
           apiKey,
           audio,
@@ -139,17 +143,19 @@ export function useDictation({ config, onResult, onError }: Options) {
           signal: controller.signal,
           ...modelOverrides(settings),
         });
-        return result.text;
       })();
-      const scheduledCopy = autoCopy ? copyWhenReady(textPromise) : null;
+      // Text in the wrong language is never copied as if it were the answer.
+      const scheduledCopy = autoCopy
+        ? copyWhenReady(resultPromise.then((r) => (r.languageOk ? r.text : Promise.reject(new Error('wrong-language')))))
+        : null;
 
       try {
-        const text = await textPromise;
+        const { text, languageOk } = await resultPromise;
         lastAudio.current = null;
         setCanRetry(false);
         let copied = scheduledCopy ? await scheduledCopy : false;
-        if (!copied && autoCopy) copied = await copyText(text);
-        onResult({ text, copied });
+        if (!copied && autoCopy && languageOk) copied = await copyText(text);
+        onResult({ text, copied, languageOk, output: settings.output });
       } catch (error) {
         const code = error instanceof DictationError ? error.code : '';
         if (RECORDING_PROBLEMS.has(code)) lastAudio.current = null;

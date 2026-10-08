@@ -1,0 +1,138 @@
+name: iOS
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'apps/ios/**'
+      - 'packages/core/**'
+      - 'package-lock.json'
+      - '.github/workflows/ios.yml'
+  pull_request:
+    paths:
+      - 'apps/ios/**'
+      - 'packages/core/**'
+      - 'package-lock.json'
+      - '.github/workflows/ios.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: Core bundle for JavaScriptCore
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build ovozyoz-core.js and run it in a bare JS context
+        run: npm run test:core -w @ovozyoz/ios
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ovozyoz-core-js
+          path: apps/ios/OvozYoz/Shared/Resources/ovozyoz-core.js
+          if-no-files-found: error
+
+  build:
+    name: Build, test (simulator), unsigned IPA
+    needs: core
+    runs-on: macos-26
+    timeout-minutes: 50
+    defaults:
+      run:
+        working-directory: apps/ios/OvozYoz
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: ovozyoz-core-js
+          path: apps/ios/OvozYoz/Shared/Resources
+      - name: Xcode and XcodeGen
+        run: |
+          xcodebuild -version
+          brew install xcodegen
+          xcodegen --version
+      - name: Generate the Xcode project
+        run: xcodegen generate
+      - name: Pick a simulator
+        id: sim
+        run: |
+          udid=$(xcrun simctl list devices available -j | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          for runtime in sorted(devices, reverse=True):
+              if ".iOS-" not in runtime:
+                  continue
+              for d in devices[runtime]:
+                  if d["name"].startswith("iPhone"):
+                      print(d["udid"]); sys.exit()
+          ')
+          echo "Simulator: $udid"
+          test -n "$udid"
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+      - name: Unit tests on the simulator (JavaScriptCore bridge, shared store)
+        run: |
+          mkdir -p ../build
+          status=0
+          xcodebuild test \
+            -project OvozYoz.xcodeproj -scheme OvozYoz \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -derivedDataPath ../build/dd-sim \
+            -resultBundlePath ../build/tests.xcresult \
+            > ../build-test.log 2>&1 || status=$?
+          grep -E "error:|Test Case .*(passed|failed)|Executed [0-9]+ test|\*\* (TEST|BUILD)" ../build-test.log | tail -300 || true
+          if [ "$status" -ne 0 ]; then grep -B3 -A12 -E "error:|failed" ../build-test.log | head -400; fi
+          exit $status
+      - name: Device build without signing
+        run: |
+          status=0
+          xcodebuild build \
+            -project OvozYoz.xcodeproj -scheme OvozYoz -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' \
+            -derivedDataPath ../build/dd-device \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            > ../build-device.log 2>&1 || status=$?
+          grep -E "error:|\*\* BUILD" ../build-device.log | tail -200 || true
+          if [ "$status" -ne 0 ]; then grep -B3 -A12 "error:" ../build-device.log | head -400; fi
+          exit $status
+      - name: Package the unsigned IPA and the Xcode project
+        run: |
+          app=../build/dd-device/Build/Products/Release-iphoneos/OvozYoz.app
+          appex="$app/PlugIns/OvozYozKeyboard.appex"
+          test -d "$appex" || { echo "keyboard extension is not embedded"; exit 1; }
+          /usr/libexec/PlistBuddy -c 'Print :NSExtension:NSExtensionPointIdentifier' "$appex/Info.plist" | grep -q keyboard-service
+          test -s "$app/ovozyoz-core.js" && test -s "$appex/ovozyoz-core.js"
+          du -sh "$app" "$appex"
+          mkdir -p ../build/ipa/Payload
+          cp -R "$app" ../build/ipa/Payload/
+          (cd ../build/ipa && zip -qry ../OvozYoz-unsigned.ipa Payload)
+          # The generated project with the built core, for installing with Xcode on a Mac.
+          (cd .. && zip -qry build/OvozYoz-Xcode.zip OvozYoz -x 'OvozYoz/build/*')
+          ls -la ../build/*.ipa ../build/*.zip
+      - uses: actions/upload-artifact@v7
+        with:
+          name: OvozYoz-iOS
+          path: |
+            apps/ios/build/OvozYoz-unsigned.ipa
+            apps/ios/build/OvozYoz-Xcode.zip
+          if-no-files-found: error
+      - name: Keep logs and test results on failure
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ios-logs
+          path: |
+            apps/ios/build-test.log
+            apps/ios/build-device.log
+            apps/ios/build/tests.xcresult
+          if-no-files-found: ignore

@@ -1,3 +1,4 @@
+import { languageMatches } from './detect';
 import { DictationError, MAX_RECORDING_SECONDS, MIN_RECORDING_SECONDS } from './errors';
 import { readWavInfo } from './audio/wav';
 import { EMPTY_SENTINEL } from './prompt';
@@ -5,6 +6,8 @@ import { GEMINI, geminiTranscribe } from './providers/gemini';
 import { OPENAI, openaiTranscribe } from './providers/openai';
 import type { ProviderId, ProviderInfo, ProviderRequest } from './providers/types';
 import { cleanModelText, normalizeUzbekApostrophes, type ApostropheStyle } from './text';
+import { anySignal, ensureLanguage, providerRewrite } from './translate';
+import { outputLanguage, type OutputLanguage, type SpokenLanguage } from './languages';
 
 export const PROVIDERS: Readonly<Record<ProviderId, ProviderInfo>> = {
   gemini: GEMINI,
@@ -23,6 +26,12 @@ export interface TranscribeResult {
   provider: ProviderId;
   model: string;
   durationSec: number;
+  /**
+   * False when the text is still not in the requested output language after
+   * every retry (e.g. the translation failed and only the Uzbek transcript is
+   * left). Apps must then show it for checking instead of copying or pasting it.
+   */
+  languageOk: boolean;
 }
 
 /**
@@ -42,43 +51,114 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   if (durationSec < MIN_RECORDING_SECONDS) throw new DictationError('too-short');
   if (durationSec > MAX_RECORDING_SECONDS + 1) throw new DictationError('too-long');
 
-  // Upload, retries and (for OpenAI) a second translation request all share
-  // one deadline, so give long recordings proportionally more time.
+  // The audio request (with its retries and, for a translation, the second
+  // text request) shares one deadline that grows with the recording length.
+  // The optional language fix-up afterwards is best effort: if it fails or
+  // runs out of time, the text already received is returned.
   const timeoutMs = options.timeoutMs ?? 60_000 + durationSec * 500;
   const timeout = new AbortController();
   const timer = setTimeout(() => timeout.abort(new DictationError('timeout')), timeoutMs);
   const signal = options.signal ? anySignal([options.signal, timeout.signal]) : timeout.signal;
   const request: ProviderRequest = { ...options, apiKey: options.apiKey.trim(), signal };
 
-  const run = provider === 'openai' ? openaiTranscribe : geminiTranscribe;
-  let result;
+  const rewriteModels: string[] = [];
+  const rewrite = async (source: string, strict: boolean, model: string | undefined) => {
+    const rewritten = await providerRewrite(provider, {
+      text: source,
+      output: options.output,
+      apiKey: request.apiKey,
+      model,
+      strict,
+      signal,
+      fetch: options.fetch,
+    });
+    if (!rewriteModels.includes(rewritten.model)) rewriteModels.push(rewritten.model);
+    return rewritten.text;
+  };
+  const textModel = (audioModel: string) => (provider === 'openai' ? options.textModel : audioModel);
+
+  let text: string;
+  let model: string;
+  let source: string;
+  let translated: boolean;
+  /** Error code of a translation request that already failed. */
+  let stepFailed: string | undefined;
   try {
-    result = await run(request);
+    if (provider === 'gemini' && needsTranslation(options.spoken, options.output)) {
+      // Known translation (e.g. Uzbek speech → Russian): write down exactly
+      // what was said first, then translate it in a text-only request. Asking
+      // for both in one audio request is what failed ("RU" chosen, Uzbek back).
+      const heard = await geminiTranscribe({ ...request, output: transcriptLanguage(options.spoken), transcriptOnly: true });
+      model = heard.model;
+      source = cleanModelText(heard.text);
+      if (!source || source.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
+      // The transcript is already worth keeping: if the translation request
+      // fails (quota, busy, deadline), fall back to the best-effort fix-up
+      // below, which keeps the transcript if that fails too.
+      text = source;
+      translated = false;
+      try {
+        const answer = cleanModelText(await rewrite(source, false, heard.model));
+        if (answer && !answer.includes(EMPTY_SENTINEL)) {
+          text = answer;
+          translated = true;
+        }
+      } catch (error) {
+        if (options.signal?.aborted) throw error;
+        stepFailed = error instanceof DictationError ? error.code : 'unknown';
+      }
+    } else {
+      const result = provider === 'openai' ? await openaiTranscribe(request) : await geminiTranscribe(request);
+      model = result.model;
+      text = cleanModelText(result.text);
+      if (!text || text.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
+      source = result.source ?? text;
+      translated = !!result.translated;
+      stepFailed = result.rewriteFailed;
+    }
   } catch (error) {
+    clearTimeout(timer);
     if (timeout.signal.aborted && !options.signal?.aborted) throw new DictationError('timeout');
     if (options.signal?.aborted) throw new DictationError('cancelled');
     throw error;
+  }
+
+  // Models sometimes still answer in the wrong language: check and fix it.
+  const audioModel = model;
+  try {
+    // Out of time already (e.g. the translation step used it up): keep the text.
+    if (signal.aborted) throw signal.reason;
+    // After a quota, billing or key error more requests cannot help: only the
+    // local Uzbek Cyrillic → Latin conversion is still tried.
+    const hopeless = stepFailed !== undefined && HOPELESS.has(stepFailed);
+    text = await ensureLanguage(text, options.output, (src, strict) => rewrite(src, strict, textModel(audioModel)), {
+      source,
+      // A translation that already ran gets one stricter retry; a plain
+      // transcription gets a normal translation, then a strict one.
+      passes: hopeless ? [] : translated ? [true] : [false, true],
+      keep: translated ? 'last' : 'candidate',
+    });
+  } catch (error) {
+    if (options.signal?.aborted) throw new DictationError('cancelled');
+    // Quota, network or the deadline during the fix-up: keep what we have.
   } finally {
     clearTimeout(timer);
   }
+  for (const m of rewriteModels) if (m !== model && !model.includes(` + ${m}`)) model = `${model} + ${m}`;
 
-  let text = cleanModelText(result.text);
-  if (!text || text.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
   if (options.output === 'uz-latn') text = normalizeUzbekApostrophes(text, apostrophes);
-
-  return { text, provider, model: result.model, durationSec };
+  return { text, provider, model, durationSec, languageOk: languageMatches(text, options.output) };
 }
 
-/** AbortSignal.any() with a fallback for Safari < 17.4. */
-function anySignal(signals: AbortSignal[]): AbortSignal {
-  if (typeof AbortSignal.any === 'function') return AbortSignal.any(signals);
-  const controller = new AbortController();
-  for (const signal of signals) {
-    if (signal.aborted) {
-      controller.abort(signal.reason);
-      break;
-    }
-    signal.addEventListener('abort', () => controller.abort(signal.reason), { once: true });
-  }
-  return controller.signal;
+/** Failures that another request cannot fix right now. */
+const HOPELESS = new Set(['quota', 'billing', 'invalid-api-key', 'region', 'no-api-key']);
+
+/** Whether the spoken language differs from the requested output (a translation). */
+export function needsTranslation(spoken: SpokenLanguage, output: OutputLanguage): boolean {
+  return spoken !== 'auto' && outputLanguage(output).sameAs !== spoken;
+}
+
+/** Output used for the faithful first-step transcript of a translation. */
+function transcriptLanguage(spoken: Exclude<SpokenLanguage, 'auto'> | SpokenLanguage): OutputLanguage {
+  return spoken === 'ru' ? 'ru' : spoken === 'en' ? 'en' : 'uz-latn';
 }

@@ -23,6 +23,8 @@ export interface OutputLanguageInfo {
   promptName: string;
   /** Spoken language that needs no translation to reach this output. */
   sameAs: Exclude<SpokenLanguage, 'auto'>;
+  /** Uzbek dative used in messages: "ruschaga o'girib bo'lmadi". */
+  into: string;
 }
 
 export const SPOKEN_LANGUAGES: readonly SpokenLanguageInfo[] = [
@@ -39,6 +41,7 @@ export const OUTPUT_LANGUAGES: readonly OutputLanguageInfo[] = [
     short: 'UZ',
     promptName: 'Uzbek written in the modern Latin alphabet',
     sameAs: 'uz',
+    into: "lotin o'zbekchaga",
   },
   {
     id: 'uz-cyrl',
@@ -46,9 +49,10 @@ export const OUTPUT_LANGUAGES: readonly OutputLanguageInfo[] = [
     short: 'ЎЗ',
     promptName: 'Uzbek written in the Cyrillic alphabet',
     sameAs: 'uz',
+    into: "kirill o'zbekchaga",
   },
-  { id: 'ru', label: 'Ruscha — Русский', short: 'RU', promptName: 'Russian', sameAs: 'ru' },
-  { id: 'en', label: 'Inglizcha — English', short: 'EN', promptName: 'English', sameAs: 'en' },
+  { id: 'ru', label: 'Ruscha — Русский', short: 'RU', promptName: 'Russian', sameAs: 'ru', into: 'ruschaga' },
+  { id: 'en', label: 'Inglizcha — English', short: 'EN', promptName: 'English', sameAs: 'en', into: 'inglizchaga' },
 ];
 
 export function spokenLanguage(id: SpokenLanguage): SpokenLanguageInfo {

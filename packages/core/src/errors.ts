@@ -1,3 +1,5 @@
+import { outputLanguage, type OutputLanguage } from './languages';
+
 export type DictationErrorCode =
   | 'no-api-key'
   | 'invalid-api-key'
@@ -19,6 +21,9 @@ export type DictationErrorCode =
   | 'busy'
   | 'key-unreadable'
   | 'provider'
+  | 'empty-text'
+  | 'text-too-long'
+  | 'translate-failed'
   | 'cancelled';
 
 /** Error with a stable code so every UI can show the same Uzbek message. */
@@ -61,8 +66,21 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   'key-unreadable': "Saqlangan kalitni o'qib bo'lmadi (tizim kalitlar ombori ruxsat bermadi). Qayta urinib ko'ring yoki kalitni qayta kiriting.",
   'unsupported-language': "Tanlangan model bu tilni tushunmadi. Sozlamalarda boshqa modelni tanlab ko'ring.",
   provider: 'Xizmatda xatolik yuz berdi.',
+  'empty-text': 'Tarjima qilish uchun matn yozing yoki joylang.',
+  'text-too-long': "Matn juda uzun (ko'pi bilan 10 000 belgi). Qismlarga bo'lib tarjima qiling.",
+  'translate-failed': "Tarjima qilib bo'lmadi. Qayta urinib ko'ring.",
   cancelled: 'Bekor qilindi.',
 };
+
+/**
+ * Shown when the answer is still not in the chosen output language after
+ * every retry: the text is shown for checking, never copied or pasted as if
+ * it were a success.
+ */
+export function wrongLanguageMessage(output: OutputLanguage): string {
+  const into = outputLanguage(output).into;
+  return `${into.charAt(0).toUpperCase()}${into.slice(1)} o'girib bo'lmadi.`;
+}
 
 /** Human-readable Uzbek message for any thrown value. */
 export function userMessage(error: unknown): string {

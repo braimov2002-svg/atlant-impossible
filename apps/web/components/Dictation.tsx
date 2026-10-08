@@ -1,9 +1,20 @@
 'use client';
 
-import { DEFAULT_SETTINGS, outputLanguage, PROVIDERS, type DictationSettings, type OutputLanguage } from '@ovozyoz/core';
+import {
+  DEFAULT_SETTINGS,
+  DictationError,
+  modelOverrides,
+  outputLanguage,
+  PROVIDERS,
+  translateText,
+  userMessage,
+  wrongLanguageMessage,
+  type DictationSettings,
+  type OutputLanguage,
+} from '@ovozyoz/core';
 import { AnimatePresence, motion } from 'motion/react';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { copyText } from '@/lib/clipboard';
+import { copyText, copyWhenReady } from '@/lib/clipboard';
 import {
   HISTORY_LIMIT,
   loadApiKeys,
@@ -23,6 +34,7 @@ import { DesktopDownloads } from './DesktopDownloads';
 import { LanguageBar } from './LanguageBar';
 import { MicButton } from './MicButton';
 import { SettingsSheet } from './SettingsSheet';
+import { TranslateBox } from './TranslateBox';
 
 const STATUS: Record<Phase, string> = {
   idle: 'Bosing va gapiring',
@@ -52,6 +64,8 @@ export function Dictation() {
   const [toast, setToast] = useState<{ kind: 'ok' | 'error'; message: string } | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [showInstallTip, setShowInstallTip] = useState(false);
+  /** The last result was not in the chosen language: shown with a warning, not copied. */
+  const [wrongLanguage, setWrongLanguage] = useState<{ text: string; output: OutputLanguage } | null>(null);
 
   // localStorage is only available in the browser, after hydration.
   useEffect(() => {
@@ -75,42 +89,92 @@ export function Dictation() {
     toastTimer.current = setTimeout(() => setToast(null), kind === 'error' ? 6000 : 2500);
   }, []);
 
+  const handleResult = useCallback(
+    ({ text: result, copied, languageOk, output }: { text: string; copied: boolean; languageOk: boolean; output: OutputLanguage }) => {
+      setText(result);
+      setWrongLanguage(languageOk ? null : { text: result, output });
+      setHistory((items) => {
+        const next = [{ id: newId(), text: result, output, at: Date.now() }, ...items].slice(0, HISTORY_LIMIT);
+        saveHistory(next);
+        return next;
+      });
+      if (!languageOk) showToast('error', `${wrongLanguageMessage(output)} Natijani tekshiring.`);
+      else if (copied) showToast('ok', 'Matn nusxalandi — istalgan joyga joylang');
+      else if (latest.current.prefs.autoCopy) {
+        showToast('error', "Avtomatik nusxalab bo'lmadi — «Nusxalash» tugmasini bosing");
+      }
+    },
+    [showToast],
+  );
+
+  const handleError = useCallback(
+    (message: string, error: unknown) => {
+      showToast('error', message);
+      const code = (error as { code?: string })?.code;
+      if (code === 'no-api-key' || code === 'invalid-api-key' || code === 'billing' || code === 'key-unreadable') {
+        setSettingsOpen(true);
+      }
+    },
+    [showToast],
+  );
+
   const dictation = useDictation({
     config: useCallback(() => {
       const { settings: s, apiKeys: k, prefs: p } = latest.current;
       return { settings: s, apiKey: k[s.provider], autoCopy: p.autoCopy };
     }, []),
-    onResult: useCallback(
-      ({ text: result, copied }: { text: string; copied: boolean }) => {
-        setText(result);
-        setHistory((items) => {
-          const next = [
-            { id: newId(), text: result, output: latest.current.settings.output, at: Date.now() },
-            ...items,
-          ].slice(0, HISTORY_LIMIT);
-          saveHistory(next);
-          return next;
-        });
-        if (copied) showToast('ok', 'Matn nusxalandi — istalgan joyga joylang');
-        else if (latest.current.prefs.autoCopy) {
-          showToast('error', "Avtomatik nusxalab bo'lmadi — «Nusxalash» tugmasini bosing");
-        }
-      },
-      [showToast],
-    ),
-    onError: useCallback(
-      (message: string, error: unknown) => {
-        showToast('error', message);
-        const code = (error as { code?: string })?.code;
-        if (code === 'no-api-key' || code === 'invalid-api-key' || code === 'billing' || code === 'key-unreadable') {
-          setSettingsOpen(true);
-        }
-      },
-      [showToast],
-    ),
+    onResult: handleResult,
+    onError: handleError,
   });
 
   const busy = dictation.phase !== 'idle';
+
+  const [translating, setTranslating] = useState(false);
+  const translateAbort = useRef<AbortController | null>(null);
+  const translate = useCallback(
+    (input: string) => {
+      const { settings: s, apiKeys: k, prefs: p } = latest.current;
+      const apiKey = k[s.provider];
+      if (!apiKey) {
+        showToast('error', userMessage(new DictationError('no-api-key')));
+        setSettingsOpen(true);
+        return;
+      }
+      const controller = new AbortController();
+      translateAbort.current = controller;
+      setTranslating(true);
+      const textPromise = translateText({
+        text: input,
+        output: s.output,
+        provider: s.provider,
+        apiKey,
+        apostrophes: s.apostrophes,
+        signal: controller.signal,
+        ...(s.provider === 'openai' ? { textModel: modelOverrides(s).textModel } : modelOverrides(s)),
+      });
+      // Started inside the tap: iOS only allows clipboard writes from a gesture.
+      // A cancelled translation, or one in the wrong language, rejects the
+      // promise, so nothing is copied.
+      const scheduledCopy = p.autoCopy
+        ? copyWhenReady(textPromise.then((r) => (r.languageOk ? r.text : Promise.reject(new Error('wrong-language')))))
+        : null;
+      void (async () => {
+        try {
+          const { text: result, languageOk } = await textPromise;
+          let copied = scheduledCopy ? await scheduledCopy : false;
+          if (!copied && !scheduledCopy && p.autoCopy && languageOk) copied = await copyText(result);
+          handleResult({ text: result, copied, languageOk, output: s.output });
+        } catch (error) {
+          if (!controller.signal.aborted) handleError(userMessage(error), error);
+        } finally {
+          if (translateAbort.current === controller) translateAbort.current = null;
+          setTranslating(false);
+        }
+      })();
+    },
+    [showToast, handleResult, handleError],
+  );
+  const cancelTranslate = useCallback(() => translateAbort.current?.abort(), []);
 
   const updateSettings = (patch: Partial<DictationSettings>) => {
     const next = { ...settings, ...patch };
@@ -161,16 +225,17 @@ export function Dictation() {
       if (settingsOpen || e.repeat) return;
       const target = e.target as HTMLElement | null;
       if (target && ['TEXTAREA', 'INPUT', 'SELECT', 'BUTTON'].includes(target.tagName)) return;
-      if (e.code === 'Space') {
+      if (e.key === 'Escape') {
+        if (translating) cancelTranslate();
+        else dictation.cancel();
+      } else if (e.code === 'Space' && !translating) {
         e.preventDefault();
         dictation.toggle();
-      } else if (e.key === 'Escape') {
-        dictation.cancel();
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [dictation, settingsOpen]);
+  }, [dictation, settingsOpen, translating, cancelTranslate]);
 
   const needsKey = ready && !apiKeys[settings.provider];
   const out = outputLanguage(settings.output);
@@ -240,14 +305,14 @@ export function Dictation() {
         <LanguageBar
           spoken={settings.spoken}
           output={settings.output}
-          disabled={busy}
+          disabled={busy || translating}
           onSpoken={(spoken) => updateSettings({ spoken })}
           onOutput={(output: OutputLanguage) => updateSettings({ output })}
         />
       </section>
 
       <section className="flex flex-col items-center py-6">
-        <MicButton phase={dictation.phase} level={dictation.level} onPress={dictation.toggle} />
+        <MicButton phase={dictation.phase} level={dictation.level} onPress={dictation.toggle} disabled={translating} />
         <p className="mt-2 min-h-6 text-center font-medium">
           {dictation.phase === 'recording' && (
             <span aria-hidden className="mr-2 inline-flex items-center gap-1.5 text-rose-600 dark:text-rose-400">
@@ -265,7 +330,7 @@ export function Dictation() {
             Bekor qilish
           </button>
         )}
-        {!busy && dictation.canRetry && (
+        {!busy && !translating && dictation.canRetry && (
           <button
             type="button"
             onClick={() => void dictation.retry()}
@@ -280,6 +345,21 @@ export function Dictation() {
         <label htmlFor="result" className="mb-2 block text-sm text-[var(--muted)]">
           Natija (tahrirlash mumkin)
         </label>
+        {wrongLanguage && wrongLanguage.text === text && (
+          <div role="alert" className="mb-3 rounded-2xl border border-amber-400/50 bg-amber-400/10 p-3 text-sm">
+            <p className="font-medium">
+              ⚠️ {wrongLanguageMessage(wrongLanguage.output)} Natija boshqa tilda chiqdi, shuning uchun nusxalanmadi.
+            </p>
+            <button
+              type="button"
+              disabled={busy || translating}
+              onClick={() => translate(text)}
+              className="mt-2 rounded-xl bg-amber-700 px-4 py-2 font-semibold text-white disabled:opacity-40"
+            >
+              Qayta tarjima qilish → {outputLanguage(settings.output).short}
+            </button>
+          </div>
+        )}
         <textarea
           id="result"
           value={text}
@@ -300,6 +380,8 @@ export function Dictation() {
           </button>
         </div>
       </section>
+
+      <TranslateBox output={settings.output} translating={translating} disabled={busy} onTranslate={translate} onCancel={cancelTranslate} />
 
       {history.length > 0 && (
         <HistoryList items={history} onPick={pickHistory} onClear={clearHistory} />

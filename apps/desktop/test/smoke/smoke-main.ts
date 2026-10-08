@@ -26,10 +26,14 @@ fs.writeFileSync(
 
 const requests: Array<{ url: string; body: any; headers: Record<string, string> }> = [];
 const mockFetch = (async (url: string, init?: RequestInit) => {
-  requests.push({ url: String(url), body: JSON.parse(String(init?.body)), headers: init?.headers as Record<string, string> });
+  const body = JSON.parse(String(init?.body));
+  requests.push({ url: String(url), body, headers: init?.headers as Record<string, string> });
   await new Promise((r) => setTimeout(r, 500));
+  // Uzbek speech → Russian runs in two steps: Uzbek transcript, then translation.
+  const audioCall = body.contents[0].parts.some((p: { inlineData?: unknown }) => p.inlineData);
+  const text = audioCall ? 'Salom, mening ismim Muhammad.' : 'Привет, меня зовут Мухаммад.';
   return new Response(
-    JSON.stringify({ candidates: [{ content: { parts: [{ text: 'Привет, меня зовут Мухаммад.' }] }, finishReason: 'STOP' }] }),
+    JSON.stringify({ candidates: [{ content: { parts: [{ text }] }, finishReason: 'STOP' }] }),
     { status: 200, headers: { 'Content-Type': 'application/json' } },
   );
 }) as typeof fetch;
@@ -82,7 +86,7 @@ startApp({
       await shot('hud-done');
 
       const req = requests[0];
-      check('one request', requests.length === 1, String(requests.length));
+      check('transcript + translation requests', requests.length === 2, String(requests.length));
       if (req) {
         check('model url', req.url.endsWith('/models/gemini-3.5-flash:generateContent'), req.url);
         check('key header', req.headers['x-goog-api-key'] === 'AIzaSyD-SMOKE-TEST-KEY-1234567890abcdef');
@@ -92,7 +96,12 @@ startApp({
         const seconds = wav.readUInt32LE(40) / (rate * 2);
         check('wav 16k mono', wav.toString('ascii', 0, 4) === 'RIFF' && rate === 16000 && wav.readUInt16LE(22) === 1, `${rate}`);
         check('wav duration ~2.5s', seconds > 1.8 && seconds < 4, seconds.toFixed(2));
-        check('russian prompt', req.body.systemInstruction.parts[0].text.includes('written in Russian'));
+        check('uzbek transcript prompt', req.body.systemInstruction.parts[0].text.includes('Latin alphabet'));
+        const tr = requests[1];
+        check(
+          'russian translation request',
+          !!tr && !tr.body.contents[0].parts[0].inlineData && tr.body.systemInstruction.parts[0].text.includes('Target language: Russian'),
+        );
       }
 
       // Cancel flow
@@ -101,7 +110,7 @@ startApp({
       c.cancel();
       check('cancel returns to idle', c.phase() === 'idle');
       await sleep(300);
-      check('no extra request after cancel', requests.length === 1, String(requests.length));
+      check('no extra request after cancel', requests.length === 2, String(requests.length));
 
       c.openSettings();
       const settings = await (async () => {

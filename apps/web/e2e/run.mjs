@@ -67,8 +67,26 @@ try {
     if (mode === 'badkey') {
       return route.fulfill({ status: 400, contentType: 'application/json', body: JSON.stringify({ error: { code: 400, message: 'API key not valid. Please pass a valid API key.' } }) });
     }
-    const russian = body.systemInstruction.parts[0].text.includes('written in Russian');
-    const text = russian ? 'Привет, как дела?' : 'Salom, qalaysan? Bugun havo juda yaxshi.';
+    if (mode === 'slow') await new Promise((resolve) => setTimeout(resolve, 2000));
+    const system = body.systemInstruction.parts[0].text;
+    const textOnly = !body.contents[0].parts.some((part) => part.inlineData);
+    let text;
+    if (mode === 'uzbekonly') {
+      // every answer, translations included, comes back in Uzbek
+      text = 'Salom, qalaysan? Bugun havo juda yaxshi.';
+    } else if (textOnly) {
+      // translation step / translate box
+      text = system.includes('Target language: Russian')
+        ? 'Привет, как дела? Сегодня очень хорошая погода.'
+        : system.includes('Target language: English')
+          ? 'Hello, how are you? The weather is very nice today.'
+          : 'Salom, qalaysan? Bugun havo juda yaxshi.';
+    } else if (mode === 'stubborn') {
+      // the model ignores the requested language and just transcribes Uzbek
+      text = 'Salom, qalaysan? Bugun havo juda yaxshi.';
+    } else {
+      text = system.includes('written in Russian') ? 'Привет, как дела?' : 'Salom, qalaysan? Bugun havo juda yaxshi.';
+    }
     return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ candidates: [{ content: { parts: [{ text }] }, finishReason: 'STOP' }] }) });
   });
 
@@ -108,9 +126,20 @@ try {
   if (shots) await page.screenshot({ path: path.join(shots, 'web-result.png') });
 
   await page.getByRole('radio', { name: /RU/ }).click();
+  const beforeRussian = requests.length;
   await record(1500);
   await page.waitForFunction(() => document.querySelector('#result')?.value.startsWith('Привет'), null, { timeout: 15_000 });
-  check('russian output', requests[1].body.systemInstruction.parts[0].text.includes('written in Russian'));
+  // Uzbek speech → Russian: exact Uzbek transcript first, then a text-only translation.
+  const ru = requests.slice(beforeRussian);
+  check(
+    'russian output in two steps',
+    ru.length === 2 &&
+      !!ru[0].body.contents[0].parts[0].inlineData &&
+      ru[0].body.systemInstruction.parts[0].text.includes('Latin alphabet') &&
+      !ru[1].body.contents[0].parts[0].inlineData &&
+      ru[1].body.systemInstruction.parts[0].text.includes('Target language: Russian'),
+    `${ru.length} requests`,
+  );
   check('history kept', (await page.locator('main ul li').count()) === 2);
 
   await page.reload();
@@ -127,8 +156,82 @@ try {
   const before = requests.length;
   await retryButton.click();
   await page.waitForFunction(() => document.querySelector('#result')?.value.startsWith('Привет'), null, { timeout: 15_000 });
-  check('retry re-sends the same audio', requests.length === before + 1 && requests.at(-1).body.contents[0].parts[0].inlineData.data === requests.at(-2).body.contents[0].parts[0].inlineData.data);
+  const audioCalls = requests.filter((r) => r.body.contents[0].parts[0].inlineData);
+  check(
+    'retry re-sends the same audio',
+    requests.length > before && audioCalls.at(-1).body.contents[0].parts[0].inlineData.data === audioCalls.at(-2).body.contents[0].parts[0].inlineData.data,
+  );
   check('retry button gone after success', (await retryButton.count()) === 0);
+
+  // Auto-detect mode, one audio request: the model ignores "write Russian"
+  // and returns Uzbek; the app must notice and translate in a second step.
+  await page.selectOption('main select', 'auto');
+  await page.fill('#result', '');
+  mode = 'stubborn';
+  const beforeStubborn = requests.length;
+  await record(1200);
+  await page.waitForFunction(() => document.querySelector('#result')?.value.startsWith('Привет, как дела? Сегодня'), null, { timeout: 15_000 });
+  const stubborn = requests.slice(beforeStubborn);
+  check(
+    'wrong-language answer is translated',
+    stubborn.length === 2 && !!stubborn[0].body.contents[0].parts[0].inlineData && !stubborn[1].body.contents[0].parts[0].inlineData,
+    `${stubborn.length} requests`,
+  );
+  mode = 'ok';
+  await page.selectOption('main select', 'uz');
+
+  // Typed text translation: Russian in, Uzbek out.
+  await page.getByRole('radio', { name: /^UZ/ }).click();
+  await page.fill('#translate-input', 'Привет, как дела?');
+  const beforeTranslate = requests.length;
+  await page.getByRole('button', { name: /Tarjima qilish/ }).click();
+  await page.waitForFunction(() => document.querySelector('#result')?.value === 'Salom, qalaysan? Bugun havo juda yaxshi.', null, { timeout: 15_000 });
+  const tr = requests[beforeTranslate];
+  check(
+    'text translation',
+    requests.length === beforeTranslate + 1 && tr.body.contents[0].parts[0].text === 'Привет, как дела?' && tr.body.systemInstruction.parts[0].text.includes('Latin alphabet'),
+  );
+  const trClip = await page.evaluate(() => navigator.clipboard.readText().catch(() => ''));
+  check('translation auto-copied', trClip === 'Salom, qalaysan? Bugun havo juda yaxshi.', JSON.stringify(trClip));
+  // While a translation runs, dictation and the language picker are locked,
+  // and "Bekor qilish" drops it without touching the result.
+  mode = 'slow';
+  const shownBefore = await page.inputValue('#result');
+  await page.fill('#translate-input', 'Привет, как дела?');
+  await page.getByRole('button', { name: /Tarjima qilish/ }).click();
+  await page.getByText('Tarjima qilinmoqda...').waitFor({ timeout: 5_000 });
+  const locked =
+    (await page.getByRole('button', { name: 'Yozishni boshlash' }).isDisabled()) &&
+    (await page.getByRole('radio', { name: /^RU/ }).isDisabled());
+  await page.getByRole('button', { name: 'Bekor qilish' }).click();
+  await page.waitForTimeout(2600);
+  check(
+    'translation locks dictation and can be cancelled',
+    // (Next.js keeps an empty role=alert route announcer: count only real messages.)
+    locked && (await page.inputValue('#result')) === shownBefore && (await page.getByRole('alert').allInnerTexts()).every((t) => !t.trim()),
+    JSON.stringify({ locked, result: await page.inputValue('#result'), shownBefore, alerts: await page.getByRole('alert').allInnerTexts() }),
+  );
+  mode = 'ok';
+  await page.getByRole('radio', { name: /^RU/ }).click();
+
+  // The model answers in Uzbek even though Russian was chosen: the app must
+  // say so instead of copying Uzbek text as if it were Russian.
+  mode = 'uzbekonly';
+  await page.evaluate(() => navigator.clipboard.writeText('CLIPBOARD-BEFORE'));
+  await record(1200);
+  await page.getByText(/Natija boshqa tilda chiqdi/).waitFor({ timeout: 15_000 });
+  const wrongClip = await page.evaluate(() => navigator.clipboard.readText().catch(() => ''));
+  const wrongText = await page.inputValue('#result');
+  check(
+    'wrong language is flagged, not copied',
+    wrongClip === 'CLIPBOARD-BEFORE' && wrongText.startsWith('Salom') && (await page.getByText("Ruschaga o'girib bo'lmadi. Natijani tekshiring.").count()) === 1,
+    JSON.stringify({ wrongClip, wrongText }),
+  );
+  if (shots) await page.screenshot({ path: path.join(shots, 'web-wrong-language.png') });
+  mode = 'ok';
+  await page.getByRole('button', { name: /Qayta tarjima qilish/ }).click();
+  await page.waitForFunction(() => document.querySelector('#result')?.value.startsWith('Привет, как дела? Сегодня'), null, { timeout: 15_000 });
+  check('re-translate fixes it', (await page.getByRole('button', { name: /Qayta tarjima qilish/ }).count()) === 0);
 
   mode = 'badkey';
   await record(1200);

@@ -8,6 +8,8 @@ interface Props {
   /** Microphone loudness 0..1, updated every frame without re-rendering. */
   level: MotionValue<number>;
   onPress: () => void;
+  /** Another action (a translation) is running. */
+  disabled?: boolean;
 }
 
 const LABELS: Record<Phase, string> = {
@@ -17,7 +19,7 @@ const LABELS: Record<Phase, string> = {
   processing: "Matnga o'girilmoqda",
 };
 
-export function MicButton({ phase, level, onPress }: Props) {
+export function MicButton({ phase, level, onPress, disabled = false }: Props) {
   const recording = phase === 'recording';
   const busy = phase === 'processing' || phase === 'starting';
   const ringScale = useSpring(useTransform(level, (l) => 1 + l * 0.45), { stiffness: 300, damping: 20 });
@@ -50,7 +52,7 @@ export function MicButton({ phase, level, onPress }: Props) {
       <motion.button
         type="button"
         onClick={onPress}
-        disabled={busy}
+        disabled={busy || (disabled && phase === 'idle')}
         aria-label={LABELS[phase]}
         aria-pressed={recording}
         whileTap={{ scale: 0.94 }}

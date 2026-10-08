@@ -9,6 +9,7 @@ import {
   spokenLanguage,
   transcribe,
   userMessage,
+  wrongLanguageMessage,
   type OutputLanguage,
   type ProviderId,
 } from '@ovozyoz/core';
@@ -241,13 +242,14 @@ async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
   const controller = new AbortController();
   abort = controller;
   const isCurrent = () => sessionId === recordingSession;
+  const output = settings.output;
   try {
     const result = await transcribe({
       provider: settings.provider,
       apiKey: await loadApiKey(settings.provider),
       audio: wav,
       spoken: settings.spoken,
-      output: settings.output,
+      output,
       apostrophes: settings.apostrophes,
       signal: controller.signal,
       // net.fetch uses Chromium's network stack, so system proxies work too.
@@ -256,6 +258,14 @@ async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
     });
     if (!isCurrent()) return;
     lastText = result.text;
+    if (!result.languageOk) {
+      // Still not in the chosen language (e.g. the translation failed): never
+      // paste it as if it were the answer. It is only copied, to check first.
+      await insertText(result.text, { autoPaste: false, restoreClipboard: false });
+      if (!isCurrent()) return;
+      hud.show({ kind: 'error', message: `${wrongLanguageMessage(output)} Natija nusxalandi — tekshirib, ${pasteKeys} bilan joylang` }, 7000);
+      return;
+    }
     // On Windows, clicking the tray moves focus to the taskbar, so a Ctrl+V
     // would land nowhere: just copy the text in that case.
     const fromTray = startTrigger === 'tray' || stopTrigger === 'tray';

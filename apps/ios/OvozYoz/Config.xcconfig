@@ -1,0 +1,8 @@
+// OvozYoz build settings. To install on your own iPhone with Xcode, change
+// these three lines (see apps/ios/README.md):
+//   OY_TEAM       your Team ID (Xcode → Settings → Accounts), or leave empty
+//   OY_BUNDLE_ID  must be unique to your Apple account, e.g. uz.ovozyoz.yourname
+//   OY_APP_GROUP  "group." + OY_BUNDLE_ID
+OY_TEAM =
+OY_BUNDLE_ID = uz.ovozyoz.app
+OY_APP_GROUP = group.uz.ovozyoz.app

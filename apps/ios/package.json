@@ -1,0 +1,16 @@
+{
+  "name": "@ovozyoz/ios",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:core": "node scripts/build-core.mjs",
+    "test:core": "node scripts/build-core.mjs && node scripts/test-core.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@ovozyoz/core": "0.1.0",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3"
+  }
+}

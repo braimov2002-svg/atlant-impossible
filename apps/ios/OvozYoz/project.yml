@@ -32,6 +32,9 @@ targets:
           - "Resources/**"
       - path: Shared/Resources
         buildPhase: resources
+      # The keyboard's UIKit-free logic is compiled into the app too, so the
+      # unit tests (hosted by the app) can test it.
+      - path: Keyboard/Logic
     preBuildScripts:
       - name: Check ovozyoz-core.js
         basedOnDependencyAnalysis: false

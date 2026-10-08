@@ -33,17 +33,16 @@ Xohlasangiz, sozlamalarda **OpenAI** xizmatini tanlashingiz ham mumkin (pullik, 
 
 ## 2-qadam. Kompyuterga o'rnatish
 
-O'rnatuvchilarni repozitoriyning **Actions** bo'limidan yuklab olasiz: oxirgi muvaffaqiyatli **CI** ishini oching va pastdagi **Artifacts** ro'yxatidan oling.
-Reliz chiqarilgan bo'lsa (`v0.1.0` kabi teg), fayllar **Releases** sahifasida ham bo'ladi.
+O'rnatuvchilar **Releases** sahifasida: [eng so'nggi versiya](https://github.com/braimov2002-svg/atlant-impossible/releases/latest). Veb-ilova sahifasining pastida ham «macOS uchun» / «Windows uchun» tugmalari bor.
 
-- macOS: `OvozYoz-0.1.0-mac.dmg` (Apple Silicon va Intel uchun bitta fayl)
-- Windows: `OvozYoz-Setup-0.1.0-windows.exe`
+- macOS: [`OvozYoz-mac.dmg`](https://github.com/braimov2002-svg/atlant-impossible/releases/latest/download/OvozYoz-mac.dmg) (Apple Silicon va Intel uchun bitta fayl)
+- Windows: [`OvozYoz-Windows-Setup.exe`](https://github.com/braimov2002-svg/atlant-impossible/releases/latest/download/OvozYoz-Windows-Setup.exe)
 
 ### macOS (13 Ventura va undan yangi)
 
 Dastur Apple sertifikati bilan imzolanmagan, shuning uchun birinchi ochishda quyidagilarni bajaring:
 
-1. `.dmg` faylni oching va **OvozYoz**ni **Applications** papkasiga torting.
+1. `OvozYoz-mac.dmg` faylni oching va **OvozYoz**ni **Applications** papkasiga torting.
 2. OvozYoz'ni oching. Ogohlantirish chiqsa, **Done** ni bosing.
 3. **System Settings → Privacy & Security** bo'limiga o'ting va pastdagi **Open Anyway** tugmasini bosing. Parolni kiriting.
 4. Agar «OvozYoz is damaged» degan xabar chiqsa, **Terminal**da quyidagini bajaring va dasturni qayta oching:
@@ -59,7 +58,7 @@ Dastur Apple sertifikati bilan imzolanmagan, shuning uchun birinchi ochishda quy
 
 ### Windows 10 / 11
 
-1. `OvozYoz-Setup-...-windows.exe` ni ishga tushiring.
+1. `OvozYoz-Windows-Setup.exe` ni ishga tushiring.
 2. «Windows protected your PC» chiqsa, **More info → Run anyway** ni bosing.
 3. Administrator huquqi kerak emas. Dastur o'rnatilib, o'zi ochiladi.
 

@@ -52,7 +52,7 @@
           ]
         }
       ],
-      "artifactName": "OvozYoz-${version}-mac.${ext}",
+      "artifactName": "OvozYoz-mac.${ext}",
       "identity": "-",
       "hardenedRuntime": false,
       "gatekeeperAssess": false,
@@ -90,14 +90,14 @@
       "shortcutName": "OvozYoz",
       "runAfterFinish": true,
       "deleteAppDataOnUninstall": false,
-      "artifactName": "OvozYoz-Setup-${version}-windows.${ext}"
+      "artifactName": "OvozYoz-Windows-Setup.${ext}"
     },
     "linux": {
       "target": [
         "AppImage"
       ],
       "category": "Utility",
-      "artifactName": "OvozYoz-${version}-linux.${ext}",
+      "artifactName": "OvozYoz-linux.${ext}",
       "executableName": "ovozyoz"
     }
   }

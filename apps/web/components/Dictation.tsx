@@ -19,6 +19,7 @@ import {
   type Prefs,
 } from '@/lib/storage';
 import { useDictation, type Phase } from '@/lib/useDictation';
+import { DesktopDownloads } from './DesktopDownloads';
 import { LanguageBar } from './LanguageBar';
 import { MicButton } from './MicButton';
 import { SettingsSheet } from './SettingsSheet';
@@ -304,12 +305,9 @@ export function Dictation() {
         <HistoryList items={history} onPick={pickHistory} onClear={clearHistory} />
       )}
 
-      <footer className="mt-auto pt-8 text-center text-xs text-[var(--muted)]">
-        <a className="underline" href="https://github.com/braimov2002-svg/atlant-impossible/releases/latest" target="_blank" rel="noreferrer">
-          Kompyuter uchun ilova
-        </a>{' '}
-        ham bor: ⌃⌥D (Mac) yoki Ctrl+Alt+D (Windows) bosib gapiring, matn kursor turgan joyga yoziladi.
-      </footer>
+      <DesktopDownloads />
+
+      <footer className="mt-auto pt-8 text-center text-xs text-[var(--muted)]">OvozYoz · Atlant Group</footer>
 
       <AnimatePresence>
         {toast && (

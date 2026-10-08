@@ -1,0 +1,262 @@
+// Browser-only microphone capture (web app and Electron renderer).
+import { DictationError, MIN_RECORDING_SECONDS } from '../errors';
+import { percentileLevel, voicedFraction } from './levels';
+import { downmixToMono, peakLevel, resample } from './resample';
+import { encodeWavPcm16, SPEECH_SAMPLE_RATE } from './wav';
+
+/** Peak level below which a recording is treated as silence. */
+export const SILENCE_PEAK = 0.015;
+/** Minimum share of 20 ms frames with speech-like energy (one click is not speech). */
+export const MIN_VOICED_FRACTION = 0.03;
+
+// Chrome/Edge/Electron record webm/opus; Safari records mp4/AAC. Safari 18.4+
+// can also record webm, but its own decoder is only reliable with mp4/AAC, so
+// WebKit asks for mp4 first. Never ask for mp4+opus (Safari < 27 cannot decode it).
+const CHROMIUM_TYPES = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus', 'audio/webm'];
+const WEBKIT_TYPES = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm'];
+
+function isWebKit(): boolean {
+  return typeof navigator !== 'undefined' && /Apple/.test(navigator.vendor ?? '');
+}
+
+export interface PreparedRecording {
+  wav: Uint8Array;
+  durationSec: number;
+  peak: number;
+}
+
+export function pickMimeType(): string | undefined {
+  if (typeof MediaRecorder === 'undefined' || typeof MediaRecorder.isTypeSupported !== 'function') {
+    return undefined;
+  }
+  return (isWebKit() ? WEBKIT_TYPES : CHROMIUM_TYPES).find((type) => MediaRecorder.isTypeSupported(type));
+}
+
+export function isRecordingSupported(): boolean {
+  return (
+    typeof navigator !== 'undefined' &&
+    !!navigator.mediaDevices?.getUserMedia &&
+    typeof MediaRecorder !== 'undefined'
+  );
+}
+
+type AudioContextCtor = typeof AudioContext;
+
+function audioContextCtor(): AudioContextCtor | undefined {
+  const w = globalThis as unknown as { AudioContext?: AudioContextCtor; webkitAudioContext?: AudioContextCtor };
+  return w.AudioContext ?? w.webkitAudioContext;
+}
+
+function micError(error: unknown): DictationError {
+  const name = error instanceof Error ? error.name : '';
+  if (name === 'NotAllowedError' || name === 'SecurityError') return new DictationError('mic-denied');
+  if (name === 'NotFoundError' || name === 'NotReadableError' || name === 'OverconstrainedError') {
+    return new DictationError('mic-unavailable');
+  }
+  return new DictationError('mic-unavailable', error instanceof Error ? error.message : String(error));
+}
+
+/** Records the microphone with MediaRecorder; one instance per screen/window. */
+export class MicRecorder {
+  private stream: MediaStream | null = null;
+  private recorder: MediaRecorder | null = null;
+  private chunks: Blob[] = [];
+  private meterContext: AudioContext | null = null;
+  private analyser: AnalyserNode | null = null;
+  private meterBuffer: Float32Array<ArrayBuffer> | null = null;
+  private startedAt = 0;
+  /** Bumped by cancel() so a start() still waiting for the mic can tell. */
+  private generation = 0;
+
+  get isRecording(): boolean {
+    return this.recorder?.state === 'recording';
+  }
+
+  /** Seconds since start() resolved. */
+  get elapsed(): number {
+    return this.startedAt ? (Date.now() - this.startedAt) / 1000 : 0;
+  }
+
+  async start(): Promise<void> {
+    if (!isRecordingSupported()) throw new DictationError('unsupported');
+    this.cancel();
+    const generation = this.generation;
+    // iOS only lets an AudioContext run if it is created during the tap,
+    // i.e. before the first await.
+    const meterContext = this.createMeterContext();
+
+    let stream: MediaStream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
+      });
+    } catch (error) {
+      void meterContext?.close().catch(() => undefined);
+      throw micError(error);
+    }
+    if (generation !== this.generation) {
+      // cancel() ran while the permission prompt / device was opening.
+      stream.getTracks().forEach((track) => track.stop());
+      void meterContext?.close().catch(() => undefined);
+      throw new DictationError('cancelled');
+    }
+
+    const mimeType = pickMimeType();
+    let recorder: MediaRecorder;
+    try {
+      try {
+        recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+      } catch {
+        recorder = new MediaRecorder(stream);
+      }
+    } catch {
+      stream.getTracks().forEach((track) => track.stop());
+      void meterContext?.close().catch(() => undefined);
+      throw new DictationError('unsupported');
+    }
+    this.chunks = [];
+    recorder.ondataavailable = (event) => {
+      if (event.data && event.data.size > 0) this.chunks.push(event.data);
+    };
+    try {
+      // A timeslice makes the browser hand over data regularly, so a long
+      // recording is never lost to a single giant final chunk.
+      recorder.start(1000);
+    } catch {
+      // e.g. the track ended between getUserMedia and start (incoming call)
+      stream.getTracks().forEach((track) => track.stop());
+      void meterContext?.close().catch(() => undefined);
+      throw new DictationError('mic-unavailable');
+    }
+    this.stream = stream;
+    this.recorder = recorder;
+    this.startedAt = Date.now();
+    this.startMeter(meterContext, stream);
+  }
+
+  /** Current input loudness 0..1 for animations; 0 when unavailable. */
+  level(): number {
+    if (!this.analyser || !this.meterBuffer) return 0;
+    this.analyser.getFloatTimeDomainData(this.meterBuffer);
+    let sum = 0;
+    for (const v of this.meterBuffer) sum += v * v;
+    const rms = Math.sqrt(sum / this.meterBuffer.length);
+    return Math.min(1, rms * 6);
+  }
+
+  /** Stops recording and returns the encoded audio as recorded by the browser. */
+  async stop(): Promise<Blob> {
+    const recorder = this.recorder;
+    if (!recorder) throw new DictationError('too-short');
+    if (recorder.state !== 'inactive') {
+      await new Promise<void>((resolve) => {
+        recorder.onstop = () => resolve();
+        recorder.stop();
+      });
+    }
+    const type = recorder.mimeType || this.chunks[0]?.type || 'audio/webm';
+    const blob = new Blob(this.chunks, { type });
+    this.release();
+    return blob;
+  }
+
+  /** Stops without producing audio and turns the microphone off. */
+  cancel(): void {
+    this.generation++;
+    const recorder = this.recorder;
+    if (recorder && recorder.state !== 'inactive') {
+      recorder.ondataavailable = null;
+      recorder.onstop = null;
+      try {
+        recorder.stop();
+      } catch {
+        // already stopped
+      }
+    }
+    this.release();
+  }
+
+  private createMeterContext(): AudioContext | null {
+    const Ctor = audioContextCtor();
+    try {
+      return Ctor ? new Ctor() : null;
+    } catch {
+      return null; // too many contexts or no audio output: the meter is decoration only
+    }
+  }
+
+  private startMeter(context: AudioContext | null, stream: MediaStream): void {
+    if (!context) return;
+    this.meterContext = context;
+    try {
+      const analyser = context.createAnalyser();
+      analyser.fftSize = 1024;
+      context.createMediaStreamSource(stream).connect(analyser);
+      this.analyser = analyser;
+      this.meterBuffer = new Float32Array(analyser.fftSize);
+      void context.resume?.().catch(() => undefined);
+    } catch {
+      // The meter is decoration only.
+    }
+  }
+
+  private release(): void {
+    this.stream?.getTracks().forEach((track) => track.stop());
+    void this.meterContext?.close().catch(() => undefined);
+    this.stream = null;
+    this.recorder = null;
+    this.meterContext = null;
+    this.analyser = null;
+    this.meterBuffer = null;
+    this.startedAt = 0;
+  }
+}
+
+/**
+ * Decodes whatever the browser recorded and converts it to 16 kHz mono WAV,
+ * lifting quiet recordings so the recogniser hears them clearly.
+ * Throws 'too-short' / 'silence' so callers never upload useless audio.
+ */
+export async function prepareRecording(blob: Blob): Promise<PreparedRecording> {
+  const data = await blob.arrayBuffer();
+  if (data.byteLength === 0) throw new DictationError('too-short');
+
+  // An OfflineAudioContext at 16 kHz decodes and resamples in one go, needs no
+  // user gesture and does not touch the iOS audio session.
+  const Offline = (globalThis as unknown as { OfflineAudioContext?: typeof OfflineAudioContext }).OfflineAudioContext;
+  const Ctor = audioContextCtor();
+  if (!Offline && !Ctor) throw new DictationError('unsupported');
+  const context: BaseAudioContext = Offline ? new Offline(1, 1, SPEECH_SAMPLE_RATE) : new Ctor!();
+  let decoded: AudioBuffer;
+  try {
+    decoded = await new Promise<AudioBuffer>((resolve, reject) => {
+      // Old Safari only supports the callback form; new browsers return a promise too.
+      const maybePromise = context.decodeAudioData(data, resolve, reject) as Promise<AudioBuffer> | undefined;
+      maybePromise?.then(resolve, reject);
+    });
+  } catch {
+    // A tiny file is just a recording stopped too early; anything else is a codec problem.
+    throw new DictationError(blob.size < 4096 ? 'too-short' : 'decode');
+  } finally {
+    if (!Offline) void (context as AudioContext).close().catch(() => undefined);
+  }
+
+  const channels = Array.from({ length: decoded.numberOfChannels }, (_, i) => decoded.getChannelData(i));
+  const mono = resample(downmixToMono(channels), decoded.sampleRate, SPEECH_SAMPLE_RATE);
+  const durationSec = mono.length / SPEECH_SAMPLE_RATE;
+  if (durationSec < MIN_RECORDING_SECONDS) throw new DictationError('too-short');
+
+  const peak = peakLevel(mono);
+  if (peak < SILENCE_PEAK || voicedFraction(mono, SPEECH_SAMPLE_RATE) < MIN_VOICED_FRACTION) {
+    throw new DictationError('silence');
+  }
+  // Lift quiet speech; derive the gain from the 99.9th percentile so one
+  // loud click cannot hold it down or a quiet room get boosted 20x by it.
+  const level = percentileLevel(mono, 0.999);
+  if (level < 0.5) {
+    const gain = Math.min(10, 0.7 / Math.max(level, 0.01));
+    for (let i = 0; i < mono.length; i++) mono[i] = Math.max(-1, Math.min(1, mono[i] * gain));
+  }
+
+  return { wav: encodeWavPcm16(mono, SPEECH_SAMPLE_RATE), durationSec, peak };
+}

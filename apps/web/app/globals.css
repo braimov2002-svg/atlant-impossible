@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+:root {
+  --bg: #f4f7f6;
+  --card: #ffffff;
+  --chip: #eef2f1;
+  --line: #dfe6e4;
+  --text: #0f1a18;
+  --muted: #5b6b67;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1211;
+    --card: #131c1b;
+    --chip: #1b2725;
+    --line: #26332f;
+    --text: #e8f0ee;
+    --muted: #93a39f;
+    color-scheme: dark;
+  }
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* iOS Safari zooms into any field under 16px and stays zoomed. */
+input,
+select,
+textarea {
+  font-size: max(16px, 1em);
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

@@ -68,6 +68,9 @@ export class MicRecorder {
   async start(): Promise<void> {
     if (!isRecordingSupported()) throw new DictationError('unsupported');
     this.cancel();
+    // iOS only lets an AudioContext run if it is created during the tap,
+    // i.e. before the first await.
+    const meterContext = this.createMeterContext();
 
     let stream: MediaStream;
     try {
@@ -75,15 +78,22 @@ export class MicRecorder {
         audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
       });
     } catch (error) {
+      void meterContext?.close().catch(() => undefined);
       throw micError(error);
     }
 
     const mimeType = pickMimeType();
     let recorder: MediaRecorder;
     try {
-      recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+      try {
+        recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+      } catch {
+        recorder = new MediaRecorder(stream);
+      }
     } catch {
-      recorder = new MediaRecorder(stream);
+      stream.getTracks().forEach((track) => track.stop());
+      void meterContext?.close().catch(() => undefined);
+      throw new DictationError('unsupported');
     }
     this.stream = stream;
     this.recorder = recorder;
@@ -95,7 +105,7 @@ export class MicRecorder {
     // recording is never lost to a single giant final chunk.
     recorder.start(1000);
     this.startedAt = Date.now();
-    this.startMeter(stream);
+    this.startMeter(meterContext, stream);
   }
 
   /** Current input loudness 0..1 for animations; 0 when unavailable. */
@@ -139,15 +149,22 @@ export class MicRecorder {
     this.release();
   }
 
-  private startMeter(stream: MediaStream): void {
+  private createMeterContext(): AudioContext | null {
     const Ctor = audioContextCtor();
-    if (!Ctor) return;
     try {
-      const context = new Ctor();
+      return Ctor ? new Ctor() : null;
+    } catch {
+      return null; // too many contexts or no audio output: the meter is decoration only
+    }
+  }
+
+  private startMeter(context: AudioContext | null, stream: MediaStream): void {
+    if (!context) return;
+    this.meterContext = context;
+    try {
       const analyser = context.createAnalyser();
       analyser.fftSize = 1024;
       context.createMediaStreamSource(stream).connect(analyser);
-      this.meterContext = context;
       this.analyser = analyser;
       this.meterBuffer = new Float32Array(analyser.fftSize);
       void context.resume?.().catch(() => undefined);

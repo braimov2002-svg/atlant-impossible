@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:" />
+    <title>OvozYoz — Sozlamalar</title>
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="icon.png" alt="" width="44" height="44" />
+        <div>
+          <h1>OvozYoz</h1>
+          <p class="muted">Gapiring — matn kursor turgan joyga yozilsin</p>
+        </div>
+      </header>
+
+      <form id="form" autocomplete="off">
+        <section>
+          <h2>1. Xizmat va API kalit</h2>
+          <div class="segmented" role="radiogroup" aria-label="Xizmat">
+            <label><input type="radio" name="provider" value="gemini" /><span>Google Gemini<small>Bepul limit bor — tavsiya</small></span></label>
+            <label><input type="radio" name="provider" value="openai" /><span>OpenAI<small>Pullik</small></span></label>
+          </div>
+          <label class="field">
+            <span id="key-label">API kalit</span>
+            <div class="row">
+              <input id="api-key" type="password" spellcheck="false" />
+              <button type="button" id="toggle-key" class="secondary">Ko'rsatish</button>
+            </div>
+            <small id="key-status" class="muted"></small>
+          </label>
+          <div class="row wrap">
+            <button type="button" id="get-key" class="link">Kalitni qayerdan olaman?</button>
+            <button type="button" id="remove-key" class="link danger">Saqlangan kalitni o'chirish</button>
+          </div>
+          <ol id="gemini-steps" class="steps muted">
+            <li>«Kalitni qayerdan olaman?» ni bosing — aistudio.google.com ochiladi.</li>
+            <li>Google hisobingiz bilan kiring va «Create API key» ni bosing.</li>
+            <li>Kalitni nusxalab, yuqoridagi maydonga joylang va «Saqlash» ni bosing.</li>
+          </ol>
+          <label class="field">
+            <span>Model</span>
+            <select id="model"></select>
+          </label>
+          <label class="field" id="text-model-field">
+            <span>Tarjima modeli</span>
+            <select id="text-model"></select>
+          </label>
+        </section>
+
+        <section>
+          <h2>2. Tillar</h2>
+          <label class="field">
+            <span>Men gapiraman</span>
+            <select id="spoken"></select>
+          </label>
+          <div class="field">
+            <span>Matn qaysi tilda yozilsin</span>
+            <div class="segmented four" id="output" role="radiogroup" aria-label="Matn tili"></div>
+          </div>
+          <fieldset class="field">
+            <legend>O'zbekcha apostrof (oʻ, gʻ)</legend>
+            <label class="check"><input type="radio" name="apostrophes" value="ascii" /> o' g' — oddiy apostrof (klaviaturadagidek)</label>
+            <label class="check"><input type="radio" name="apostrophes" value="official" /> oʻ gʻ — rasmiy belgi</label>
+            <label class="check"><input type="radio" name="apostrophes" value="keep" /> O'zgartirmaslik</label>
+          </fieldset>
+        </section>
+
+        <section>
+          <h2>3. Tugmalar</h2>
+          <label class="field">
+            <span>Yozishni boshlash / to'xtatish</span>
+            <select id="hotkey"></select>
+          </label>
+          <label class="field">
+            <span>Matn tilini almashtirish</span>
+            <select id="cycle-hotkey"></select>
+          </label>
+          <p class="muted small">Yozish paytida <b>Esc</b> — bekor qilish.</p>
+        </section>
+
+        <section>
+          <h2>4. Matnni joylash</h2>
+          <label class="check"><input type="checkbox" id="auto-paste" /> Matnni kursor turgan joyga avtomatik yozish</label>
+          <label class="check"><input type="checkbox" id="restore-clipboard" /> Keyin eski nusxalangan narsani (clipboard) qaytarish</label>
+          <label class="check"><input type="checkbox" id="open-at-login" /> Kompyuter yonganda avtomatik ishga tushirish</label>
+        </section>
+
+        <section id="permissions">
+          <h2>5. macOS ruxsatlari</h2>
+          <p class="muted small">Mikrofon — ovozni yozish uchun. Accessibility (Universal access) — matnni avtomatik joylash uchun.</p>
+          <div class="row wrap">
+            <button type="button" class="secondary" id="perm-mic">Mikrofon ruxsati</button>
+            <button type="button" class="secondary" id="perm-ax">Accessibility ruxsati</button>
+          </div>
+        </section>
+
+        <div id="errors" class="errors" role="alert" hidden></div>
+
+        <footer>
+          <span id="status" class="muted" aria-live="polite"></span>
+          <button type="button" id="close" class="secondary">Yopish</button>
+          <button type="submit" id="save" class="primary">Saqlash</button>
+        </footer>
+      </form>
+    </main>
+    <script src="settings.js"></script>
+  </body>
+</html>

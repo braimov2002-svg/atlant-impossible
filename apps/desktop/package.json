@@ -1,0 +1,109 @@
+{
+  "name": "@ovozyoz/desktop",
+  "productName": "OvozYoz",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OvozYoz — gapiring, matn kursor turgan joyga yozilsin",
+  "author": "Atlant Group",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "npm run build && electron .",
+    "dist": "npm run build && electron-builder --publish never",
+    "typecheck": "tsc --noEmit",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "@ovozyoz/core": "0.1.0",
+    "electron": "44.7.0",
+    "electron-builder": "26.17.0",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3"
+  },
+  "build": {
+    "appId": "uz.ovozyoz.desktop",
+    "productName": "OvozYoz",
+    "executableName": "OvozYoz",
+    "copyright": "Copyright © 2026 Atlant Group",
+    "electronVersion": "44.7.0",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "!dist/**/*.map",
+      "!dist/smoke.js",
+      "assets/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "npmRebuild": false,
+    "publish": null,
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "artifactName": "OvozYoz-${version}-mac.${ext}",
+      "identity": "-",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "notarize": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.inherit.plist",
+      "minimumSystemVersion": "13.0",
+      "extendInfo": {
+        "LSUIElement": true,
+        "NSMicrophoneUsageDescription": "OvozYoz gapirganingizni matnga aylantirish uchun mikrofonga ruxsat so'raydi.",
+        "NSAppleEventsUsageDescription": "OvozYoz tayyor matnni siz yozayotgan oynaga joylash (⌘V) uchun System Events'dan foydalanadi."
+      }
+    },
+    "dmg": {
+      "sign": false,
+      "writeUpdateInfo": false,
+      "title": "OvozYoz"
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "OvozYoz",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "OvozYoz-Setup-${version}-windows.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "artifactName": "OvozYoz-${version}-linux.${ext}",
+      "executableName": "ovozyoz"
+    }
+  }
+}

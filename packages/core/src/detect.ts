@@ -134,7 +134,26 @@ function tokenize(sentence: string): Token[] {
 }
 
 function sentences(text: string): string[] {
-  return text.split(/(?<=[.!?…])\s+|\n+/u).filter((s) => s.trim());
+  // No regex lookbehind: Safari before 16.4 (iOS 16.0–16.3) cannot parse it,
+  // and a syntax error there would stop the whole app from loading.
+  const parts: string[] = [];
+  let current = '';
+  const chars = Array.from(text);
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+    if (ch === '\n') {
+      parts.push(current);
+      current = '';
+      continue;
+    }
+    current += ch;
+    if ('.!?…'.includes(ch) && /\s/u.test(chars[i + 1] ?? '')) {
+      parts.push(current);
+      current = '';
+    }
+  }
+  parts.push(current);
+  return parts.map((s) => s.trim()).filter(Boolean);
 }
 
 export interface Evidence {

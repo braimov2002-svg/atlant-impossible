@@ -15,7 +15,8 @@ export class Hud {
   private hideTimer: NodeJS.Timeout | undefined;
   private ready: Promise<void>;
 
-  constructor() {
+  /** @param onCrash called after the HUD renderer died and was reloaded */
+  constructor(onCrash?: () => void) {
     this.window = new BrowserWindow({
       width: WIDTH,
       height: HEIGHT,
@@ -47,6 +48,12 @@ export class Hud {
     this.window.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true, skipTransformProcessType: true });
     this.window.setIgnoreMouseEvents(true);
     this.ready = this.window.loadFile(path.join(__dirname, 'hud.html'));
+    // A crashed renderer would silently swallow every later recording.
+    this.window.webContents.on('render-process-gone', () => {
+      if (this.window.isDestroyed()) return;
+      this.ready = this.window.loadFile(path.join(__dirname, 'hud.html'));
+      onCrash?.();
+    });
   }
 
   async whenReady(): Promise<void> {

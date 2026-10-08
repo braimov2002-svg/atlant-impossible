@@ -20,6 +20,12 @@ describe('uzCyrillicToLatin', () => {
 
   it('keeps capitalisation of digraphs', () => {
     expect(uzCyrillicToLatin('Шаҳар ШАҲАР Чироқ')).toBe('Shahar SHAHAR Chiroq');
+    expect(uzCyrillicToLatin('ТОШ ИШ ҚУЁШ ДУНЁ КУЧ')).toBe('TOSH ISH QUYOSH DUNYO KUCH');
+  });
+
+  it('handles the hard and soft signs before vowels', () => {
+    expect(uzCyrillicToLatin('объект субъект съезд')).toBe('obyekt subyekt syezd');
+    expect(uzCyrillicToLatin('батальон павильон')).toBe('batalyon pavilyon');
   });
 
   it('passes Latin text, digits and punctuation through', () => {

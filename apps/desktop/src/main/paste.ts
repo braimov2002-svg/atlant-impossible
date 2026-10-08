@@ -1,6 +1,5 @@
-import { app, clipboard, ClipboardItem, systemPreferences } from 'electron';
+import { clipboard, ClipboardItem, systemPreferences } from 'electron';
 import { execFile, spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
-import fs from 'node:fs';
 import path from 'node:path';
 
 export type PasteOutcome = 'pasted' | 'copied' | 'needs-accessibility';
@@ -11,8 +10,33 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // ---------------------------------------------------------------- clipboard
 
-/** Copies every readable format so the user's clipboard can be put back. */
-async function snapshot(): Promise<Payload[]> {
+/**
+ * Formats password managers set so clipboard history and sync skip a secret.
+ * Re-writing such content would drop the marker and leak the password.
+ */
+const CONCEALED_FORMATS: Partial<Record<NodeJS.Platform, string[]>> = {
+  darwin: ['org.nspasteboard.ConcealedType', 'org.nspasteboard.TransientType'],
+  win32: ['ExcludeClipboardContentFromMonitorProcessing', 'CanIncludeInClipboardHistory'],
+};
+
+async function holdsSecret(): Promise<boolean> {
+  for (const format of CONCEALED_FORMATS[process.platform] ?? []) {
+    try {
+      if (await clipboard.has(`electron application/osclipboard;format="${format}"`)) return true;
+    } catch {
+      // unknown format on this platform
+    }
+  }
+  return false;
+}
+
+/**
+ * Copies every readable format so the user's clipboard can be put back.
+ * Returns null when it must not or cannot be restored faithfully: then the
+ * dictated text simply stays on the clipboard.
+ */
+async function snapshot(): Promise<Payload[] | null> {
+  if (await holdsSecret()) return null;
   const saved: Payload[] = [];
   try {
     for (const item of await clipboard.read()) {
@@ -24,10 +48,12 @@ async function snapshot(): Promise<Payload[]> {
           // some private formats cannot be read back; skip them
         }
       }
+      // Types we cannot read (e.g. files copied in Explorer/Finder) cannot be restored.
+      if (item.types.length > 0 && Object.keys(payload).length === 0) return null;
       if (Object.keys(payload).length > 0) saved.push(payload);
     }
   } catch {
-    // unreadable clipboard: nothing to restore
+    return null; // e.g. another app holds the clipboard open right now
   }
   return saved;
 }
@@ -36,8 +62,19 @@ async function restore(saved: Payload[]): Promise<void> {
   try {
     if (saved.length === 0) clipboard.clear();
     else await clipboard.write(saved.map((payload) => new ClipboardItem(payload)));
+    return;
   } catch {
-    // restoring is best effort
+    // one unwritable format fails the whole (atomic) write: retry with the basics
+  }
+  const basic = saved
+    .map((payload) =>
+      Object.fromEntries(Object.entries(payload).filter(([type]) => ['text/plain', 'text/html', 'image/png'].includes(type))),
+    )
+    .filter((payload) => Object.keys(payload).length > 0);
+  try {
+    if (basic.length > 0) await clipboard.write(basic.map((payload) => new ClipboardItem(payload)));
+  } catch {
+    // leave the dictated text in place rather than an empty clipboard
   }
 }
 
@@ -92,21 +129,32 @@ class WindowsPaster {
     await this.ensure();
     const done = this.nextLine(3000);
     this.child!.stdin.write('paste\n');
-    const line = await done;
+    let line: string;
+    try {
+      line = await done;
+    } catch (error) {
+      this.reset(); // a stuck helper must not fire a late Ctrl+V
+      throw error;
+    }
     if (!line.startsWith('DONE') || line.trim() === 'DONE 0') throw new Error(`paste failed: ${line}`);
   }
 
   private ensure(): Promise<void> {
     if (this.ready) return this.ready;
     this.ready = new Promise<void>((resolve, reject) => {
-      const script = path.join(app.getPath('userData'), 'paste-helper.ps1');
-      fs.mkdirSync(path.dirname(script), { recursive: true });
-      fs.writeFileSync(script, WINDOWS_PASTE_HELPER, 'utf8');
-      const child = spawn(
+      // Absolute path: never pick up a powershell.exe from the working directory.
+      // -EncodedCommand: unlike a .ps1 file it is not blocked by an AllSigned policy.
+      const powershell = path.join(
+        process.env.SystemRoot ?? 'C:\\Windows',
+        'System32',
+        'WindowsPowerShell',
+        'v1.0',
         'powershell.exe',
-        ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', script],
-        { windowsHide: true },
       );
+      const encoded = Buffer.from(WINDOWS_PASTE_HELPER, 'utf16le').toString('base64');
+      const child = spawn(powershell, ['-NoProfile', '-NonInteractive', '-EncodedCommand', encoded], {
+        windowsHide: true,
+      });
       this.child = child;
       child.stdin.on('error', () => undefined); // a dead helper must not crash the app
       let buffer = '';
@@ -193,9 +241,15 @@ export function canSendKeystrokes(prompt: boolean): boolean {
  * Puts the text on the clipboard and pastes it into whichever app has focus.
  * When pasting is impossible the text stays on the clipboard for the user.
  */
+/**
+ * How long the target app gets to read the clipboard before the previous
+ * contents come back. Remote desktops, VMs and busy apps can be slow.
+ */
+const RESTORE_DELAY_MS = 1500;
+
 export async function insertText(
   text: string,
-  options: { autoPaste: boolean; restoreClipboard: boolean },
+  options: { autoPaste: boolean; restoreClipboard: boolean; isCancelled?: () => boolean },
 ): Promise<PasteOutcome> {
   const saved = options.autoPaste && options.restoreClipboard ? await snapshot() : null;
   await clipboard.writeText(text);
@@ -208,6 +262,7 @@ export async function insertText(
 
   // Give the OS a moment to publish the new clipboard contents.
   await sleep(60);
+  if (options.isCancelled?.()) return 'copied'; // Esc arrived after the text was ready
   try {
     await pressPaste();
   } catch {
@@ -217,7 +272,7 @@ export async function insertText(
   if (saved) {
     // Restore only after the target app has read the clipboard, and only if
     // nobody copied something else in the meantime.
-    await sleep(500);
+    await sleep(RESTORE_DELAY_MS);
     if ((await clipboard.readText().catch(() => '')) === text) await restore(saved);
   }
   return 'pasted';

@@ -22,10 +22,16 @@ const API = 'https://api.openai.com/v1';
 type Rewrite = 'none' | 'local-latin' | 'model';
 
 /** Decides whether the raw transcript still needs translating or re-scripting. */
-export function rewriteNeeded(req: Pick<ProviderRequest, 'spoken' | 'output'>, transcript: string): Rewrite {
+export function rewriteNeeded(
+  req: Pick<ProviderRequest, 'spoken' | 'output'>,
+  transcript: string,
+  languageHintDropped = false,
+): Rewrite {
   const out = outputLanguage(req.output);
-  if (req.spoken === 'auto' || out.sameAs !== req.spoken) return 'model';
-  if (req.output === 'uz-latn') return cyrillicRatio(transcript) > 0.2 ? 'local-latin' : 'none';
+  // Without a language hint the model may have written another language.
+  if (req.spoken === 'auto' || languageHintDropped || out.sameAs !== req.spoken) return 'model';
+  // Transliteration leaves Latin text alone, so any Cyrillic at all is worth it.
+  if (req.output === 'uz-latn') return cyrillicRatio(transcript) > 0 ? 'local-latin' : 'none';
   if (req.output === 'uz-cyrl') return cyrillicRatio(transcript) < 0.8 ? 'model' : 'none';
   return 'none';
 }
@@ -38,6 +44,22 @@ export function reasoningEffort(model: string): string | undefined {
   if (/^gpt-5(-mini|-nano)?$|^gpt-5-(mini|nano)-\d/.test(model)) return 'minimal';
   if (/^gpt-(5\.[4-9]|6-(luna|sol))/.test(model)) return 'none';
   return undefined;
+}
+
+function comparable(text: string): string {
+  return text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+}
+
+/**
+ * True when the "transcript" is just (most of) the style prompt repeated,
+ * which is what Whisper-family models produce for silence. Short real
+ * phrases that happen to appear in the prompt ("Salom", "Rahmat") are kept.
+ */
+export function isPromptEcho(transcript: string, prompt: string | undefined): boolean {
+  if (!prompt) return false;
+  const said = ` ${comparable(transcript)} `;
+  const example = ` ${comparable(prompt)} `;
+  return said.trim().length >= 0.6 * example.trim().length && example.includes(said);
 }
 
 export function transcriptionForm(req: ProviderRequest, model: string, iso: string | undefined): FormData {
@@ -70,6 +92,7 @@ export async function openaiTranscribe(req: ProviderRequest): Promise<ProviderRe
     }) as Promise<{ text?: string }>;
 
   let transcription: { text?: string };
+  let languageHintDropped = false;
   try {
     transcription = await transcribeOnce(true);
   } catch (error) {
@@ -77,12 +100,16 @@ export async function openaiTranscribe(req: ProviderRequest): Promise<ProviderRe
     const rejectedLanguage =
       iso && error instanceof DictationError && error.status === 400 && /language/i.test(error.detail ?? '');
     if (!rejectedLanguage) throw error;
+    languageHintDropped = true;
     transcription = await transcribeOnce(false);
   }
   const transcript = (transcription.text ?? '').trim();
-  if (!transcript) return { text: '', model };
+  // Whisper-family models answer silence by echoing the style prompt.
+  if (!transcript || isPromptEcho(transcript, transcriptionStylePrompt(req.spoken, req.output))) {
+    return { text: '', model };
+  }
 
-  const rewrite = rewriteNeeded(req, transcript);
+  const rewrite = rewriteNeeded(req, transcript, languageHintDropped);
   if (rewrite === 'none') return { text: transcript, model };
   if (rewrite === 'local-latin') return { text: uzCyrillicToLatin(transcript), model };
 

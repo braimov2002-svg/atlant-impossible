@@ -14,7 +14,7 @@ export const PROVIDERS: Readonly<Record<ProviderId, ProviderInfo>> = {
 export interface TranscribeOptions extends ProviderRequest {
   provider: ProviderId;
   apostrophes?: ApostropheStyle;
-  /** Aborts the request after this many milliseconds (default 90 s). */
+  /** Aborts after this many milliseconds (default grows with the recording length). */
   timeoutMs?: number;
 }
 
@@ -30,7 +30,7 @@ export interface TranscribeResult {
  * requested output language. Throws DictationError for every expected failure.
  */
 export async function transcribe(options: TranscribeOptions): Promise<TranscribeResult> {
-  const { provider, apostrophes = 'ascii', timeoutMs = 90_000 } = options;
+  const { provider, apostrophes = 'ascii' } = options;
   if (!options.apiKey?.trim()) throw new DictationError('no-api-key');
 
   let durationSec: number;
@@ -42,6 +42,9 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   if (durationSec < MIN_RECORDING_SECONDS) throw new DictationError('too-short');
   if (durationSec > MAX_RECORDING_SECONDS + 1) throw new DictationError('too-long');
 
+  // Upload, retries and (for OpenAI) a second translation request all share
+  // one deadline, so give long recordings proportionally more time.
+  const timeoutMs = options.timeoutMs ?? 60_000 + durationSec * 500;
   const timeout = new AbortController();
   const timer = setTimeout(() => timeout.abort(new DictationError('timeout')), timeoutMs);
   const signal = options.signal ? anySignal([options.signal, timeout.signal]) : timeout.signal;

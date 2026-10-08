@@ -177,18 +177,42 @@ $('perm-mic').addEventListener('click', () => bridge.openPermission('microphone'
 $('perm-ax').addEventListener('click', () => bridge.openPermission('accessibility'));
 $('close').addEventListener('click', () => bridge.close());
 
+/** Fields the user changed since the window loaded the settings. */
+function changedFields(): Partial<DesktopSettings> {
+  const loaded = snapshot.settings;
+  const patch: Partial<DesktopSettings> = {};
+  for (const key of Object.keys(draft) as Array<keyof DesktopSettings>) {
+    if (draft[key] !== loaded[key]) (patch as Record<string, unknown>)[key] = draft[key];
+  }
+  return patch;
+}
+
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   draft = readForm();
+  const saveButton = $<HTMLButtonElement>('save');
+  saveButton.disabled = true;
   status.textContent = 'Saqlanmoqda...';
-  const result = await bridge.save({ settings: draft, keys: { ...typedKeys } });
-  for (const key of Object.keys(typedKeys) as ProviderId[]) delete typedKeys[key];
-  snapshot = await bridge.get();
-  draft = snapshot.settings;
-  render();
-  showErrors(result.hotkeyErrors);
-  status.textContent = result.ok ? 'Saqlandi ✓' : "Saqlandi, lekin tugmalarni tekshiring";
-  if (!snapshot.keyPreview[draft.provider]) status.textContent = "Saqlandi. API kalitni kiritishni unutmang";
+  try {
+    const result = await bridge.save({ patch: changedFields(), keys: { ...typedKeys } });
+    if (result.error) {
+      showErrors([result.error]);
+      status.textContent = '';
+      return;
+    }
+    for (const key of Object.keys(typedKeys) as ProviderId[]) delete typedKeys[key];
+    snapshot = await bridge.get();
+    draft = snapshot.settings;
+    render();
+    showErrors(result.hotkeyErrors);
+    status.textContent = result.ok ? 'Saqlandi ✓' : 'Saqlandi, lekin tugmalarni tekshiring';
+    if (!snapshot.keyPreview[draft.provider]) status.textContent = 'Saqlandi. API kalitni kiritishni unutmang';
+  } catch (error) {
+    showErrors([`Saqlab bo'lmadi: ${error instanceof Error ? error.message : String(error)}`]);
+    status.textContent = '';
+  } finally {
+    saveButton.disabled = false;
+  }
 });
 
 void (async () => {

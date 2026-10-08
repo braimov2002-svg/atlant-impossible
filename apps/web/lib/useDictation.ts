@@ -80,6 +80,7 @@ export function useDictation({ config, onResult, onError }: Options) {
       update('recording');
       frame.current = requestAnimationFrame(tick);
     } catch (error) {
+      if (error instanceof DictationError && error.code === 'cancelled') return; // cancel() already went idle
       update('idle');
       onError(userMessage(error), error);
     }

@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 import { encodeWavPcm16 } from '../src/audio/wav';
-import { DictationError, userMessage } from '../src/errors';
-import { EMPTY_SENTINEL, audioSystemPrompt } from '../src/prompt';
+import { DictationError, httpError, userMessage } from '../src/errors';
+import { EMPTY_SENTINEL, audioSystemPrompt, transcriptionStylePrompt } from '../src/prompt';
 import { geminiRequestBody, parseGeminiResponse, thinkingConfig, thinkingLadder } from '../src/providers/gemini';
-import { reasoningEffort, rewriteNeeded } from '../src/providers/openai';
+import { isPromptEcho, reasoningEffort, rewriteNeeded } from '../src/providers/openai';
 import { transcribe } from '../src/transcribe';
 
 const audio = encodeWavPcm16(new Float32Array(16_000).fill(0.2), 16_000); // 1 s
@@ -131,6 +131,10 @@ describe('gemini', () => {
   it('explains unsupported languages and truncated answers', () => {
     expect(() => parseGeminiResponse({ candidates: [{ finishReason: 'LANGUAGE' }] })).toThrow('unsupported-language');
     expect(() => parseGeminiResponse({ candidates: [{ finishReason: 'MAX_TOKENS' }] })).toThrow('too-long');
+    const body = geminiRequestBody({ audio, spoken: 'uz', output: 'en', apiKey: 'k' }, 'gemini-3.5-flash', undefined) as {
+      generationConfig: { maxOutputTokens: number };
+    };
+    expect(body.generationConfig.maxOutputTokens).toBeGreaterThanOrEqual(32768);
   });
 
   it('explains region blocks', async () => {
@@ -167,6 +171,13 @@ describe('gemini', () => {
     expect(error).toBeInstanceOf(DictationError);
     expect(error.code).toBe('invalid-api-key');
     expect(userMessage(error)).toContain('API kalit');
+  });
+
+  it('tells region blocks and model access apart from bad keys', () => {
+    expect(httpError(403, 'Country, region, or territory not supported').code).toBe('region');
+    expect(httpError(403, 'Project proj_1 does not have access to model gpt-transcribe').code).toBe('provider');
+    expect(httpError(403, 'Incorrect API key provided').code).toBe('invalid-api-key');
+    expect(httpError(401, undefined).code).toBe('invalid-api-key');
   });
 
   it('maps 429 to quota and network failures to network', async () => {
@@ -259,19 +270,26 @@ describe('openai', () => {
 
   it('sends languages[] for gpt-transcribe and retries without a rejected language', async () => {
     const forms: FormData[] = [];
-    const fetchMock = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
+    let rewrites = 0;
+    const fetchMock = vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
+      if (String(url).endsWith('/chat/completions')) {
+        rewrites++;
+        return jsonResponse({ choices: [{ message: { content: 'Salom' } }] });
+      }
       const form = init!.body as FormData;
       forms.push(form);
       if (form.has('languages[]')) {
         return jsonResponse({ error: { message: "Unsupported language 'uz' in languages", param: 'languages' } }, 400);
       }
-      return jsonResponse({ text: 'Salom' });
+      return jsonResponse({ text: 'Привет' });
     });
     const result = await transcribe({
       provider: 'openai', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'sk', model: 'gpt-transcribe',
       fetch: fetchMock as never,
     });
+    // Without the hint the model answered in Russian, so the text model fixes it.
     expect(result.text).toBe('Salom');
+    expect(rewrites).toBe(1);
     expect(forms).toHaveLength(2);
     expect(forms[0].get('languages[]')).toBe('uz');
     expect(forms[0].has('language')).toBe(false);
@@ -316,12 +334,31 @@ describe('openai', () => {
     expect(bodies.map((b) => b.reasoning_effort)).toEqual(['minimal', undefined]);
   });
 
+  it('drops a transcript that only echoes the style prompt', async () => {
+    const echo = "Assalomu alaykum. Bugun havo juda yaxshi, ko'chaga chiqamiz. O'zbekiston, g'alaba, ma'no.";
+    expect(isPromptEcho(echo, transcriptionStylePrompt('uz', 'uz-latn'))).toBe(true);
+    expect(isPromptEcho('Salom', transcriptionStylePrompt('uz', 'uz-latn'))).toBe(false);
+    expect(isPromptEcho('Bugun havo juda yaxshi', transcriptionStylePrompt('uz', 'uz-latn'))).toBe(false);
+    const fetchMock = vi.fn(async () => jsonResponse({ text: echo }));
+    await expect(
+      transcribe({ provider: 'openai', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'sk', fetch: fetchMock as never }),
+    ).rejects.toMatchObject({ code: 'empty-result' });
+  });
+
+  it('only uses the Uzbek style example when Uzbek text is expected', () => {
+    expect(transcriptionStylePrompt('auto', 'ru')).toBeUndefined();
+    expect(transcriptionStylePrompt('auto', 'uz-latn')).toContain("O'zbekiston");
+    expect(transcriptionStylePrompt('ru', 'uz-latn')).toBeUndefined();
+  });
+
   it('decides when a rewrite is needed', () => {
     expect(rewriteNeeded({ spoken: 'auto', output: 'uz-latn' }, 'Salom')).toBe('model');
     expect(rewriteNeeded({ spoken: 'uz', output: 'ru' }, 'Salom')).toBe('model');
     expect(rewriteNeeded({ spoken: 'ru', output: 'ru' }, 'Привет')).toBe('none');
     expect(rewriteNeeded({ spoken: 'uz', output: 'uz-cyrl' }, 'Salom')).toBe('model');
     expect(rewriteNeeded({ spoken: 'uz', output: 'uz-cyrl' }, 'Салом')).toBe('none');
+    expect(rewriteNeeded({ spoken: 'uz', output: 'uz-latn' }, 'Men Петров bilan gaplashdim')).toBe('local-latin');
+    expect(rewriteNeeded({ spoken: 'uz', output: 'uz-latn' }, 'Salom', true)).toBe('model');
   });
 });
 

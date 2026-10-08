@@ -100,6 +100,7 @@ export async function loadApiKey(provider: ProviderId): Promise<string> {
 export async function saveApiKeys(keys: Partial<Record<ProviderId, string>>): Promise<void> {
   const current = (readJson('keys.json') as StoredKeys | undefined) ?? {};
   const encrypt = await secureStorageAvailable();
+  const changed = new Map<ProviderId, string>();
   for (const provider of PROVIDERS) {
     const key = keys[provider];
     if (key === undefined) continue;
@@ -112,9 +113,12 @@ export async function saveApiKeys(keys: Partial<Record<ProviderId, string>>): Pr
     } else {
       current[provider] = { encrypted: false, value: trimmed };
     }
-    keyCache.set(provider, trimmed);
+    changed.set(provider, trimmed);
   }
+  if (changed.size === 0) return;
   writeJson('keys.json', current);
+  // Only after the write succeeded, so the cache never holds an unsaved key.
+  for (const [provider, key] of changed) keyCache.set(provider, key);
 }
 
 /** "AIzaSyD…k3Q" — enough to recognise a key without revealing it. */

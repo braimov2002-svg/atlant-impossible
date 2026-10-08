@@ -35,6 +35,12 @@ describe('normalizeUzbekApostrophes', () => {
     expect(normalizeUzbekApostrophes('bog\u2019 va tog\u2018da', 'ascii')).toBe("bog' va tog'da");
   });
 
+  it('does not turn a closing quote after -ing into g\u02BB', () => {
+    expect(normalizeUzbekApostrophes("Ustoz 'yozing' dedi.", 'official')).toBe("Ustoz 'yozing' dedi.");
+    expect(normalizeUzbekApostrophes('Ustoz \u2018yozing\u2019 dedi.', 'ascii')).toBe('Ustoz \u2018yozing\u2019 dedi.');
+    expect(normalizeUzbekApostrophes("Biz tog' tomon bordik", 'official')).toBe('Biz tog\u02BB tomon bordik');
+  });
+
   it('keeps text untouched in keep mode', () => {
     expect(normalizeUzbekApostrophes(mixed, 'keep')).toBe(mixed);
   });
@@ -54,6 +60,11 @@ describe('cleanModelText', () => {
 
   it('keeps quotes that are part of the text', () => {
     expect(cleanModelText('"Ha" dedi, keyin "yo\'q" dedi')).toBe('"Ha" dedi, keyin "yo\'q" dedi');
+  });
+
+  it('keeps the first word of a one-line fence', () => {
+    expect(cleanModelText("```O'zbekiston bo'ylab sayohat```")).toBe("O'zbekiston bo'ylab sayohat");
+    expect(cleanModelText('```Salom dunyo```')).toBe('Salom dunyo');
   });
 
   it('normalises Windows newlines', () => {

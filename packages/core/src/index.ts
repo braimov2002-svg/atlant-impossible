@@ -7,6 +7,7 @@ export * from './settings';
 export * from './transcribe';
 export * from './audio/wav';
 export * from './audio/resample';
+export * from './audio/levels';
 export { GEMINI } from './providers/gemini';
 export { OPENAI } from './providers/openai';
 export type { ProviderId, ProviderInfo } from './providers/types';

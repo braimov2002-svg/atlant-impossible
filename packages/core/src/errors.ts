@@ -14,6 +14,7 @@ export type DictationErrorCode =
   | 'unsupported'
   | 'region'
   | 'unsupported-language'
+  | 'decode'
   | 'provider'
   | 'cancelled';
 
@@ -51,6 +52,7 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   'mic-unavailable': 'Mikrofon topilmadi yoki band.',
   unsupported: "Bu brauzer ovoz yozishni qo'llab-quvvatlamaydi.",
   region: "Bu xizmat sizning hududingizda ishlamayapti. Sozlamalarda boshqa xizmatni tanlab ko'ring.",
+  decode: "Yozuvni o'qib bo'lmadi. Qayta urinib ko'ring.",
   'unsupported-language': "Tanlangan model bu tilni tushunmadi. Sozlamalarda boshqa modelni tanlab ko'ring.",
   provider: 'Xizmatda xatolik yuz berdi.',
   cancelled: 'Bekor qilindi.',
@@ -70,11 +72,16 @@ export function userMessage(error: unknown): string {
 /** Maps an HTTP failure from any provider to a DictationError. */
 export function httpError(status: number, providerMessage: string | undefined): DictationError {
   const detail = providerMessage?.slice(0, 300);
-  if (status === 401 || status === 403) return new DictationError('invalid-api-key', detail, status);
-  if (status === 429) return new DictationError('quota', detail, status);
+  // Region blocks arrive as 400 (Gemini) or 403 (OpenAI): check them before
+  // treating 403 as a bad key, or users keep replacing a key that works.
   if (detail && /location is not supported|unsupported_country|country, region, or territory not supported/i.test(detail)) {
     return new DictationError('region', detail, status);
   }
+  if (status === 403 && detail && /does not have access to model|model_not_found/i.test(detail)) {
+    return new DictationError('provider', detail, status);
+  }
+  if (status === 401 || status === 403) return new DictationError('invalid-api-key', detail, status);
+  if (status === 429) return new DictationError('quota', detail, status);
   if (status === 400 && detail && /api[ _-]?key/i.test(detail)) {
     // Gemini answers an invalid key with 400 INVALID_ARGUMENT "API key not valid".
     return new DictationError('invalid-api-key', detail, status);

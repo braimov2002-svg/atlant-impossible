@@ -16,12 +16,19 @@ function isLetter(ch: string | undefined): boolean {
   return !!ch && /\p{L}/u.test(ch);
 }
 
-function matchCase(latin: string, source: string, next: string | undefined): string {
+function isUpperLetter(ch: string | undefined): boolean {
+  return !!ch && ch !== ch.toLowerCase() && ch === ch.toUpperCase();
+}
+
+function matchCase(latin: string, source: string, prev: string | undefined, next: string | undefined): string {
   if (source === source.toLowerCase()) return latin;
-  // "Ш" -> "Sh" inside a word, "SH" when the whole word is upper-case.
-  const wholeWordUpper = next !== undefined && isLetter(next) && next === next.toUpperCase();
+  // "Ш" -> "Sh" in a capitalised word, "SH" when the word is all upper-case
+  // (judged by either neighbour, so "ТОШ" -> "TOSH", not "TOSh").
+  const wholeWordUpper = isUpperLetter(next) || (!isLetter(next) && isUpperLetter(prev));
   return wholeWordUpper ? latin.toUpperCase() : latin.charAt(0).toUpperCase() + latin.slice(1);
 }
+
+const IOTATED = new Set('еёюя');
 
 export function uzCyrillicToLatin(text: string): string {
   let out = '';
@@ -40,11 +47,15 @@ export function uzCyrillicToLatin(text: string): string {
     } else if (lower === 'ц') {
       // "ц" is "s" at the start of a word or after a consonant, "ts" after a vowel.
       latin = prev && VOWELS.has(prev) ? 'ts' : 's';
+    } else if (lower === 'ъ' && next && IOTATED.has(next.toLowerCase())) {
+      latin = ''; // объект -> obyekt: the following vowel already starts with "y"
+    } else if (lower === 'ь' && next?.toLowerCase() === 'о') {
+      latin = 'y'; // батальон -> batalyon
     } else {
       latin = SIMPLE[lower];
     }
 
-    out += latin === undefined ? ch : matchCase(latin, ch, next);
+    out += latin === undefined ? ch : matchCase(latin, ch, chars[i - 1], next);
   }
   return out;
 }

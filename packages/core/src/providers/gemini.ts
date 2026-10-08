@@ -78,7 +78,8 @@ export function geminiRequestBody(
       },
     ],
     generationConfig: {
-      maxOutputTokens: 8192,
+      // Thinking tokens count against this too; leave plenty of room.
+      maxOutputTokens: 32768,
       // Gemini 3 degrades below its default temperature; older models are steadier at 0.
       ...(isGemini2(model) ? { temperature: 0 } : {}),
       ...(thinking ? { thinkingConfig: thinking } : {}),

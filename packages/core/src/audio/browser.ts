@@ -1,10 +1,13 @@
 // Browser-only microphone capture (web app and Electron renderer).
 import { DictationError, MIN_RECORDING_SECONDS } from '../errors';
+import { percentileLevel, voicedFraction } from './levels';
 import { downmixToMono, peakLevel, resample } from './resample';
 import { encodeWavPcm16, SPEECH_SAMPLE_RATE } from './wav';
 
 /** Peak level below which a recording is treated as silence. */
 export const SILENCE_PEAK = 0.015;
+/** Minimum share of 20 ms frames with speech-like energy (one click is not speech). */
+export const MIN_VOICED_FRACTION = 0.03;
 
 // Chrome/Edge/Electron record webm/opus; Safari records mp4/AAC. Safari 18.4+
 // can also record webm, but its own decoder is only reliable with mp4/AAC, so
@@ -62,6 +65,8 @@ export class MicRecorder {
   private analyser: AnalyserNode | null = null;
   private meterBuffer: Float32Array<ArrayBuffer> | null = null;
   private startedAt = 0;
+  /** Bumped by cancel() so a start() still waiting for the mic can tell. */
+  private generation = 0;
 
   get isRecording(): boolean {
     return this.recorder?.state === 'recording';
@@ -75,6 +80,7 @@ export class MicRecorder {
   async start(): Promise<void> {
     if (!isRecordingSupported()) throw new DictationError('unsupported');
     this.cancel();
+    const generation = this.generation;
     // iOS only lets an AudioContext run if it is created during the tap,
     // i.e. before the first await.
     const meterContext = this.createMeterContext();
@@ -87,6 +93,12 @@ export class MicRecorder {
     } catch (error) {
       void meterContext?.close().catch(() => undefined);
       throw micError(error);
+    }
+    if (generation !== this.generation) {
+      // cancel() ran while the permission prompt / device was opening.
+      stream.getTracks().forEach((track) => track.stop());
+      void meterContext?.close().catch(() => undefined);
+      throw new DictationError('cancelled');
     }
 
     const mimeType = pickMimeType();
@@ -143,6 +155,7 @@ export class MicRecorder {
 
   /** Stops without producing audio and turns the microphone off. */
   cancel(): void {
+    this.generation++;
     const recorder = this.recorder;
     if (recorder && recorder.state !== 'inactive') {
       recorder.ondataavailable = null;
@@ -215,7 +228,8 @@ export async function prepareRecording(blob: Blob): Promise<PreparedRecording> {
       maybePromise?.then(resolve, reject);
     });
   } catch {
-    throw new DictationError('too-short', 'Audio could not be decoded');
+    // A tiny file is just a recording stopped too early; anything else is a codec problem.
+    throw new DictationError(blob.size < 4096 ? 'too-short' : 'decode');
   } finally {
     if (!Offline) void (context as AudioContext).close().catch(() => undefined);
   }
@@ -226,10 +240,15 @@ export async function prepareRecording(blob: Blob): Promise<PreparedRecording> {
   if (durationSec < MIN_RECORDING_SECONDS) throw new DictationError('too-short');
 
   const peak = peakLevel(mono);
-  if (peak < SILENCE_PEAK) throw new DictationError('silence');
-  if (peak < 0.7) {
-    const gain = Math.min(20, 0.9 / peak);
-    for (let i = 0; i < mono.length; i++) mono[i] *= gain;
+  if (peak < SILENCE_PEAK || voicedFraction(mono, SPEECH_SAMPLE_RATE) < MIN_VOICED_FRACTION) {
+    throw new DictationError('silence');
+  }
+  // Lift quiet speech; derive the gain from the 99.9th percentile so one
+  // loud click cannot hold it down or a quiet room get boosted 20x by it.
+  const level = percentileLevel(mono, 0.999);
+  if (level < 0.5) {
+    const gain = Math.min(10, 0.7 / Math.max(level, 0.01));
+    for (let i = 0; i < mono.length; i++) mono[i] = Math.max(-1, Math.min(1, mono[i] * gain));
   }
 
   return { wav: encodeWavPcm16(mono, SPEECH_SAMPLE_RATE), durationSec, peak };

@@ -45,7 +45,11 @@ export interface SettingsSnapshot {
 }
 
 export interface SettingsUpdate {
-  settings: DesktopSettings;
+  /**
+   * Only the fields changed in the window, so a language switched meanwhile
+   * from the tray or with the hotkey is not overwritten.
+   */
+  patch: Partial<DesktopSettings>;
   /** New key per provider; undefined keeps the stored key, '' removes it. */
   keys: Partial<Record<ProviderId, string>>;
 }
@@ -53,6 +57,8 @@ export interface SettingsUpdate {
 export interface SaveResult {
   ok: boolean;
   hotkeyErrors: string[];
+  /** Set when writing settings or keys failed (nothing was saved then). */
+  error?: string;
 }
 
 export type PermissionKind = 'microphone' | 'accessibility';

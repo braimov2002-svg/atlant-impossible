@@ -89,8 +89,15 @@ let hotkeyErrors: string[] = [];
 let escapeRegistered = false;
 let phaseTimer: NodeJS.Timeout | undefined;
 
-/** The HUD must deliver the audio quickly after "stop"; never hang the app. */
+/** The HUD must deliver the audio soon after "stop"; never hang the app. */
 const AUDIO_DEADLINE_MS = 20_000;
+/** Time allowed for the HUD to open the microphone (device wake-up, Bluetooth). */
+const START_DEADLINE_MS = 15_000;
+
+/** What started/stopped a recording; matters for where the paste lands. */
+type Trigger = 'hotkey' | 'tray';
+let stopTrigger: Trigger = 'hotkey';
+let recordingStartedAt = 0;
 
 const label = (accelerator: string) => hotkeyLabel(accelerator, process.platform);
 const pasteKeys = isMac ? '⌘V' : 'Ctrl+V';
@@ -105,16 +112,21 @@ function badge(): string {
 function setPhase(next: Phase): void {
   phase = next;
   clearTimeout(phaseTimer);
+  const sessionId = recordingSession;
   if (next === 'recording') {
+    recordingStartedAt = Date.now();
     // Stop automatically at the length limit instead of failing later.
-    phaseTimer = setTimeout(() => phase === 'recording' && stopRecording(), MAX_RECORDING_SECONDS * 1000);
+    phaseTimer = setTimeout(() => {
+      if (phase === 'recording' && sessionId === recordingSession) stopRecording('hotkey');
+    }, MAX_RECORDING_SECONDS * 1000);
   } else if (next === 'transcribing') {
-    const sessionId = recordingSession;
+    // Long recordings take longer to decode and encode in the HUD.
+    const recorded = recordingStartedAt ? (Date.now() - recordingStartedAt) / 1000 : 0;
     phaseTimer = setTimeout(() => {
       if (phase === 'transcribing' && sessionId === recordingSession && !abort) {
-        onRecordingFailed(sessionId, { code: 'timeout', message: userMessage(new DictationError('mic-unavailable')) });
+        onRecordingFailed(sessionId, { code: 'decode', message: userMessage(new DictationError('decode')) });
       }
-    }, AUDIO_DEADLINE_MS);
+    }, AUDIO_DEADLINE_MS + recorded * 100);
   }
   if (next === 'idle') unregisterEscape();
   else registerEscape();
@@ -129,24 +141,39 @@ async function microphoneAllowed(): Promise<boolean> {
   return false;
 }
 
-async function toggle(): Promise<void> {
+async function toggle(trigger: Trigger = 'hotkey'): Promise<void> {
   if (phase === 'idle') return startRecording();
-  if (phase === 'recording') return stopRecording();
+  if (phase === 'recording') return stopRecording(trigger);
   if (phase === 'starting') {
     stopWhenStarted = true;
+    stopTrigger = trigger;
     return;
   }
-  hud.show({ kind: 'info', message: "Hali o'girilmoqda... Bekor qilish: Esc" }, 1500);
+  // Still transcribing: say so briefly, then go back to showing progress.
+  const sessionId = recordingSession;
+  hud.show({ kind: 'info', message: "Hali o'girilmoqda... Bekor qilish: Esc" });
+  setTimeout(() => {
+    if (phase === 'transcribing' && sessionId === recordingSession) hud.show({ kind: 'transcribing', badge: badge() });
+  }, 1500);
 }
 
 async function startRecording(): Promise<void> {
+  const sessionId = ++recordingSession;
+  stopWhenStarted = false;
+  // Enter 'starting' before any await so Esc and the tray work while the
+  // keychain or the macOS microphone prompt is open.
+  setPhase('starting');
+  const cancelled = () => sessionId !== recordingSession || phase !== 'starting';
+
   if (!(await loadApiKey(settings.provider))) {
+    if (cancelled()) return;
+    setPhase('idle');
     hud.show({ kind: 'error', message: userMessage(new DictationError('no-api-key')) }, 4000);
     openSettings();
     return;
   }
-  phase = 'starting';
   if (!(await microphoneAllowed())) {
+    if (cancelled()) return;
     setPhase('idle');
     hud.show(
       { kind: 'error', message: "Mikrofonga ruxsat yo'q: Tizim sozlamalari → Maxfiylik → Mikrofon → OvozYoz" },
@@ -155,14 +182,20 @@ async function startRecording(): Promise<void> {
     openPermission('microphone');
     return;
   }
-  recordingSession += 1;
-  stopWhenStarted = false;
-  setPhase('starting');
+  if (cancelled()) return;
+
   hud.show({ kind: 'recording', hotkey: label(settings.hotkey), badge: badge() });
-  hud.send({ type: 'start', session: recordingSession });
+  hud.send({ type: 'start', session: sessionId });
+  phaseTimer = setTimeout(() => {
+    if (phase === 'starting' && sessionId === recordingSession) {
+      hud.send({ type: 'cancel', session: sessionId });
+      onRecordingFailed(sessionId, { code: 'mic-unavailable', message: userMessage(new DictationError('mic-unavailable')) });
+    }
+  }, START_DEADLINE_MS);
 }
 
-function stopRecording(): void {
+function stopRecording(trigger: Trigger): void {
+  stopTrigger = trigger;
   setPhase('transcribing');
   hud.show({ kind: 'transcribing', badge: badge() });
   hud.send({ type: 'stop', session: recordingSession });
@@ -180,7 +213,7 @@ function cancel(): void {
 function onRecordingStarted(sessionId: number): void {
   if (sessionId !== recordingSession || phase !== 'starting') return;
   setPhase('recording');
-  if (stopWhenStarted) stopRecording();
+  if (stopWhenStarted) stopRecording(stopTrigger);
 }
 
 function onRecordingFailed(sessionId: number, failure: RecordingFailure): void {
@@ -189,10 +222,18 @@ function onRecordingFailed(sessionId: number, failure: RecordingFailure): void {
   hud.show({ kind: 'error', message: failure.message }, 5000);
 }
 
+function onHudCrashed(): void {
+  if (phase === 'idle') return;
+  recordingSession += 1;
+  setPhase('idle');
+  hud.show({ kind: 'error', message: "Yozish to'xtab qoldi. Qayta urinib ko'ring." }, 5000);
+}
+
 async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
   if (sessionId !== recordingSession || phase !== 'transcribing') return;
   const controller = new AbortController();
   abort = controller;
+  const isCurrent = () => sessionId === recordingSession;
   try {
     const result = await transcribe({
       provider: settings.provider,
@@ -206,9 +247,17 @@ async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
       fetch: options.fetch ?? ((input, init) => net.fetch(input as string, init)),
       ...modelOverrides(settings),
     });
-    if (sessionId !== recordingSession) return;
+    if (!isCurrent()) return;
     lastText = result.text;
-    const outcome = await insertText(result.text, settings);
+    // On Windows, clicking the tray moves focus to the taskbar, so a Ctrl+V
+    // would land nowhere: just copy the text in that case.
+    const autoPaste = settings.autoPaste && !(process.platform === 'win32' && stopTrigger === 'tray');
+    const outcome = await insertText(result.text, {
+      autoPaste,
+      restoreClipboard: settings.restoreClipboard,
+      isCancelled: () => !isCurrent(),
+    });
+    if (!isCurrent()) return;
     if (outcome === 'pasted') hud.show({ kind: 'done', message: 'Yozildi' }, 1100);
     else if (outcome === 'needs-accessibility') {
       hud.show(
@@ -217,11 +266,11 @@ async function onAudio(sessionId: number, wav: Uint8Array): Promise<void> {
       );
     } else hud.show({ kind: 'done', message: `Nusxalandi — ${pasteKeys} bilan joylang` }, 3000);
   } catch (error) {
-    if (sessionId !== recordingSession) return;
+    if (!isCurrent()) return;
     hud.show({ kind: 'error', message: userMessage(error) }, 6000);
   } finally {
     if (abort === controller) abort = null;
-    if (sessionId === recordingSession) setPhase('idle');
+    if (isCurrent()) setPhase('idle');
   }
 }
 
@@ -236,16 +285,17 @@ function cycleOutput(): void {
 // ------------------------------------------------------------------ hotkeys
 
 /**
- * Windows repeats a global hotkey while it is held down; without this a long
- * press would start and stop recording several times.
+ * Windows repeats a global hotkey while it is held (first repeat after up to
+ * 1 s). Every event pushes the quiet window forward, so holding the keys
+ * counts as a single press instead of start-stop-start.
  */
-function debounced(handler: () => void, ms = 400): () => void {
+function debounced(handler: () => void, ms = process.platform === 'win32' ? 1000 : 300): () => void {
   let last = 0;
   return () => {
     const now = Date.now();
-    if (now - last < ms) return;
+    const quiet = now - last >= ms;
     last = now;
-    handler();
+    if (quiet) handler();
   };
 }
 
@@ -315,7 +365,7 @@ function updateTray(): void {
     {
       label: recording ? `To'xtatish (${label(settings.hotkey)})` : `Yozishni boshlash (${label(settings.hotkey)})`,
       enabled: !busy,
-      click: () => void toggle(),
+      click: () => void toggle('tray'),
     },
     ...(phase !== 'idle' ? [{ label: 'Bekor qilish (Esc)', click: cancel }] : []),
     { type: 'separator' },
@@ -367,7 +417,12 @@ function createTray(): void {
 
 function updateSettings(patch: Partial<DesktopSettings>): void {
   settings = sanitizeDesktopSettings({ ...settings, ...patch });
-  saveSettings(settings);
+  try {
+    saveSettings(settings);
+  } catch {
+    // Keep working with the new value; it just won't survive a restart.
+    hud.show({ kind: 'error', message: "Sozlamani saqlab bo'lmadi (disk band yoki ruxsat yo'q)." }, 4000);
+  }
   updateTray();
 }
 
@@ -393,9 +448,18 @@ async function snapshot(): Promise<SettingsSnapshot> {
 }
 
 async function save(update: SettingsUpdate): Promise<SaveResult> {
-  await saveApiKeys(update.keys ?? {});
-  settings = sanitizeDesktopSettings(update.settings);
-  saveSettings(settings);
+  const next = sanitizeDesktopSettings({ ...settings, ...(update.patch ?? {}) });
+  try {
+    await saveApiKeys(update.keys ?? {});
+    saveSettings(next);
+  } catch (error) {
+    return {
+      ok: false,
+      hotkeyErrors,
+      error: `Saqlab bo'lmadi: ${error instanceof Error ? error.message : String(error)}`,
+    };
+  }
+  settings = next;
   const errors = registerHotkeys();
   applyLoginItem();
   updateTray();
@@ -506,7 +570,7 @@ export function startApp(appOptions: AppOptions = {}): void {
     settings = loadSettings();
     restrictPermissions(); // only our own HUD page may use the microphone
     registerIpc();
-    hud = new Hud();
+    hud = new Hud(onHudCrashed);
     await hud.whenReady();
     createTray();
     registerHotkeys();

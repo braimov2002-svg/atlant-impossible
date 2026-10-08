@@ -127,10 +127,30 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+  pages-check:
+    name: Is GitHub Pages enabled?
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: read
+    outputs:
+      enabled: ${{ steps.check.outputs.enabled }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type 2>/dev/null)" = "workflow" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::warning title=GitHub Pages is off::Turn it on once: Settings → Pages → Build and deployment → Source: GitHub Actions. Then Actions → CI → Run workflow (branch main)."
+          fi
+
   pages:
     name: Deploy web app to GitHub Pages
-    needs: checks
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [checks, pages-check]
+    if: needs.pages-check.outputs.enabled == 'true'
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -139,6 +159,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      # Project sites live at https://<owner>.github.io/<repo>/
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -146,10 +169,12 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Build for https://<owner>.github.io/<repo>/
+      - name: Build the web app for the Pages sub-path
         run: npm run build:web
-        env:
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      - name: Test the exact build that will be published
+        run: |
+          npx playwright install --with-deps chromium
+          npm run e2e:web
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

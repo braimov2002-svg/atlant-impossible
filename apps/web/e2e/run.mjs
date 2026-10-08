@@ -14,6 +14,8 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../..');
 const outDir = path.join(root, 'apps/web/out');
 const shots = process.env.E2E_SCREENSHOTS;
+// Serve under a sub-path to mimic GitHub Pages (build with the same NEXT_PUBLIC_BASE_PATH).
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 let audio = process.argv[2];
 if (!audio) {
@@ -23,7 +25,12 @@ if (!audio) {
 
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.webmanifest': 'application/manifest+json', '.txt': 'text/plain', '.json': 'application/json' };
 const server = http.createServer((req, res) => {
-  let file = path.join(outDir, decodeURIComponent(new URL(req.url, 'http://x').pathname));
+  const pathname = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+  if (basePath && !pathname.startsWith(`${basePath}/`)) {
+    res.writeHead(404).end();
+    return;
+  }
+  let file = path.join(outDir, pathname.slice(basePath.length));
   if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
   if (!file.startsWith(outDir) || !fs.existsSync(file)) {
     res.writeHead(404).end();
@@ -33,7 +40,7 @@ const server = http.createServer((req, res) => {
   fs.createReadStream(file).pipe(res);
 });
 await new Promise((resolve) => server.listen(0, resolve));
-const url = `http://localhost:${server.address().port}/`;
+const url = `http://localhost:${server.address().port}${basePath}/`;
 
 const results = [];
 const check = (name, ok, extra = '') => results.push(`${ok ? 'PASS' : 'FAIL'} ${name} ${extra}`.trim());

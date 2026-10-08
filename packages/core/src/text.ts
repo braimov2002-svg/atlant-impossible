@@ -9,14 +9,16 @@ export type ApostropheStyle = 'ascii' | 'official' | 'keep';
 // Every character models and keyboards use for the Uzbek apostrophes:
 // ' ` ´ ‘ ’ ʻ ʼ ʹ ′
 const APOSTROPHES = "'`´‘’ʻʼʹ′";
-const OG_MARK = new RegExp(`([oOgG])[${APOSTROPHES}]`, 'g');
+// oʻ/gʻ: a mark after o/g that continues the word (o'zbek), or a word-final
+// gʻ (bog', tog'). A mark after a word-final "o" is a closing quote: leave it.
+const OG_MARK = new RegExp(`([oOgG])[${APOSTROPHES}](?=\\p{L})|([gG])[${APOSTROPHES}](?!\\p{L})`, 'gu');
 const TUTUQ = new RegExp(`(\\p{L})[${APOSTROPHES}](?=\\p{L})`, 'gu');
 
 export function normalizeUzbekApostrophes(text: string, style: ApostropheStyle): string {
   if (style === 'keep') return text;
   const og = style === 'official' ? 'ʻ' : "'";
   const tutuq = style === 'official' ? 'ʼ' : "'";
-  return text.replace(OG_MARK, `$1${og}`).replace(TUTUQ, (match, letter: string) => {
+  return text.replace(OG_MARK, (_match, inWord?: string, final?: string) => `${inWord ?? final}${og}`).replace(TUTUQ, (match, letter: string) => {
     // Already-normalised oʻ/gʻ marks must not be turned into a tutuq.
     if (/[oOgG]/.test(letter) && match.endsWith(og)) return match;
     return `${letter}${tutuq}`;

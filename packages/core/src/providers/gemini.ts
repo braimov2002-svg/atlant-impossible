@@ -32,9 +32,10 @@ const isGemini2 = (model: string) => /^gemini-2\./.test(model);
 export function thinkingConfig(model: string): Record<string, unknown> | undefined {
   if (/^gemini-2\.5-(flash|flash-lite)/.test(model)) return { thinkingBudget: 0 };
   if (/^gemini-2\.5-pro/.test(model)) return { thinkingBudget: 128 }; // Pro cannot disable thinking
-  if (/^gemini-(3|flash-latest|flash-lite-latest)/.test(model)) {
-    return { thinkingLevel: model.includes('pro') ? 'low' : 'minimal' };
-  }
+  // Only the 3.5 / 3.1 Flash family accepts "minimal"; newer Flash models
+  // (3.6+, and the -latest alias that points to them) and Pro need "low".
+  if (/^gemini-(3\.5-flash|3\.1-flash-lite|flash-lite-latest)/.test(model)) return { thinkingLevel: 'minimal' };
+  if (/^gemini-(3|flash-latest)/.test(model)) return { thinkingLevel: 'low' };
   return undefined;
 }
 

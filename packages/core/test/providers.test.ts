@@ -61,7 +61,9 @@ describe('gemini', () => {
     expect(thinkingConfig('gemini-2.5-flash-lite')).toEqual({ thinkingBudget: 0 });
     expect(thinkingConfig('gemini-2.5-pro')).toEqual({ thinkingBudget: 128 });
     expect(thinkingConfig('gemini-3.5-flash-lite')).toEqual({ thinkingLevel: 'minimal' });
-    expect(thinkingConfig('gemini-flash-latest')).toEqual({ thinkingLevel: 'minimal' });
+    expect(thinkingConfig('gemini-flash-latest')).toEqual({ thinkingLevel: 'low' });
+    expect(thinkingConfig('gemini-3.8-flash')).toEqual({ thinkingLevel: 'low' });
+    expect(thinkingConfig('gemini-3.5-flash')).toEqual({ thinkingLevel: 'minimal' });
     expect(thinkingConfig('gemini-3.5-pro')).toEqual({ thinkingLevel: 'low' });
     expect(thinkingConfig('gemini-2.0-flash')).toBeUndefined();
     const old = geminiRequestBody({ audio, spoken: 'uz', output: 'en', apiKey: 'k' }, 'gemini-2.5-flash') as {
@@ -196,8 +198,9 @@ describe('openai', () => {
     const init = fetchMock.mock.calls[0][1]!;
     expect((init.headers as Record<string, string>).Authorization).toBe('Bearer sk-test');
     const form = init.body as FormData;
-    expect(form.get('model')).toBe('gpt-4o-transcribe');
-    expect(form.get('language')).toBe('uz');
+    expect(form.get('model')).toBe('gpt-transcribe');
+    expect(form.get('languages[]')).toBe('uz');
+    expect(form.has('language')).toBe(false);
     expect(String(form.get('prompt'))).toContain("O'zbekiston");
     expect((form.get('file') as File).type).toBe('audio/wav');
   });
@@ -215,7 +218,7 @@ describe('openai', () => {
       provider: 'openai', audio, spoken: 'uz', output: 'en', apiKey: 'sk', fetch: fetchMock as never,
     });
     expect(result.text).toBe('Hi, how are you?');
-    expect(result.model).toBe('gpt-4o-transcribe + gpt-4.1-mini');
+    expect(result.model).toBe('gpt-transcribe + gpt-4.1-mini');
   });
 
   it('transliterates a Cyrillic Uzbek transcript locally', async () => {
@@ -246,6 +249,17 @@ describe('openai', () => {
     expect(forms[0].get('languages[]')).toBe('uz');
     expect(forms[0].has('language')).toBe(false);
     expect(forms[1].has('languages[]')).toBe(false);
+  });
+
+  it('sends the single language field for older models', async () => {
+    const fetchMock = vi.fn(async () => jsonResponse({ text: 'Salom' }));
+    await transcribe({
+      provider: 'openai', audio, spoken: 'uz', output: 'uz-latn', apiKey: 'sk', model: 'gpt-4o-transcribe',
+      fetch: fetchMock as never,
+    });
+    const form = (fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as FormData;
+    expect(form.get('language')).toBe('uz');
+    expect(form.has('languages[]')).toBe(false);
   });
 
   it('does not retry other 400 errors', async () => {

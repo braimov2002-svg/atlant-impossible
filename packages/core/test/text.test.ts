@@ -25,6 +25,16 @@ describe('normalizeUzbekApostrophes', () => {
     expect(normalizeUzbekApostrophes("U 'salom' dedi", 'official')).toBe("U 'salom' dedi");
   });
 
+  it('treats a mark after a word-final o as a closing quote', () => {
+    expect(normalizeUzbekApostrophes("U 'Bobo' dedi", 'official')).toBe("U 'Bobo' dedi");
+    expect(normalizeUzbekApostrophes('U \u2018Bobo\u2019 dedi', 'ascii')).toBe('U \u2018Bobo\u2019 dedi');
+  });
+
+  it('keeps word-final g\u02BB (bog\u02BB, tog\u02BB)', () => {
+    expect(normalizeUzbekApostrophes('bog\u2019 va tog\u2018', 'official')).toBe('bog\u02BB va tog\u02BB');
+    expect(normalizeUzbekApostrophes('bog\u2019 va tog\u2018da', 'ascii')).toBe("bog' va tog'da");
+  });
+
   it('keeps text untouched in keep mode', () => {
     expect(normalizeUzbekApostrophes(mixed, 'keep')).toBe(mixed);
   });

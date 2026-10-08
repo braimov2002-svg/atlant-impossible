@@ -8,8 +8,9 @@ import type { ProviderInfo, ProviderRequest, ProviderResult } from './types';
 export const OPENAI: ProviderInfo = {
   id: 'openai',
   label: 'OpenAI',
-  defaultModel: 'gpt-4o-transcribe',
-  models: ['gpt-4o-transcribe', 'gpt-transcribe', 'gpt-4o-mini-transcribe', 'whisper-1'],
+  // whisper-1 is left out on purpose: its Uzbek error rate is around 90%.
+  defaultModel: 'gpt-transcribe',
+  models: ['gpt-transcribe', 'gpt-4o-transcribe', 'gpt-4o-mini-transcribe'],
   defaultTextModel: 'gpt-4.1-mini',
   textModels: ['gpt-4.1-mini', 'gpt-4.1', 'gpt-4o-mini'],
   keyUrl: 'https://platform.openai.com/api-keys',

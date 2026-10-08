@@ -21,6 +21,7 @@ export type DictationErrorCode =
   | 'provider'
   | 'empty-text'
   | 'text-too-long'
+  | 'translate-failed'
   | 'cancelled';
 
 /** Error with a stable code so every UI can show the same Uzbek message. */
@@ -65,6 +66,7 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   provider: 'Xizmatda xatolik yuz berdi.',
   'empty-text': 'Tarjima qilish uchun matn yozing yoki joylang.',
   'text-too-long': "Matn juda uzun (ko'pi bilan 10 000 belgi). Qismlarga bo'lib tarjima qiling.",
+  'translate-failed': "Tarjima qilib bo'lmadi. Qayta urinib ko'ring.",
   cancelled: 'Bekor qilindi.',
 };
 

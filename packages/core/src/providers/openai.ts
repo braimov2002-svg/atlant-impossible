@@ -121,7 +121,7 @@ export async function openaiTranscribe(req: ProviderRequest): Promise<ProviderRe
     signal: req.signal,
     fetch: req.fetch,
   });
-  return { text: rewritten.text, model: `${model} + ${rewritten.model}` };
+  return { text: rewritten.text, model: `${model} + ${rewritten.model}`, translated: true, source: transcript };
 }
 
 type ChatCompletion = { choices?: Array<{ message?: { content?: string | null } }> };

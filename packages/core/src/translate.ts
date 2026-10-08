@@ -19,34 +19,44 @@ export function providerRewrite(provider: ProviderId, req: TextRequest): Promise
   return provider === 'openai' ? openaiRewrite(req) : geminiRewrite(req);
 }
 
+export interface EnsureLanguageOptions {
+  /** Text to translate again on a mismatch (default: the candidate itself). */
+  source?: string;
+  /** One model call per entry; true = insist harder. */
+  passes?: readonly boolean[];
+  /**
+   * What to return when no answer passes the check: the original candidate
+   * (the check may be wrong about short or unusual text) or the last
+   * translation (when the candidate is itself a translation attempt).
+   */
+  keep?: 'candidate' | 'last';
+}
+
 /**
  * Makes sure the answer is really in the requested language: models sometimes
  * transcribe instead of translating. Returns `candidate` when it already
- * matches; Uzbek Cyrillic → Latin is converted locally; otherwise `source` is
- * translated again, once per entry of `passes` (true = insist harder).
+ * matches; Uzbek Cyrillic → Latin is converted locally; otherwise the source
+ * is translated again, once per pass.
  */
 export async function ensureLanguage(
   candidate: string,
   output: OutputLanguage,
   rewrite: Rewriter,
-  source: string = candidate,
-  passes: readonly boolean[] = [false, true],
+  { source = candidate, passes = [false, true], keep = 'candidate' }: EnsureLanguageOptions = {},
 ): Promise<string> {
   if (languageMatches(candidate, output)) return candidate;
   if (output === 'uz-latn' && looksLikeUzbekCyrillic(candidate)) {
     const latin = uzCyrillicToLatin(candidate);
     if (languageMatches(latin, output)) return latin;
   }
-  let best = candidate;
+  let last = candidate;
   for (const strict of passes) {
     const answer = cleanModelText(await rewrite(source, strict));
     if (!answer || answer.includes(EMPTY_SENTINEL)) continue;
-    best = answer;
+    last = answer;
     if (languageMatches(answer, output)) return answer;
   }
-  // Still unsure (names, numbers, very mixed text): the last translation is
-  // the best guess and is never worse than the untranslated text.
-  return best;
+  return keep === 'last' ? last : candidate;
 }
 
 export interface TranslateOptions {
@@ -100,13 +110,27 @@ export async function translateText(options: TranslateOptions): Promise<Translat
 
   let text: string;
   try {
-    const first = cleanModelText(await rewrite(input, false));
-    if (!first || first.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
-    text = await ensureLanguage(first, options.output, rewrite, input, [true]);
+    text = cleanModelText(await rewrite(input, false));
   } catch (error) {
+    clearTimeout(timer);
     if (timeout.signal.aborted && !options.signal?.aborted) throw new DictationError('timeout');
     if (options.signal?.aborted) throw new DictationError('cancelled');
+    // Messages about recordings ("too long", "no speech") make no sense here.
+    if (error instanceof DictationError && (error.code === 'too-long' || error.code === 'empty-result')) {
+      throw new DictationError('translate-failed', error.detail, error.status);
+    }
     throw error;
+  }
+  if (!text || text.includes(EMPTY_SENTINEL)) {
+    clearTimeout(timer);
+    throw new DictationError('translate-failed');
+  }
+  try {
+    // One stricter retry if the answer is still not in the target language.
+    text = await ensureLanguage(text, options.output, rewrite, { source: input, passes: [true], keep: 'last' });
+  } catch {
+    if (options.signal?.aborted) throw new DictationError('cancelled');
+    // The retry failed (quota, network, deadline): keep the first translation.
   } finally {
     clearTimeout(timer);
   }

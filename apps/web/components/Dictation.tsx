@@ -87,11 +87,11 @@ export function Dictation() {
   }, []);
 
   const handleResult = useCallback(
-    ({ text: result, copied }: { text: string; copied: boolean }) => {
+    ({ text: result, copied, output }: { text: string; copied: boolean; output?: OutputLanguage }) => {
       setText(result);
       setHistory((items) => {
         const next = [
-          { id: newId(), text: result, output: latest.current.settings.output, at: Date.now() },
+          { id: newId(), text: result, output: output ?? latest.current.settings.output, at: Date.now() },
           ...items,
         ].slice(0, HISTORY_LIMIT);
         saveHistory(next);
@@ -128,6 +128,7 @@ export function Dictation() {
   const busy = dictation.phase !== 'idle';
 
   const [translating, setTranslating] = useState(false);
+  const translateAbort = useRef<AbortController | null>(null);
   const translate = useCallback(
     (input: string) => {
       const { settings: s, apiKeys: k, prefs: p } = latest.current;
@@ -137,6 +138,8 @@ export function Dictation() {
         setSettingsOpen(true);
         return;
       }
+      const controller = new AbortController();
+      translateAbort.current = controller;
       setTranslating(true);
       const textPromise = translateText({
         text: input,
@@ -144,24 +147,28 @@ export function Dictation() {
         provider: s.provider,
         apiKey,
         apostrophes: s.apostrophes,
+        signal: controller.signal,
         ...(s.provider === 'openai' ? { textModel: modelOverrides(s).textModel } : modelOverrides(s)),
       }).then((r) => r.text);
       // Started inside the tap: iOS only allows clipboard writes from a gesture.
+      // A cancelled translation rejects the promise, so nothing is copied.
       const scheduledCopy = p.autoCopy ? copyWhenReady(textPromise) : null;
       void (async () => {
         try {
           const result = await textPromise;
           const copied = scheduledCopy ? await scheduledCopy : p.autoCopy ? await copyText(result) : false;
-          handleResult({ text: result, copied });
+          handleResult({ text: result, copied, output: s.output });
         } catch (error) {
-          handleError(userMessage(error), error);
+          if (!controller.signal.aborted) handleError(userMessage(error), error);
         } finally {
+          if (translateAbort.current === controller) translateAbort.current = null;
           setTranslating(false);
         }
       })();
     },
     [showToast, handleResult, handleError],
   );
+  const cancelTranslate = useCallback(() => translateAbort.current?.abort(), []);
 
   const updateSettings = (patch: Partial<DictationSettings>) => {
     const next = { ...settings, ...patch };
@@ -212,16 +219,17 @@ export function Dictation() {
       if (settingsOpen || e.repeat) return;
       const target = e.target as HTMLElement | null;
       if (target && ['TEXTAREA', 'INPUT', 'SELECT', 'BUTTON'].includes(target.tagName)) return;
-      if (e.code === 'Space') {
+      if (e.key === 'Escape') {
+        if (translating) cancelTranslate();
+        else dictation.cancel();
+      } else if (e.code === 'Space' && !translating) {
         e.preventDefault();
         dictation.toggle();
-      } else if (e.key === 'Escape') {
-        dictation.cancel();
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [dictation, settingsOpen]);
+  }, [dictation, settingsOpen, translating, cancelTranslate]);
 
   const needsKey = ready && !apiKeys[settings.provider];
   const out = outputLanguage(settings.output);
@@ -291,14 +299,14 @@ export function Dictation() {
         <LanguageBar
           spoken={settings.spoken}
           output={settings.output}
-          disabled={busy}
+          disabled={busy || translating}
           onSpoken={(spoken) => updateSettings({ spoken })}
           onOutput={(output: OutputLanguage) => updateSettings({ output })}
         />
       </section>
 
       <section className="flex flex-col items-center py-6">
-        <MicButton phase={dictation.phase} level={dictation.level} onPress={dictation.toggle} />
+        <MicButton phase={dictation.phase} level={dictation.level} onPress={dictation.toggle} disabled={translating} />
         <p className="mt-2 min-h-6 text-center font-medium">
           {dictation.phase === 'recording' && (
             <span aria-hidden className="mr-2 inline-flex items-center gap-1.5 text-rose-600 dark:text-rose-400">
@@ -352,7 +360,7 @@ export function Dictation() {
         </div>
       </section>
 
-      <TranslateBox output={settings.output} translating={translating} disabled={busy} onTranslate={translate} />
+      <TranslateBox output={settings.output} translating={translating} disabled={busy} onTranslate={translate} onCancel={cancelTranslate} />
 
       {history.length > 0 && (
         <HistoryList items={history} onPick={pickHistory} onClear={clearHistory} />

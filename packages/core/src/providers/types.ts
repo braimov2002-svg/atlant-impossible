@@ -34,6 +34,10 @@ export interface ProviderResult {
   /** Final text before shared clean-up (quotes, apostrophes). */
   text: string;
   model: string;
+  /** The text was already translated by a second, text-only request. */
+  translated?: boolean;
+  /** The untranslated transcript, when a translation happened. */
+  source?: string;
 }
 
 export interface ProviderInfo {

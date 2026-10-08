@@ -1,0 +1,144 @@
+# XcodeGen spec: `xcodegen generate` in this folder writes OvozYoz.xcodeproj.
+# Shared/Resources/ovozyoz-core.js must exist first:
+#   node apps/ios/scripts/build-core.mjs   (from the repository root)
+name: OvozYoz
+options:
+  bundleIdPrefix: uz.ovozyoz
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+  developmentLanguage: uz
+configFiles:
+  Debug: Config.xcconfig
+  Release: Config.xcconfig
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: $(OY_TEAM)
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1,2"
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    DEAD_CODE_STRIPPING: YES
+targets:
+  OvozYoz:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: Shared
+        excludes:
+          - "Resources/**"
+      - path: Shared/Resources
+        buildPhase: resources
+    preBuildScripts:
+      - name: Check ovozyoz-core.js
+        basedOnDependencyAnalysis: false
+        script: |
+          if [ ! -s "${SRCROOT}/Shared/Resources/ovozyoz-core.js" ]; then
+            echo "error: Shared/Resources/ovozyoz-core.js is missing. Run: node apps/ios/scripts/build-core.mjs"
+            exit 1
+          fi
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: OvozYoz
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: uz
+        UILaunchScreen: {}
+        UIApplicationSupportsIndirectInputEvents: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSMicrophoneUsageDescription: "OvozYoz gapirganingizni matnga aylantirish uchun mikrofonni ishlatadi. / OvozYoz uses the microphone to turn your speech into text."
+        UIBackgroundModes:
+          - audio
+        CFBundleURLTypes:
+          - CFBundleURLName: uz.ovozyoz
+            CFBundleURLSchemes:
+              - ovozyoz
+        LSApplicationQueriesSchemes:
+          - tg
+        OYAppGroup: $(OY_APP_GROUP)
+        ITSAppUsesNonExemptEncryption: false
+    entitlements:
+      path: App/OvozYoz.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - $(OY_APP_GROUP)
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(OY_BUNDLE_ID)
+        PRODUCT_NAME: OvozYoz
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    dependencies:
+      - target: OvozYozKeyboard
+  OvozYozKeyboard:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Keyboard
+      - path: Shared
+        excludes:
+          - "Resources/**"
+      - path: Shared/Resources
+        buildPhase: resources
+    info:
+      path: Keyboard/Info.plist
+      properties:
+        CFBundleDisplayName: OvozYoz
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: uz
+        OYAppGroup: $(OY_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.keyboard-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController
+          NSExtensionAttributes:
+            IsASCIICapable: false
+            PrefersRightToLeft: false
+            PrimaryLanguage: uz
+            RequestsOpenAccess: true
+    entitlements:
+      path: Keyboard/OvozYozKeyboard.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - $(OY_APP_GROUP)
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(OY_BUNDLE_ID).keyboard
+        PRODUCT_NAME: OvozYozKeyboard
+        APPLICATION_EXTENSION_API_ONLY: YES
+  OvozYozTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: OvozYoz
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(OY_BUNDLE_ID).tests
+schemes:
+  OvozYoz:
+    build:
+      targets:
+        OvozYoz: all
+        OvozYozTests: [test]
+    test:
+      config: Debug
+      gatherCoverageData: false
+      targets:
+        - OvozYozTests
+    run:
+      config: Debug
+    archive:
+      config: Release

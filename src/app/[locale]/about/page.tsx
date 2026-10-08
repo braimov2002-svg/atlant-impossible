@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { PageHeader } from "@/components/ui/page-header";
-import { Timeline } from "@/components/sections/about/Timeline";
-import { Values } from "@/components/sections/about/Values";
-import { GroupCompanies } from "@/components/sections/about/GroupCompanies";
+import { GroupSection } from "@/components/sections/GroupSection";
+import { Principles } from "@/components/sections/Principles";
+import { PartnersSection } from "@/components/sections/PartnersSection";
+import { CtaBand } from "@/components/sections/CtaBand";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -11,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: t.meta.pages.about, alternates: { canonical: `/${locale}/about` } };
 }
 
-/** /[locale]/about — the group: mission, member companies, footprint timeline, values. */
+/** /[locale]/about — the group: figures, mission, member companies, principles, partners. */
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getDictionary(locale);
@@ -24,11 +25,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         title={t.aboutPage.title}
         accent={t.aboutPage.accent}
         description={t.aboutPage.description}
-        stats={t.hero.metrics.map((m) => ({ value: `${m.prefix}${m.value.toFixed(m.decimals)}${m.suffix}`, label: m.label }))}
+        stats={t.figures.map((f) => ({ value: `${f.value.toLocaleString("en-US").replace(/,/g, " ")}${f.suffix}`, label: f.label }))}
       />
-      <GroupCompanies t={t.aboutPage.group} />
-      <Timeline t={t.aboutPage} cityNames={t.common.cities} sample={t.common.sample} />
-      <Values t={t.aboutPage} locale={locale} />
+      <GroupSection t={t.group} index="01" />
+      <Principles t={t.principles} index="02" />
+      <PartnersSection t={t.partners} index="03" />
+      <CtaBand t={t.cta} locale={locale} />
     </main>
   );
 }

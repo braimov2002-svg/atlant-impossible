@@ -4,23 +4,24 @@ import { z } from "zod";
 import { BOOKING_WINDOW_DAYS, TIME_SLOTS, TZ_OFFSET_MS, slotAvailable, tashkentToday } from "@/lib/booking";
 
 /**
- * Consultation booking — React 19 Server Action (useActionState).
+ * Project inquiry + meeting request — React 19 Server Action (useActionState).
  * Only uses `fetch` → runs on the Node or Edge runtime unchanged.
  * Delivery: Telegram bot when TELEGRAM_* env vars are set, otherwise logged.
  * Slots are validated in Tashkent time (UTC+5, no DST).
  */
 const schema = z
   .object({
-    type: z.enum(["residential", "commercial", "industrial", "infrastructure"]),
-    services: z.array(z.enum(["design", "construction", "infrastructure", "interior"])).min(1),
-    area: z.coerce.number().min(0).max(10_000_000).optional(),
-    city: z.string().min(1).max(40),
+    type: z.enum(["residential", "commercial", "industrial", "logistics"]),
+    services: z.array(z.enum(["design", "construction", "engineering", "equipment", "automation", "trade"])).min(1),
+    area: z.coerce.number().min(0).max(100_000_000).optional(),
+    city: z.string().min(1).max(60),
     budget: z.string().max(40).optional(),
     message: z.string().trim().max(1000).optional(),
     format: z.enum(["office", "online", "site"]),
     date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     time: z.enum(TIME_SLOTS),
     name: z.string().trim().min(2).max(80),
+    company: z.string().trim().max(120).optional(),
     phone: z
       .string()
       .transform((v) => v.replace(/\D/g, ""))
@@ -56,6 +57,7 @@ export async function submitInquiry(_prev: InquiryState, formData: FormData): Pr
     date: formData.get("date"),
     time: formData.get("time"),
     name: formData.get("name"),
+    company: formData.get("company") || undefined,
     phone: formData.get("phone"),
     email: formData.get("email") || undefined,
   });
@@ -66,12 +68,12 @@ export async function submitInquiry(_prev: InquiryState, formData: FormData): Pr
   const d = parsed.data;
   const ticket = `AT-${Date.now().toString(36).toUpperCase().slice(-6)}`;
   const text = [
-    `🏗 Uchrashuv so‘rovi · ${ticket}`,
+    `🏗 Loyiha bo‘yicha so‘rov · ${ticket}`,
     `📅 ${d.date} ${d.time} (Toshkent) · ${d.format}`,
-    `Ism: ${d.name}`,
+    `Ism: ${d.name}${d.company ? ` · ${d.company}` : ""}`,
     `Telefon: +${d.phone}${d.email ? ` · ${d.email}` : ""}`,
     `Obyekt: ${d.type} · ${d.services.join(", ")}`,
-    `Shahar: ${d.city}${d.area ? ` · ${d.area} m²` : ""}${d.budget ? ` · ${d.budget}` : ""}`,
+    `Hudud: ${d.city}${d.area ? ` · ${d.area} m²` : ""}${d.budget ? ` · ${d.budget}` : ""}`,
     d.message ? `Izoh: ${d.message}` : null,
   ]
     .filter(Boolean)

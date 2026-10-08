@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { PageHeader } from "@/components/ui/page-header";
-import { ServicesBentoPage } from "@/components/sections/services/ServicesPage";
+import { ServicesList } from "@/components/sections/ServicesList";
+import { FullCycle } from "@/components/sections/FullCycle";
+import { Principles } from "@/components/sections/Principles";
+import { CtaBand } from "@/components/sections/CtaBand";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -9,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: t.meta.pages.services, alternates: { canonical: `/${locale}/services` } };
 }
 
-/** /[locale]/services — bento of the three disciplines over live material shaders. */
-export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {
+/** /[locale]/services — the group's service lines, the full cycle and working principles. */
+export default async function ServicesRoute({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getDictionary(locale);
   return (
@@ -23,7 +26,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         accent={t.servicesPage.accent}
         description={t.servicesPage.description}
       />
-      <ServicesBentoPage t={t.servicesPage} locale={locale} />
+      <ServicesList t={t.servicesPage.services} />
+      <FullCycle t={t.cycle} index="01" />
+      <Principles t={t.principles} index="02" />
+      <CtaBand t={t.cta} locale={locale} />
     </main>
   );
 }

@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Tree-shake the big barrel packages so only what we import ships.
   experimental: {
-    optimizePackageImports: ["@react-three/drei", "framer-motion", "lucide-react"],
+    optimizePackageImports: ["framer-motion", "lucide-react"],
   },
   async redirects() {
     // Unprefixed routes → default locale (so /projects, /services, /about also work)

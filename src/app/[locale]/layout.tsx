@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Geologica, JetBrains_Mono, Onest } from "next/font/google";
+import { Geologica, Onest } from "next/font/google";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { CursorFollower } from "@/components/layout/CursorFollower";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { isLocale, locales } from "@/i18n/config";
@@ -11,22 +10,15 @@ import { site } from "@/lib/site";
 import "../globals.css";
 
 // Google Fonts, self-hosted at build time by next/font. All include Cyrillic.
-// Geologica is variable with a SHRP (sharpness) axis → crisp architectural display type.
+// Geologica (display) and Onest (text): sober geometric grotesks.
 const display = Geologica({
   subsets: ["latin", "latin-ext", "cyrillic"],
-  axes: ["SHRP"],
   variable: "--font-geologica",
   display: "swap",
 });
 const sans = Onest({
   subsets: ["latin", "latin-ext", "cyrillic"],
   variable: "--font-onest",
-  display: "swap",
-});
-const mono = JetBrains_Mono({
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["400", "500"],
-  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -49,11 +41,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export const viewport: Viewport = { themeColor: "#0b0f17", colorScheme: "dark" };
+export const viewport: Viewport = { themeColor: "#0e1013", colorScheme: "dark" };
 
 /**
  * Root layout (lives under [locale] so <html lang> follows the route).
- * Header, footer, Lenis and the cursor persist across client-side navigations;
+ * Header, footer and Lenis persist across client-side navigations;
  * only {children} swaps, animated by template.tsx.
  */
 export default async function LocaleLayout({
@@ -86,7 +78,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang={locale} className={`${display.variable} ${sans.variable}`}>
       <body className="min-h-dvh antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <SmoothScroll>
@@ -94,7 +86,6 @@ export default async function LocaleLayout({
           {children}
           <Footer t={t.footer} nav={t.nav} locale={locale} />
         </SmoothScroll>
-        <CursorFollower />
       </body>
     </html>
   );

@@ -9,10 +9,10 @@ import { EASE_OUT_EXPO } from "@/lib/motion";
 let hasNavigated = false;
 
 /**
- * Route transition: an obsidian curtain with a gold→cyan blade lifts off the
+ * Route transition: a graphite curtain with a brass hairline lifts off the
  * incoming page while it fades in. The content wrapper animates opacity only —
  * a transform/filter here would become the containing block for
- * `position: fixed` descendants (e.g. the shared WebGL canvas on /projects).
+ * `position: fixed` descendants.
  */
 export default function Template({ children }: { children: React.ReactNode }) {
   const [animate] = useState(() => hasNavigated);
@@ -30,8 +30,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           transition={{ duration: 0.9, ease: EASE_OUT_EXPO, delay: 0.05 }}
           className="pointer-events-none fixed inset-0 z-[70] bg-obsidian-950"
         >
-          <div className="bg-blueprint absolute inset-0 opacity-70" />
-          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-gold via-cyan to-gold shadow-[0_0_30px_#00f0ff]" />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gold" />
         </motion.div>
       )}
       <motion.div

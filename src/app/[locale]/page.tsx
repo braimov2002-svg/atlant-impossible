@@ -1,30 +1,24 @@
 import { getDictionary } from "@/i18n/get-dictionary";
-import { SequenceHero } from "@/components/sections/home/hero/SequenceHero";
-import { ProjectShowcase } from "@/components/sections/home/ProjectShowcase";
-import { ServicesMatrix } from "@/components/sections/home/ServicesMatrix";
-import { Estimator } from "@/components/sections/home/Estimator";
-import { FootprintMap } from "@/components/sections/home/FootprintMap";
-import { ConsultationPortal } from "@/components/sections/home/ConsultationPortal";
+import { Hero } from "@/components/sections/Hero";
+import { GroupSection } from "@/components/sections/GroupSection";
+import { FullCycle } from "@/components/sections/FullCycle";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { PartnersSection } from "@/components/sections/PartnersSection";
+import { ContactSection } from "@/components/sections/contact/ContactSection";
 
-/**
- * Home — a Server Component. Loads the dictionary once and hands each client
- * section only its slice. The hero is a scroll-scrubbed image sequence; all
- * WebGL scenes below it are lazy chunks (next/dynamic, ssr:false) that mount
- * when their section nears the viewport.
- */
+/** Home — a Server Component; each client section receives only its slice of the dictionary. */
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getDictionary(locale);
-  const projectT = { showcase: t.showcase, common: t.common, text: t.projectsText };
 
   return (
     <main>
-      <SequenceHero t={t.hero} locale={locale} />
-      <ProjectShowcase t={projectT} locale={locale} />
-      <ServicesMatrix t={t.matrix} locale={locale} more={t.common.readMore} years={t.common.units.years} />
-      <Estimator t={t.estimator} locale={locale} years={t.common.units.years} />
-      <FootprintMap t={{ map: t.map, common: t.common, text: t.projectsText }} locale={locale} />
-      <ConsultationPortal t={t.contact} types={t.common.types} cities={t.common.cities} />
+      <Hero t={t.hero} figures={t.figures} locale={locale} />
+      <GroupSection t={t.group} index="01" more={{ label: t.common.readMore, href: `/${locale}/about` }} />
+      <FullCycle t={t.cycle} index="02" />
+      <ProjectsSection t={t.projects} common={t.common} index="03" more={`/${locale}/projects`} />
+      <PartnersSection t={t.partners} index="04" />
+      <ContactSection t={t.contact} index="05" />
     </main>
   );
 }

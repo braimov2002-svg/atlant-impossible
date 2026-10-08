@@ -5,13 +5,8 @@ export const EASE_OUT_EXPO: Transition["ease"] = [0.16, 1, 0.3, 1];
 export const EASE_LIQUID: Transition["ease"] = [0.65, 0, 0.35, 1];
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.9, ease: EASE_OUT_EXPO },
-  },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE_OUT_EXPO } },
 };
 
 export const scaleIn: Variants = {
@@ -32,14 +27,9 @@ export const lineReveal: Variants = {
 
 /** Step transitions for the multi-step form (direction-aware). */
 export const stepSlide: Variants = {
-  enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0, filter: "blur(6px)" }),
-  center: { x: 0, opacity: 1, filter: "blur(0px)", transition: { duration: 0.55, ease: EASE_OUT_EXPO } },
-  exit: (dir: number) => ({
-    x: dir > 0 ? -60 : 60,
-    opacity: 0,
-    filter: "blur(6px)",
-    transition: { duration: 0.3, ease: EASE_LIQUID },
-  }),
+  enter: (dir: number) => ({ x: dir > 0 ? 40 : -40, opacity: 0 }),
+  center: { x: 0, opacity: 1, transition: { duration: 0.5, ease: EASE_OUT_EXPO } },
+  exit: (dir: number) => ({ x: dir > 0 ? -40 : 40, opacity: 0, transition: { duration: 0.25, ease: EASE_LIQUID } }),
 };
 
 export const inViewOnce = { once: true, amount: 0.3 } as const;

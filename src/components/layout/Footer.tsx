@@ -7,32 +7,30 @@ import type { Dictionary } from "@/i18n/dictionaries/uz";
 
 export function Footer({ t, nav, locale }: { t: Dictionary["footer"]; nav: Dictionary["nav"]; locale: string }) {
   const contacts = [
-    site.office.address && { icon: MapPin, label: site.office.address, href: undefined },
     ...site.phones.map((p) => ({ icon: Phone, label: p, href: telHref(p) })),
     site.email && { icon: Mail, label: site.email, href: `mailto:${site.email}` },
     site.telegram && { icon: Send, label: site.telegram, href: `https://t.me/${site.telegram.replace("@", "")}` },
-  ].filter(Boolean) as { icon: typeof MapPin; label: string; href?: string }[];
+  ].filter(Boolean) as { icon: typeof MapPin; label: string; href: string }[];
 
   return (
-    <footer className="relative mt-16 overflow-hidden border-t border-line">
-      <div className="bg-blueprint pointer-events-none absolute inset-0 [mask-image:linear-gradient(180deg,#000,transparent_70%)] opacity-60" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pt-20 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="relative border-t border-line bg-obsidian-950">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-20 pb-14 sm:px-8 md:grid-cols-[1.5fr_1fr_1.2fr]">
         <div className="max-w-sm">
-          <div className="flex items-center gap-3">
-            <Logo className="h-11 w-11" />
+          <div className="flex items-center gap-3 text-mist">
+            <Logo className="h-10 w-10" />
             <div className="leading-none">
-              <p className="font-sharp text-lg font-medium tracking-[0.28em] text-mist">ATLANT</p>
-              <p className="pt-1 font-mono text-[10px] tracking-[0.26em] text-steel uppercase">Group of Companies</p>
+              <p className="font-display text-lg font-semibold tracking-[0.22em]">ATLANT</p>
+              <p className="label-caps pt-1 !text-[9.5px] text-steel">Group of Companies</p>
             </div>
           </div>
-          <p className="mt-5 text-sm leading-relaxed text-steel">{t.tagline}</p>
+          <p className="mt-6 text-sm leading-relaxed text-steel">{t.tagline}</p>
         </div>
         <nav aria-label={t.pages}>
-          <p className="font-mono text-[10px] tracking-[0.24em] text-slate uppercase">{t.pages}</p>
-          <ul className="mt-4 space-y-2.5">
+          <p className="label-caps text-slate">{t.pages}</p>
+          <ul className="mt-5 space-y-3">
             {nav.items.map((i) => (
               <li key={i.href}>
-                <NavLink href={`/${locale}${i.href}`} className="text-sm text-steel transition hover:text-gold">
+                <NavLink href={`/${locale}${i.href}`} className="text-sm text-steel transition hover:text-mist">
                   {i.label}
                 </NavLink>
               </li>
@@ -40,15 +38,15 @@ export function Footer({ t, nav, locale }: { t: Dictionary["footer"]; nav: Dicti
           </ul>
         </nav>
         <div>
-          <p className="font-mono text-[10px] tracking-[0.24em] text-slate uppercase">{t.contact}</p>
-          <ul className="mt-4 space-y-2.5 text-sm text-steel">
-            <li className="flex items-center gap-2.5">
-              <MapPin className="h-4 w-4 text-gold" /> Toshkent, O‘zbekiston
+          <p className="label-caps text-slate">{t.contact}</p>
+          <ul className="mt-5 space-y-3 text-sm text-steel">
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" /> {site.office.address}
             </li>
             {contacts.map(({ icon: Icon, label, href }) => (
               <li key={label}>
-                <a href={href} className="flex items-center gap-2.5 transition hover:text-cyan">
-                  <Icon className="h-4 w-4 text-gold" /> {label}
+                <a href={href} className="flex items-center gap-3 tabular-nums transition hover:text-mist">
+                  <Icon className="h-4 w-4 shrink-0 text-gold" /> {label}
                 </a>
               </li>
             ))}
@@ -56,18 +54,13 @@ export function Footer({ t, nav, locale }: { t: Dictionary["footer"]; nav: Dicti
         </div>
       </div>
 
-      <p
-        aria-hidden
-        className="font-sharp relative mt-14 text-center text-[clamp(4.5rem,19vw,17rem)] leading-[0.8] font-extralight tracking-[0.04em] text-transparent select-none [-webkit-text-stroke:1px_rgb(226_184_89/0.22)] [mask-image:linear-gradient(180deg,#000_35%,transparent)]"
-      >
-        ATLANT
-      </p>
-
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 border-t border-line px-5 py-6 sm:px-8">
-        <p className="text-xs text-slate">
-          © {new Date().getFullYear()} {site.name}. {t.rights}
-        </p>
-        <BackToTop label={t.backToTop} />
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="flex items-center justify-between gap-4 border-t border-line py-6">
+          <p className="text-xs text-slate">
+            © {new Date().getFullYear()} {site.name}. {t.rights}
+          </p>
+          <BackToTop label={t.backToTop} />
+        </div>
       </div>
     </footer>
   );

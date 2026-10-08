@@ -12,7 +12,27 @@ const APOSTROPHES = "'`´‘’ʻʼʹ′";
 // oʻ/gʻ: a mark after o/g that continues the word (o'zbek), or a word-final
 // gʻ (bog', tog'). A mark after a word-final "o" is a closing quote: leave it.
 const OG_MARK = new RegExp(`([oOgG])[${APOSTROPHES}](?=\\p{L})|([gG])[${APOSTROPHES}](?!\\p{L})`, 'gu');
-const OPENING_QUOTE = /['‘`"“«]/;
+const SINGLE_QUOTES = "'‘’`";
+const BEFORE_OPENER = /[\s(«“"]/;
+const LETTER = /\p{L}/u;
+
+/**
+ * Whether a single quote opened earlier on the last line of `before` is still
+ * unclosed. In-word marks (o'zbek, ma'no) are neither openers nor closers.
+ */
+function singleQuoteOpen(before: string): boolean {
+  const line = before.slice(before.lastIndexOf('\n') + 1);
+  let open = false;
+  for (let i = 0; i < line.length; i++) {
+    if (!SINGLE_QUOTES.includes(line[i])) continue;
+    const prev = line[i - 1];
+    const next = line[i + 1];
+    const nextIsLetter = next !== undefined && LETTER.test(next);
+    if ((prev === undefined || BEFORE_OPENER.test(prev)) && nextIsLetter) open = true;
+    else if (prev !== undefined && !nextIsLetter && open) open = false;
+  }
+  return open;
+}
 const TUTUQ = new RegExp(`(\\p{L})[${APOSTROPHES}](?=\\p{L})`, 'gu');
 
 export function normalizeUzbekApostrophes(text: string, style: ApostropheStyle): string {
@@ -21,10 +41,9 @@ export function normalizeUzbekApostrophes(text: string, style: ApostropheStyle):
   const tutuq = style === 'official' ? 'ʼ' : "'";
   return text.replace(OG_MARK, (match, inWord: string | undefined, final: string | undefined, offset: number) => {
     if (inWord) return `${inWord}${og}`;
-    // A word-final g + mark is gʻ (bog', tog') unless the word opened with a
-    // quote: then the mark closes the quote ('yozing').
-    const wordStart = text.slice(0, offset).search(/\S*$/);
-    if (OPENING_QUOTE.test(text.charAt(wordStart))) return match;
+    // A word-final g + mark is gʻ (bog', tog') unless a single quote is still
+    // open on this line: then the mark closes it ('tezroq keling').
+    if (singleQuoteOpen(text.slice(0, offset + 1))) return match;
     return `${final}${og}`;
   }).replace(TUTUQ, (match, letter: string) => {
     // Already-normalised oʻ/gʻ marks must not be turned into a tutuq.

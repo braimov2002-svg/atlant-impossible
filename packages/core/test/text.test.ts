@@ -36,6 +36,13 @@ describe('normalizeUzbekApostrophes', () => {
   });
 
   it('does not turn a closing quote after -ing into g\u02BB', () => {
+    expect(normalizeUzbekApostrophes("U 'tezroq keling' dedi.", 'official')).toBe("U 'tezroq keling' dedi.");
+    expect(normalizeUzbekApostrophes('U \u2018tezroq keling\u2019 dedi.', 'ascii')).toBe('U \u2018tezroq keling\u2019 dedi.');
+    expect(normalizeUzbekApostrophes("U 'o'qing' dedi, keyin bog' tomon ketdi", 'official')).toBe(
+      "U 'o\u02BBqing' dedi, keyin bog\u02BB tomon ketdi",
+    );
+    expect(normalizeUzbekApostrophes('\u00ABTog\u2019\u00BB va \u201CBog\u2019\u201D', 'official')).toBe('\u00ABTog\u02BB\u00BB va \u201CBog\u02BB\u201D');
+    expect(normalizeUzbekApostrophes('Bu bog\u2019.', 'ascii')).toBe("Bu bog'.");
     expect(normalizeUzbekApostrophes("Ustoz 'yozing' dedi.", 'official')).toBe("Ustoz 'yozing' dedi.");
     expect(normalizeUzbekApostrophes('Ustoz \u2018yozing\u2019 dedi.', 'ascii')).toBe('Ustoz \u2018yozing\u2019 dedi.');
     expect(normalizeUzbekApostrophes("Biz tog' tomon bordik", 'official')).toBe('Biz tog\u02BB tomon bordik');

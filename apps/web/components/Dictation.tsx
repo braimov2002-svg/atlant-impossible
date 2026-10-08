@@ -1,9 +1,19 @@
 'use client';
 
-import { DEFAULT_SETTINGS, outputLanguage, PROVIDERS, type DictationSettings, type OutputLanguage } from '@ovozyoz/core';
+import {
+  DEFAULT_SETTINGS,
+  DictationError,
+  modelOverrides,
+  outputLanguage,
+  PROVIDERS,
+  translateText,
+  userMessage,
+  type DictationSettings,
+  type OutputLanguage,
+} from '@ovozyoz/core';
 import { AnimatePresence, motion } from 'motion/react';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { copyText } from '@/lib/clipboard';
+import { copyText, copyWhenReady } from '@/lib/clipboard';
 import {
   HISTORY_LIMIT,
   loadApiKeys,
@@ -23,6 +33,7 @@ import { DesktopDownloads } from './DesktopDownloads';
 import { LanguageBar } from './LanguageBar';
 import { MicButton } from './MicButton';
 import { SettingsSheet } from './SettingsSheet';
+import { TranslateBox } from './TranslateBox';
 
 const STATUS: Record<Phase, string> = {
   idle: 'Bosing va gapiring',
@@ -75,42 +86,82 @@ export function Dictation() {
     toastTimer.current = setTimeout(() => setToast(null), kind === 'error' ? 6000 : 2500);
   }, []);
 
+  const handleResult = useCallback(
+    ({ text: result, copied }: { text: string; copied: boolean }) => {
+      setText(result);
+      setHistory((items) => {
+        const next = [
+          { id: newId(), text: result, output: latest.current.settings.output, at: Date.now() },
+          ...items,
+        ].slice(0, HISTORY_LIMIT);
+        saveHistory(next);
+        return next;
+      });
+      if (copied) showToast('ok', 'Matn nusxalandi — istalgan joyga joylang');
+      else if (latest.current.prefs.autoCopy) {
+        showToast('error', "Avtomatik nusxalab bo'lmadi — «Nusxalash» tugmasini bosing");
+      }
+    },
+    [showToast],
+  );
+
+  const handleError = useCallback(
+    (message: string, error: unknown) => {
+      showToast('error', message);
+      const code = (error as { code?: string })?.code;
+      if (code === 'no-api-key' || code === 'invalid-api-key' || code === 'billing' || code === 'key-unreadable') {
+        setSettingsOpen(true);
+      }
+    },
+    [showToast],
+  );
+
   const dictation = useDictation({
     config: useCallback(() => {
       const { settings: s, apiKeys: k, prefs: p } = latest.current;
       return { settings: s, apiKey: k[s.provider], autoCopy: p.autoCopy };
     }, []),
-    onResult: useCallback(
-      ({ text: result, copied }: { text: string; copied: boolean }) => {
-        setText(result);
-        setHistory((items) => {
-          const next = [
-            { id: newId(), text: result, output: latest.current.settings.output, at: Date.now() },
-            ...items,
-          ].slice(0, HISTORY_LIMIT);
-          saveHistory(next);
-          return next;
-        });
-        if (copied) showToast('ok', 'Matn nusxalandi — istalgan joyga joylang');
-        else if (latest.current.prefs.autoCopy) {
-          showToast('error', "Avtomatik nusxalab bo'lmadi — «Nusxalash» tugmasini bosing");
-        }
-      },
-      [showToast],
-    ),
-    onError: useCallback(
-      (message: string, error: unknown) => {
-        showToast('error', message);
-        const code = (error as { code?: string })?.code;
-        if (code === 'no-api-key' || code === 'invalid-api-key' || code === 'billing' || code === 'key-unreadable') {
-          setSettingsOpen(true);
-        }
-      },
-      [showToast],
-    ),
+    onResult: handleResult,
+    onError: handleError,
   });
 
   const busy = dictation.phase !== 'idle';
+
+  const [translating, setTranslating] = useState(false);
+  const translate = useCallback(
+    (input: string) => {
+      const { settings: s, apiKeys: k, prefs: p } = latest.current;
+      const apiKey = k[s.provider];
+      if (!apiKey) {
+        showToast('error', userMessage(new DictationError('no-api-key')));
+        setSettingsOpen(true);
+        return;
+      }
+      setTranslating(true);
+      const textPromise = translateText({
+        text: input,
+        output: s.output,
+        provider: s.provider,
+        apiKey,
+        apostrophes: s.apostrophes,
+        ...(s.provider === 'openai' ? { textModel: modelOverrides(s).textModel } : modelOverrides(s)),
+      }).then((r) => r.text);
+      // Started inside the tap: iOS only allows clipboard writes from a gesture.
+      const scheduledCopy = p.autoCopy ? copyWhenReady(textPromise) : null;
+      void (async () => {
+        try {
+          const result = await textPromise;
+          const copied = scheduledCopy ? await scheduledCopy : p.autoCopy ? await copyText(result) : false;
+          handleResult({ text: result, copied });
+        } catch (error) {
+          handleError(userMessage(error), error);
+        } finally {
+          setTranslating(false);
+        }
+      })();
+    },
+    [showToast, handleResult, handleError],
+  );
 
   const updateSettings = (patch: Partial<DictationSettings>) => {
     const next = { ...settings, ...patch };
@@ -300,6 +351,8 @@ export function Dictation() {
           </button>
         </div>
       </section>
+
+      <TranslateBox output={settings.output} translating={translating} disabled={busy} onTranslate={translate} />
 
       {history.length > 0 && (
         <HistoryList items={history} onPick={pickHistory} onClear={clearHistory} />

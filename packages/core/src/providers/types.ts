@@ -17,6 +17,19 @@ export interface ProviderRequest {
   fetch?: typeof fetch;
 }
 
+/** Text-only request: translate or re-script typed or transcribed text. */
+export interface TextRequest {
+  text: string;
+  output: OutputLanguage;
+  apiKey: string;
+  /** Gemini: model to use; OpenAI: the text (chat) model. */
+  model?: string;
+  /** Retry after an answer in the wrong language: insist harder. */
+  strict?: boolean;
+  signal?: AbortSignal;
+  fetch?: typeof fetch;
+}
+
 export interface ProviderResult {
   /** Final text before shared clean-up (quotes, apostrophes). */
   text: string;

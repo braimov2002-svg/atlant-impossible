@@ -5,6 +5,7 @@ import { GEMINI, geminiTranscribe } from './providers/gemini';
 import { OPENAI, openaiTranscribe } from './providers/openai';
 import type { ProviderId, ProviderInfo, ProviderRequest } from './providers/types';
 import { cleanModelText, normalizeUzbekApostrophes, type ApostropheStyle } from './text';
+import { anySignal, ensureLanguage, providerRewrite } from './translate';
 
 export const PROVIDERS: Readonly<Record<ProviderId, ProviderInfo>> = {
   gemini: GEMINI,
@@ -51,9 +52,30 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
   const request: ProviderRequest = { ...options, apiKey: options.apiKey.trim(), signal };
 
   const run = provider === 'openai' ? openaiTranscribe : geminiTranscribe;
-  let result;
+  let text: string;
+  let model: string;
   try {
-    result = await run(request);
+    const result = await run(request);
+    model = result.model;
+    text = cleanModelText(result.text);
+    if (!text || text.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
+    // Models sometimes write down what was said instead of translating it
+    // ("RU" chosen, Uzbek text back): check and translate in a text-only step.
+    let rewriteModel = '';
+    text = await ensureLanguage(text, options.output, async (source, strict) => {
+      const rewritten = await providerRewrite(provider, {
+        text: source,
+        output: options.output,
+        apiKey: request.apiKey,
+        model: provider === 'openai' ? options.textModel : result.model,
+        strict,
+        signal,
+        fetch: options.fetch,
+      });
+      rewriteModel = rewritten.model;
+      return rewritten.text;
+    });
+    if (rewriteModel && rewriteModel !== model) model = `${model} + ${rewriteModel}`;
   } catch (error) {
     if (timeout.signal.aborted && !options.signal?.aborted) throw new DictationError('timeout');
     if (options.signal?.aborted) throw new DictationError('cancelled');
@@ -62,23 +84,6 @@ export async function transcribe(options: TranscribeOptions): Promise<Transcribe
     clearTimeout(timer);
   }
 
-  let text = cleanModelText(result.text);
-  if (!text || text.includes(EMPTY_SENTINEL)) throw new DictationError('empty-result');
   if (options.output === 'uz-latn') text = normalizeUzbekApostrophes(text, apostrophes);
-
-  return { text, provider, model: result.model, durationSec };
-}
-
-/** AbortSignal.any() with a fallback for Safari < 17.4. */
-function anySignal(signals: AbortSignal[]): AbortSignal {
-  if (typeof AbortSignal.any === 'function') return AbortSignal.any(signals);
-  const controller = new AbortController();
-  for (const signal of signals) {
-    if (signal.aborted) {
-      controller.abort(signal.reason);
-      break;
-    }
-    signal.addEventListener('abort', () => controller.abort(signal.reason), { once: true });
-  }
-  return controller.signal;
+  return { text, provider, model, durationSec };
 }

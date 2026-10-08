@@ -19,6 +19,8 @@ export type DictationErrorCode =
   | 'busy'
   | 'key-unreadable'
   | 'provider'
+  | 'empty-text'
+  | 'text-too-long'
   | 'cancelled';
 
 /** Error with a stable code so every UI can show the same Uzbek message. */
@@ -61,6 +63,8 @@ const MESSAGES: Record<DictationErrorCode, string> = {
   'key-unreadable': "Saqlangan kalitni o'qib bo'lmadi (tizim kalitlar ombori ruxsat bermadi). Qayta urinib ko'ring yoki kalitni qayta kiriting.",
   'unsupported-language': "Tanlangan model bu tilni tushunmadi. Sozlamalarda boshqa modelni tanlab ko'ring.",
   provider: 'Xizmatda xatolik yuz berdi.',
+  'empty-text': 'Tarjima qilish uchun matn yozing yoki joylang.',
+  'text-too-long': "Matn juda uzun (ko'pi bilan 10 000 belgi). Qismlarga bo'lib tarjima qiling.",
   cancelled: 'Bekor qilindi.',
 };
 

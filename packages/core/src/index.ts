@@ -5,6 +5,8 @@ export * from './transliterate';
 export * from './prompt';
 export * from './settings';
 export * from './transcribe';
+export * from './translate';
+export * from './detect';
 export * from './audio/wav';
 export * from './audio/resample';
 export * from './audio/levels';

@@ -1,7 +1,7 @@
 import { DictationError } from '../errors';
-import { audioSystemPrompt, audioUserPrompt } from '../prompt';
+import { audioSystemPrompt, audioUserPrompt, rewriteSystemPrompt } from '../prompt';
 import { bytesToBase64, request } from './http';
-import type { ProviderInfo, ProviderRequest, ProviderResult } from './types';
+import type { ProviderInfo, ProviderRequest, ProviderResult, TextRequest } from './types';
 
 export const GEMINI: ProviderInfo = {
   id: 'gemini',
@@ -123,11 +123,15 @@ function post(req: ProviderRequest, model: string, thinking: ThinkingConfig): Pr
   });
 }
 
-async function callModel(req: ProviderRequest, model: string): Promise<unknown> {
+function callModel(req: ProviderRequest, model: string): Promise<unknown> {
+  return callWithThinking(model, (thinking) => post(req, model, thinking));
+}
+
+async function callWithThinking(model: string, send: (thinking: ThinkingConfig) => Promise<unknown>): Promise<unknown> {
   const ladder = thinkingLadder(model);
   for (let i = 0; ; i++) {
     try {
-      return await post(req, model, ladder[i]);
+      return await send(ladder[i]);
     } catch (error) {
       const thinkingRejected =
         error instanceof DictationError && error.status === 400 && /thinking/i.test(error.detail ?? '');
@@ -136,13 +140,46 @@ async function callModel(req: ProviderRequest, model: string): Promise<unknown> 
   }
 }
 
-export async function geminiTranscribe(req: ProviderRequest): Promise<ProviderResult> {
-  let model = req.model?.trim() || GEMINI.defaultModel;
+export function geminiTextBody(req: TextRequest, model: string, thinking: ThinkingConfig): Record<string, unknown> {
+  return {
+    systemInstruction: { parts: [{ text: rewriteSystemPrompt(req.output, req.strict) }] },
+    contents: [{ role: 'user', parts: [{ text: req.text }] }],
+    generationConfig: {
+      maxOutputTokens: 32768,
+      ...(isGemini2(model) ? { temperature: 0 } : {}),
+      ...(thinking ? { thinkingConfig: thinking } : {}),
+    },
+  };
+}
+
+/** Text-only call: translate or re-script `req.text` into `req.output`. */
+export function geminiRewrite(req: TextRequest): Promise<ProviderResult> {
+  return withModelFallback(req.model, (model) =>
+    callWithThinking(model, (thinking) =>
+      request(req.fetch ?? fetch, `${ENDPOINT}/${encodeURIComponent(model)}:generateContent`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': req.apiKey },
+        body: JSON.stringify(geminiTextBody(req, model, thinking)),
+        signal: req.signal,
+      }),
+    ),
+  );
+}
+
+export function geminiTranscribe(req: ProviderRequest): Promise<ProviderResult> {
+  return withModelFallback(req.model, (model) => callModel(req, model));
+}
+
+async function withModelFallback(
+  requested: string | undefined,
+  call: (model: string) => Promise<unknown>,
+): Promise<ProviderResult> {
+  let model = requested?.trim() || GEMINI.defaultModel;
   const tried = new Set<string>();
   for (;;) {
     tried.add(model);
     try {
-      return { text: parseGeminiResponse(await callModel(req, model)), model };
+      return { text: parseGeminiResponse(await call(model)), model };
     } catch (error) {
       if (!(error instanceof DictationError)) throw error;
       // A retired model (404) moves to the live alias; a used-up free quota

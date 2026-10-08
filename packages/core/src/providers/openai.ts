@@ -3,7 +3,7 @@ import { rewriteSystemPrompt, transcriptionStylePrompt } from '../prompt';
 import { cyrillicRatio, uzCyrillicToLatin } from '../transliterate';
 import { DictationError } from '../errors';
 import { request } from './http';
-import type { ProviderInfo, ProviderRequest, ProviderResult } from './types';
+import type { ProviderInfo, ProviderRequest, ProviderResult, TextRequest } from './types';
 
 export const OPENAI: ProviderInfo = {
   id: 'openai',
@@ -113,24 +113,40 @@ export async function openaiTranscribe(req: ProviderRequest): Promise<ProviderRe
   if (rewrite === 'none') return { text: transcript, model };
   if (rewrite === 'local-latin') return { text: uzCyrillicToLatin(transcript), model };
 
-  const textModel = req.textModel?.trim() || OPENAI.defaultTextModel!;
+  const rewritten = await openaiRewrite({
+    text: transcript,
+    output: req.output,
+    apiKey: req.apiKey,
+    model: req.textModel,
+    signal: req.signal,
+    fetch: req.fetch,
+  });
+  return { text: rewritten.text, model: `${model} + ${rewritten.model}` };
+}
+
+type ChatCompletion = { choices?: Array<{ message?: { content?: string | null } }> };
+
+/** Text-only call: translate or re-script `req.text` with a chat model. */
+export async function openaiRewrite(req: TextRequest): Promise<ProviderResult> {
+  const fetchImpl = req.fetch ?? fetch;
+  const textModel = req.model?.trim() || OPENAI.defaultTextModel!;
   const rewriteOnce = (effort: string | undefined) =>
     request(fetchImpl, `${API}/chat/completions`, {
       method: 'POST',
-      headers: { ...auth, 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${req.apiKey}`, 'Content-Type': 'application/json' },
       // No temperature: reasoning models reject it; the prompt keeps output literal.
       body: JSON.stringify({
         model: textModel,
         ...(effort ? { reasoning_effort: effort } : {}),
         messages: [
-          { role: 'system', content: rewriteSystemPrompt(req.output) },
-          { role: 'user', content: transcript },
+          { role: 'system', content: rewriteSystemPrompt(req.output, req.strict) },
+          { role: 'user', content: req.text },
         ],
       }),
       signal: req.signal,
-    }) as Promise<{ choices?: Array<{ message?: { content?: string | null } }> }>;
+    }) as Promise<ChatCompletion>;
 
-  let completion: { choices?: Array<{ message?: { content?: string | null } }> };
+  let completion: ChatCompletion;
   const effort = reasoningEffort(textModel);
   try {
     completion = await rewriteOnce(effort);
@@ -140,6 +156,5 @@ export async function openaiTranscribe(req: ProviderRequest): Promise<ProviderRe
     if (!effortRejected) throw error;
     completion = await rewriteOnce(undefined);
   }
-
-  return { text: completion.choices?.[0]?.message?.content ?? '', model: `${model} + ${textModel}` };
+  return { text: completion.choices?.[0]?.message?.content ?? '', model: textModel };
 }

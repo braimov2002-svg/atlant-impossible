@@ -5,7 +5,7 @@ All values below were computed by the author's code in `dissertation/code` (run_
 ## Data and software
 - Spectra: (1) the developed semi-analytical model (DM, this work, code xspec.py); (2) SpekPy v2.5.4 (reference, "casim" physics model, Cu anode supported 10–50 kV).
 - mu/rho and mu_en/rho: NIST tables of Hubbell & Seltzer (SRD 126) for tissue, water, air and Ag/I/Gd/Pt/Au/Bi; elemental attenuation of filters from xraylib 4.3.0 (agrees with NIST to <0.1 %).
-- IMPORTANT methodological finding: xraylib 4.3.0 function CS_Energy (mu_en/rho) is wrong for light elements in 15–45 keV: for O at 30 keV it gives 0.108 cm2/g versus NIST 0.173 cm2/g (−37 %); for C 0.0515 vs 0.0661; for Ag it agrees with NIST (16.58 vs 16.60). Using it would have overestimated the DEF strongly (e.g. 1.72 instead of 1.48 for 1 % Ag, Al 1 mm). Therefore NIST tables were used directly. The energy-transfer coefficient reconstructed from xraylib photo-absorption + Compton DCS reproduces NIST mu_en/rho within 0.3 % (O, C, H at 20–40 keV), which also validates the Monte Carlo interaction data.
+- IMPORTANT methodological finding: xraylib 4.3.0 function CS_Energy (mu_en/rho) is wrong for light elements in 15–45 keV: it underestimates by up to 56 % (C at 15 keV: 0.249 vs NIST 0.563 cm2/g; N −48 % at 20 keV); for O at 30 keV it gives 0.108 cm2/g versus NIST 0.173 cm2/g (−37 %); for ICRU-44 tissue up to −31 % (30 keV); for Ag it agrees with NIST (16.58 vs 16.60). Using it would have overestimated the DEF strongly (1.62 instead of 1.48 for 1 % Ag in ICRU-44 tissue, Al 1 mm). Therefore NIST tables were used directly. The energy-transfer coefficient reconstructed from xraylib photo-absorption + Compton DCS reproduces NIST mu_en/rho within 0.3 % (O, C, H at 20–40 keV), which also validates the Monte Carlo interaction data.
 - Reference tissue: ICRU-44 soft tissue (H 10.2, C 14.3, N 3.4, O 70.8, Na 0.2, P 0.3, S 0.3, Cl 0.2, K 0.3 % by mass; 1.06 g/cm3). Also checked: ICRU four-component tissue, water.
 - Python 3.13, NumPy, SciPy, Matplotlib.
 
@@ -22,7 +22,7 @@ All values below were computed by the author's code in `dissertation/code` (run_
 
 ## Validation of the DM against SpekPy (Table t3_1, t3_1w; Fig. fig05, fig06)
 - With 1 mm Al filtration (K lines removed): HVL deviation -4.6 to -3.5 %, mean-energy difference ≤ 0.54 keV for 25–50 kV and 6–30°.
-- Unfiltered (0.5 mm Be): HVL deviation -19.4 to -2.6 %; the DM K-line/bremsstrahlung photon ratio is 0.86–1.71 versus 1.51–2.31 in SpekPy, i.e. the DM underestimates the Cu K lines by ~25–43 % (largest at low kV, where the Gryzinski cross-section rises too slowly near threshold; SpekPy uses PENELOPE/DWBA-based data).
+- Unfiltered (0.5 mm Be): HVL deviation -19.4 to -2.6 %; the DM K-line/bremsstrahlung photon ratio is 0.86–1.71 versus 1.51–2.31 in SpekPy, i.e. the DM underestimates the Cu K lines (relative to the continuum) by 26–43 % (largest at low kV, where the Gryzinski cross-section rises too slowly near threshold; SpekPy uses PENELOPE/DWBA-based data).
 - Absolute output: DM/SpekPy air-kerma ratio 1.08–1.22 unfiltered and 1.21–1.42 with 1 mm Al: the DM overestimates the absolute yield of hard bremsstrahlung, mainly because electron backscattering from the anode (backscatter coefficient of Cu ~0.3) is neglected and the non-relativistic Born cross-section is approximate. The DEF depends only on the spectral shape, so this does not affect DEF.
 - W anode check (12°, 2.5 mm Al): 50 kV: HVL DM 1.651 vs SpekPy 1.75 mm Al, mean energy 31.34 vs 32.22 keV; 80 kV: HVL DM 2.693 vs SpekPy 2.734 mm Al, mean energy 41.75 vs 42.9 keV; 100 kV: HVL DM 3.475 vs SpekPy 3.458 mm Al, mean energy 48.01 vs 49.15 keV. (For orientation only: IEC 61267 RQR3, a 50 kV W beam, has first HVL 1.78 mm Al.)
 
@@ -57,8 +57,8 @@ All values below were computed by the author's code in `dissertation/code` (run_
 - K-edge filters Mo (20.0 keV), Ag (25.5 keV) and Sn (29.2 keV) cut the spectrum just above their edges; Ag and Mo remove the photons above the Ag K-edge that are most useful, Sn keeps the 25.5–29.2 keV window but removes > 29.2 keV.
 
 ## Mass energy-absorption ratio Ag / tissue (Fig. fig02, fig03)
-- 8.0 keV: 21.0; 10.0 keV: 23.0; 15.0 keV: 26.9; 20.0 keV: 29.9; 25.0 keV: 31.8; 25.6 keV: 76.2; 30.0 keV: 102.7; 35.0 keV: 120.0; 40.0 keV: 136.7; 45.0 keV: 138.8 (jump at the K-edge 25.514 keV from ~32 to ~76; maximum ~139 near 40–45 keV).
-- Above the Ag K-edge mu/rho of Ag jumps ×5.8 (9.53 -> 55.4 cm2/g) but mu_en/rho only ×2.4 (8.54 -> 20.3), because ~83 % of K vacancies relax by K fluorescence (omega_K(Ag) = 0.831; Ag Kα ≈ 22 keV) whose energy is not absorbed locally in the kerma approximation.
+- 8.0 keV: 21.1; 10.0 keV: 23.0; 15.0 keV: 27.0; 20.0 keV: 29.9; 25.0 keV: 31.9; 25.6 keV: 76.8; 30.0 keV: 102.8; 35.0 keV: 120.1; 40.0 keV: 136.8; 45.0 keV: 138.5 (jump at the K-edge 25.514 keV from ~32 to ~76; maximum ~139 near 40–50 keV).
+- Above the Ag K-edge mu/rho of Ag jumps ×5.8 (9.53 -> 55.4 cm2/g) but mu_en/rho only ×2.4 (8.53 -> 20.3), because ~83 % of K vacancies relax by K fluorescence (omega_K(Ag) = 0.831; Ag Kα ≈ 22 keV) whose energy is not absorbed locally in the kerma approximation.
 
 ## DEF (kerma/CPE approximation, surface, ICRU-44 tissue; Table t3_5; Fig. fig15)
 - none: w=0.1%: 1.0201, w=0.2%: 1.0403, w=0.5%: 1.1007, w=1.0%: 1.2015, w=2.0%: 1.403 (DM 1 %: 1.2012; water as reference medium 1 %: 1.2018)

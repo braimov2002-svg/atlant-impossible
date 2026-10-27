@@ -2510,72 +2510,72 @@
   {
    "E": 8.0,
    "Ag_mu": 216.409,
-   "Ag_muen": 208.909,
+   "Ag_muen": 209.2,
    "T_muen": 9.9322,
-   "ratio": 21.0
+   "ratio": 21.1
   },
   {
    "E": 10.0,
    "Ag_mu": 119.253,
-   "Ag_muen": 114.678,
+   "Ag_muen": 114.9,
    "T_muen": 4.9864,
    "ratio": 23.0
   },
   {
    "E": 15.0,
    "Ag_mu": 39.98,
-   "Ag_muen": 37.741,
+   "Ag_muen": 37.8,
    "T_muen": 1.4019,
-   "ratio": 26.9
+   "ratio": 27.0
   },
   {
    "E": 20.0,
    "Ag_mu": 18.357,
-   "Ag_muen": 16.923,
+   "Ag_muen": 16.95,
    "T_muen": 0.5662,
    "ratio": 29.9
   },
   {
    "E": 25.0,
    "Ag_mu": 10.059,
-   "Ag_muen": 9.024,
+   "Ag_muen": 9.038,
    "T_muen": 0.2834,
-   "ratio": 31.8
+   "ratio": 31.9
   },
   {
    "E": 25.6,
    "Ag_mu": 54.928,
-   "Ag_muen": 20.069,
+   "Ag_muen": 20.225,
    "T_muen": 0.2634,
-   "ratio": 76.2
+   "ratio": 76.8
   },
   {
    "E": 30.0,
    "Ag_mu": 36.685,
-   "Ag_muen": 16.584,
+   "Ag_muen": 16.6,
    "T_muen": 0.1615,
-   "ratio": 102.7
+   "ratio": 102.8
   },
   {
    "E": 35.0,
    "Ag_mu": 24.524,
-   "Ag_muen": 12.551,
+   "Ag_muen": 12.563,
    "T_muen": 0.1046,
-   "ratio": 120.0
+   "ratio": 120.1
   },
   {
    "E": 40.0,
    "Ag_mu": 17.192,
-   "Ag_muen": 9.86,
+   "Ag_muen": 9.869,
    "T_muen": 0.0721,
-   "ratio": 136.7
+   "ratio": 136.8
   },
   {
    "E": 45.0,
    "Ag_mu": 12.542,
-   "Ag_muen": 7.65,
+   "Ag_muen": 7.633,
    "T_muen": 0.0551,
-   "ratio": 138.8
+   "ratio": 138.5
   }
  ],
  "atomic_table": [

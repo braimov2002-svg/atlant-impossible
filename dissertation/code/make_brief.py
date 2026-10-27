@@ -36,8 +36,8 @@ A('## Data and software')
 A('- Spectra: (1) the developed semi-analytical model (DM, this work, code xspec.py); (2) SpekPy v2.5.4 (reference, "casim" physics model, Cu anode supported 10–50 kV).')
 A('- mu/rho and mu_en/rho: NIST tables of Hubbell & Seltzer (SRD 126) for tissue, water, air and Ag/I/Gd/Pt/Au/Bi; elemental attenuation of filters from xraylib 4.3.0 (agrees with NIST to <0.1 %).')
 A('- IMPORTANT methodological finding: xraylib 4.3.0 function CS_Energy (mu_en/rho) is wrong for light elements in 15–45 keV: '
-  'for O at 30 keV it gives 0.108 cm2/g versus NIST 0.173 cm2/g (−37 %); for C 0.0515 vs 0.0661; for Ag it agrees with NIST (16.58 vs 16.60). '
-  'Using it would have overestimated the DEF strongly (e.g. 1.72 instead of 1.48 for 1 % Ag, Al 1 mm). Therefore NIST tables were used directly. '
+  'it underestimates by up to 56 % (C at 15 keV: 0.249 vs NIST 0.563 cm2/g; N −48 % at 20 keV); for O at 30 keV it gives 0.108 cm2/g versus NIST 0.173 cm2/g (−37 %); for ICRU-44 tissue up to −31 % (30 keV); for Ag it agrees with NIST (16.58 vs 16.60). '
+  'Using it would have overestimated the DEF strongly (1.62 instead of 1.48 for 1 % Ag in ICRU-44 tissue, Al 1 mm). Therefore NIST tables were used directly. '
   'The energy-transfer coefficient reconstructed from xraylib photo-absorption + Compton DCS reproduces NIST mu_en/rho within 0.3 % (O, C, H at 20–40 keV), which also validates the Monte Carlo interaction data.')
 A('- Reference tissue: ICRU-44 soft tissue (H 10.2, C 14.3, N 3.4, O 70.8, Na 0.2, P 0.3, S 0.3, Cl 0.2, K 0.3 % by mass; 1.06 g/cm3). Also checked: ICRU four-component tissue, water.')
 A('- Python 3.13, NumPy, SciPy, Matplotlib.')
@@ -56,7 +56,7 @@ A('## Validation of the DM against SpekPy (Table t3_1, t3_1w; Fig. fig05, fig06)
 v1 = [v for v in R['validation_cu'] if v['filter'] != 'none']
 v0 = [v for v in R['validation_cu'] if v['filter'] == 'none']
 A(f"- With 1 mm Al filtration (K lines removed): HVL deviation {min(v['HVL_dev_pct'] for v in v1)} to {max(v['HVL_dev_pct'] for v in v1)} %, mean-energy difference ≤ {max(abs(v['Emean_DM']-v['Emean_SP']) for v in v1):.2f} keV for 25–50 kV and 6–30°.")
-A(f"- Unfiltered (0.5 mm Be): HVL deviation {min(v['HVL_dev_pct'] for v in v0)} to {max(v['HVL_dev_pct'] for v in v0)} %; the DM K-line/bremsstrahlung photon ratio is {min(v['char_to_brems_DM'] for v in v0):.2f}–{max(v['char_to_brems_DM'] for v in v0):.2f} versus {min(v['char_to_brems_SP'] for v in v0):.2f}–{max(v['char_to_brems_SP'] for v in v0):.2f} in SpekPy, i.e. the DM underestimates the Cu K lines by ~25–43 % (largest at low kV, where the Gryzinski cross-section rises too slowly near threshold; SpekPy uses PENELOPE/DWBA-based data).")
+A(f"- Unfiltered (0.5 mm Be): HVL deviation {min(v['HVL_dev_pct'] for v in v0)} to {max(v['HVL_dev_pct'] for v in v0)} %; the DM K-line/bremsstrahlung photon ratio is {min(v['char_to_brems_DM'] for v in v0):.2f}–{max(v['char_to_brems_DM'] for v in v0):.2f} versus {min(v['char_to_brems_SP'] for v in v0):.2f}–{max(v['char_to_brems_SP'] for v in v0):.2f} in SpekPy, i.e. the DM underestimates the Cu K lines (relative to the continuum) by 26–43 % (largest at low kV, where the Gryzinski cross-section rises too slowly near threshold; SpekPy uses PENELOPE/DWBA-based data).")
 A(f"- Absolute output: DM/SpekPy air-kerma ratio {min(v['K_ratio'] for v in v0):.2f}–{max(v['K_ratio'] for v in v0):.2f} unfiltered and {min(v['K_ratio'] for v in v1):.2f}–{max(v['K_ratio'] for v in v1):.2f} with 1 mm Al: the DM overestimates the absolute yield of hard bremsstrahlung, mainly because electron backscattering from the anode (backscatter coefficient of Cu ~0.3) is neglected and the non-relativistic Born cross-section is approximate. The DEF depends only on the spectral shape, so this does not affect DEF.")
 A('- W anode check (12°, 2.5 mm Al): ' + '; '.join(f"{v['kvp']} kV: HVL DM {v['HVL_DM']} vs SpekPy {v['HVL_SP']} mm Al, mean energy {v['Emean_DM']} vs {v['Emean_SP']} keV" for v in R['validation_w']) + '. (For orientation only: IEC 61267 RQR3, a 50 kV W beam, has first HVL 1.78 mm Al.)')
 A('')
@@ -78,8 +78,8 @@ A('- Cu filters transmit their own Kα line (below the Cu K-edge, 8.98 keV) whil
 A('- K-edge filters Mo (20.0 keV), Ag (25.5 keV) and Sn (29.2 keV) cut the spectrum just above their edges; Ag and Mo remove the photons above the Ag K-edge that are most useful, Sn keeps the 25.5–29.2 keV window but removes > 29.2 keV.')
 A('')
 A('## Mass energy-absorption ratio Ag / tissue (Fig. fig02, fig03)')
-A('- ' + '; '.join(f"{c['E']} keV: {c['ratio']}" for c in R['coeff_points']) + ' (jump at the K-edge 25.514 keV from ~32 to ~76; maximum ~139 near 40–45 keV).')
-A('- Above the Ag K-edge mu/rho of Ag jumps ×5.8 (9.53 -> 55.4 cm2/g) but mu_en/rho only ×2.4 (8.54 -> 20.3), because ~83 % of K vacancies relax by K fluorescence (omega_K(Ag) = 0.831; Ag Kα ≈ 22 keV) whose energy is not absorbed locally in the kerma approximation.')
+A('- ' + '; '.join(f"{c['E']} keV: {c['ratio']}" for c in R['coeff_points']) + ' (jump at the K-edge 25.514 keV from ~32 to ~76; maximum ~139 near 40–50 keV).')
+A('- Above the Ag K-edge mu/rho of Ag jumps ×5.8 (9.53 -> 55.4 cm2/g) but mu_en/rho only ×2.4 (8.53 -> 20.3), because ~83 % of K vacancies relax by K fluorescence (omega_K(Ag) = 0.831; Ag Kα ≈ 22 keV) whose energy is not absorbed locally in the kerma approximation.')
 A('')
 A('## DEF (kerma/CPE approximation, surface, ICRU-44 tissue; Table t3_5; Fig. fig15)')
 for r_ in R['DEF_table']:

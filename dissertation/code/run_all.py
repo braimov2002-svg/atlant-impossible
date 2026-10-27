@@ -340,9 +340,9 @@ np.savetxt(os.path.join(DATA, 'coeffs.csv'),
                  mass_coeff(TISSUE, Eg2, 'muen'), mass_coeff(WATER, Eg2, 'muen'), mass_coeff(29, Eg2, 'mu'),
                  mass_coeff(4, Eg2, 'mu'), mass_coeff(13, Eg2, 'mu'), mass_coeff(50, Eg2, 'mu')],
            delimiter=',', header='E,Ag_mu,Ag_muen,T_mu,T_muen,W_muen,Cu_mu,Be_mu,Al_mu,Sn_mu', comments='')
-R['coeff_points'] = [dict(E=e, Ag_mu=r(xr.CS_Total(47, e), 3), Ag_muen=r(xr.CS_Energy(47, e), 3),
+R['coeff_points'] = [dict(E=e, Ag_mu=r(mass_coeff(47, [e], 'mu')[0], 3), Ag_muen=r(mass_coeff(47, [e], 'muen')[0], 3),
                           T_muen=r(mass_coeff(TISSUE, [e], 'muen')[0], 4),
-                          ratio=r(xr.CS_Energy(47, e) / mass_coeff(TISSUE, [e], 'muen')[0], 1))
+                          ratio=r(mass_coeff(47, [e], 'muen')[0] / mass_coeff(TISSUE, [e], 'muen')[0], 1))
                      for e in [8.0, 10.0, 15.0, 20.0, 25.0, 25.6, 30.0, 35.0, 40.0, 45.0]]
 R['atomic_table'] = [dict(sym=xr.AtomicNumberToSymbol(Z), Z=Z, rho=DENSITY.get(Z, xr.ElementDensity(Z)),
                           EK=r(xr.EdgeEnergy(Z, xr.K_SHELL), 3),

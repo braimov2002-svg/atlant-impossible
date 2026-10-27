@@ -156,7 +156,7 @@ def preprocess(lang, text, order, counts):
     def fig_sub(m):
         fid, cap = m.group(1), m.group(2).strip()
         path = os.path.join(D, 'figures', lang, fid + '.png')
-        return f'\n\n![{labels["__cap_" + fid]}{cap}]({path}){{width=14.5cm}}\n\n'
+        return f'\n\n![{labels["__cap_" + fid]}{cap}]({path}){{width=13.5cm}}\n\n'
     text = re.sub(r'\{\{FIG:([\w]+)\|(.+?)\}\}', fig_sub, text, flags=re.S)
 
     def tab_sub(m):
@@ -296,6 +296,7 @@ def make_reference(path):
                    ('TitleLeft', dict(size=14, align=WD_ALIGN_PARAGRAPH.LEFT, first=0, spacing=1.15, after=0)),
                    ('TitleBig', dict(size=16, align=WD_ALIGN_PARAGRAPH.CENTER, first=0, spacing=1.15, after=0)),
                    ('Keywords', dict(size=14, align=WD_ALIGN_PARAGRAPH.JUSTIFY, first=1.25, spacing=1.5, after=0)),
+                   ('Annotation', dict(size=12, align=WD_ALIGN_PARAGRAPH.JUSTIFY, first=1.0, spacing=1.15, after=3)),
                    ('TOCLine1', dict(size=14, align=WD_ALIGN_PARAGRAPH.LEFT, first=0, spacing=1.15, after=2)),
                    ('TOCLine2', dict(size=14, align=WD_ALIGN_PARAGRAPH.LEFT, first=0, spacing=1.15, after=2, left=0.75))]:
         if nm not in [s.name for s in st]:
@@ -645,8 +646,8 @@ def build(lang, passes=2):
         f = os.path.join(D, 'src', L, '00_annotation.md')
         if os.path.exists(f):
             a = open(f, encoding='utf-8').read().strip()
-            a = re.sub(r'^#\s+.*$', '# ' + c['ann_titles'][L], a, count=1, flags=re.M)
-            ann.append(a)
+            a = re.sub(r'^#\s+.*$', '', a, count=1, flags=re.M).strip()
+            ann.append('# ' + c['ann_titles'][L] + '\n\n::: {custom-style="Annotation"}\n' + a + '\n:::')
     abbrev = parts.get('00_abbrev.md', '')
     main = parts_ordered_text({k: v for k, v in parts.items() if not k.startswith('00_')})
     counts = {'pages': 90, 'figures': 0, 'tables': 0, 'refs': len(order)}

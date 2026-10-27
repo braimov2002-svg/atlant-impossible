@@ -156,7 +156,7 @@ def preprocess(lang, text, order, counts):
     def fig_sub(m):
         fid, cap = m.group(1), m.group(2).strip()
         path = os.path.join(D, 'figures', lang, fid + '.png')
-        return f'\n\n![{labels["__cap_" + fid]}{cap}]({path}){{width=15.5cm}}\n\n'
+        return f'\n\n![{labels["__cap_" + fid]}{cap}]({path}){{width=14.5cm}}\n\n'
     text = re.sub(r'\{\{FIG:([\w]+)\|(.+?)\}\}', fig_sub, text, flags=re.S)
 
     def tab_sub(m):
@@ -287,10 +287,10 @@ def make_reference(path):
     para(st['Table Caption'], align=WD_ALIGN_PARAGRAPH.LEFT, first=0, spacing=1.0, before=8, after=4, keep=True)
     for name in ['Figure', 'Captioned Figure']:
         para(st[name], align=WD_ALIGN_PARAGRAPH.CENTER, first=0, spacing=1.0, before=6, after=0, keep=True)
-    font(st['Source Code'], 9, name='Courier New')
+    font(st['Source Code'], 8, name='Courier New')
     para(st['Source Code'], align=WD_ALIGN_PARAGRAPH.LEFT, first=0, spacing=1.0)
     # custom styles
-    for nm, kw in [('Reference', dict(size=13, align=WD_ALIGN_PARAGRAPH.JUSTIFY, first=0, spacing=1.0, after=4, left=0)),
+    for nm, kw in [('Reference', dict(size=12, align=WD_ALIGN_PARAGRAPH.JUSTIFY, first=0, spacing=1.0, after=2, left=0)),
                    ('TitleCenter', dict(size=14, align=WD_ALIGN_PARAGRAPH.CENTER, first=0, spacing=1.15, after=0)),
                    ('TitleRight', dict(size=14, align=WD_ALIGN_PARAGRAPH.RIGHT, first=0, spacing=1.15, after=0)),
                    ('TitleLeft', dict(size=14, align=WD_ALIGN_PARAGRAPH.LEFT, first=0, spacing=1.15, after=0)),
@@ -450,7 +450,7 @@ def format_tables(doc):
                     if p.paragraph_format.alignment is None or p.paragraph_format.alignment == WD_ALIGN_PARAGRAPH.JUSTIFY:
                         p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     for r in p.runs:
-                        r.font.size = Pt(11)
+                        r.font.size = Pt(10)
                         if ri == 0:
                             r.font.bold = True
             if ri == 0:
@@ -607,33 +607,25 @@ def norm(s):
 
 def page_map(pdf, entries, lang):
     n = int(re.search(r'Pages:\s+(\d+)', subprocess.run(['pdfinfo', pdf], capture_output=True, text=True).stdout).group(1))
-    texts = []
-    for i in range(1, n + 1):
-        t = subprocess.run(['pdftotext', '-f', str(i), '-l', str(i), '-layout', pdf, '-'], capture_output=True, text=True).stdout
-        texts.append(norm(t))
-    # skip the title page, annotation and contents pages: start after the contents
+    raw = [subprocess.run(['pdftotext', '-f', str(i), '-l', str(i), '-layout', pdf, '-'], capture_output=True, text=True).stdout
+           for i in range(1, n + 1)]
+    texts = [norm(t) for t in raw]
     c = CFG[lang]
-    start = 0
-    for i, t in enumerate(texts):
-        if norm(c['toc']) in t:
-            start = i + 1
-    # contents may span several pages: move start past pages that still list many headings
+    # the contents occupy the pages with many dot leaders, starting at the page titled CONTENTS
+    toc_first = next((i for i, t in enumerate(raw) if c['toc'] in t), 0)
+    start = toc_first + 1
+    while start < n and len(re.findall(r'\.{6,}', raw[start])) >= 5:
+        start += 1
     pages, cur = {}, start
     for lvl, txt in entries:
+        if txt in c['ann_titles'].values():
+            continue
         key = norm(txt)[:60]
-        found = None
         for j in range(cur, n):
             if key and key in texts[j]:
-                found = j
+                pages[txt] = j + 1
+                cur = j
                 break
-        if found is None:
-            for j in range(0, n):
-                if key and key in texts[j] and j >= 2:
-                    found = j
-                    break
-        if found is not None:
-            pages[txt] = found + 1
-            cur = found
     return pages, n
 
 

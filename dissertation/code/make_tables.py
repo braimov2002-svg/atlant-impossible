@@ -185,8 +185,9 @@ for L in LANGS:
           'kvp': {'en': 'tube voltage', 'ru': 'напряжение', 'uz': 'kuchlanish'},
           'be': {'en': 'Be window', 'ru': 'Be-окно', 'uz': 'Be oyna'}}
     rows = []
+    keep = {'angle': ['6', '12', '20', '30'], 'kvp': ['25', '35', '45', '50'], 'be': ['0.15', '0.5', '2.0']}
     for key, unit in [('angle', '°'), ('kvp', ' ' + KV[L]), ('be', ' ' + MM[L])]:
-        for q in R['studies'][key]:
+        for q in [q for q in R['studies'][key] if q['label'] in keep[key]]:
             val = q['label'] if L == 'en' else q['label'].replace('.', ',')
             rows.append([pn[key][L], val + unit, f(q['Emean'], 2, L), f(q['HVL1_mmAl'], 4, L),
                          f(q['kerma_mGy_per_mAs'], 0, L), f(q['DEF1_SP'], 3, L), f(q['DEF1_DM'], 3, L)])
@@ -225,7 +226,7 @@ for L in LANGS:
     um = {'en': 'µm', 'ru': 'мкм', 'uz': 'mkm'}[L]
     H = [{'en': 'Filter', 'ru': 'Фильтр', 'uz': 'Filtr'}[L], 'Z'] + \
         [x for TK in ['10', '1', '0.1'] for x in (f"t ({TK if L == 'en' else TK.replace('.', ',')} %), {um}", f"DEF ({TK if L == 'en' else TK.replace('.', ',')} %)")]
-    sel = ['Al', 'Ti', 'Fe', 'Co', 'Ni', 'Cu', 'Zr', 'Mo', 'Ag', 'Sn', 'I', 'Gd', 'W', 'Au', 'Pb']
+    sel = ['Al', 'Ti', 'Co', 'Cu', 'Mo', 'Ag', 'Sn', 'I', 'Gd', 'W']
     rows = []
     for s in R['filter_scan']:
         if s['sym'] in sel:
@@ -243,7 +244,8 @@ for L in LANGS:
     dmap = {r_['label']: r_['SP_0.01'] for r_ in R['DEF_table']}
     rows = [[flab(e['label'], L), f(e['tissue_kerma_Gy_per_mAs'] * 1e3, 2 if e['tissue_kerma_Gy_per_mAs'] < 0.01 else 1, L),
              f(e['tissue_kerma_Gy_per_mAs'] * 40, 3 if e['tissue_kerma_Gy_per_mAs'] * 40 < 1 else 2, L),
-             f(e['time_s_2Gy_40mA'], 2 if e['time_s_2Gy_40mA'] < 10 else 1, L), f(dmap[e['label']], 3, L)] for e in R['exposure']]
+             f(e['time_s_2Gy_40mA'], 2 if e['time_s_2Gy_40mA'] < 10 else 1, L), f(dmap[e['label']], 3, L)] for e in R['exposure']
+            if e['label'] in ('none', 'Al 0.5', 'Al 1.0', 'Al 2.0', 'Cu 0.1', 'Cu 0.2', 'Sn 0.1', 'Ag 0.05')]
     T.setdefault('t3_7', {})[L] = (title, table(H, rows))
 
 # ---------------------------------------------------------------- t3_8 depth

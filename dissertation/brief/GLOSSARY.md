@@ -4,7 +4,7 @@ Use these equivalents consistently. Uzbek orthography: o‘ and g‘ are written
 (apostrophe) with U+2019 (’), e.g. "to‘qima", "bog‘liqlik", "ma’lumot", "sa’y". Russian: use «ёлочки» quotes, decimal
 comma, "кэВ", "кВ", "мм", "см", "мкм", "Гр", "мГр", "мА·с". Uzbek: decimal comma, "keV", "kV", "mm", "sm", "mkm", "Gr",
 "mGr", "mA·s", "s". English uses a decimal point. Do not translate symbols, element names (Ag, Cu, Au) or software names
-(SpekPy, xraylib, NumPy). Keep abbreviations DEF, HVL→(RU СПО, UZ YSQ), DM→(RU РМ, UZ IM), MC→(RU МК, UZ MK), CPE→(RU ЭЗЧ, UZ ZZM).
+(SpekPy, xraylib, NumPy). Keep abbreviations DEF, HVL→(RU СПО, UZ YSQ), DM→(RU РМ, UZ IM), MC→(RU МК, UZ MK), CPE→(RU РЗЧ, UZ ZZM).
 
 | English | Русский | O‘zbekcha |
 |---|---|---|
@@ -46,7 +46,7 @@ comma, "кэВ", "кВ", "мм", "см", "мкм", "Гр", "мГр", "мА·с".
 | Rayleigh (coherent) scattering | рэлеевское (когерентное) рассеяние | reley (kogerent) sochilishi |
 | kerma, air kerma | керма, воздушная керма (керма в воздухе) | kerma, havodagi kerma |
 | absorbed dose | поглощённая доза | yutilgan doza |
-| charged-particle equilibrium (CPE) | электронное (зарядовое) равновесие (ЭЗЧ) | zaryadli zarralar muvozanati (ZZM) |
+| charged-particle equilibrium (CPE) | равновесие заряженных частиц (РЗЧ) | zaryadli zarralar muvozanati (ZZM) |
 | half-value layer (HVL) | слой половинного ослабления (СПО) | yarim susaytirish qatlami (YSQ) |
 | homogeneity coefficient | коэффициент однородности | bir jinslilik koeffitsiyenti |
 | mean energy, effective energy | средняя энергия, эффективная энергия | o‘rtacha energiya, effektiv energiya |

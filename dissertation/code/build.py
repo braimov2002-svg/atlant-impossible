@@ -181,6 +181,8 @@ def preprocess(lang, text, order, counts):
             return '??'
         return labels[k]
     text = re.sub(r'\{\{REF:([\w:]+)\}\}', ref_sub, text)
+    # equation references are already parenthesised: "((2.4))" -> "(2.4)"
+    text = re.sub(r'\(\((\d+\.\d+)\)\)', r'(\1)', text)
     # citations
     def cite_sub(m):
         keys = re.findall(r'@([A-Za-z0-9_]+)', m.group(1))

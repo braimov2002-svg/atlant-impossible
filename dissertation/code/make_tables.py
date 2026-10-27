@@ -317,7 +317,7 @@ for L in LANGS:
         'Al filter ±5%': {'en': 'Al filter thickness ±5 %', 'ru': 'Толщина фильтра Al ±5 %', 'uz': 'Al filtr qalinligi ±5 %'},
         'mu_en/rho Ag ±2%': {'en': 'μ_en/ρ of Ag ±2 %', 'ru': 'μ_en/ρ для Ag ±2 %', 'uz': 'Ag uchun μ_en/ρ ±2 %'},
         'mu_en/rho tissue ±1%': {'en': 'μ_en/ρ of tissue ±1 %', 'ru': 'μ_en/ρ для ткани ±1 %', 'uz': 'To‘qima uchun μ_en/ρ ±1 %'},
-        'tissue composition (ICRU 4-component / water)': {'en': 'Reference medium: ICRU four-component tissue / water', 'ru': 'Опорная среда: 4-компонентная ткань МКРЕ / вода', 'uz': 'Tayanch muhit: ICRU 4-komponentli to‘qima / suv'},
+        'tissue composition (ICRU 4-component / water)': {'en': 'Reference medium: ICRU four-component tissue / water', 'ru': 'Эталонная среда: 4-компонентная ткань МКРЕ / вода', 'uz': 'Tayanch muhit: ICRU 4-komponentli to‘qima / suv'},
         'spectrum model (DM vs SpekPy)': {'en': 'Spectrum model: DM / SpekPy', 'ru': 'Модель спектра: РМ / SpekPy', 'uz': 'Spektr modeli: IM / SpekPy'},
         'DM electron-depth factor eta ±25%': {'en': 'Depth factor η of the DM ±25 %', 'ru': 'Коэффициент глубины η РМ ±25 %', 'uz': 'IM chuqurlik koeffitsiyenti η ±25 %'},
     }

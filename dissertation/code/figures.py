@@ -440,7 +440,7 @@ def fig_sensitivity(lang):
         'mu_en/rho tissue ±1%': {'en': r'$\mu_{en}/\rho$ (tissue) ±1 %', 'ru': r'$\mu_{en}/\rho$ (ткань) ±1 %',
                                  'uz': r'$\mu_{en}/\rho$ (to‘qima) ±1 %'},
         'tissue composition (ICRU 4-component / water)': {'en': 'reference medium (4-comp. tissue / water)',
-                                                          'ru': 'опорная среда (4-комп. ткань / вода)',
+                                                          'ru': 'эталонная среда (4-комп. ткань / вода)',
                                                           'uz': 'tayanch muhit (4-komp. to‘qima / suv)'},
         'spectrum model (DM vs SpekPy)': {'en': 'spectrum model (this work vs SpekPy)',
                                           'ru': 'модель спектра (данная работа / SpekPy)',

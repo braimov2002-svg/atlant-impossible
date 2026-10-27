@@ -96,3 +96,12 @@ comma, "кэВ", "кВ", "мм", "см", "мкм", "Гр", "мГр", "мА·с".
 | anticancer | противоопухолевый (о лечении рака) | saratonga qarshi |
 | Kramers, Bethe–Heitler, Elwert, Gryzinski, Birch–Marshall (in running text) | Крамерс, Бете–Гайтлер, Эльверт, Гризинский, Бёрч–Маршалл (склоняются) | Kramers, Bete–Gaytler, Elvert, Grizinskiy, Birch–Marshall |
 | Monte Carlo code names (EGSnrc, Geant4, PENELOPE, MCNP) | без перевода | tarjimasiz |
+| reference medium | эталонная среда | tayanch muhit |
+| Elwert factor | множитель Эльверта | Elvert ko‘paytuvchisi |
+| tube output | радиационный выход (трубки) | trubkaning nurlanish chiqishi |
+| irradiation (act of irradiating) / radiation | облучение / излучение | nurlantirish / nurlanish |
+| coverage factor | коэффициент охвата | qamrov koeffitsiyenti |
+| standard error | стандартная ошибка | standart xatolik |
+| Ag-loaded (region, tissue) | содержащий серебро (область, ткань) | Ag kiritilgan (soha, to‘qima) |
+| scale (nanoscale, macroscopic scale) | масштаб (наномасштабный, макроскопический масштаб) | miqyos (nanomiqyosdagi, makroskopik miqyos) |
+| author names in running text | латиницей, как в оригинале, с «и др.» (Poludniowski и др.); эпонимы теорий и формул — по-русски (формула Крамерса) | lotin yozuvida, asl holida (Poludniowski va boshq.) |

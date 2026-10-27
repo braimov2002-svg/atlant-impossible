@@ -165,6 +165,7 @@ def preprocess(lang, text, order, counts):
         title, body = raw[0], '\n'.join(raw[2:])
         return f'\n\nTable: {labels["__cap_" + tid]}{title}\n\n{body}\n\n'
     text = re.sub(r'\{\{TABLE:([\w]+)\}\}', tab_sub, text)
+    text = re.sub(r'^Table:\s*\{#tab:abbrev\}.*$', '', text, flags=re.M)
     text = re.sub(r'^Table:\s*\{#(tab:[\w]+)\}\s*',
                   lambda m: 'Table: ' + labels.get('__cap_' + m.group(1), ''), text, flags=re.M)
     # equations: $$ ... $$ {#eq:x}  ->  $$...$$ + marker paragraph
@@ -267,8 +268,9 @@ def make_reference(path):
     for name in ['Normal', 'Body Text', 'First Paragraph']:
         font(st[name], 14)
         para(st[name])
-    font(st['Compact'], 12)
-    para(st['Compact'], align=WD_ALIGN_PARAGRAPH.LEFT, first=0, spacing=1.0)
+    # 'Compact' is used by pandoc for tight list items and table cells; cells are reformatted later
+    font(st['Compact'], 14)
+    para(st['Compact'], align=WD_ALIGN_PARAGRAPH.JUSTIFY, first=0, spacing=1.5)
     font(st['Heading 1'], 14, bold=True)
     para(st['Heading 1'], align=WD_ALIGN_PARAGRAPH.CENTER, first=0, spacing=1.5, before=0, after=12, keep=True)
     st['Heading 1'].paragraph_format.page_break_before = True
@@ -443,6 +445,8 @@ def format_tables(doc):
                 for p in cell.paragraphs:
                     p.paragraph_format.first_line_indent = Cm(0)
                     p.paragraph_format.line_spacing = 1.0
+                    if p.paragraph_format.alignment is None or p.paragraph_format.alignment == WD_ALIGN_PARAGRAPH.JUSTIFY:
+                        p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     for r in p.runs:
                         r.font.size = Pt(11)
                         if ri == 0:

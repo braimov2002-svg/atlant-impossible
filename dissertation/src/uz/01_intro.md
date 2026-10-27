@@ -12,13 +12,13 @@ Spektr modellari empirik [@boone1997] va yarim empirik [@birch1979; @tucker1991]
 
 **Tadqiqotning vazifalari.** Quyidagi vazifalar hal qilindi:
 
-1. Yuqori Z li elementlar, ayniqsa kumush yordamida radiosensibilizatsiya hamda spektrni modellashtirishga oid adabiyotlarni sharhlash.
+1. Yuqori Z li elementlar, ayniqsa kumush yordamidagi radiosensibilizatsiya hamda spektrni modellashtirishga oid adabiyotlarni sharhlash.
 2. Elektronlarning sekinlashishi, tormozlanish nurlanishi, bevosita hosil bo‘ladigan va tormozlanish nurlanishi ta’sirida hosil bo‘ladigan K nurlanish, anodda o‘z-o‘zini yutish va filtrlashni hisobga oluvchi mis anodli trubka spektrining qalin nishon uchun yarim analitik modelini ishlab chiqish.
 3. Modelni SpekPy v2 bilan solishtirib validatsiya qilish va uning yagona parametrini moslashtirish.
 4. Spektr va dasta sifatini anod burchagi, trubka kuchlanishi, berilliy oyna va filtrlarga bog‘liq holda hisoblash.
 5. Massa bo‘yicha 0,1–2 % kumush uchun DEFni hisoblash va maqbul doza quvvatida uni eng katta qiymatga yetkazadigan filtrlarni topish.
 6. DEFning chuqurlikka bog‘liqligini va o‘z-o‘zini ekranlashni mustaqil MK verifikatsiyasi bilan o‘rganish.
-7. Kumushni boshqa yuqori Z li elementlar bilan taqqoslash, DEF noaniqligini baholash va tajribaviy tavsiyalar ishlab chiqish.
+7. Kumushni boshqa yuqori Z li elementlar bilan taqqoslash, DEF noaniqligini baholash va tajribalar uchun tavsiyalar ishlab chiqish.
 
 **Tadqiqotning obyekti.** Tadqiqot obyekti 45 kV li mis anodli trubkaning rentgen nurlanishi va uning kumush saqlovchi yumshoq to‘qima bilan o‘zaro ta’siridir.
 

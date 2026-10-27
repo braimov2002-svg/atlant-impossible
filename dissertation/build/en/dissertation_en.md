@@ -1,26 +1,32 @@
 # ANNOTATION
 
+::: {custom-style="Annotation"}
 The effectiveness of anticancer radiotherapy is still limited by the tolerance of healthy tissues, and one strategy to optimise the dose delivered in external radiotherapy is the use of radiosensitizers. This work studies the radio-enhancement effect of silver (Ag) in biological matter irradiated with kilovoltage x-rays and quantifies it by the dose enhancement factor (DEF). The spectrum of a 45 kV copper-anode x-ray tube needed for the DEF calculations is modelled as a function of the tube design, technical parameters and filters. To this end, a semi-analytical thick-target model with one fitted parameter, the developed model (DM), was created and validated against SpekPy v2. The DEF was calculated in the kerma approximation with NIST mass energy-absorption coefficients and verified by Monte Carlo photon transport.
 
-The unfiltered spectrum is dominated by the Cu K lines at 8.0–8.9 keV (68.5 % of the photons), so the DEF for 1 % Ag by mass is only 1.20 and remains within 1.19–1.21 when the anode angle, tube voltage or beryllium window is changed. Added filtration is the decisive parameter: 1 mm Al raises the DEF to 1.48, 2 mm Al to 1.62 and 0.2 mm Cu to 1.80, while the air kerma decreases 120–1300-fold. At equal transmission, light and medium-Z filters (Al, Ti) are optimal, whereas filters with K-edges at 20–30 keV (Mo, Ag, Sn) are the least effective at strong filtration. For Al-filtered beams, the DM reproduces the SpekPy half-value layer within 5 % and the DEF within 2 %. The DEF increases with depth (beam hardening) and decreases inside a heavily loaded region (self-shielding); Monte Carlo calculations confirm these values within 1–10 %. Per unit mass, Ag is a weaker physical sensitizer than Au, Pt, Bi or Gd and is comparable to iodine. The xraylib 4.3.0 energy-absorption data for light elements were found to be up to 37 % too low, which would overestimate the DEF. The results support the choice of filtration and exposure conditions for experiments with Ag-containing radiosensitizers.
+For Al-filtered beams, the DM reproduces the SpekPy half-value layer within 5 % and the DEF within 2 %. The unfiltered spectrum is dominated by the Cu K lines at 8.0–8.9 keV (68.5 % of the photons), so the DEF for 1 % Ag by mass is only 1.20 and remains within 1.19–1.21 when the anode angle, tube voltage or beryllium window is changed. Added filtration is the decisive parameter: 1 mm Al raises the DEF to 1.48 ± 0.02 (k = 1), 2 mm Al to 1.62 and 0.2 mm Cu to 1.80, while the air kerma decreases 120–1300-fold. At equal transmission, light and medium-Z filters (Al, Ti) are optimal, whereas filters with K-edges at 20–30 keV (Mo, Ag, Sn) are the least effective at strong filtration. The DEF increases with depth (beam hardening) and decreases inside a heavily loaded region (self-shielding); Monte Carlo calculations confirm these values within 1–10 %. Per unit mass, Ag is a weaker physical sensitizer than Au, Pt, Bi or Gd and is comparable to iodine. The xraylib 4.3.0 energy-absorption data for light elements were found to be up to 37 % too low, which would overestimate the DEF. The results support the choice of filtration and exposure conditions for experiments with Ag-containing radiosensitizers.
 
 **Keywords:** x-ray tube spectrum; copper anode; bremsstrahlung; characteristic radiation; filtration; silver; radiosensitization; dose enhancement factor; kilovoltage x-rays; Monte Carlo method.
+:::
 
 # ANNOTATSIYA
 
+::: {custom-style="Annotation"}
 Saratonga qarshi nur terapiyasining samaradorligi hanuzgacha sog‘lom to‘qimalarning chidamliligi bilan cheklanib qolmoqda, masofaviy nur terapiyasida beriladigan dozani optimallashtirish strategiyalaridan biri esa radiosensibilizatorlardan foydalanishdir. Ushbu ishda kilovoltli rentgen nurlari bilan nurlantirilgan biologik muhitda kumushning (Ag) radiokuchayish effekti tadqiq qilinadi va u dozani kuchaytirish koeffitsiyenti (DEF) orqali miqdoriy baholanadi. DEFni hisoblash uchun zarur bo‘lgan 45 kV li mis anodli rentgen trubkasining spektri trubka konstruksiyasi, texnik parametrlari va filtrlariga bog‘liq holda modellashtiriladi. Shu maqsadda bitta moslashtirilgan parametrga ega bo‘lgan qalin nishonning yarim analitik modeli — ishlab chiqilgan model (IM) yaratildi va SpekPy v2 bilan solishtirish orqali validatsiya qilindi. DEF kerma yaqinlashuvida NIST massaviy energiya yutilish koeffitsiyentlari yordamida hisoblandi va fotonlar ko‘chishini Monte-Karlo usulida modellashtirish orqali verifikatsiya qilindi.
 
-Filtrlanmagan spektrda 8,0–8,9 keV dagi Cu K chiziqlari ustunlik qiladi (fotonlarning 68,5 % qismi), shu sababli massa bo‘yicha 1 % Ag uchun DEF atigi 1,20 ga teng bo‘lib, anod burchagi, trubka kuchlanishi yoki berilliy oyna o‘zgartirilganda 1,19–1,21 oralig‘ida qoladi. Qo‘shimcha filtrlash hal qiluvchi parametr hisoblanadi: 1 mm Al DEFni 1,48 gacha, 2 mm Al 1,62 gacha, 0,2 mm Cu esa 1,80 gacha oshiradi, bunda havodagi kerma 120–1300 marta kamayadi. O‘tkazish koeffitsiyenti bir xil bo‘lganda yengil va o‘rtacha Z li filtrlar (Al, Ti) optimal hisoblanadi, K-chegaralari 20–30 keV da joylashgan filtrlar (Mo, Ag, Sn) esa kuchli filtrlashda eng kam samarali bo‘ladi. Al bilan filtrlangan dastalar uchun IM SpekPy yordamida hisoblangan yarim susaytirish qatlamini 5 % dan, DEFni esa 2 % dan oshmaydigan farq bilan takrorlaydi. DEF chuqurlik ortishi bilan ortadi (dastaning qattiqlashishi) va Ag miqdori yuqori bo‘lgan soha ichida kamayadi (o‘z-o‘zini ekranlash); Monte-Karlo hisoblari bu qiymatlarni 1–10 % doirasida tasdiqlaydi. Massa birligiga nisbatan olinganda Ag fizik sensibilizator sifatida Au, Pt, Bi yoki Gd elementlaridan kuchsizroq bo‘lib, samaradorligi jihatidan yod bilan taqqoslanarli. Yengil elementlar uchun xraylib 4.3.0 kutubxonasidagi energiya yutilish ma’lumotlari 37 % gacha past baholanganligi aniqlandi, bu esa DEFning oshirib baholanishiga olib kelgan bo‘lar edi. Olingan natijalar Ag saqlovchi radiosensibilizatorlar bilan o‘tkaziladigan tajribalar uchun filtrlash va ekspozitsiya sharoitlarini tanlashga asos bo‘ladi.
+Al bilan filtrlangan dastalar uchun IM SpekPy yordamida hisoblangan yarim susaytirish qatlamini 5 % dan, DEFni esa 2 % dan oshmaydigan farq bilan takrorlaydi. Filtrlanmagan spektrda 8,0–8,9 keV dagi Cu K chiziqlari ustunlik qiladi (fotonlarning 68,5 % qismi), shu sababli massa bo‘yicha 1 % Ag uchun DEF atigi 1,20 ga teng bo‘lib, anod burchagi, trubka kuchlanishi yoki berilliy oyna o‘zgartirilganda 1,19–1,21 oralig‘ida qoladi. Qo‘shimcha filtrlash hal qiluvchi parametr hisoblanadi: 1 mm Al DEFni 1,48 ± 0,02 (k = 1) gacha, 2 mm Al 1,62 gacha, 0,2 mm Cu esa 1,80 gacha oshiradi, bunda havodagi kerma 120–1300 marta kamayadi. O‘tkazish koeffitsiyenti bir xil bo‘lganda yengil va o‘rtacha Z li filtrlar (Al, Ti) optimal hisoblanadi, K-chegaralari 20–30 keV da joylashgan filtrlar (Mo, Ag, Sn) esa kuchli filtrlashda eng kam samarali bo‘ladi. DEF chuqurlik ortishi bilan ortadi (dastaning qattiqlashishi) va Ag ko‘p kiritilgan soha ichida kamayadi (o‘z-o‘zini ekranlash); Monte-Karlo hisoblari bu qiymatlarni 1–10 % doirasida tasdiqlaydi. Massa birligiga nisbatan olinganda Ag Au, Pt, Bi yoki Gdga qaraganda kuchsizroq fizik sensibilizator bo‘lib, yod bilan taqqoslanarli. Yengil elementlar uchun xraylib 4.3.0 kutubxonasidagi energiya yutilish ma’lumotlari 37 % gacha past baholanganligi aniqlandi, bu esa DEFning oshirib baholanishiga olib kelgan bo‘lar edi. Olingan natijalar Ag saqlovchi radiosensibilizatorlar bilan o‘tkaziladigan tajribalar uchun filtrlash va ekspozitsiya sharoitlarini tanlashga asos bo‘ladi.
 
-**Kalit so‘zlar:** rentgen trubkasi spektri; mis anod; tormozlanish nurlanishi; xarakteristik nurlanish; filtrlash; kumush; radiosensibilizatsiya; dozani kuchaytirish koeffitsiyenti; kilovoltli rentgen nurlanishi; Monte-Karlo usuli.
+**Kalit so‘zlar:** rentgen trubkasi spektri; mis anod; tormozlanish nurlanishi; xarakteristik nurlanish; filtrlash; kumush; radiosensibilizatsiya; dozani kuchaytirish koeffitsiyenti; kilovoltli rentgen nurlari; Monte-Karlo usuli.
+:::
 
 # АННОТАЦИЯ
 
+::: {custom-style="Annotation"}
 Эффективность противоопухолевой лучевой терапии по-прежнему ограничена толерантностью здоровых тканей, и одной из стратегий оптимизации дозы, подводимой при дистанционной лучевой терапии, является применение радиосенсибилизаторов. В работе исследуется эффект радиоусиления, обусловленный серебром (Ag), в биологической среде, облучаемой киловольтным рентгеновским излучением, и проводится его количественная оценка с помощью коэффициента усиления дозы (DEF). Необходимый для расчёта DEF спектр рентгеновской трубки с медным анодом, работающей при напряжении 45 кВ, моделируется в зависимости от конструкции трубки, её технических параметров и фильтров. С этой целью создана полуаналитическая модель толстой мишени с одним подгоночным параметром — разработанная модель (РМ), — и выполнена её валидация путём сравнения со SpekPy v2. DEF рассчитан в приближении кермы с использованием массовых коэффициентов поглощения энергии NIST и верифицирован моделированием переноса фотонов методом Монте-Карло.
 
-В нефильтрованном спектре преобладают K-линии Cu с энергиями 8,0–8,9 кэВ (68,5 % фотонов), поэтому DEF при массовой доле Ag 1 % составляет лишь 1,20 и остаётся в пределах 1,19–1,21 при изменении угла анода, напряжения на трубке или бериллиевого окна. Решающим параметром является дополнительная фильтрация: фильтр 1 мм Al повышает DEF до 1,48, 2 мм Al — до 1,62, 0,2 мм Cu — до 1,80, при этом воздушная керма уменьшается в 120–1300 раз. При одинаковом пропускании оптимальны фильтры из лёгких элементов и элементов со средним Z (Al, Ti), тогда как фильтры с K-краями в области 20–30 кэВ (Mo, Ag, Sn) при сильной фильтрации наименее эффективны. Для пучков с алюминиевым фильтром РМ воспроизводит слой половинного ослабления, рассчитанный SpekPy, с точностью до 5 %, а DEF — с точностью до 2 %. DEF возрастает с глубиной (ужесточение пучка) и уменьшается внутри области с высоким содержанием серебра (самоэкранирование); расчёты методом Монте-Карло подтверждают эти значения в пределах 1–10 %. В расчёте на единицу массы Ag является более слабым физическим сенсибилизатором, чем Au, Pt, Bi или Gd, и сопоставимо с йодом. Установлено, что данные xraylib 4.3.0 о поглощении энергии для лёгких элементов занижены на величину до 37 %, что привело бы к завышению DEF. Полученные результаты служат обоснованием выбора фильтрации и условий облучения в экспериментах с серебросодержащими радиосенсибилизаторами.
+Для пучков с алюминиевым фильтром РМ воспроизводит слой половинного ослабления, рассчитанный SpekPy, с точностью до 5 %, а DEF — с точностью до 2 %. В нефильтрованном спектре преобладают K-линии Cu с энергиями 8,0–8,9 кэВ (68,5 % фотонов), поэтому DEF при массовой доле Ag 1 % составляет лишь 1,20 и остаётся в пределах 1,19–1,21 при изменении угла анода, напряжения на трубке или бериллиевого окна. Решающим параметром является дополнительная фильтрация: фильтр 1 мм Al повышает DEF до 1,48 ± 0,02 (k = 1), 2 мм Al — до 1,62 и 0,2 мм Cu — до 1,80, при этом воздушная керма уменьшается в 120–1300 раз. При одинаковом пропускании оптимальны фильтры из лёгких элементов и элементов со средним Z (Al, Ti), тогда как фильтры с K-краями в области 20–30 кэВ (Mo, Ag, Sn) при сильной фильтрации наименее эффективны. DEF возрастает с глубиной (ужесточение пучка) и уменьшается внутри области с высоким содержанием серебра (самоэкранирование); расчёты методом Монте-Карло подтверждают эти значения в пределах 1–10 %. В расчёте на единицу массы Ag является более слабым физическим сенсибилизатором, чем Au, Pt, Bi или Gd, и сопоставимо с йодом. Установлено, что данные xraylib 4.3.0 о поглощении энергии для лёгких элементов занижены на величину до 37 %, что привело бы к завышению DEF. Полученные результаты служат обоснованием выбора фильтрации и условий облучения в экспериментах с серебросодержащими радиосенсибилизаторами.
 
 **Ключевые слова:** спектр рентгеновской трубки; медный анод; тормозное излучение; характеристическое излучение; фильтрация; серебро; радиосенсибилизация; коэффициент усиления дозы; киловольтное рентгеновское излучение; метод Монте-Карло.
+:::
 
 # LIST OF ABBREVIATIONS AND SYMBOLS
 
@@ -28,31 +34,38 @@ Filtrlanmagan spektrda 8,0–8,9 keV dagi Cu K chiziqlari ustunlik qiladi (foton
 
 | Abbreviation / symbol | Meaning |
 |:---|:---|
+| AAPM | American Association of Physicists in Medicine |
 | AgNP | silver nanoparticle |
+| ALARA | as low as reasonably achievable |
 | AuNP | gold nanoparticle |
+| BH-E | non-relativistic Bethe–Heitler bremsstrahlung cross-section with the Elwert factor |
 | CPE | charged-particle equilibrium |
 | CSDA | continuous-slowing-down approximation |
-| DCS | differential cross-section |
 | DEF | dose enhancement factor |
 | DM | developed model (the semi-analytical x-ray spectrum model of this work) |
+| DNA | deoxyribonucleic acid |
 | HVL | half-value layer (HVL1 and HVL2 are the first and second half-value layers) |
 | IAEA | International Atomic Energy Agency |
-| ICRP | International Commission on Radiological Protection |
 | ICRU | International Commission on Radiation Units and Measurements |
+| IEC | International Electrotechnical Commission |
 | kVp | kilovolt peak (peak voltage of the x-ray tube) |
 | MC | Monte Carlo (method) |
 | NIST | National Institute of Standards and Technology (USA) |
 | ROS | reactive oxygen species |
 | RT | radiotherapy |
 | SER | sensitizer enhancement ratio |
+| TASMIP | tungsten anode spectral model using interpolating polynomials |
+| TBC | Tucker–Barnes–Chakraborty spectrum model |
 | $D$ | absorbed dose, Gy |
 | $E$ | photon energy, keV |
 | $\bar{E}$ | mean photon energy of a spectrum, keV |
 | $E_K$ | K-shell binding energy (K absorption-edge energy), keV |
 | $K$ | kerma (kinetic energy released per unit mass), Gy; $K_{\mathrm{air}}$ is the air kerma |
+| $R(E)$, $\langle R\rangle$ | ratio of the $\mu_{en}/\rho$ of silver to that of tissue at energy $E$; its dose-weighted spectral mean |
 | K$\alpha$, K$\beta$ | characteristic lines of the K series (transitions to the K shell from the L shell and from the M and N shells, respectively) |
 | $S(T)$ | collision stopping power of the anode material for an electron of kinetic energy $T$; $S/\rho$ is the mass collision stopping power, MeV cm$^2$/g |
 | $T$ | kinetic energy of an electron, keV |
+| $T_0$ | initial kinetic energy of the electrons at the anode, $T_0 = eU$ (maximum photon energy), keV |
 | $U$ | tube voltage, kV |
 | $w$ | mass fraction of silver (or of another high-Z element) in the tissue |
 | $Z$ | atomic number |
@@ -69,11 +82,11 @@ Filtrlanmagan spektrda 8,0–8,9 keV dagi Cu K chiziqlari ustunlik qiladi (foton
 
 # INTRODUCTION
 
-**Relevance of the topic.** Cancer is a major cause of morbidity and mortality worldwide [1], and about half of cancer patients have an indication for radiotherapy [2], whose effectiveness is limited by the tolerance of healthy tissues [3, 4]. The therapeutic window can be widened with radiosensitizers [5], among which heavy-metal compounds and nanoparticles are now studied intensively [6, 7]. Elements of high atomic number $Z$ absorb kilovoltage photons far more strongly than soft tissue owing to the photoelectric effect [8]. Gold nanoparticles improved the survival of tumour-bearing mice irradiated with 250 kVp (kilovolt peak) x-rays [9], and dose enhancement by gold is much larger for kilovoltage than for megavoltage beams [10]. Silver nanoparticles (AgNPs) were proposed as a radiosensitizer for glioma [11] and outperformed gold nanoparticles (AuNPs) in vitro and in mice [12]; silver is also cheaper, and its K-edge at 25.514 keV lies inside the spectrum of a 45 kV x-ray tube.
+**Relevance of the topic.** Cancer is a major cause of morbidity and mortality worldwide [1], and about half of cancer patients have an indication for radiotherapy [2], whose effectiveness is limited by the tolerance of healthy tissues [3, 4]. The therapeutic window can be widened with radiosensitizers [5], among which heavy-metal compounds and nanoparticles are now studied intensively [6, 7]. Elements of high atomic number $Z$ absorb kilovoltage photons far more strongly than soft tissue owing to the photoelectric effect [8]. Combined with 250 kVp (kilovolt peak) x-rays, gold nanoparticles markedly prolonged the survival of tumour-bearing mice [9], and dose enhancement by gold is much larger for kilovoltage than for megavoltage beams [10]. Silver nanoparticles (AgNPs) were proposed as a radiosensitizer for glioma [11] and outperformed gold nanoparticles (AuNPs) in vitro and in mice [12]; silver is also cheaper, and its K-edge at 25.514 keV lies inside the spectrum of a 45 kV x-ray tube.
 
 The physical effect is quantified by the dose enhancement factor (DEF), the ratio of the absorbed doses in tissue with and without silver. The ratio of the mass energy-absorption coefficients of silver and soft tissue is only 21–32 at 8–25 keV, about 76 at the Ag K-edge and 100–139 at 30–45 keV, so the DEF depends on the fraction of the photon energy fluence above the edge [10, 13]. The tube voltage and half-value layer (HVL) that usually specify kilovoltage beams [14] do not fix the spectrum around the edge, which must therefore be modelled [15]. Unlike tungsten-anode tubes [16, 17], a 45 kV copper-anode tube emits most photons of the unfiltered beam in the Cu K lines at 8.0–8.9 keV, far below the Ag K-edge. Since its spectrum, and hence the DEF, depends on the anode angle, tube voltage, beryllium window and filters, modelling it is a relevant problem of medical physics.
 
-**Degree of study of the problem.** Dose enhancement near high-Z media goes back to Spiers's analysis of energy absorption near irradiated bone [18]; iodine enhancement was later calculated for kilovoltage beams [19, 20] and used to treat brain metastases with a modified computed tomography scanner [21]. Gold nanoparticles have been studied in cells and by Monte Carlo (MC) simulation [22–25], their mechanisms reviewed [26–28] and elements compared as functions of photon energy [13, 29]; the enhancement around nanoparticles is highly localised [30], and such nanoscale deposition can explain biological effects beyond the macroscopic enhancement [31]. For silver, radiosensitization by AgNPs was shown in cancer cells [32], glioma [33, 34], breast cancer cells [35] and colorectal cancer [36]. AgNPs are themselves cytotoxic and induce reactive oxygen species and DNA damage [37], so part of their effect may be chemical or biological. Silver dosimetry was studied by MC for brachytherapy [38], tissues around a loaded tumour [39] and skin [40] and in dose gels [41]; the depth dependence of enhancement in orthovoltage beams was examined in an MC phantom [42].
+**Degree of study of the problem.** Dose enhancement near high-Z media goes back to Spiers's analysis of energy absorption near irradiated bone [18]; iodine enhancement was later calculated for kilovoltage beams [19, 20] and used to treat brain metastases with a modified computed tomography scanner [21]. Gold nanoparticles have been studied in cells and by Monte Carlo (MC) simulation [22–25], their mechanisms reviewed [26–28] and elements compared as functions of photon energy [13, 29]; the enhancement around nanoparticles is highly localised [30], and such nanoscale deposition can explain biological effects beyond the macroscopic enhancement [31]. For silver, radiosensitization by AgNPs was shown in cancer cells [32], glioma [33, 34], breast cancer cells [35] and colorectal cancer [36]. AgNPs are themselves cytotoxic and induce reactive oxygen species and damage to deoxyribonucleic acid (DNA) [37], so part of their effect may be chemical or biological. Silver dosimetry was studied by MC for brachytherapy [38], tissues around a loaded tumour [39] and skin [40] and in dose gels [41]; the depth dependence of enhancement in orthovoltage beams was examined in an MC phantom [42].
 
 Spectrum models range from empirical [43] and semi-empirical [44, 45] to deterministic physics-based [46–48] and MC models [49, 50], mostly for tungsten anodes; SpekPy, validated against measurements [51], supports a copper anode in version 2 [15]. Copper-anode tubes serve mainly x-ray diffraction, with a nickel filter isolating Cu Kα [52], whereas silver needs photons above its K-edge. How the design and filtration of such a tube determine its spectrum and the DEF of silver-loaded tissue has therefore not been quantified in the literature reviewed, which motivated this work.
 
@@ -93,7 +106,7 @@ Spectrum models range from empirical [43] and semi-empirical [44, 45] to determi
 
 **Subject of the research.** The subject is the formation of the spectrum, its dependence on tube design and filtration, and the resulting DEF.
 
-**Research methods.** The spectrum is calculated with the developed model (DM), a semi-analytical thick-target model based on the Bethe stopping power, the non-relativistic Bethe–Heitler cross-section with the Elwert factor and the Gryzinski K-shell cross-section [53–57], with SpekPy v2.5.4 as the reference [58]. Interaction data are from the NIST tables [59] and xraylib [60], with ICRU-44 soft tissue as the reference medium [61]. The DEF is calculated in the kerma approximation [62] and verified by an in-house MC photon-transport code with Woodcock tracking [63], Ag K fluorescence, coherent and incoherent scattering [64] and local electron energy deposition. Uncertainties are estimated by sensitivity analysis; the code uses Python with NumPy, SciPy and Matplotlib [65–67].
+**Research methods.** The spectrum is calculated with the developed model (DM), a semi-analytical thick-target model based on the Bethe stopping power, the non-relativistic Bethe–Heitler cross-section with the Elwert factor and the Gryziński K-shell cross-section [53–57], with SpekPy v2.5.4 as the reference [58]. Interaction data are from the tables of the National Institute of Standards and Technology (NIST) [59] and xraylib [60], with the ICRU-44 soft tissue of the International Commission on Radiation Units and Measurements (ICRU) as the reference medium [61]. The DEF is calculated in the kerma approximation [62] and verified by an in-house MC photon-transport code with Woodcock tracking [63], Ag K fluorescence, coherent and incoherent scattering [64] and local electron energy deposition. Uncertainties are estimated by sensitivity analysis; the code uses Python with NumPy, SciPy and Matplotlib [65–67].
 
 **Scientific novelty.** The novelty of the work is as follows:
 
@@ -111,16 +124,16 @@ Spectrum models range from empirical [43] and semi-empirical [44, 45] to determi
 
 **Publications.** The results are published in [to be completed by the author: list of publications].
 
-**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: 89 pages, 23 figures, 17 tables and 121 references. Chapter 1 reviews the literature, Chapter 2 presents the methods and Chapter 3 the results and their discussion.
+**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: 87 pages, 23 figures, 17 tables and 121 references. Chapter 1 reviews the literature, Chapter 2 presents the methods and Chapter 3 the results and their discussion.
 
 
 # CHAPTER 1. RADIOSENSITIZATION BY HIGH-Z ELEMENTS AND X-RAY SPECTRUM MODELING: LITERATURE REVIEW
 
 ## 1.1. Radiotherapy and the problem of normal-tissue tolerance
 
-Cancer is a major cause of morbidity and mortality worldwide [1], and radiotherapy (RT) is one of its principal treatment modalities [4], with an evidence-based optimal utilisation rate of approximately 52 % [2]. RT damages cellular DNA directly through secondary electrons or indirectly through the free radicals of water radiolysis [3], but because energy deposition is not selective, the healthy tissues traversed by the beam are damaged as well and limit the tumour dose [3, 4]. When the sigmoid dose–response curves for tumour control and normal-tissue complications lie close together (a small therapeutic ratio), normal-tissue toxicity becomes the main factor limiting RT [3, 4]. Hypoxic tumour cells, less sensitive to x-rays because of the oxygen effect, aggravate the problem [3].
+Against the background of the global cancer burden [1], radiotherapy (RT) is one of the principal treatment modalities [4], with an evidence-based optimal utilisation rate of approximately 52 % [2]. RT damages cellular deoxyribonucleic acid (DNA) directly through secondary electrons or indirectly through the free radicals of water radiolysis [3], but because energy deposition is not selective, the healthy tissues traversed by the beam are damaged as well and limit the tumour dose [3, 4]. When the sigmoid dose–response curves for tumour control and normal-tissue complications lie close together (a small therapeutic ratio), normal-tissue toxicity becomes the main factor limiting RT [3, 4]. Hypoxic tumour cells, less sensitive to x-rays because of the oxygen effect, aggravate the problem [3].
 
-Fractionation [3] and conformal, image-guided techniques such as intensity-modulated RT [17] spare normal tissue but do not change the ratio of the energy absorbed per unit mass in tumour and normal cells within the same beam region. Radiosensitizers, which increase the effect of radiation on tumour cells more than on normal cells, include oxygen mimetics such as the nitroimidazoles [5] and transition-metal compounds (platinum, gold, ruthenium) that combine chemical and biological activity with heavy atoms [6]. High-Z elements act by an essentially physical principle: concentrated in the tumour, they absorb more photon energy per unit mass than soft tissue, raising the tumour dose while the dose to element-free surrounding tissue remains practically unchanged [7, 9]. The gain is expressed by the dose enhancement factor (DEF), the ratio of the absorbed doses in tissue with and without the agent (Section 2.6), which, unlike chemical sensitization, can be calculated from interaction data once the radiation field is known.
+Fractionation [3] and conformal, image-guided techniques such as intensity-modulated RT [17] spare normal tissue but do not change the ratio of the energy absorbed per unit mass in tumour and normal cells within the same beam region. Radiosensitizers, which increase the effect of radiation on tumour cells more than on normal cells, include oxygen mimetics such as the nitroimidazoles [5] and transition-metal compounds (platinum, gold, ruthenium) that combine chemical and biological activity with heavy atoms [6]. Elements of high atomic number $Z$ (high-Z elements) act by an essentially physical principle: concentrated in the tumour, they absorb more photon energy per unit mass than soft tissue, raising the tumour dose while the dose to element-free surrounding tissue remains practically unchanged [7, 9]. The gain is expressed by the dose enhancement factor (DEF), the ratio of the doses absorbed in tissue with and without the agent (Section 2.6), which, unlike chemical sensitization, can be calculated from interaction data once the radiation field is known.
 
 Monte Carlo (MC) calculations for gold nanoparticles showed a much larger macroscopic dose enhancement with kilovoltage than with megavoltage beams [10], because the strongly Z-dependent photoelectric effect dominates only at low energies (Section 1.2). Kilovoltage beams are used in superficial and orthovoltage therapy [17], and their dosimetry protocols specify the beam quality by the half-value layer (HVL) [14, 70]. The DEF of an agent therefore cannot be stated without the x-ray spectrum, which depends on the tube design and filtration; the present work addresses this problem for silver and a 45 kV copper-anode tube.
 
@@ -166,7 +179,7 @@ Fig. 1.1 compares the coefficients of silver and ICRU-44 soft tissue [61] from t
 
 
 
-![Fig. 1.1. Mass attenuation (solid) and mass energy-absorption (dashed) coefficients of silver and ICRU-44 soft tissue at 1–50 keV (NIST data). The vertical dashed line marks the Ag K-edge at 25.51 keV; the arrow marks the Ag L-subshell edges.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig02_coeffs.png){width=14.5cm}
+![Fig. 1.1. Mass attenuation (solid) and mass energy-absorption (dashed) coefficients of silver and ICRU-44 soft tissue at 1–50 keV (NIST data). The vertical dashed line marks the Ag K-edge at 25.51 keV; the arrow marks the Ag L-subshell edges.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig02_coeffs.png){width=13.5cm}
 
 
 
@@ -174,7 +187,7 @@ For tissue the two coefficients diverge above about 10 keV, as scattering, which
 
 ## 1.3. High-Z radiosensitizers: from iodine contrast to metal nanoparticles
 
-Spiers first analysed how the increased energy absorption of bone and the secondary-electron ranges determine the dose to soft tissue in and near bone [18], and Das and Chopra quantified the backscatter dose perturbation at tissue–high-Z interfaces in kilovoltage beams [78]. The first systematic studies used iodinated contrast media, which sensitized cultured mammalian cells to x-rays but not to gamma rays [79], pointing to photoabsorption by iodine. Dose enhancement in iodine-loaded tumours was calculated for kilovoltage x-rays [19] and for brain-tumour therapy [20], and a computed tomography scanner modified for therapy (CTRx) delivered the first such treatment of human brain metastases [21]. Monochromatic synchrotron beams treated rats bearing iodine-loaded F98 gliomas [80] and identified the optimal energy for iodinated compounds in cells [81]; contrast-enhanced kilovoltage RT was analysed by MC [82], and modified megavoltage beams were combined with iodine and gadolinium contrast [83].
+Spiers first analysed how the increased energy absorption of bone and the secondary-electron ranges determine the dose to soft tissue in and near bone [18], and Das and Chopra quantified the backscatter dose perturbation at tissue–high-Z interfaces in kilovoltage beams [78]. The first systematic studies used iodinated contrast media, which sensitized cultured mammalian cells to x-rays but not to gamma rays [79], pointing to photoabsorption by iodine. Dose enhancement in iodine-loaded tumours was calculated for kilovoltage x-rays [19] and for brain-tumour therapy [20], and a computed tomography scanner modified for therapy delivered the first such treatment of human brain metastases [21]. Monochromatic synchrotron beams treated rats bearing iodine-loaded F98 gliomas [80] and identified the optimal energy for iodinated compounds in cells [81]; contrast-enhanced kilovoltage RT was analysed by MC [82], and modified megavoltage beams were combined with iodine and gadolinium contrast [83].
 
 Platinum drugs add a high-Z atom to a chemotherapeutic agent: cisplatin combined with monochromatic synchrotron x-rays exploiting platinum K-edge photoactivation cured rats bearing radioresistant F98 gliomas [84]. Pignol et al. analysed inner-shell ionisation and Auger cascades in radiosensitization by iododeoxyuridine, bromodeoxyuridine, platinum salts and gadolinium porphyrins [85]; when the heavy atom lies in or near DNA, short-range Auger electrons deposit their energy at this critical target. The subcellular location of the high-Z atom therefore matters, not only its concentration.
 
@@ -188,7 +201,7 @@ Although gold dominates the literature, the best element is not obvious and has 
 
 
 
-![Fig. 1.2. Ratio of the mass energy-absorption coefficients of Ag, I, Gd, Pt, Au and Bi to that of ICRU-44 soft tissue at 5–45 keV (NIST data). The vertical dashed line marks the Ag K-edge at 25.51 keV.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig03_ratio.png){width=14.5cm}
+![Fig. 1.2. Ratio of the mass energy-absorption coefficients of Ag, I, Gd, Pt, Au and Bi to that of ICRU-44 soft tissue at 5–45 keV (NIST data). The vertical dashed line marks the Ag K-edge at 25.51 keV.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig03_ratio.png){width=13.5cm}
 
 
 
@@ -215,18 +228,18 @@ Table: Table 1.1. Studies of silver nanoparticles as radiosensitizers.
 | Swanner et al., 2015 [35] | Triple-negative and other breast cells | Effects differed between cell types |
 | Liu et al., 2016 [12] | U251 glioma; intracranial mouse model | Outperformed AuNPs |
 | Liu et al., 2018 [33] | Hypoxic glioma cells / radiotherapy | Efficacy enhanced under hypoxia |
-| Zhao et al., 2019 [34] | Glioma / irradiation therapy | PEG and AS1411 coating enhanced the effect |
+| Zhao et al., 2019 [34] | Glioma / irradiation therapy | Polyethylene glycol and aptamer AS1411 enhanced the effect |
 | Habiba et al., 2019 [36] | Colorectal cancer / radiotherapy | Graphene-decorated silver nanoprisms as radiosensitizers |
 
 The advantage of AgNPs over AuNPs [12] is instructive. Per unit mass, silver and gold absorb photon energy comparably below about 12 keV, but gold absorbs more strongly between about 12 and 45 keV (Fig. 1.2), and in megavoltage beams the macroscopic enhancement is much smaller even for gold [10] because Compton scattering, whose mass coefficient depends only weakly on $Z$, dominates [8]. A larger macroscopic physical dose enhancement is thus unlikely to explain the advantage of silver, either below 45 keV or at megavoltage energies. This points to substantial contributions from the chemical and biological activity of silver [37] and from nanoscale energy deposition [31]; confirming this requires quantifying the physical part for a well-defined beam.
 
 Dosimetric studies of silver are fewer than biological ones. MC simulations have addressed AgNPs in a brain tumour during brachytherapy [38], the effect on surrounding healthy tissues [39] and silver versus gold in layered skin [40]; dose enhancement was also measured in AgNP-enriched dose gels [41], and its depth dependence in orthovoltage beams was studied for nanoparticles [42]. A systematic analysis of how kilovoltage tube design and filtration determine the DEF of silver-loaded tissue has not been found in the literature reviewed.
 
-The choice of beam follows from the atomic data of silver (Table 2.2): K-edge 25.514 keV, L3 edge 3.351 keV and Kα1 line 22.163 keV. With $\omega_K = 0.831$, only about 17 % of K vacancies relax by Auger transitions that deposit their energy locally [73, 74]; the other 83 % emit mainly Kα photons of about 22 keV, whose mean free path of about 1.5 cm in soft tissue carries this energy away. The ratio of the mass energy-absorption coefficients of silver and ICRU-44 soft tissue is 21–32 between 8 keV and the K-edge but 76–139 between the edge and 45 keV (Sections 1.2 and 1.3). Unlike the gold K-edge (80.725 keV), usable only above about 81 kV, the silver K-edge lies inside the spectrum of any tube operated above about 26 kV. The most favourable spectra therefore carry much of their energy fluence between the Ag K-edge and the end-point energy (45 keV here), far above the Cu K lines at 8.0–8.9 keV that dominate the photon fluence of the unfiltered copper-anode beam.
+The choice of beam follows from the atomic data of silver (Table 2.2): K-edge 25.514 keV, L3 edge 3.351 keV and Kα1 line 22.163 keV. With $\omega_K = 0.831$, only about 17 % of K vacancies relax by Auger transitions that deposit their energy locally [73, 74]; the other 83 % emit mainly Kα photons that carry their energy away (Section 1.2). Nevertheless, the silver-to-tissue ratio of $\mu_{en}/\rho$ is 76–139 above the edge, against 21–32 between 8 keV and the edge (Sections 1.2 and 1.3). Unlike the gold K-edge (80.725 keV), usable only above about 81 kV, the silver K-edge lies inside the spectrum of any tube operated above about 26 kV. The most favourable spectra therefore carry much of their energy fluence between the Ag K-edge and the end-point energy (45 keV here), far above the Cu K lines at 8.0–8.9 keV that dominate the photon fluence of the unfiltered copper-anode beam.
 
 ## 1.5. Methods of modelling x-ray tube spectra
 
-Measuring the spectrum needed for the DEF with semiconductor detectors [44] requires detector-response corrections and is impractical for every configuration, so parametric studies use calculated spectra; the four groups of methods are compared in Table 1.2. The empirical model TASMIP (tungsten anode spectral model using interpolating polynomials) interpolates measured tungsten-anode spectra from 30 to 140 kV [43], and spektr 3.0 is based on the TASMICS model [102]. Such models are fast and accurate within their data range but tied to the anode material, angle and inherent filtration of the measured tubes: added filtration can be modelled as attenuation, but the anode material and angle, studied in this work, cannot.
+Measuring the spectrum needed for the DEF with semiconductor detectors [44] requires detector-response corrections and is impractical for every configuration, so parametric studies use calculated spectra; the four groups of methods are compared in Table 1.2. The empirical model TASMIP (tungsten anode spectral model using interpolating polynomials) interpolates measured tungsten-anode spectra from 30 to 140 kV [43], and the spektr 3.0 tool implements a similar interpolation model [102]. Such models are fast and accurate within their data range but tied to the anode material, angle and inherent filtration of the measured tubes: added filtration can be modelled as attenuation, but the anode material and angle, studied in this work, cannot.
 
 Semi-empirical models go back to Kramers' theory, in which the energy emitted from a thick target per unit photon-energy interval is proportional to $Z(T_0 - E)$, where $Z$ is the target atomic number, $T_0$ the initial electron kinetic energy and $E$ the photon energy [8, 103]. Birch and Marshall compared their model with Ge(Li) detector measurements [44], and Tucker, Barnes and Chakraborty proposed the TBC model for tungsten [45]. Such models combine a simplified bremsstrahlung cross-section with approximate electron penetration and target self-absorption, fitting some parameters to experiment; they are cheap and show the dependence on voltage, anode angle and filtration explicitly, but their accuracy is limited by the simplified physics and their parameters are target-specific, usually for tungsten.
 
@@ -243,9 +256,9 @@ Table: Table 1.2. Comparison of x-ray spectrum modelling approaches.
 | Physics-based deterministic | SpekCalc [48]; SpekPy v2 [15]; developed model (this work) | Fast; physically founded; few parameters | Approximate electron transport; limited anodes and voltages |
 | Monte Carlo | MCNP4C [50]; EGS4/BEAM, EGSnrc [49, 107]; Geant4 [108]; PENELOPE [109] | Most complete physics; real tube geometry | Slow; detailed geometry needed; statistical noise |
 
-The calculated spectrum must be related to measurable quantities. In kilovoltage dosimetry, beam quality is specified by the HVL together with the tube voltage [110], as in the protocol of the American Association of Physicists in Medicine for 40–300 kV beams (AAPM TG-61) [14], the IAEA TRS-398 code of practice [70] and the standard radiation qualities of the International Electrotechnical Commission (IEC 61267) [111]. The HVL is thus the natural quantity for comparing models with each other and with measurements. It does not, however, fix the energy-fluence fraction above the Ag K-edge, so beams with similar HVLs can give different DEFs for silver, as Chapter 3 shows for filters with absorption edges (Table 3.5).
+The calculated spectrum must be related to measurable quantities. In kilovoltage dosimetry, beam quality is specified by the HVL together with the tube voltage [110], as in the protocol of the American Association of Physicists in Medicine for 40–300 kV beams (AAPM TG-61) [14], the TRS-398 code of practice of the International Atomic Energy Agency (IAEA) [70] and the standard radiation qualities of the International Electrotechnical Commission (IEC 61267) [111]. The HVL is thus the natural quantity for comparing models with each other and with measurements. It does not, however, fix the energy-fluence fraction above the Ag K-edge, so beams with similar HVLs can give different DEFs for silver, as Chapter 3 shows for filters with absorption edges (Table 3.5).
 
-Most of these models were developed for tungsten, the usual target of medical tubes [16]. Copper-anode tubes serve mainly x-ray diffraction (XRD), where Cu Kα is the working line, Kβ is suppressed by a nickel filter [52] and the bremsstrahlung continuum is unwanted background. For silver dose enhancement, by contrast, the continuum is the useful part, since only bremsstrahlung photons can exceed the Ag K-edge; yet the full spectrum of copper-anode tubes and its dependence on tube parameters have received much less attention. This work therefore constructed a semi-analytical physics-based model of the copper-anode tube, the developed model (DM), which combines the Bethe collision stopping power in the continuous slowing-down approximation (CSDA) [53, 68], the non-relativistic Bethe–Heitler bremsstrahlung cross-section with the Elwert factor [54–56] and the Gryzinski K-shell ionisation cross-section [57], with one adjustable parameter, the electron depth factor (Chapter 2). All dependences on tube parameters remain explicit, and SpekPy v2 serves as the validation reference.
+Most of these models were developed for tungsten, the usual target of medical tubes [16]. Copper-anode tubes serve mainly x-ray diffraction, where Cu Kα is the working line, Kβ is suppressed by a nickel filter [52] and the bremsstrahlung continuum is unwanted background. For silver dose enhancement, by contrast, the continuum is the useful part, since only bremsstrahlung photons can exceed the Ag K-edge; yet the full spectrum of copper-anode tubes and its dependence on tube parameters have received much less attention. This work therefore constructed a semi-analytical physics-based model of the copper-anode tube, the developed model (DM), which combines the Bethe collision stopping power in the continuous slowing-down approximation (CSDA) [53, 68], the non-relativistic Bethe–Heitler bremsstrahlung cross-section with the Elwert factor [54–56] and the Gryziński K-shell ionisation cross-section [57], with one adjustable parameter, the electron depth factor (Chapter 2). All dependences on tube parameters remain explicit, and SpekPy v2 serves as the validation reference.
 
 ## 1.6. Conclusions to Chapter 1
 
@@ -260,11 +273,11 @@ This chapter describes the semi-analytical spectrum model of this work, the deve
 
 ## 2.1. Design and technical parameters of an x-ray tube with a copper anode
 
-Electrons emitted by the heated cathode are focused onto the focal spot of the anode, which they reach with the kinetic energy $T_0 = eU$, where $U$ is the tube voltage and $e$ the elementary charge (45 keV in the baseline); only a small fraction of this energy is emitted as x-rays [8, 16]. The photon number is proportional to the product of tube current and exposure time (mAs), whereas the spectral shape does not depend on the current, so all spectra are normalised to 1 mAs. In the modelled reflection-target tube (Fig. 2.1), the beam leaves through the face of the thick anode on which the electrons are incident. The anode angle $\theta$ lies between the anode surface and the central ray, which is perpendicular to the electron beam, so the electrons are incident at $\theta$ to the surface normal and the central-ray photons leave at the take-off angle $\theta$. A small $\theta$ reduces the effective focal spot but makes the beam on the anode side weaker and harder (heel effect) [16]; the DM treats the central ray only. The beryllium window and the self-absorption in the anode form the inherent filtration, and added metal filters remove the soft part of the spectrum and harden the beam [17] before the photons cross an air gap to the sample at the focus–sample distance $r$ (labelled d in Fig. 2.1).
+Electrons emitted by the heated cathode are focused onto the focal spot of the anode, which they reach with the kinetic energy $T_0 = eU$, where $U$ is the tube voltage and $e$ the elementary charge (45 keV in the baseline); only a small fraction of this energy is emitted as x-rays [8, 16]. The photon number is proportional to the product of tube current and exposure time (mAs), whereas the spectral shape does not depend on the current, so all spectra are normalised to 1 mAs. In the modelled reflection-target tube (Fig. 2.1), the beam leaves through the face of the thick anode on which the electrons are incident. The anode angle $\theta$ lies between the anode surface and the central ray, which is perpendicular to the electron beam, so the electrons are incident at $\theta$ to the surface normal and the central-ray photons leave at the take-off angle $\theta$. A small $\theta$ reduces the effective focal spot but makes the beam on the anode side weaker and harder (heel effect) [16]; the DM treats the central ray only. The beryllium window and the self-absorption in the anode form the inherent filtration, and added metal filters remove the soft part of the spectrum and harden the beam [17] before the photons cross an air gap to the sample at the focus–sample distance $r$.
 
 
 
-![Fig. 2.1. Schematic diagram of the modelled reflection-target copper-anode tube and of the irradiation geometry: photons emitted along the central ray at the anode angle θ pass the beryllium window, the added filter and the air gap (focus–sample distance d, denoted r in the text) to the Ag-containing tissue sample.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig01_tube.png){width=14.5cm}
+![Fig. 2.1. Schematic diagram of the modelled reflection-target copper-anode tube and of the irradiation geometry: photons emitted along the central ray at the anode angle θ pass the beryllium window, the added filter and the air gap (focus–sample distance d, denoted r in the text) to the Ag-containing tissue sample.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig01_tube.png){width=13.5cm}
 
 
 
@@ -282,14 +295,14 @@ Table: Table 2.1. Baseline design and technical parameters of the modelled X-ray
 | Beryllium window thickness | 0.5 mm | 0.15–2.0 mm |
 | Focus–sample distance (air path) | 10 cm | – |
 | Tube current | 40 mA | – |
-| Added filters | none | Al 0.25–6 mm; Ti, Ni, Cu, Mo, Ag, Sn; 54 elements Z = 13–83 |
+| Added filters | none | Al 0.25–6 mm; Ti, Ni, Cu, Mo, Ag, Sn; 43 elements Z = 13–83 |
 | Energy bin width | 0.05 keV | – |
 
 
 
 ## 2.2. Electron slowing-down in the anode
 
-Neglecting radiative losses, the DM uses the continuous-slowing-down approximation (CSDA) with the Bethe mass collision stopping power [53] in the form of ICRU Report 37 [68]:
+Neglecting radiative losses, the DM uses the continuous-slowing-down approximation (CSDA) with the Bethe mass collision stopping power [53] in the form of Report 37 of the International Commission on Radiation Units and Measurements (ICRU) [68]:
 
 $$\frac{S(T)}{\rho} = \frac{\kappa}{2}\,\frac{Z}{A}\,\frac{1}{\beta^{2}}\left[\ln\frac{\tau^{2}(\tau + 2)}{2\,(I/m_ec^{2})^{2}} + F^{-}(\tau)\right]$$
 
@@ -303,7 +316,7 @@ $$F^{-}(\tau) = 1 - \beta^{2} + \frac{\tau^{2}/8 - (2\tau + 1)\ln 2}{(\tau + 1)^
 EQNUM[2.2]
 
 
-For copper $I$ = 322 eV; the density-effect correction (negligible below 100 keV) and the shell corrections (relevant only at the lowest energies) are omitted; for water the code reproduces the NIST ESTAR stopping power [69] (Section 2.8). The path length travelled while slowing down from $T_0$ to $T$ is
+For copper $I$ = 322 eV; the density-effect correction (negligible below 100 keV) and the shell corrections (relevant only at the lowest energies) are omitted; for water the code reproduces the ESTAR stopping power of the National Institute of Standards and Technology (NIST) [69] (Section 2.8). The path length travelled while slowing down from $T_0$ to $T$ is
 
 $$s(T) = \int_{T}^{T_0} \frac{\mathrm{d}T'}{S(T')}$$
 
@@ -321,7 +334,7 @@ where $d(T)$ is the depth below the anode surface, along the normal, at which th
 
 
 
-![Fig. 2.2. Electron slowing-down and K-shell ionisation in the copper anode: (a) Bethe collision stopping power (solid, left axis) and projected depth at which a 45 keV electron has slowed down to the energy T, for η = 0.4 and θ = 12° (dashed, right axis); (b) Gryziński K-shell ionisation cross-section of copper.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig04_electron.png){width=14.5cm}
+![Fig. 2.2. Electron slowing-down and K-shell ionisation in the copper anode: (a) Bethe collision stopping power (solid, left axis) and projected depth at which a 45 keV electron has slowed down to the energy T, for η = 0.40 and θ = 12° (dashed, right axis); (b) Gryziński K-shell ionisation cross-section of copper.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig04_electron.png){width=13.5cm}
 
 
 
@@ -514,7 +527,7 @@ $$\langle R\rangle = \frac{\int \Psi(E)\left(\frac{\mu_{en}}{\rho}\right)_{\math
 EQNUM[2.25]
 
 
-where $R(E) = (\mu_{en}/\rho)_{\mathrm{Ag}}/(\mu_{en}/\rho)_t$ and $d_t(E) = \Psi(E)\,(\mu_{en}/\rho)_t$ is the dose spectrum of unloaded tissue, so $\langle R\rangle$ is the dose-weighted mean of $R(E)$ and the slope $\langle R\rangle - 1$ depends on the spectrum alone. For ICRU-44 tissue, $R(E)$ jumps at the Ag K-edge (25.514 keV) from 31.8 to about 76 and reaches about 139 at 40–45 keV (Section 1.2). Shifting the dose spectrum above the K-edge therefore raises the slope, the basis of the filter optimisation in Chapter 3.
+where $R(E) = (\mu_{en}/\rho)_{\mathrm{Ag}}/(\mu_{en}/\rho)_t$ and $d_t(E) = \Psi(E)\,(\mu_{en}/\rho)_t$ is the dose spectrum of unloaded tissue, so $\langle R\rangle$ is the dose-weighted mean of $R(E)$ and the slope $\langle R\rangle - 1$ depends on the spectrum alone. For ICRU-44 tissue, $R(E)$ jumps at the Ag K-edge (25.514 keV) from about 32 to about 76 and reaches about 139 at 40–45 keV (Section 1.2). Shifting the dose spectrum above the K-edge therefore raises the slope, the basis of the filter optimisation in Chapter 3.
 
 With depth the spectrum hardens; where silver is present only locally at depth $z$, without perturbing the beam, the primary-beam DEF is
 
@@ -570,7 +583,7 @@ where $\varepsilon_i$ are the energy deposits in the bin, $N$ the number of inci
 
 ## 2.8. Data sources, software implementation and validation strategy
 
-All $\mu_{en}/\rho$ values and the $\mu/\rho$ of tissue, water and air are taken from the NIST tables [59, 75]. The module `nist.py` interpolates them log–log within each segment between absorption edges, where the coefficients follow approximate power laws. Elemental $\mu/\rho$, edge and line energies, fluorescence yields, radiative rates and the MC cross-sections come from xraylib 4.3.0 [60], whose $\mu/\rho$ agree with NIST [72] to better than 0.1 %.
+All $\mu_{en}/\rho$ values and the $\mu/\rho$ of tissue, water and air are obtained from the NIST elemental tables [59, 75], for compounds by the mixture rule. The module `nist.py` interpolates them log–log within each segment between absorption edges, where the coefficients follow approximate power laws. Elemental $\mu/\rho$, edge and line energies, fluorescence yields, radiative rates and the MC cross-sections come from xraylib 4.3.0 [60], whose $\mu/\rho$ agree with NIST [72] to better than 0.1 %.
 
 The xraylib function `CS_Energy`, however, returns too low $\mu_{en}/\rho$ for light elements at 15–45 keV: for oxygen at 30 keV 0.108 instead of 0.173 cm²/g (−37 %) and for carbon 0.0515 instead of 0.0661 cm²/g, whereas for silver it agrees with NIST (16.58 versus 16.60 cm²/g). For tissue, composed mainly of O, C and H, it would underestimate the denominator of (2.23) and overestimate the DEF: 1.72 instead of 1.48 for 1 % Ag with 1 mm Al. The xraylib cross-sections are unaffected (Section 2.7), but `CS_Energy` must be checked against NIST before use for low-Z media.
 
@@ -598,7 +611,7 @@ Filtration also serves safety. The filters that markedly raise the DEF (1 mm Al 
 
 # CHAPTER 3. RESULTS OF SPECTRUM MODELLING AND DOSE-ENHANCEMENT CALCULATIONS
 
-The results were obtained with the developed model (DM) of Chapter 2 and with the reference code SpekPy v2.5.4 [15, 58]. Unless stated otherwise, the baseline conditions of Table 2.1 apply: a constant potential of 45 kV, an anode angle θ = 12°, a 0.5 mm Be window, 10 cm of air between the focal spot and the sample, and 0.05 keV energy bins. The dose enhancement factor (DEF) is calculated in the kerma approximation, which assumes charged-particle equilibrium (CPE), for ICRU-44 soft tissue [61] with NIST mass energy-absorption coefficients [59]; $R(E)$ is the ratio of these coefficients for Ag and tissue (Section 2.6).
+The results were obtained with the developed model (DM) of Chapter 2 and with the reference code SpekPy v2.5.4 [15, 58]. Unless stated otherwise, the baseline conditions of Table 2.1 apply: a constant potential of 45 kV, an anode angle θ = 12°, a 0.5 mm Be window, 10 cm of air between the focal spot and the sample, and 0.05 keV energy bins. The dose enhancement factor (DEF) is calculated in the kerma approximation, which assumes charged-particle equilibrium (CPE), for the ICRU-44 soft tissue of the International Commission on Radiation Units and Measurements (ICRU) [61] with the mass energy-absorption coefficients of the National Institute of Standards and Technology (NIST) [59]; $R(E)$ is the ratio of these coefficients for Ag and tissue (Section 2.6).
 
 ## 3.1. Validation of the developed spectrum model
 
@@ -611,7 +624,7 @@ EQNUM[3.1]
 
 where $a_i(\eta)$ and $b_i$ are the bremsstrahlung fluences of the DM and of SpekPy in energy bin $i$, each divided by its sum over the $N$ bins with $E_i > 3$ keV, and the factor $1/\max_i b_i$ expresses the deviation as a fraction of the spectrum maximum. The fit gave $\eta = 0.40$ with $\delta = 2.46$ %, against $\delta = 8.47$ % for straight-line penetration ($\eta = 1$). Because of multiple elastic scattering, photons are thus produced at less than half the depth of a straight path in the continuous slowing-down approximation (CSDA), 2.536 µm instead of 6.481 µm for 45 keV electrons in copper, and the soft bremsstrahlung is less self-absorbed in the anode; $\eta = 1$ therefore yields too hard a spectrum. With $\eta$ fixed at 0.40, all other configurations are predictions rather than fits.
 
-Table 3.1 compares the two codes for 25–50 kV and 6–30° without the air path. With 1 mm Al, which removes the Cu K lines, the first HVL (2.18) of the DM is lower than that of SpekPy by 3.5–4.6 %. Without added filtration the HVL deviation ranges from −2.6 % to −19.4 %, because the DM underestimates the Cu K lines by about 25–43 %, and a weaker 8 keV line gives more weight to the softer 3–8 keV continuum in the air kerma. The deficit is largest at low voltage, where the Gryzinski cross-section [57] rises too slowly above the ionisation threshold compared with the distorted-wave Born calculations [114, 115] underlying the K-line model of SpekPy [104].
+Table 3.1 compares the two codes for 25–50 kV and 6–30° without the air path. With 1 mm Al, which removes the Cu K lines, the first HVL (2.18) of the DM is lower than that of SpekPy by 3.5–4.6 %. Without added filtration the HVL deviation ranges from −2.6 % to −19.4 %, because the DM underestimates the Cu K lines by about 25–43 %, and a weaker 8 keV line gives more weight to the softer 3–8 keV continuum in the air kerma. The deficit is largest at low voltage, where the Gryziński cross-section [57] rises too slowly above the ionisation threshold compared with the distorted-wave Born calculations [114, 115] underlying the K-line model of SpekPy [104].
 
 
 
@@ -642,11 +655,11 @@ The spectral shapes of the two models agree within about 10 % between 10 and 30 
 
 
 
-![Fig. 3.1. Spectra of the 45 kV Cu-anode tube (baseline geometry) from SpekPy v2 and the developed model without added filtration (left) and with 1.0 mm Al (right), normalised to equal bremsstrahlung area above 9.6 keV; lower panels: ratio of the two.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig05_validation_cu.png){width=14.5cm}
+![Fig. 3.1. Spectra of the 45 kV Cu-anode tube (baseline geometry) from SpekPy v2 and the developed model without added filtration (left) and with 1.0 mm Al (right), normalised to equal bremsstrahlung area above 9.6 keV; lower panels: ratio of the two.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig05_validation_cu.png){width=13.5cm}
 
 
 
-The absolute air kerma of the DM exceeds that of SpekPy by a factor of 1.08–1.22 without filtration and 1.21–1.42 with 1 mm Al, mainly because the DM neglects electron backscattering (the backscatter coefficient of copper is about 0.3). The DEF depends only on the spectral shape and is unaffected; absolute dose rates are taken from SpekPy. As a check beyond copper, the same $\eta$ was applied to a tungsten anode at 50, 80 and 100 kV with 2.5 mm Al, which removes the W L lines not included in the DM (Table 3.2). The HVL deviations lie between −5.7 % and +0.5 %, and at 50 kV both values are comparable to the first HVL of the IEC 61267 quality RQR3 (1.78 mm Al) [111]. As for copper, the DM spectra have a slightly weaker high-energy tail (Fig. 3.2). A single value of $\eta$ thus serves anodes with Z = 29 and Z = 74. The main weakness of the DM is the underestimated Cu K-line intensity, which matters for unfiltered and Kα-dominated beams, so the main DEF results use SpekPy spectra, with the DM as an independent check.
+The absolute air kerma of the DM exceeds that of SpekPy by a factor of 1.08–1.22 without filtration and 1.21–1.42 with 1 mm Al, mainly because the DM neglects electron backscattering (the backscatter coefficient of copper is about 0.3). The DEF depends only on the spectral shape and is unaffected; absolute dose rates are taken from SpekPy. As a check beyond copper, the same $\eta$ was applied to a tungsten anode at 50, 80 and 100 kV with 2.5 mm Al, which removes the W L lines not included in the DM (Table 3.2). The HVL deviations lie between −5.7 % and +0.5 %, and at 50 kV both values are comparable to the first HVL (1.78 mm Al) of the quality RQR3 of the International Electrotechnical Commission standard IEC 61267 [111]. As for copper, the DM spectra have a slightly weaker high-energy tail (Fig. 3.2). A single value of $\eta$ thus serves anodes with Z = 29 and Z = 74. The main weakness of the DM is the underestimated Cu K-line intensity, which matters for unfiltered and Kα-dominated beams, so the main DEF results use SpekPy spectra, with the DM as an independent check.
 
 
 
@@ -662,7 +675,7 @@ Table: Table 3.2. Check of the model for a W anode (θ = 12°, 2.5 mm Al), compa
 
 
 
-![Fig. 3.2. Spectra of a tungsten-anode tube (θ = 12°, 2.5 mm Al) at 50, 80 and 100 kV from SpekPy v2 (solid lines) and the developed model (dashed lines, η = 0.40), normalised to equal area.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig06_validation_w.png){width=14.5cm}
+![Fig. 3.2. Spectra of a tungsten-anode tube (θ = 12°, 2.5 mm Al) at 50, 80 and 100 kV from SpekPy v2 (solid lines) and the developed model (dashed lines, η = 0.40), normalised to equal area.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig06_validation_w.png){width=13.5cm}
 
 
 
@@ -672,7 +685,7 @@ In the baseline spectrum (Fig. 3.3) the Be window and the air path remove practi
 
 
 
-![Fig. 3.3. Spectrum of the 45 kV Cu-anode tube (θ = 12°, 0.5 mm Be, 10 cm air) from SpekPy v2 and the developed model. The dashed line marks the Ag K-edge (25.514 keV).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig07_baseline.png){width=14.5cm}
+![Fig. 3.3. Spectrum of the 45 kV Cu-anode tube (θ = 12°, 0.5 mm Be, 10 cm air) from SpekPy v2 and the developed model. The dashed line marks the Ag K-edge (25.514 keV).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig07_baseline.png){width=13.5cm}
 
 
 
@@ -708,7 +721,7 @@ The anode angle, the tube voltage and the Be window thickness were varied one at
 
 
 
-![Fig. 3.4. Influence of the anode angle (6–30°) on the spectrum of the 45 kV Cu-anode tube (0.5 mm Be, 10 cm air; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig08_angle.png){width=14.5cm}
+![Fig. 3.4. Influence of the anode angle (6–30°) on the spectrum of the 45 kV Cu-anode tube (0.5 mm Be, 10 cm air; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig08_angle.png){width=13.5cm}
 
 
 
@@ -716,7 +729,7 @@ The tube voltage has the strongest influence on the output: from 25 to 50 kV the
 
 
 
-![Fig. 3.5. Spectra of the Cu-anode tube at tube voltages of 25–50 kV (baseline geometry; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig09_kvp.png){width=14.5cm}
+![Fig. 3.5. Spectra of the Cu-anode tube at tube voltages of 25–50 kV (baseline geometry; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig09_kvp.png){width=13.5cm}
 
 
 
@@ -724,7 +737,7 @@ The Be window affects only the soft end of the spectrum (Fig. 3.6). Because bery
 
 
 
-![Fig. 3.6. Influence of the Be window thickness (0.15–2.0 mm) on the low-energy part of the spectrum of the 45 kV Cu-anode tube (θ = 12°, 10 cm air; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig10_be.png){width=14.5cm}
+![Fig. 3.6. Influence of the Be window thickness (0.15–2.0 mm) on the low-energy part of the spectrum of the 45 kV Cu-anode tube (θ = 12°, 10 cm air; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig10_be.png){width=13.5cm}
 
 
 
@@ -756,7 +769,7 @@ Added filters reshape the spectrum through the transmission $\exp[-\mu_f(E)\,t]$
 
 
 
-![Fig. 3.7. Spectra of the 45 kV Cu-anode tube with added Al filters of 0.25–2.0 mm (baseline geometry; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig11_al.png){width=14.5cm}
+![Fig. 3.7. Spectra of the 45 kV Cu-anode tube with added Al filters of 0.25–2.0 mm (baseline geometry; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig11_al.png){width=13.5cm}
 
 
 
@@ -764,7 +777,7 @@ Copper filters behave differently (Fig. 3.8). The Cu K-edge (8.979 keV) lies jus
 
 
 
-![Fig. 3.8. Spectra of the 45 kV Cu-anode tube with a 0.02 mm Ni filter and with Cu filters of 0.05–0.2 mm (baseline geometry; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig12_cu_ni.png){width=14.5cm}
+![Fig. 3.8. Spectra of the 45 kV Cu-anode tube with a 0.02 mm Ni filter and with Cu filters of 0.05–0.2 mm (baseline geometry; SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig12_cu_ni.png){width=13.5cm}
 
 
 
@@ -772,7 +785,7 @@ Each K-edge filter transmits a band below its edge and cuts the fluence above it
 
 
 
-![Fig. 3.9. Spectra of the 45 kV Cu-anode tube filtered by Mo 0.05 mm, Ag 0.05 mm and Sn 0.05 and 0.1 mm compared with 1.0 mm Al, relative to the maximum of the Al-filtered spectrum (SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig13_kedge.png){width=14.5cm}
+![Fig. 3.9. Spectra of the 45 kV Cu-anode tube filtered by Mo 0.05 mm, Ag 0.05 mm and Sn 0.05 and 0.1 mm compared with 1.0 mm Al, relative to the maximum of the Al-filtered spectrum (SpekPy v2). The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig13_kedge.png){width=13.5cm}
 
 
 
@@ -805,7 +818,7 @@ In the kerma approximation the DEF is a ratio of two spectrum-weighted integrals
 
 
 
-![Fig. 3.10. Dose integrand $E\,\Phi(E)\,\mu_{en}/\rho$ for ICRU-44 soft tissue (shaded) and tissue with 1 % Ag (line), without filtration (left) and with 1.0 mm Al (right); 45 kV Cu-anode tube, SpekPy v2. The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig14_integrand.png){width=14.5cm}
+![Fig. 3.10. Dose integrand $E\,\Phi(E)\,\mu_{en}/\rho$ for ICRU-44 soft tissue (shaded) and tissue with 1 % Ag (line), without filtration (left) and with 1.0 mm Al (right); 45 kV Cu-anode tube, SpekPy v2. The dashed line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig14_integrand.png){width=13.5cm}
 
 
 
@@ -813,7 +826,7 @@ The DEF increases linearly with the Ag mass fraction $w$ for every filter (Fig. 
 
 
 
-![Fig. 3.11. Dose enhancement factor of ICRU-44 soft tissue versus the Ag mass fraction for different added filters (SpekPy v2 spectra, kerma approximation at the surface).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig15_def_conc.png){width=14.5cm}
+![Fig. 3.11. Dose enhancement factor of ICRU-44 soft tissue versus the Ag mass fraction for different added filters (SpekPy v2 spectra, kerma approximation at the surface).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig15_def_conc.png){width=13.5cm}
 
 
 
@@ -848,7 +861,7 @@ Every filter raises the DEF at the expense of the dose rate, so the optimal filt
 
 
 
-![Fig. 3.12. Dose enhancement factor for 1 % Ag versus the relative air kerma for Al, Ti, Ni, Cu, Mo, Ag and Sn filters of increasing thickness (45 kV Cu-anode tube, baseline geometry; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig16_tradeoff.png){width=14.5cm}
+![Fig. 3.12. Dose enhancement factor for 1 % Ag versus the relative air kerma for Al, Ti, Ni, Cu, Mo, Ag and Sn filters of increasing thickness (45 kV Cu-anode tube, baseline geometry; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig16_tradeoff.png){width=13.5cm}
 
 
 
@@ -865,7 +878,7 @@ The dependence on Z reflects the positions of the absorption edges relative to t
 
 
 
-![Fig. 3.13. Dose enhancement factor for 1 % Ag with filters of elements Z = 13–83 whose thickness gives an equal air-kerma transmission of 10 %, 1 % and 0.1 % (45 kV Cu-anode tube, baseline geometry; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig17_filter_scan.png){width=14.5cm}
+![Fig. 3.13. Dose enhancement factor for 1 % Ag with filters of elements Z = 13–83 whose thickness gives an equal air-kerma transmission of 10 %, 1 % and 0.1 % (45 kV Cu-anode tube, baseline geometry; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig17_filter_scan.png){width=13.5cm}
 
 
 
@@ -921,11 +934,11 @@ Filtration is thus the decisive design lever for dose enhancement by Ag with a c
 
 ## 3.7. Depth dependence and self-shielding
 
-In samples, phantoms or animals the Ag-loaded target lies beneath tissue that modifies the beam. Two cases were calculated with SpekPy spectra in the primary-beam kerma approximation (scatter is assessed in Section 3.9): a small loaded region at depth $z$ in Ag-free tissue (equation (2.26)) and a region loaded uniformly from the surface to $z$ (equation (2.27)). In the first case the DEF increases monotonically with depth (Fig. 3.14; Table 3.9 also gives the dose $D/D_0$ relative to the surface dose $D_0$), because tissue preferentially absorbs low-energy photons, shifting the fluence to where the Ag/tissue ratio of $\mu_{en}/\rho$ is larger. Without a filter the DEF for 1 % Ag rises from 1.20 to 1.56 at 20 mm, but the dose falls to 0.0090 at 10 mm as the Cu K lines and soft bremsstrahlung are absorbed: tissue acts as an added filter (Section 3.6). With Al 1 mm, which has already hardened the beam, the DEF rises only to 1.69 at 20 mm and the dose falls only to 0.439 at 10 mm.
+In samples, phantoms or animals the Ag-loaded target lies beneath tissue that modifies the beam. Two cases were calculated with SpekPy spectra in the primary-beam kerma approximation (scatter is assessed in Section 3.9): a small loaded region at depth $z$ in Ag-free tissue (equation (2.26)) and a region loaded uniformly from the surface to $z$ (equation (2.27)). In the first case the DEF increases monotonically with depth (Fig. 3.14; Table 3.9 also gives the dose $D/D_0$ relative to the surface dose $D_0$), because tissue preferentially absorbs low-energy photons, shifting the fluence to where the Ag/tissue ratio of $\mu_{en}/\rho$ is larger. Without a filter the DEF for 1 % Ag rises from 1.20 to 1.56 at 20 mm, but the dose falls to 0.0090 at 10 mm as the Cu K lines and soft bremsstrahlung are absorbed: tissue acts as an added filter (Section 3.4). With Al 1 mm, which has already hardened the beam, the DEF rises only to 1.69 at 20 mm and the dose falls only to 0.439 at 10 mm.
 
 
 
-![Fig. 3.14. Dose enhancement factor for 1 % Ag versus depth of the Ag-loaded region in Ag-free soft tissue for the unfiltered 45 kV beam and four added filters (SpekPy, primary beam, kerma approximation).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig18_def_depth.png){width=14.5cm}
+![Fig. 3.14. Dose enhancement factor for 1 % Ag versus depth of the Ag-loaded region in Ag-free soft tissue for the unfiltered 45 kV beam and four added filters (SpekPy, primary beam, kerma approximation).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig18_def_depth.png){width=13.5cm}
 
 
 
@@ -954,17 +967,17 @@ Inside a region loaded from the surface the trend reverses (Fig. 3.15): Ag stron
 
 
 
-![Fig. 3.15. Dose enhancement factor versus depth inside a uniformly Ag-loaded region starting at the surface: 0.5, 1.0 and 2.0 % Ag, Al 1.0 mm (solid) and Sn 0.1 mm (dashed) filters, self-shielding included.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig19_def_slab.png){width=14.5cm}
+![Fig. 3.15. Dose enhancement factor versus depth inside a uniformly Ag-loaded region starting at the surface: 0.5, 1.0 and 2.0 % Ag, Al 1.0 mm (solid) and Sn 0.1 mm (dashed) filters, self-shielding included.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig19_def_slab.png){width=13.5cm}
 
 
 
 ## 3.8. Influence of tube voltage and comparison with other high-Z elements
 
-The DEF versus tube voltage $U$ (Fig. 3.16, Table 3.10) was calculated with SpekPy for 20–50 kV, where it supports the Cu anode, and with the DM for 60–80 kV. Photons above the Ag K-edge exist only above 25.5 kV, since the maximum photon energy is $eU$ ($e$ is the elementary charge), and below this voltage the DEF changes little. The slope increases from 26–27 kV; between 30 and 50 kV the DEF with Al 1 mm rises from 1.31 to 1.52 ever more slowly (±0.009 per ±1 kV at 45 kV, Section 3.10), and above 50 kV the growth slows further as the spectrum extends beyond the maximum of the Ag/tissue ratio near 40–45 keV. As the DM gives slightly lower DEFs than SpekPy at 45 kV (1.464 versus 1.482), the 60–80 kV values are, if anything, underestimated, and part of the flattening between 50 and 60 kV reflects the change of model.
+The DEF versus tube voltage $U$ (Fig. 3.16, Table 3.10) was calculated with SpekPy for 20–50 kV, where it supports the Cu anode, and with the DM for 60–80 kV. Photons above the Ag K-edge exist only above 25.5 kV, since the maximum photon energy is $T_0 = eU$ (Section 2.1), and below this voltage the DEF changes little. The slope increases from 26–27 kV; between 30 and 50 kV the DEF with Al 1 mm rises from 1.31 to 1.52 ever more slowly (±0.009 per ±1 kV at 45 kV, Section 3.10), and above 50 kV the growth slows further as the spectrum extends beyond the maximum of the Ag/tissue ratio near 40–45 keV. As the DM gives slightly lower DEFs than SpekPy at 45 kV (1.464 versus 1.482), the 60–80 kV values are, if anything, underestimated, and part of the flattening between 50 and 60 kV reflects the change of model.
 
 
 
-![Fig. 3.16. Dose enhancement factor for 1 % Ag versus tube voltage (Al 0.5 and 1.0 mm filters): SpekPy v2 for 20–50 kV (solid) and the developed model for 60–80 kV (dashed); the vertical line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig20_def_kvp.png){width=14.5cm}
+![Fig. 3.16. Dose enhancement factor for 1 % Ag versus tube voltage (Al 0.5 and 1.0 mm filters): SpekPy v2 for 20–50 kV (solid) and the developed model for 60–80 kV (dashed); the vertical line marks the Ag K-edge.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig20_def_kvp.png){width=13.5cm}
 
 
 
@@ -983,7 +996,7 @@ For tissue with 1 % by mass of I, Gd, Pt, Au or Bi (Fig. 3.17, Table 3.11) the u
 
 
 
-![Fig. 3.17. Dose enhancement factor of soft tissue with 1 % by mass of Ag, I, Gd, Pt, Au or Bi at 45 kV without added filter and with Al 1.0 mm or Sn 0.1 mm (SpekPy, kerma approximation).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig21_elements.png){width=14.5cm}
+![Fig. 3.17. Dose enhancement factor of soft tissue with 1 % by mass of Ag, I, Gd, Pt, Au or Bi at 45 kV without added filter and with Al 1.0 mm or Sn 0.1 mm (SpekPy, kerma approximation).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig21_elements.png){width=13.5cm}
 
 
 
@@ -1003,13 +1016,13 @@ Per unit mass, Ag is thus a weaker physical sensitizer at 45 kV than Gd, Pt, Au 
 
 ## 3.9. Monte Carlo verification
 
-The analytical DEFs neglect scatter and assume that the energy of Ag K-fluorescence, excluded from $\mu_{en}/\rho$ of Ag, escapes. Both assumptions were tested with the Monte Carlo (MC) code of Section 2.7: a laterally infinite 30 mm slab of ICRU-44 tissue with 1 % Ag in a 10 mm layer at 2–12 mm depth was irradiated by a broad parallel beam with the unfiltered and Al 1 mm-filtered SpekPy spectra ($4\times10^{6}$ histories in 5 batches). The reference is the primary-beam kerma model for the same geometry, including attenuation by Ag.
+The analytical DEFs neglect scatter and assume that the energy of Ag K-fluorescence, excluded from $\mu_{en}/\rho$ of Ag, escapes. Both assumptions were tested with the Monte Carlo (MC) code and slab geometry of Section 2.7 (1 % Ag in a 10 mm layer at 2–12 mm depth; unfiltered and Al 1 mm-filtered SpekPy spectra; $4\times10^{6}$ histories in five batches). The reference is the primary-beam kerma model for the same geometry, including attenuation by Ag.
 
 Both methods give the same profile shape (Fig. 3.18; regional averages in Table 3.12). With Al 1 mm the DEF rises sharply at the layer entrance and falls towards the exit through self-shielding. For the unfiltered beam an entrance peak is followed by a minimum at about 3–4 mm and a rise: near the entrance Ag attenuates mainly the soft components that still dominate the dose, whereas deeper, after their absorption, beam hardening prevails. The agreement is within 1.2 % (unfiltered) and 3.0 % (Al 1 mm) at the entrance and 6.5 % and 10.1 % at the exit, MC being higher everywhere.
 
 
 
-![Fig. 3.18. Depth profiles of the dose enhancement factor with a 10 mm layer of 1 % Ag at 2–12 mm (grey band) in soft tissue, unfiltered (left) and Al 1.0 mm (right): Monte Carlo (solid, ±2 standard errors shaded) and the analytical kerma model (dashed).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig22_mc.png){width=14.5cm}
+![Fig. 3.18. Depth profiles of the dose enhancement factor with a 10 mm layer of 1 % Ag at 2–12 mm (grey band) in soft tissue, unfiltered (left) and Al 1.0 mm (right): Monte Carlo (solid, ±2 standard errors shaded) and the analytical kerma model (dashed).](/home/user/atlant-impossible/dissertation/code/../figures/en/fig22_mc.png){width=13.5cm}
 
 
 
@@ -1038,7 +1051,7 @@ The central result, DEF = 1.482 for 1 % Ag with Al 1 mm, was tested by varying e
 
 
 
-![Fig. 3.19. Sensitivity of the dose enhancement factor (1 % Ag, Al 1.0 mm, DEF = 1.482) to the input parameters at the two limits of each variation. Spectrum model: DM versus SpekPy; reference medium: ICRU four-component tissue (larger change) and water; η: relative to the DM value.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig23_sensitivity.png){width=14.5cm}
+![Fig. 3.19. Sensitivity of the dose enhancement factor (1 % Ag, Al 1.0 mm, DEF = 1.482) to the input parameters at the two limits of each variation. Spectrum model: DM versus SpekPy; reference medium: ICRU four-component tissue (larger change) and water; η: relative to the DM value.](/home/user/atlant-impossible/dissertation/code/../figures/en/fig23_sensitivity.png){width=13.5cm}
 
 
 
@@ -1074,9 +1087,9 @@ where $\Delta_i$ is the maximum absolute change of the DEF due to the $i$-th par
 
 The results agree with earlier work. Enhancement in iodine-loaded tumours under kilovoltage x-rays was calculated in early studies [19, 20]; MC estimates for gold nanoparticles (AuNPs) showed a much larger macroscopic enhancement for kilovoltage than megavoltage beams [10]; and the enhancement by nanoparticles of various elements was characterised versus photon energy with a kerma-based approach like the present one [13]. The depth dependence in orthovoltage beams was studied by MC in phantoms [42]; for Ag, a single surface value cannot characterise a thick target (Section 3.7). This work adds a low-voltage Cu-anode tube, whose spectrum is dominated by lines below the Ag K-edge and whose attainable DEF is set by filtration rather than tube design.
 
-MC studies of silver address AgNPs implanted in a brain tumour during brachytherapy [38], the effect of tumour dose enhancement by AgNPs on surrounding healthy tissues [39] and Ag versus Au nanoparticles in layered skin geometries [40]. Their conditions differ, allowing only a qualitative comparison: the dose reduction to about 0.80 behind the loaded layer bears on the healthy-tissue doses of [39], and the per-mass DEFs of Au and Ag (2.16 versus 1.48 with Al 1 mm) on the comparison in [40]. Measurements in AgNP-enriched dose gels [41] could test the calculated DEF if the beam spectrum is specified.
+The MC studies of silver reviewed in Section 1.4 used brain-tumour brachytherapy [38], tumour–healthy-tissue [39] and layered-skin [40] geometries, allowing only a qualitative comparison: the dose reduction to about 0.80 behind the loaded layer bears on the healthy-tissue doses of [39], and the per-mass DEFs of Au and Ag (2.16 versus 1.48 with Al 1 mm) on the comparison in [40]. Measurements in AgNP-enriched dose gels [41] could test the calculated DEF if the beam spectrum is specified.
 
-A larger discrepancy arises with radiobiology. AgNPs reportedly sensitize cancer cells to ionising radiation [32], act as radiosensitizers for glioma [11] and outperformed AuNPs in U251 glioma cells in vitro and in an intracranial mouse model [12]. Such effects are quantified by the sensitizer enhancement ratio (SER), the ratio of doses giving equal effect without and with the sensitizer, which, unlike the DEF, reflects all mechanisms [3]. Macroscopic physics predicts the opposite Ag–Au ranking at equal mass fraction and little enhancement at low loading (DEF 1.048 for 0.1 % Ag with Al 1 mm). Although the biological effect also depends on radiation quality, concentration and cellular localisation, the reported radiosensitization by AgNPs, especially their advantage over AuNPs, is unlikely to result from macroscopic dose enhancement alone. Two mechanisms may explain it: AgNPs cause ROS formation, DNA damage, cell-cycle arrest and impaired mitochondrial function in human cells [37], and the dose enhancement around gold nanoparticles is highly localised [30], nanoscale energy deposition explaining effects beyond the macroscopic enhancement [31]. The macroscopic DEF is thus only the physical baseline of a radio-enhancement with chemical and biological stages [7].
+A larger discrepancy arises with radiobiology. AgNPs reportedly sensitize cancer cells to ionising radiation [32], act as radiosensitizers for glioma [11] and outperformed AuNPs in U251 glioma cells in vitro and in an intracranial mouse model [12]. Such effects are quantified by the sensitizer enhancement ratio (SER), the ratio of doses giving equal effect without and with the sensitizer, which, unlike the DEF, reflects all mechanisms [3]. Macroscopic physics predicts the opposite Ag–Au ranking at equal mass fraction and little enhancement at low loading (DEF 1.048 for 0.1 % Ag with Al 1 mm). Although the biological effect also depends on radiation quality, concentration and cellular localisation, the reported radiosensitization by AgNPs, especially their advantage over AuNPs, is unlikely to result from macroscopic dose enhancement alone. Two mechanisms may explain it: AgNPs cause ROS formation, damage to deoxyribonucleic acid (DNA), cell-cycle arrest and impaired mitochondrial function in human cells [37], and the dose enhancement around gold nanoparticles is highly localised [30], nanoscale energy deposition explaining effects beyond the macroscopic enhancement [31]. The macroscopic DEF is thus only the physical baseline of a radio-enhancement with chemical and biological stages [7].
 
 The work has several limitations. The kerma approximation ignores nanoscale dose heterogeneity, and Ag was assumed homogeneous, whereas radiosensitization by nanoparticles depends on their size, concentration and location [97]. The DM assumes isotropic bremsstrahlung and neglects electron backscattering from the anode, which with the approximate Born cross-section overestimates the output (DM/SpekPy air-kerma ratio 1.08–1.42) but not the DEF; its 25–43 % Cu K-line deficit is why the main results use SpekPy spectra. The heel effect was not modelled, the analytical depth calculations neglect scatter and fluorescence reabsorption (Section 3.9), and the MC geometry is a simple slab. No actual tube spectrum was measured, although SpekPy has been validated against measured spectra and HVLs [51], and no biological response was modelled.
 
@@ -1084,12 +1097,12 @@ For an experiment with a 45 kV Cu-anode tube, a 1–2 mm Al (or 0.1–0.3 mm Ti)
 
 ## 3.12. Conclusions to Chapter 3
 
-1. The DM (one fitted parameter, $\eta = 0.40$) agrees with SpekPy for Al-filtered beams within −4.6 to −3.5 % in HVL and 1–2 % in DEF but underestimates the Cu K lines by 25–43 %.
+1. The DM (one fitted parameter, $\eta = 0.40$) agrees with SpekPy for Al-filtered beams within −3.5 to −4.6 % in HVL and 2 % in DEF but underestimates the Cu K lines by 25–43 %.
 2. The unfiltered spectrum is dominated by the Cu K lines (68.5 % of photons), giving a DEF of only 1.20 for 1 % Ag; tube design parameters change mainly the output, not the DEF (1.19–1.21).
 3. Filtration is decisive: for 1 % Ag the DEF is 1.48 (Al 1 mm), 1.62 (Al 2 mm) and 1.80 (Cu 0.2 mm), at a 120–1300-fold lower dose rate; at equal transmission Al and Ti are optimal, K-edge filters at 20–30 keV unfavourable.
 4. With Al 1 mm the DEF rises with the depth of a loaded region in Ag-free tissue (1.69 at 20 mm) but falls inside a uniformly loaded region by self-shielding (1.21 at 10 mm, 1 % Ag).
-5. The DEF rises with tube voltage, most steeply once photons above the Ag K-edge appear (above about 27 kV); per unit mass, Ag is a weaker physical sensitizer than Gd, Pt, Au and Bi and comparable to iodine.
-6. MC confirms the analytical model within 1–10 % (MC higher owing to fluorescence reabsorption and scatter) and shows a dose reduction to about 0.80 behind the loaded layer.
+5. MC confirms the analytical model within 1–10 % (MC higher owing to fluorescence reabsorption and scatter) and shows a dose reduction to about 0.80 behind the loaded layer.
+6. The DEF rises with tube voltage, most steeply once photons above the Ag K-edge appear (above about 26–27 kV); per unit mass, Ag is a weaker physical sensitizer than Gd, Pt, Au and Bi and comparable to iodine.
 7. The DEF (1 % Ag, Al 1 mm) is 1.48 ± 0.02 ($k = 1$); the reference medium changes it by up to 0.057 and must be stated.
 
 
@@ -1099,7 +1112,7 @@ For an experiment with a 45 kV Cu-anode tube, a 1–2 mm Al (or 0.1–0.3 mm Ti)
 
 2. The developed model (DM) is a semi-analytical thick-target model of the copper-anode tube spectrum (Bethe stopping power, non-relativistic Bethe–Heitler cross-section with the Elwert factor, Gryziński K-shell cross-section) that includes closed-form bremsstrahlung-induced K fluorescence (4.5–4.8 % of the line intensity), anode self-absorption and filtration.
 
-3. Its single parameter, the electron depth factor $\eta = 0.40$, was fitted to the SpekPy v2 bremsstrahlung shape at 45 kV (root-mean-square deviation 2.46 %). Without refitting, the DM reproduces the half-value layer (HVL) of 1 mm Al-filtered beams at 25–50 kV and 6–30° anode angles within −3.5 to −4.6 %; it underestimates the Cu K lines by 25–43 % and overestimates the air kerma by 8–42 %, yet its DEFs with Al filters agree with SpekPy within 1–2 %.
+3. Its single parameter, the electron depth factor $\eta = 0.40$, was fitted to the SpekPy v2 bremsstrahlung shape at 45 kV (root-mean-square deviation 2.46 %). Without refitting, the DM reproduces the half-value layer (HVL) of 1 mm Al-filtered beams at 25–50 kV and 6–30° anode angles within −3.5 to −4.6 %; it underestimates the Cu K lines by 25–43 % and overestimates the air kerma by 8–42 %, yet its DEFs with Al filters agree with SpekPy within 2 %.
 
 4. The unfiltered 45 kV spectrum (12° anode, 0.5 mm Be, 10 cm air) is soft (mean energy 10.38 keV, first HVL 0.0478 mm Al), intense (383 mGy/mAs, i.e. 15.3 Gy/s at 40 mA) and dominated by the Cu K lines (68.5 % of photons, against 4.64 % above the Ag K-edge).
 
@@ -1621,7 +1634,7 @@ Nanoscale Monte Carlo simulations with the obtained spectra would link microscop
 
 The developed model (DM) is implemented in the Python module `xspec.py`; the fragments are verbatim (energies in keV, lengths in cm). Omitted are the Bethe stopping power (ICRU Report 37 constants [68], no density-effect correction; (2.1), (2.2)), the electron depth with the fitted $\eta = 0.40$ ((2.3), (2.4)), the thick-target integral for isotropic emission (2.8), the direct K lines (2.10) and the filtration, fluence and air kerma ((2.15), (2.16), (2.17)).
 
-`brems_dcs` returns Kramers' cross-section (2.5) or, by default, the non-relativistic Bethe–Heitler one (2.6) with the Elwert factor (2.7); `sigma_K_gryzinski` is the Gryziński K-shell ionisation cross-section (2.9) for the overvoltage $U = T/E_K$.
+`brems_dcs` returns Kramers' cross-section (2.5) or, by default, the non-relativistic Bethe–Heitler one (2.6) with the Elwert factor (2.7); `sigma_K_gryzinski` is the Gryziński K-shell ionisation cross-section (2.9) for the overvoltage ratio $U_K = T/E_K$ (variable `U`).
 
 ```python
 def brems_dcs(T, k, Z, model='BH-E'):

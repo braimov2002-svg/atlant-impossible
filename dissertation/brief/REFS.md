@@ -1,0 +1,248 @@
+# Verified reference list (cite ONLY these keys, as [@key])
+
+Every entry below was checked against Crossref (DOI) or is a standard book/report/standard. The note says what the source may be cited for. Do not attribute to a source any specific number, result or claim that is not stated in its note or title. Prefer citing several sources for general statements.
+
+- **bray2024** — GLOBOCAN 2022 global cancer statistics (incidence and mortality worldwide). Cite for the global cancer burden; do not quote numbers.
+  - Bray F., Laversanne M., Sung H. [et al.] Global cancer statistics 2022: GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries // CA: A Cancer Journal for Clinicians. – 2024. – Vol. 74, No. 3. – P. 229–263. – DOI: 10.3322/caac.21834.
+- **delaney2005** — Estimate that about half of cancer patients have an indication for radiotherapy (optimal utilisation ~52 %).
+  - Delaney G., Jacob S., Featherstone C., Barton M. The role of radiotherapy in cancer treatment: estimating optimal utilization from a review of evidence-based clinical guidelines // Cancer. – 2005. – Vol. 104, No. 6. – P. 1129–1137. – DOI: 10.1002/cncr.21324.
+- **baskar2012** — Review: role of radiotherapy in cancer treatment, current advances, normal-tissue toxicity as the limiting factor.
+  - Baskar R., Lee K.A., Yeo R., Yeoh K.-W. Cancer and Radiation Therapy: Current Advances and Future Directions // International Journal of Medical Sciences. – 2012. – Vol. 9, No. 3. – P. 193–199. – DOI: 10.7150/ijms.3635.
+- **hall2018** — Textbook of radiobiology: therapeutic ratio, normal-tissue tolerance, radiosensitizers, DNA damage, oxygen effect.
+  - Hall E.J., Giaccia A.J. Radiobiology for the Radiologist. – 8th ed. – Philadelphia: Wolters Kluwer, 2018. – 624 p.
+- **wardman2007** — Review of chemical radiosensitizers (oxygen mimetics, nitroimidazoles, etc.).
+  - Wardman P. Chemical Radiosensitizers for Use in Radiotherapy // Clinical Oncology. – 2007. – Vol. 19, No. 6. – P. 397–417. – DOI: 10.1016/j.clon.2007.03.010.
+- **gill2019** — Review: transition-metal compounds (Pt, Au, Ru etc.) as radiosensitizers.
+  - Gill M.R., Vallis K.A. Transition metal compounds as cancer radiosensitizers // Chemical Society Reviews. – 2019. – Vol. 48, No. 2. – P. 540–557. – DOI: 10.1039/c8cs00641e.
+- **khan2014** — Textbook of radiotherapy physics; kilovoltage (superficial/orthovoltage) x-ray therapy, beam quality, HVL.
+  - Khan F.M., Gibbons J.P. Khan’s The Physics of Radiation Therapy. – 5th ed. – Philadelphia: Lippincott Williams & Wilkins, 2014. – 572 p.
+- **podgorsak2016** — Textbook of radiation physics: x-ray production, bremsstrahlung, characteristic radiation, photon interactions.
+  - Podgorsak E.B. Radiation Physics for Medical Physicists. – Cham: Springer, 2016. – DOI: 10.1007/978-3-319-25382-4.
+- **attix1986** — Textbook of dosimetry: kerma, absorbed dose, charged-particle equilibrium, mu_en/rho, cavity theory.
+  - Attix F.H. Introduction to Radiological Physics and Radiation Dosimetry. – New York: Wiley, 1986. – 607 p.
+- **andreo2017** — Textbook of ionizing radiation dosimetry: kerma, mu_en, dose, Monte Carlo in dosimetry.
+  - Andreo P., Burns D.T., Nahum A.E., Seuntjens J., Attix F.H. Fundamentals of Ionizing Radiation Dosimetry. – Weinheim: Wiley-VCH, 2017. – 1000 p.
+- **bushberg2012** — Textbook of medical imaging physics: x-ray tube construction, anode angle, heel effect, filtration, HVL.
+  - Bushberg J.T., Seibert J.A., Leidholdt E.M., Boone J.M. The Essential Physics of Medical Imaging. – 3rd ed. – Philadelphia: Lippincott Williams & Wilkins, 2012. – 1030 p.
+- **cullity2001** — Textbook of x-ray diffraction: Cu-anode tubes, Cu Kα/Kβ lines, Ni filter for Kβ suppression.
+  - Cullity B.D., Stock S.R. Elements of X-Ray Diffraction. – 3rd ed. – Upper Saddle River: Prentice Hall, 2001. – 664 p.
+- **spiers1949** — Classic paper: increased energy absorption near high-Z media (bone) for kV x-rays; origin of dose-enhancement concept.
+  - Spiers F.W. The Influence of Energy Absorption and Electron Range on Dosage in Irradiated Bone // The British Journal of Radiology. – 1949. – Vol. 22, No. 261. – P. 521–533. – DOI: 10.1259/0007-1285-22-261-521.
+- **das1995** — Dose perturbation (backscatter) at high-Z interfaces in kilovoltage photon beams.
+  - Das I.J., Chopra K.L. Backscatter dose perturbation in kilovoltage photon beams at high atomic number interfaces // Medical Physics. – 1995. – Vol. 22, No. 6. – P. 767–773. – DOI: 10.1118/1.597594.
+- **matsudaira1980** — Iodine contrast medium sensitizes cultured cells to x-rays but not to gamma rays (energy dependence).
+  - Matsudaira H., Ueno A.M., Furuno I. Iodine Contrast Medium Sensitizes Cultured Mammalian Cells to X Rays but Not to γ Rays // Radiation Research. – 1980. – Vol. 84, No. 1. – P. 144–148. – DOI: 10.2307/3575225.
+- **mello1983** — Calculated radiation dose enhancement in tumours loaded with iodine for kV x-rays.
+  - Mello R.S., Callisen H., Winter J. [et al.] Radiation dose enhancement in tumors with iodine // Medical Physics. – 1983. – Vol. 10, No. 1. – P. 75–78. – DOI: 10.1118/1.595378.
+- **solberg1992** — Calculation of dose enhancement factors for dose-enhancement therapy of brain tumours (iodine, kV).
+  - Solberg T.D., Iwamoto K.S., Norman A. Calculation of radiation dose enhancement factors for dose enhancement therapy of brain tumours // Physics in Medicine and Biology. – 1992. – Vol. 37, No. 2. – P. 439–443. – DOI: 10.1088/0031-9155/37/2/010.
+- **rose1999** — First radiotherapy of human brain metastases with a modified CT scanner (CTRx) using iodinated contrast.
+  - Rose J.H., Norman A., Ingram M. [et al.] First radiotherapy of human metastatic brain tumors delivered by a computerized tomography scanner (CTRx) // International Journal of Radiation Oncology*Biology*Physics. – 1999. – Vol. 45, No. 5. – P. 1127–1132. – DOI: 10.1016/s0360-3016(99)00347-8.
+- **robar2002** — Tumour dose enhancement with modified megavoltage beams and contrast media (iodine, gadolinium).
+  - Robar J.L., Riccio S.A., Martin M.A. Tumour dose enhancement using modified megavoltage photon beams and contrast media // Physics in Medicine and Biology. – 2002. – Vol. 47, No. 14. – P. 2433–2449. – DOI: 10.1088/0031-9155/47/14/305.
+- **adam2003** — Synchrotron stereotactic radiotherapy of F98 gliomas in rats loaded with iodinated contrast agent.
+  - Adam J.-F., Elleaume H., Joubert A. [et al.] Synchrotron radiation therapy of malignant brain glioma loaded with an iodinated contrast agent: First trial on rats bearing F98 gliomas // International Journal of Radiation Oncology*Biology*Physics. – 2003. – Vol. 57, No. 5. – P. 1413–1426. – DOI: 10.1016/j.ijrobp.2003.07.007.
+- **biston2004** — Cure of F98 glioma rats with cisplatin plus monochromatic synchrotron x-rays (Pt K-edge photoactivation).
+  - Biston M.-C., Joubert A., Adam J.-F. [et al.] Cure of Fisher Rats Bearing Radioresistant F98 Glioma Treated with cis-Platinum and Irradiated with Monochromatic Synchrotron X-Rays // Cancer Research. – 2004. – Vol. 64, No. 7. – P. 2317–2323. – DOI: 10.1158/0008-5472.can-03-3600.
+- **corde2004** — Optimal monochromatic energy for radiotoxicity enhancement with iodinated compounds (synchrotron).
+  - Corde S., Joubert A., Adam J.F. [et al.] Synchrotron radiation-based experimental determination of the optimal energy for cell radiotoxicity enhancement following photoelectric effect on stable iodinated compounds // British Journal of Cancer. – 2004. – Vol. 91, No. 3. – P. 544–551. – DOI: 10.1038/sj.bjc.6601951.
+- **pignol2003** — Inner-shell ionisation and Auger cascades for radiosensitization (IUdR, BUdR, Pt, Gd compounds).
+  - Pignol J.-P., Rakovitch E., Beachey D., Le Sech C. Clinical significance of atomic inner shell ionization (ISI) and Auger cascade for radiosensitization using IUdR, BUdR, platinum salts, or gadolinium porphyrin compounds // International Journal of Radiation Oncology*Biology*Physics. – 2003. – Vol. 55, No. 4. – P. 1082–1091. – DOI: 10.1016/s0360-3016(02)04508-x.
+- **verhaegen2005** — Dosimetric and microdosimetric Monte Carlo study of contrast-enhanced radiotherapy with kV x-rays.
+  - Verhaegen F., Reniers B., Deblois F. [et al.] Dosimetric and microdosimetric study of contrast-enhanced radiotherapy with kilovolt x-rays // Physics in Medicine and Biology. – 2005. – Vol. 50, No. 15. – P. 3555–3569. – DOI: 10.1088/0031-9155/50/15/005.
+- **hainfeld2004** — Landmark in vivo study: 1.9 nm gold nanoparticles with 250 kVp x-rays markedly improved one-year survival of tumour-bearing mice.
+  - Hainfeld J.F., Slatkin D.N., Smilowitz H.M. The use of gold nanoparticles to enhance radiotherapy in mice // Physics in Medicine and Biology. – 2004. – Vol. 49, No. 18. – P. N309–N315. – DOI: 10.1088/0031-9155/49/18/n03.
+- **cho2005** — First Monte Carlo estimate of macroscopic dose enhancement from gold nanoparticles in typical treatments (kV much larger than MV).
+  - Cho S.H. Estimation of tumour dose enhancement due to gold nanoparticles during typical radiation treatments: a preliminary Monte Carlo study // Physics in Medicine and Biology. – 2005. – Vol. 50, No. 15. – P. N163–N173. – DOI: 10.1088/0031-9155/50/15/n01.
+- **zhang2009** — Monte Carlo quantification of tumour-selective dose enhancement by AuNPs for various photon sources.
+  - Zhang S.X., Gao J., Buchholz T.A. [et al.] Quantifying tumor-selective radiation dose enhancements using gold nanoparticles: a Monte Carlo simulation study // Biomedical Microdevices. – 2009. – Vol. 11, No. 4. – P. 925–933. – DOI: 10.1007/s10544-009-9309-5.
+- **jones2010** — Microscopic dose-enhancement factor around AuNPs (Monte Carlo); dose enhancement is highly localised.
+  - Jones B.L., Krishnan S., Cho S.H. Estimation of microscopic dose enhancement factor around gold nanoparticles by Monte Carlo calculations // Medical Physics. – 2010. – Vol. 37, No. 7. – P. 3809–3816. – DOI: 10.1118/1.3455703.
+- **leung2011** — Monte Carlo (Geant4) of x-ray irradiation of AuNPs: secondary electron spatial distribution, dose enhancement.
+  - Leung M.K.K., Chow J.C.L., Chithrani B.D. [et al.] Irradiation of gold nanoparticles by x‐rays: Monte Carlo simulation of dose enhancements and the spatial properties of the secondary electrons production // Medical Physics. – 2011. – Vol. 38, No. 2. – P. 624–631. – DOI: 10.1118/1.3539623.
+- **roeske2007** — Theoretical dose enhancement from nanoparticles of various elements versus photon energy (kerma-based).
+  - Roeske J.C., Nuñez L., Hoggarth M. [et al.] Characterization of the Theorectical Radiation Dose Enhancement from Nanoparticles // Technology in Cancer Research & Treatment. – 2007. – Vol. 6, No. 5. – P. 395–401. – DOI: 10.1177/153303460700600504.
+- **lechtman2011** — Dependence of AuNP radiosensitization on photon energy, nanoparticle size, concentration and location.
+  - Lechtman E., Chattopadhyay N., Cai Z. [et al.] Implications on clinical scenario of gold nanoparticle radiosensitization in regards to photon energy, nanoparticle size, concentration and location // Physics in Medicine and Biology. – 2011. – Vol. 56, No. 15. – P. 4631–4647. – DOI: 10.1088/0031-9155/56/15/001.
+- **mcmahon2011** — Nanoscale energy deposition near heavy-atom NPs explains biological effects beyond macroscopic dose enhancement (local effect model).
+  - McMahon S.J., Hyland W.B., Muir M.F. [et al.] Biological consequences of nanoscale energy deposition near irradiated heavy atom nanoparticles // Scientific Reports. – 2011. – Vol. 1, No. 1. – Art. 18. – DOI: 10.1038/srep00018.
+- **mcmahon2016** — Optimising element choice for nanoparticle radiosensitisers (physical modelling across elements).
+  - McMahon S.J., Paganetti H., Prise K.M. Optimising element choice for nanoparticle radiosensitisers // Nanoscale. – 2016. – Vol. 8, No. 1. – P. 581–589. – DOI: 10.1039/c5nr07089a.
+- **butterworth2012** — Review: physical basis and biological mechanisms of gold nanoparticle radiosensitization.
+  - Butterworth K.T., McMahon S.J., Currell F.J., Prise K.M. Physical basis and biological mechanisms of gold nanoparticle radiosensitization // Nanoscale. – 2012. – Vol. 4, No. 16. – P. 4830–4838. – DOI: 10.1039/c2nr31227a.
+- **her2017** — Review: gold nanoparticles in cancer radiotherapy, mechanisms (physical, chemical, biological) and advances.
+  - Her S., Jaffray D.A., Allen C. Gold nanoparticles for applications in cancer radiotherapy: Mechanisms and recent advancements // Advanced Drug Delivery Reviews. – 2017. – Vol. 109. – P. 84–101. – DOI: 10.1016/j.addr.2015.12.012.
+- **schuemann2016** — Roadmap to clinical use of AuNPs for radiosensitization; recommendations and open issues.
+  - Schuemann J., Berbeco R., Chithrani D.B. [et al.] Roadmap to Clinical Use of Gold Nanoparticles for Radiation Sensitization // International Journal of Radiation Oncology*Biology*Physics. – 2016. – Vol. 94, No. 1. – P. 189–205. – DOI: 10.1016/j.ijrobp.2015.09.032.
+- **kuncic2018** — Review: principles and progress of nanoparticle radio-enhancement (physical, chemical, biological stages).
+  - Kuncic Z., Lacombe S. Nanoparticle radio-enhancement: principles, progress and application to cancer treatment // Physics in Medicine & Biology. – 2018. – Vol. 63, No. 2. – Art. 02TR01. – DOI: 10.1088/1361-6560/aa99ce.
+- **retif2015** — Review: key parameters of nanoparticles for radiotherapy enhancement (material, size, coating, energy).
+  - Retif P., Pinel S., Toussaint M. [et al.] Nanoparticles for Radiation Therapy Enhancement: the Key Parameters // Theranostics. – 2015. – Vol. 5, No. 9. – P. 1030–1044. – DOI: 10.7150/thno.11642.
+- **rahman2009** — In vitro enhancement of radiation effects by AuNPs with superficial (kV) x-rays.
+  - Rahman W.N., Bishara N., Ackerly T. [et al.] Enhancement of radiation effects by gold nanoparticles for superficial radiation therapy // Nanomedicine: Nanotechnology, Biology and Medicine. – 2009. – Vol. 5, No. 2. – P. 136–142. – DOI: 10.1016/j.nano.2009.01.014.
+- **rahman2014** — Optimal monoenergetic synchrotron energy for AuNP radiosensitivity enhancement in cells.
+  - Rahman W.N., Corde S., Yagi N. [et al.] Optimal energy for cell radiosensitivity enhancement by gold nanoparticles using synchrotron-based monoenergetic photon beams // International Journal of Nanomedicine. – 2014. – Vol. 9. – P. 2459–2467. – DOI: 10.2147/ijn.s59471.
+- **chithrani2010** — Gold nanoparticles as radiation sensitizers in cancer cells; size dependence of uptake and effect.
+  - Chithrani D.B., Jelveh S., Jalali F. [et al.] Gold Nanoparticles as Radiation Sensitizers in Cancer Therapy // Radiation Research. – 2010. – Vol. 173, No. 6. – P. 719–728. – DOI: 10.1667/rr1984.1.
+- **brun2009** — Parameters governing AuNP x-ray radiosensitization of DNA in solution (energy, size, concentration).
+  - Brun E., Sanche L., Sicard-Roselli C. Parameters governing gold nanoparticle X-ray radiosensitization of DNA in solution // Colloids and Surfaces B: Biointerfaces. – 2009. – Vol. 72, No. 1. – P. 128–134. – DOI: 10.1016/j.colsurfb.2009.03.025.
+- **khoshgard2014** — Folate-conjugated AuNPs radiosensitize HeLa cells under orthovoltage/superficial x-rays.
+  - Khoshgard K., Hashemi B., Arbabi A. [et al.] Radiosensitization effect of folate-conjugated gold nanoparticles on HeLa cancer cells under orthovoltage superficial radiotherapy techniques // Physics in Medicine and Biology. – 2014. – Vol. 59, No. 9. – P. 2249–2263. – DOI: 10.1088/0031-9155/59/9/2249.
+- **jain2012** — Review: gold nanoparticles as novel agents for cancer therapy, including radiosensitization.
+  - Jain S., Hirst D.G., O'Sullivan J.M. Gold nanoparticles as novel agents for cancer therapy // The British Journal of Radiology. – 2012. – Vol. 85, No. 1010. – P. 101–113. – DOI: 10.1259/bjr/59448833.
+- **mesbahi2010** — Review of gold nanoparticle radiosensitization in radiotherapy.
+  - Mesbahi A. A review on gold nanoparticles radiosensitization effect in radiation therapy of cancer // Reports of Practical Oncology & Radiotherapy. – 2010. – Vol. 15, No. 6. – P. 176–180. – DOI: 10.1016/j.rpor.2010.09.001.
+- **haume2016** — Review: gold nanoparticles for cancer radiotherapy.
+  - Haume K., Rosa S., Grellet S. [et al.] Gold nanoparticles for cancer radiotherapy: a review // Cancer Nanotechnology. – 2016. – Vol. 7, No. 1. – Art. 8. – DOI: 10.1186/s12645-016-0021-x.
+- **rosa2017** — Review: biological mechanisms of AuNP radiosensitization (ROS, cell cycle, DNA repair).
+  - Rosa S., Connolly C., Schettino G. [et al.] Biological mechanisms of gold nanoparticle radiosensitization // Cancer Nanotechnology. – 2017. – Vol. 8, No. 1. – Art. 2. – DOI: 10.1186/s12645-017-0026-0.
+- **penninckx2020** — Transdisciplinary review of AuNP radiosensitization from physics to patient.
+  - Penninckx S., Heuskin A.-C., Michiels C., Lucas S. Gold Nanoparticles as a Potent Radiosensitizer: A Transdisciplinary Approach from Physics to Patient // Cancers. – 2020. – Vol. 12, No. 8. – Art. 2021. – DOI: 10.3390/cancers12082021.
+- **kakade2015** — Monte Carlo dose enhancement by AuNPs for therapeutic photon beams.
+  - Kakade N.R., Sharma S.D. Dose enhancement in gold nanoparticle-aided radiotherapy for the therapeutic photon beams using Monte Carlo technique // Journal of Cancer Research and Therapeutics. – 2015. – Vol. 11, No. 1. – P. 94–97. – DOI: 10.4103/0973-1482.147691.
+- **koger2016** — Monte Carlo optimisation of photon beam energies for AuNP-enhanced arc radiotherapy (kV range optimal).
+  - Koger B., Kirkby C. Optimization of photon beam energies in gold nanoparticle enhanced arc radiation therapy using Monte Carlo methods // Physics in Medicine & Biology. – 2016. – Vol. 61, No. 24. – P. 8839–8853. – DOI: 10.1088/1361-6560/61/24/8839.
+- **song2017** — Review: nanotechnology and advanced materials for cancer radiation therapy (high-Z NPs etc.).
+  - Song G., Cheng L., Chao Y. [et al.] Emerging Nanotechnology and Advanced Materials for Cancer Radiation Therapy // Advanced Materials. – 2017. – Vol. 29, No. 32. – Art. 1700996. – DOI: 10.1002/adma.201700996.
+- **xu2009** — Early report that silver nanoparticles sensitize ionising-radiation-induced killing of cancer cells.
+  - Xu R., Ma J., Sun X. [et al.] Ag nanoparticles sensitize IR-induced killing of cancer cells // Cell Research. – 2009. – Vol. 19, No. 8. – P. 1031–1034. – DOI: 10.1038/cr.2009.89.
+- **liu2013** — Silver nanoparticles as a radiation sensitizer for glioma (in vitro/in vivo), proposed as alternative to gold.
+  - Liu P., Huang Z., Chen Z. [et al.] Silver nanoparticles: a novel radiation sensitizer for glioma? // Nanoscale. – 2013. – Vol. 5, No. 23. – P. 11829–11836. – DOI: 10.1039/c3nr01351k.
+- **liu2016** — AgNPs outperformed AuNPs in radiosensitizing U251 glioma cells in vitro and in an intracranial mouse model.
+  - Liu P., Jin H., Guo Z. [et al.] Silver nanoparticles outperform gold nanoparticles in radiosensitizing U251 cells in vitro and in an intracranial mouse model of glioma // International Journal of Nanomedicine. – 2016. – Vol. 11. – P. 5003–5014. – DOI: 10.2147/IJN.S115473.
+- **liu2018** — AgNPs enhanced radiotherapy efficacy in hypoxic glioma cells.
+  - Liu Z., Tan H., Zhang X. [et al.] Enhancement of radiotherapy efficacy by silver nanoparticles in hypoxic glioma cells // Artificial Cells, Nanomedicine, and Biotechnology. – 2018. – Vol. 46, Suppl. 3. – P. S922–S930. – DOI: 10.1080/21691401.2018.1518912.
+- **zhao2019** — PEG- and AS1411-aptamer-functionalised AgNPs enhanced radiosensitization for glioma irradiation.
+  - Zhao J., Liu P., Ma J. [et al.] Enhancement of Radiosensitization by Silver Nanoparticles Functionalized with Polyethylene Glycol and Aptamer AS1411 for Glioma Irradiation Therapy // International Journal of Nanomedicine. – 2019. – Vol. 14. – P. 9483–9496. – DOI: 10.2147/ijn.s224160.
+- **lu2012** — Egg-white-mediated green synthesis of biocompatible AgNPs with enhanced radiation effects on cancer cells.
+  - Lu R., Yang D., Cui D., Wang Z., Guo L. Egg white-mediated green synthesis of silver nanoparticles with excellent biocompatibility and enhanced radiation effects on cancer cells // International Journal of Nanomedicine. – 2012. – Vol. 7. – P. 2101–2107. – DOI: 10.2147/ijn.s29762.
+- **habiba2019** — Silver nanoprisms decorated with graphene as radiosensitizers for colorectal cancer radiotherapy.
+  - Habiba K., Aziz K., Sanders K. [et al.] Enhancing Colorectal Cancer Radiation Therapy Efficacy using Silver Nanoprisms Decorated with Graphene as Radiosensitizers // Scientific Reports. – 2019. – Vol. 9, No. 1. – Art. 17120. – DOI: 10.1038/s41598-019-53706-0.
+- **swanner2015** — Differential cytotoxic and radiosensitizing effects of AgNPs in triple-negative vs non-TNBC breast cells.
+  - Swanner J., Mims J., Carroll D.L. [et al.] Differential cytotoxic and radiosensitizing effects of silver nanoparticles on triple-negative breast cancer and non-triple-negative breast cells // International Journal of Nanomedicine. – 2015. – Vol. 10. – P. 3937–3953. – DOI: 10.2147/ijn.s80349.
+- **asharani2009** — Cytotoxicity and genotoxicity of AgNPs in human cells (ROS, DNA damage, cell-cycle arrest, mitochondria).
+  - AshaRani P.V., Low Kah Mun G., Hande M.P., Valiyaveettil S. Cytotoxicity and Genotoxicity of Silver Nanoparticles in Human Cells // ACS Nano. – 2009. – Vol. 3, No. 2. – P. 279–290. – DOI: 10.1021/nn800596w.
+- **wei2015** — Review: synthesis, properties and therapeutic applications of silver nanoparticles.
+  - Wei L., Lu J., Xu H. [et al.] Silver nanoparticles: synthesis, properties, and therapeutic applications // Drug Discovery Today. – 2015. – Vol. 20, No. 5. – P. 595–601. – DOI: 10.1016/j.drudis.2014.11.014.
+- **burdusel2018** — Review: biomedical applications of silver nanoparticles (antimicrobial, anticancer, etc.).
+  - Burdușel A.-C., Gherasim O., Grumezescu A.M. [et al.] Biomedical Applications of Silver Nanoparticles: An Up-to-Date Overview // Nanomaterials. – 2018. – Vol. 8, No. 9. – Art. 681. – DOI: 10.3390/nano8090681.
+- **taha2019** — Monte Carlo: dose enhancement from AgNPs implanted in a brain tumour during brachytherapy (digital phantom).
+  - Taha E., Djouider F., Banoqitah E. Monte Carlo simulation of dose enhancement due to silver nanoparticles implantation in brain tumor brachytherapy using a digital phantom // Radiation Physics and Chemistry. – 2019. – Vol. 156. – P. 15–21. – DOI: 10.1016/j.radphyschem.2018.10.027.
+- **caglar2024** — Monte Carlo: effect of dose enhancement by AgNPs in a tumour on surrounding healthy tissues.
+  - Çağlar M., Eşitmez D., Cebe M.S. The Effect of Dose Enhancement in Tumor With Silver Nanoparticles on Surrounding Healthy Tissues: A Monte Carlo Study // Technology in Cancer Research & Treatment. – 2024. – Vol. 23. – Art. 15330338241235771. – DOI: 10.1177/15330338241235771.
+- **merkis2023** — Experimental dose sensitivity and dose enhancement in AgNP-enriched dose gels.
+  - Merkis M., Griskonis E., Laurikaitiene J. [et al.] Investigation of dose sensitivity and dose enhancement effect in silver nanoparticle enriched dose gels // Radiation Physics and Chemistry. – 2023. – Vol. 213. – Art. 111213. – DOI: 10.1016/j.radphyschem.2023.111213.
+- **chow2023** — Monte Carlo phantom study of depth-dose enhancement in orthovoltage nanoparticle-enhanced radiotherapy.
+  - Chow J.C.L., Jubran S. Depth Dose Enhancement in Orthovoltage Nanoparticle-Enhanced Radiotherapy: A Monte Carlo Phantom Study // Micromachines. – 2023. – Vol. 14, No. 6. – Art. 1230. – DOI: 10.3390/mi14061230.
+- **esitmez2026** — Monte Carlo comparison of silver and gold NPs for dose enhancement in layered skin geometries.
+  - Eşitmez D., Çağlar M., Süsoy Doğan G. Comparative Assessment of Silver and Gold Nanoparticles for Dose Enhancement in Layered Skin Geometries: A Monte Carlo Sensitivity Study // Journal of Advanced Research in Natural and Applied Sciences. – 2026. – Vol. 12, No. 1. – P. 30–44. – DOI: 10.28979/jarnas.1862846.
+- **ma2001** — AAPM TG-61 protocol for 40–300 kV x-ray beam dosimetry in radiotherapy and radiobiology (beam quality by HVL).
+  - Ma C.-M., Coffey C.W., DeWerd L.A. [et al.] AAPM protocol for 40–300 kV x‐ray beam dosimetry in radiotherapy and radiobiology // Medical Physics. – 2001. – Vol. 28, No. 6. – P. 868–893. – DOI: 10.1118/1.1374247.
+- **iaea_trs398** — IAEA code of practice for absorbed dose determination, including low-energy kV x-ray beams.
+  - IAEA Technical Reports Series No. 398. Absorbed Dose Determination in External Beam Radiotherapy: An International Code of Practice for Dosimetry Based on Standards of Absorbed Dose to Water. – Vienna: International Atomic Energy Agency, 2000.
+- **hill2014** — Review of advances in kilovoltage x-ray beam dosimetry.
+  - Hill R., Healy B., Holloway L. [et al.] Advances in kilovoltage x-ray beam dosimetry // Physics in Medicine and Biology. – 2014. – Vol. 59, No. 6. – P. R183–R231. – DOI: 10.1088/0031-9155/59/6/R183.
+- **grosswendt1990** — Photon backscatter factors for water versus source distance and field size (kV beams).
+  - Grosswendt B. Dependence of the photon backscatter factor for water on source-to-phantom distance and irradiation field size // Physics in Medicine and Biology. – 1990. – Vol. 35, No. 9. – P. 1233–1245. – DOI: 10.1088/0031-9155/35/9/004.
+- **iec61267** — IEC standard radiation qualities (RQR etc.) for diagnostic x-ray beams; HVL-defined beam qualities.
+  - IEC 61267:2005. Medical diagnostic X-ray equipment – Radiation conditions for use in the determination of characteristics. – Geneva: International Electrotechnical Commission, 2005.
+- **icru85** — Definitions of fundamental dosimetric quantities (fluence, kerma, absorbed dose).
+  - ICRU Report 85. Fundamental Quantities and Units for Ionizing Radiation (Revised) // Journal of the ICRU. – 2011. – Vol. 11, No. 1. – DOI: 10.1093/jicru/ndr011.
+- **icru44** — Composition of tissue substitutes and body tissues (ICRU-44 soft tissue).
+  - ICRU Report 44. Tissue Substitutes in Radiation Dosimetry and Measurement. – Bethesda, MD: International Commission on Radiation Units and Measurements, 1989.
+- **icru37** — Electron stopping powers and mean excitation energies (Bethe formula).
+  - ICRU Report 37. Stopping Powers for Electrons and Positrons. – Bethesda, MD: International Commission on Radiation Units and Measurements, 1984.
+- **fano1954** — Fano theorem/Bragg-Gray cavity principle (charged-particle equilibrium context).
+  - Fano U. Note on the Bragg-Gray Cavity Principle for Measuring Energy Dissipation // Radiation Research. – 1954. – Vol. 1, No. 3. – P. 237–240. – DOI: 10.2307/3570368.
+- **seltzer1993** — Calculation of mu_tr/rho and mu_en/rho coefficients (basis of NIST tables).
+  - Seltzer S.M. Calculation of Photon Mass Energy-Transfer and Mass Energy-Absorption Coefficients // Radiation Research. – 1993. – Vol. 136, No. 2. – P. 147–170. – DOI: 10.2307/3578607.
+- **nist_xraymass** — NIST tables of mu/rho and mu_en/rho (Hubbell & Seltzer) used in this work.
+  - Hubbell J.H., Seltzer S.M. Tables of X-Ray Mass Attenuation Coefficients and Mass Energy-Absorption Coefficients (version 1.4). NIST Standard Reference Database 126 (NISTIR 5632). – Gaithersburg, MD: National Institute of Standards and Technology, 2004. – DOI: 10.18434/T4D01F.
+- **nist_xcom** — NIST XCOM photon cross-section database.
+  - Berger M.J., Hubbell J.H., Seltzer S.M., Chang J., Coursey J.S., Sukumar R., Zucker D.S., Olsen K. XCOM: Photon Cross Sections Database. NIST Standard Reference Database 8 (XGAM). – Gaithersburg, MD: National Institute of Standards and Technology, 2010. – DOI: 10.18434/T48G6X.
+- **nist_estar** — NIST ESTAR electron stopping powers (used to check the Bethe formula).
+  - Berger M.J., Coursey J.S., Zucker M.A., Chang J. ESTAR, PSTAR, and ASTAR: Computer Programs for Calculating Stopping-Power and Range Tables for Electrons, Protons, and Helium Ions. NIST Standard Reference Database 124. – Gaithersburg, MD: National Institute of Standards and Technology, 2017. – DOI: 10.18434/T4NC7P.
+- **hubbell1975** — Atomic form factors and incoherent scattering functions (Rayleigh/Compton with binding).
+  - Hubbell J.H., Veigele W.J., Briggs E.A. [et al.] Atomic form factors, incoherent scattering functions, and photon scattering cross sections // Journal of Physical and Chemical Reference Data. – 1975. – Vol. 4, No. 3. – P. 471–538. – DOI: 10.1063/1.555523.
+- **schoonjans2011** — xraylib library for x-ray–matter interaction data (cross-sections, line energies, fluorescence yields).
+  - Schoonjans T., Brunetti A., Golosio B. [et al.] The xraylib library for X-ray–matter interactions. Recent developments // Spectrochimica Acta Part B: Atomic Spectroscopy. – 2011. – Vol. 66, No. 11-12. – P. 776–784. – DOI: 10.1016/j.sab.2011.09.011.
+- **krause1979** — Fluorescence yields and radiative/radiationless yields for K and L shells.
+  - Krause M.O. Atomic radiative and radiationless yields for K and L shells // Journal of Physical and Chemical Reference Data. – 1979. – Vol. 8, No. 2. – P. 307–327. – DOI: 10.1063/1.555594.
+- **bambynek1972** — Review of x-ray fluorescence yields, Auger and Coster–Kronig probabilities.
+  - Bambynek W., Crasemann B., Fink R.W. [et al.] X-Ray Fluorescence Yields, Auger, and Coster-Kronig Transition Probabilities // Reviews of Modern Physics. – 1972. – Vol. 44, No. 4. – P. 716–813. – DOI: 10.1103/revmodphys.44.716.
+- **deslattes2003** — Evaluated x-ray transition (line) energies.
+  - Deslattes R.D., Kessler E.G., Indelicato P. [et al.] X-ray transition energies: new approach to a comprehensive evaluation // Reviews of Modern Physics. – 2003. – Vol. 75, No. 1. – P. 35–99. – DOI: 10.1103/RevModPhys.75.35.
+- **kramers1923** — Kramers theory of the continuous x-ray spectrum (thick-target intensity linear in (E0−E)).
+  - Kramers H.A. On the theory of X-ray absorption and of the continuous X-ray spectrum // The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science. – 1923. – Vol. 46, No. 275. – P. 836–871. – DOI: 10.1080/14786442308565244.
+- **bethe1930** — Bethe theory of stopping of fast charged particles (stopping-power formula).
+  - Bethe H. Zur Theorie des Durchgangs schneller Korpuskularstrahlen durch Materie // Annalen der Physik. – 1930. – Vol. 397, No. 3. – P. 325–400. – DOI: 10.1002/andp.19303970303.
+- **bethe1934** — Bethe–Heitler bremsstrahlung cross-section (Born approximation).
+  - Bethe H., Heitler W. On the stopping of fast particles and on the creation of positive electrons // Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character. – 1934. – Vol. 146, No. 856. – P. 83–112. – DOI: 10.1098/rspa.1934.0140.
+- **elwert1939** — Elwert Coulomb correction factor for the non-relativistic bremsstrahlung cross-section.
+  - Elwert G. Verschärfte Berechnung von Intensität und Polarisation im kontinuierlichen Röntgenspektrum // Annalen der Physik. – 1939. – Vol. 426, No. 2. – P. 178–208. – DOI: 10.1002/andp.19394260206.
+- **koch1959** — Compilation of bremsstrahlung cross-section formulas (incl. non-relativistic Born, Elwert).
+  - Koch H.W., Motz J.W. Bremsstrahlung Cross-Section Formulas and Related Data // Reviews of Modern Physics. – 1959. – Vol. 31, No. 4. – P. 920–955. – DOI: 10.1103/revmodphys.31.920.
+- **seltzer1986** — Seltzer–Berger tabulated bremsstrahlung cross-sections, 1 keV–10 GeV, Z = 1–100.
+  - Seltzer S.M., Berger M.J. Bremsstrahlung energy spectra from electrons with kinetic energy 1 keV–10 GeV incident on screened nuclei and orbital electrons of neutral atoms with Z = 1–100 // Atomic Data and Nuclear Data Tables. – 1986. – Vol. 35, No. 3. – P. 345–418. – DOI: 10.1016/0092-640x(86)90014-8.
+- **whiddington1912** — Whiddington law of electron energy loss in matter (Thomson–Whiddington).
+  - Whiddington R. The transmission of cathode rays through matter // Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character. – 1912. – Vol. 86, No. 588. – P. 360–370. – DOI: 10.1098/rspa.1912.0028.
+- **gryzinski1965** — Gryzinski classical binary-encounter theory of inelastic collisions (ionisation cross-sections).
+  - Gryziński M. Classical Theory of Atomic Collisions. I. Theory of Inelastic Collisions // Physical Review. – 1965. – Vol. 138, No. 2A. – P. A336–A358. – DOI: 10.1103/physrev.138.a336.
+- **llovet2014** — Review/compilation of inner-shell ionisation cross-sections by electron impact (experiment and theory).
+  - Llovet X., Powell C.J., Salvat F., Jablonski A. Cross Sections for Inner-Shell Ionization by Electron Impact // Journal of Physical and Chemical Reference Data. – 2014. – Vol. 43, No. 1. – Art. 013102. – DOI: 10.1063/1.4832851.
+- **bote2008** — Distorted-wave/plane-wave Born calculations of inner-shell ionisation cross-sections (used in PENELOPE).
+  - Bote D., Salvat F. Calculations of inner-shell ionization by electron impact with the distorted-wave and plane-wave Born approximations // Physical Review A. – 2008. – Vol. 77, No. 4. – Art. 042701. – DOI: 10.1103/physreva.77.042701.
+- **green1961** — Efficiency of characteristic x-ray production in thick targets (Green & Cosslett).
+  - Green M., Cosslett V.E. The Efficiency of Production of Characteristic X-radiation in Thick Targets of a Pure Element // Proceedings of the Physical Society. – 1961. – Vol. 78, No. 6. – P. 1206–1214. – DOI: 10.1088/0370-1328/78/6/315.
+- **birch1979** — Birch–Marshall semi-empirical bremsstrahlung spectrum model compared with Ge(Li) measurements.
+  - Birch R., Marshall M. Computation of bremsstrahlung X-ray spectra and comparison with spectra measured with a Ge(Li) detector // Physics in Medicine & Biology. – 1979. – Vol. 24, No. 3. – P. 505–517. – DOI: 10.1088/0031-9155/24/3/002.
+- **tucker1991** — Tucker–Barnes–Chakraborty semi-empirical model for tungsten target spectra.
+  - Tucker D.M., Barnes G.T., Chakraborty D.P. Semiempirical model for generating tungsten target x‐ray spectra // Medical Physics. – 1991. – Vol. 18, No. 2. – P. 211–218. – DOI: 10.1118/1.596709.
+- **boone1997** — TASMIP: interpolating polynomial model of tungsten spectra 30–140 kV from measured data.
+  - Boone J.M., Seibert J.A. An accurate method for computer‐generating tungsten anode x‐ray spectra from 30 to 140 kV // Medical Physics. – 1997. – Vol. 24, No. 11. – P. 1661–1670. – DOI: 10.1118/1.597953.
+- **poludniowski2007a** — SpekCalc theory part I: electron penetration in x-ray targets (Monte Carlo derived).
+  - Poludniowski G.G., Evans P.M. Calculation of x‐ray spectra emerging from an x‐ray tube. Part I. Electron penetration characteristics in x‐ray targets // Medical Physics. – 2007. – Vol. 34, No. 6. – P. 2164–2174. – DOI: 10.1118/1.2734725.
+- **poludniowski2007b** — SpekCalc theory part II: x-ray production and filtration in targets.
+  - Poludniowski G.G. Calculation of x‐ray spectra emerging from an x‐ray tube. Part II. X‐ray production and filtration in x‐ray targets // Medical Physics. – 2007. – Vol. 34, No. 6. – P. 2175–2186. – DOI: 10.1118/1.2734726.
+- **poludniowski2009** — SpekCalc program for tungsten-anode spectra.
+  - Poludniowski G., Landry G., DeBlois F. [et al.] SpekCalc: a program to calculate photon spectra from tungsten anode x-ray tubes // Physics in Medicine and Biology. – 2009. – Vol. 54, No. 19. – P. N433–N438. – DOI: 10.1088/0031-9155/54/19/n01.
+- **poludniowski2021** — SpekPy v2.0 toolkit: physics models (casim etc.), multiple anode materials incl. Cu.
+  - Poludniowski G., Omar A., Bujila R., Andreo P. Technical Note: SpekPy v2.0—a software toolkit for modeling x‐ray tube spectra // Medical Physics. – 2021. – Vol. 48, No. 7. – P. 3630–3637. – DOI: 10.1002/mp.14945.
+- **bujila2020** — Validation of SpekPy against measured spectra and HVLs.
+  - Bujila R., Omar A., Poludniowski G. A validation of SpekPy: A software toolkit for modelling X-ray tube spectra // Physica Medica. – 2020. – Vol. 75. – P. 44–54. – DOI: 10.1016/j.ejmp.2020.04.026.
+- **omar2018** — Model for K and L x-ray emission from x-ray tubes (used in SpekPy).
+  - Omar A., Andreo P., Poludniowski G. A model for the emission of K and L x rays from an x-ray tube // Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms. – 2018. – Vol. 437. – P. 36–47. – DOI: 10.1016/j.nimb.2018.10.026.
+- **omar2020a** — Model for energy and angular distribution of bremsstrahlung from x-ray tubes (Part I).
+  - Omar A., Andreo P., Poludniowski G. A model for the energy and angular distribution of x rays emitted from an x‐ray tube. Part I. Bremsstrahlung production // Medical Physics. – 2020. – Vol. 47, No. 10. – P. 4763–4774. – DOI: 10.1002/mp.14359.
+- **omar2020b** — Validation of the x-ray tube spectrum model 20–300 kV (Part II).
+  - Omar A., Andreo P., Poludniowski G. A model for the energy and angular distribution of x rays emitted from an x‐ray tube. Part II. Validation of x‐ray spectra from 20 to 300 kV // Medical Physics. – 2020. – Vol. 47, No. 9. – P. 4005–4019. – DOI: 10.1002/mp.14360.
+- **spekpy_soft** — SpekPy software version 2.5.4 used in this work.
+  - SpekPy: a software toolkit for modelling the x-ray spectra from x-ray tubes, version 2.5.4 [Electronic resource]. – URL: https://bitbucket.org/spekpy/spekpy_release (accessed 27.10.2026).
+- **punnoose2016** — spektr 3.0 MATLAB tool for spectrum modelling (TASMICS).
+  - Punnoose J., Xu J., Sisniega A. [et al.] Technical Note: spektr 3.0—A computational tool for x-ray spectrum modeling and analysis // Medical Physics. – 2016. – Vol. 43, No. 8. – P. 4711–4717. – DOI: 10.1118/1.4955438.
+- **ay2004** — MCNP4C Monte Carlo simulation of diagnostic and mammography x-ray spectra.
+  - Ay M.R., Shahriari M., Sarkar S. [et al.] Monte Carlo simulation of x-ray spectra in diagnostic radiology and mammography using MCNP4C // Physics in Medicine and Biology. – 2004. – Vol. 49, No. 21. – P. 4897–4917. – DOI: 10.1088/0031-9155/49/21/004.
+- **verhaegen1999** — Monte Carlo (EGS4/BEAM) modelling of radiotherapy kV x-ray units.
+  - Verhaegen F., Nahum A.E., Van de Putte S., Namito Y. Monte Carlo modelling of radiotherapy kV x-ray units // Physics in Medicine and Biology. – 1999. – Vol. 44, No. 7. – P. 1767–1789. – DOI: 10.1088/0031-9155/44/7/315.
+- **kawrakow2000** — EGSnrc Monte Carlo code (condensed-history electron transport).
+  - Kawrakow I. Accurate condensed history Monte Carlo simulation of electron transport. I. EGSnrc, the new EGS4 version // Medical Physics. – 2000. – Vol. 27, No. 3. – P. 485–498. – DOI: 10.1118/1.598917.
+- **agostinelli2003** — Geant4 simulation toolkit.
+  - Agostinelli S., Allison J., Amako K. [et al.] Geant4—a simulation toolkit // Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment. – 2003. – Vol. 506, No. 3. – P. 250–303. – DOI: 10.1016/S0168-9002(03)01368-8.
+- **salvat2019** — PENELOPE-2018 Monte Carlo code system.
+  - Salvat F. PENELOPE-2018: A Code System for Monte Carlo Simulation of Electron and Photon Transport. – Paris: OECD Nuclear Energy Agency, 2019. – 420 p.
+- **woodcock1965** — Woodcock (delta) tracking technique for heterogeneous geometries.
+  - Woodcock E., Murphy T., Hemmings P., Longworth S. Techniques used in the GEM code for Monte Carlo neutronics calculations in reactors and other systems of complex geometry // Proceedings of the Conference on the Application of Computing Methods to Reactor Problems. ANL-7050. – Argonne: Argonne National Laboratory, 1965. – P. 557–579.
+- **kalos2008** — Textbook of Monte Carlo methods (sampling, variance).
+  - Kalos M.H., Whitlock P.A. Monte Carlo Methods. – 2nd ed. – Weinheim: Wiley-VCH, 2008. – 215 p.
+- **harris2020** — NumPy library.
+  - Harris C.R., Millman K.J., van der Walt S.J. [et al.] Array programming with NumPy // Nature. – 2020. – Vol. 585, No. 7825. – P. 357–362. – DOI: 10.1038/s41586-020-2649-2.
+- **virtanen2020** — SciPy library.
+  - Virtanen P., Gommers R., Oliphant T.E. [et al.] SciPy 1.0: fundamental algorithms for scientific computing in Python // Nature Methods. – 2020. – Vol. 17, No. 3. – P. 261–272. – DOI: 10.1038/s41592-019-0686-2.
+- **hunter2007** — Matplotlib library.
+  - Hunter J.D. Matplotlib: A 2D Graphics Environment // Computing in Science & Engineering. – 2007. – Vol. 9, No. 3. – P. 90–95. – DOI: 10.1109/mcse.2007.55.
+- **icrp103** — ICRP 2007 recommendations: dose limits, optimisation (ALARA), justification.
+  - ICRP Publication 103. The 2007 Recommendations of the International Commission on Radiological Protection // Annals of the ICRP. – 2007. – Vol. 37, No. 2–4. – P. 1–332.
+- **iaea_gsr3** — IAEA Basic Safety Standards for radiation protection.
+  - IAEA Safety Standards Series No. GSR Part 3. Radiation Protection and Safety of Radiation Sources: International Basic Safety Standards. – Vienna: International Atomic Energy Agency, 2014. – 436 p.
+- **uz_law_radsafety** — Law of the Republic of Uzbekistan "On Radiation Safety" (2000).
+  - O‘zbekiston Respublikasining “Radiatsiyaviy xavfsizlik to‘g‘risida”gi Qonuni, 2000-yil 31-avgust, № 120-II [Law of the Republic of Uzbekistan “On Radiation Safety”, 31 August 2000, No. 120-II].

@@ -1,0 +1,6458 @@
+{
+ "hainfeld2004": {
+  "query": "Hainfeld The use of gold nanoparticles to enhance radiotherapy in mice",
+  "year": 2004,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/49/18/n03",
+    "title": "The use of gold nanoparticles to enhance radiotherapy in mice",
+    "authors": [
+     "Hainfeld JF",
+     "Slatkin DN",
+     "Smilowitz HM"
+    ],
+    "n_authors": 3,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2004,
+    "volume": "49",
+    "issue": "18",
+    "pages": "N309-N315",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.1038/s41598-019-41174-5",
+    "title": "Iodine nanoparticles enhance radiotherapy of intracerebral human glioma in mice and increase efficacy of chemotherapy",
+    "authors": [
+     "Hainfeld JF",
+     "Ridwan SM",
+     "Stanishevskiy Y",
+     "Panchal R",
+     "Slatkin DN",
+     "Smilowitz HM"
+    ],
+    "n_authors": 6,
+    "journal": "Scientific Reports",
+    "journal_abbr": "Sci Rep",
+    "year": 2019,
+    "volume": "9",
+    "issue": "1",
+    "pages": "4505",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.49
+   },
+   {
+    "DOI": "10.1211/jpp.60.8.0005",
+    "title": "Radiotherapy enhancement with gold nanoparticles",
+    "authors": [
+     "Hainfeld JF",
+     "Dilmanian FA",
+     "Slatkin DN",
+     "Smilowitz HM"
+    ],
+    "n_authors": 4,
+    "journal": "Journal of Pharmacy and Pharmacology",
+    "journal_abbr": "",
+    "year": 2008,
+    "volume": "60",
+    "issue": "8",
+    "pages": "977-985",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.46
+   }
+  ]
+ },
+ "cho2005": {
+  "query": "Cho Estimation of tumour dose enhancement due to gold nanoparticles during typical radiation treatments a preliminary Monte Carlo study",
+  "year": 2005,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/50/15/n01",
+    "title": "Estimation of tumour dose enhancement due to gold nanoparticles during typical radiation treatments: a preliminary Monte Carlo study",
+    "authors": [
+     "Cho SH"
+    ],
+    "n_authors": 1,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2005,
+    "volume": "50",
+    "issue": "15",
+    "pages": "N163-N173",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.98
+   },
+   {
+    "DOI": "10.1118/1.1998660",
+    "title": "TH-C-T-6C-04: Estimation of Tumor Dose Enhancement Due to Gold Nanoparticles During Typical Radiation Treatments: A Preliminary Monte Carlo Study",
+    "authors": [
+     "Cho SH"
+    ],
+    "n_authors": 1,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2005,
+    "volume": "32",
+    "issue": "6Part21",
+    "pages": "2162-2162",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1118/1.4740179",
+    "title": "Poster — Thur Eve — 70: Quantification of tumour dose enhancement at kilo‐voltage energies due to the presence of gold nanoparticles during radiation therapy: EGSnrcMP Monte Carlo study",
+    "authors": [
+     "Fleck A",
+     "Jiang R",
+     "Schaly B",
+     "Charland P",
+     "Osei E"
+    ],
+    "n_authors": 5,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2012,
+    "volume": "39",
+    "issue": "7Part4",
+    "pages": "4638-4638",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.65
+   }
+  ]
+ },
+ "mcmahon2011": {
+  "query": "McMahon Biological consequences of nanoscale energy deposition near irradiated heavy atom nanoparticles",
+  "year": 2011,
+  "hits": [
+   {
+    "DOI": "10.1038/srep01725",
+    "title": "Correction: Corrigendum: Biological consequences of nanoscale energy deposition near irradiated heavy atom nanoparticles",
+    "authors": [
+     "McMahon SJ",
+     "Hyland WB",
+     "Muir MF",
+     "Coulter JA",
+     "Jain S",
+     "Butterworth KT",
+     "Schettino G",
+     "Dickson GR",
+     "Hounsell AR",
+     "O'Sullivan JM",
+     "Prise KM",
+     "Hirst DG",
+     "Currell FJ"
+    ],
+    "n_authors": 13,
+    "journal": "Scientific Reports",
+    "journal_abbr": "Sci Rep",
+    "year": 2013,
+    "volume": "3",
+    "issue": "1",
+    "pages": "1725",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.89
+   },
+   {
+    "DOI": "10.1038/srep00018",
+    "title": "Biological consequences of nanoscale energy deposition near irradiated heavy atom nanoparticles",
+    "authors": [
+     "McMahon SJ",
+     "Hyland WB",
+     "Muir MF",
+     "Coulter JA",
+     "Jain S",
+     "Butterworth KT",
+     "Schettino G",
+     "Dickson GR",
+     "Hounsell AR",
+     "O'Sullivan JM",
+     "Prise KM",
+     "Hirst DG",
+     "Currell FJ"
+    ],
+    "n_authors": 13,
+    "journal": "Scientific Reports",
+    "journal_abbr": "Sci Rep",
+    "year": 2011,
+    "volume": "1",
+    "issue": "1",
+    "pages": "18",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1016/s0167-8140(11)70575-8",
+    "title": "453 poster CONSEQUENCES OF NANOSCALE ENERGY DEPOSITION AROUND HEAVY ATOM NANOPARTICLES: IMPLICATIONS FOR RADIOTHERAPY",
+    "authors": [
+     "McMahon S",
+     "Hyland W",
+     "Muir M",
+     "Coulter J",
+     "Jain S",
+     "Butterworth K",
+     "Schettino G",
+     "Dickson G",
+     "Hounsell A",
+     "O'Sullivan J",
+     "Prise K",
+     "Currell F"
+    ],
+    "n_authors": 12,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2011,
+    "volume": "99",
+    "issue": null,
+    "pages": "S182",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.67
+   }
+  ]
+ },
+ "butterworth2012": {
+  "query": "Butterworth Physical basis and biological mechanisms of gold nanoparticle radiosensitization",
+  "year": 2012,
+  "hits": [
+   {
+    "DOI": "10.1039/c2nr31227a",
+    "title": "Physical basis and biological mechanisms of gold nanoparticle radiosensitization",
+    "authors": [
+     "Butterworth KT",
+     "McMahon SJ",
+     "Currell FJ",
+     "Prise KM"
+    ],
+    "n_authors": 4,
+    "journal": "Nanoscale",
+    "journal_abbr": "Nanoscale",
+    "year": 2012,
+    "volume": "4",
+    "issue": "16",
+    "pages": "4830",
+    "type": "journal-article",
+    "publisher": "Royal Society of Chemistry (RSC)",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.1186/s12645-017-0026-0",
+    "title": "Biological mechanisms of gold nanoparticle radiosensitization",
+    "authors": [
+     "Rosa S",
+     "Connolly C",
+     "Schettino G",
+     "Butterworth KT",
+     "Prise KM"
+    ],
+    "n_authors": 5,
+    "journal": "Cancer Nanotechnology",
+    "journal_abbr": "Cancer Nano",
+    "year": 2017,
+    "volume": "8",
+    "issue": "1",
+    "pages": "2",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.8
+   },
+   {
+    "DOI": "10.1021/acsnano.8b07982.s001",
+    "title": "Cross-Correlative Single-Cell Analysis Reveals Biological Mechanisms of Nanoparticle Radiosensitization",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.74
+   }
+  ]
+ },
+ "kuncic2018": {
+  "query": "Kuncic Lacombe Nanoparticle radio-enhancement: principles, progress and application to cancer treatment",
+  "year": 2018,
+  "hits": [
+   {
+    "DOI": "10.1088/1361-6560/aa99ce",
+    "title": "Nanoparticle radio-enhancement: principles, progress and application to cancer treatment",
+    "authors": [
+     "Kuncic Z",
+     "Lacombe S"
+    ],
+    "n_authors": 2,
+    "journal": "Physics in Medicine &amp; Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2018,
+    "volume": "63",
+    "issue": "2",
+    "pages": "02TR01",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.1093/rpd/ncy218",
+    "title": "IMPACT OF NANOPARTICLE CLUSTERING ON DOSE RADIO-ENHANCEMENT",
+    "authors": [
+     "Byrne H",
+     "McNamara A",
+     "Kuncic Z"
+    ],
+    "n_authors": 3,
+    "journal": "Radiation Protection Dosimetry",
+    "journal_abbr": "",
+    "year": 2018,
+    "volume": "183",
+    "issue": "1-2",
+    "pages": "50-54",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.43
+   },
+   {
+    "DOI": "10.1088/1361-6560/aa6233",
+    "title": "Impact of fluorescence emission from gold atoms on surrounding biological tissue—implications for nanoparticle radio-enhancement",
+    "authors": [
+     "Byrne HL",
+     "Gholami Y",
+     "Kuncic Z"
+    ],
+    "n_authors": 3,
+    "journal": "Physics in Medicine &amp; Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2017,
+    "volume": "62",
+    "issue": "8",
+    "pages": "3097-3110",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.34
+   }
+  ]
+ },
+ "retif2015": {
+  "query": "Retif Nanoparticles for radiation therapy enhancement: the key parameters",
+  "year": 2015,
+  "hits": [
+   {
+    "DOI": "10.7150/thno.11642",
+    "title": "Nanoparticles for Radiation Therapy Enhancement: the Key Parameters",
+    "authors": [
+     "Retif P",
+     "Pinel S",
+     "Toussaint M",
+     "Frochot C",
+     "Chouikrat R",
+     "Bastogne T",
+     "Barberi-Heyob M"
+    ],
+    "n_authors": 7,
+    "journal": "Theranostics",
+    "journal_abbr": "Theranostics",
+    "year": 2015,
+    "volume": "5",
+    "issue": "9",
+    "pages": "1030-1044",
+    "type": "journal-article",
+    "publisher": "Ivyspring International Publisher",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.23860/sah-bindeshwar-2020",
+    "title": "GOLD AND COPPER-CYSTEAMINE NANOPARTICLES FOR RADIATION THERAPY ENHANCEMENT ON CANCER",
+    "authors": [
+     "",
+     "Sah B"
+    ],
+    "n_authors": 2,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "University of Rhode Island",
+    "sim": 0.71
+   },
+   {
+    "DOI": "10.1016/j.ejmp.2016.07.342",
+    "title": "Nanoparticles for radiation therapy enhancement",
+    "authors": [
+     "Theodorou K"
+    ],
+    "n_authors": 1,
+    "journal": "Physica Medica",
+    "journal_abbr": "Physica Medica",
+    "year": 2016,
+    "volume": "32",
+    "issue": null,
+    "pages": "193",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.78
+   }
+  ]
+ },
+ "her2017": {
+  "query": "Her Jaffray Allen Gold nanoparticles for applications in cancer radiotherapy: mechanisms and recent advancements",
+  "year": 2017,
+  "hits": [
+   {
+    "DOI": "10.1016/j.addr.2015.12.012",
+    "title": "Gold nanoparticles for applications in cancer radiotherapy: Mechanisms and recent advancements",
+    "authors": [
+     "Her S",
+     "Jaffray DA",
+     "Allen C"
+    ],
+    "n_authors": 3,
+    "journal": "Advanced Drug Delivery Reviews",
+    "journal_abbr": "Advanced Drug Delivery Reviews",
+    "year": 2017,
+    "volume": "109",
+    "issue": null,
+    "pages": "84-101",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1016/j.radonc.2017.07.007",
+    "title": "Radiosensitization by gold nanoparticles: Will they ever make it to the clinic?",
+    "authors": [
+     "Cui L",
+     "Her S",
+     "Borst GR",
+     "Bristow RG",
+     "Jaffray DA",
+     "Allen C"
+    ],
+    "n_authors": 6,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2017,
+    "volume": "124",
+    "issue": "3",
+    "pages": "344-356",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.43
+   },
+   {
+    "DOI": "10.1016/j.addr.2017.01.004",
+    "title": "Radiotherapy for Cancer: Present and Future",
+    "authors": [
+     "Allen C",
+     "Her S",
+     "Jaffray DA"
+    ],
+    "n_authors": 3,
+    "journal": "Advanced Drug Delivery Reviews",
+    "journal_abbr": "Advanced Drug Delivery Reviews",
+    "year": 2017,
+    "volume": "109",
+    "issue": null,
+    "pages": "1-2",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.3
+   }
+  ]
+ },
+ "schuemann2016": {
+  "query": "Schuemann Roadmap to clinical use of gold nanoparticles for radiation sensitization",
+  "year": 2016,
+  "hits": [
+   {
+    "DOI": "10.1016/j.ijrobp.2015.09.032",
+    "title": "Roadmap to Clinical Use of Gold Nanoparticles for Radiation Sensitization",
+    "authors": [
+     "Schuemann J",
+     "Berbeco R",
+     "Chithrani DB",
+     "Cho SH",
+     "Kumar R",
+     "McMahon SJ",
+     "Sridhar S",
+     "Krishnan S"
+    ],
+    "n_authors": 8,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 2016,
+    "volume": "94",
+    "issue": "1",
+    "pages": "189-205",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.32920/14638683",
+    "title": "Determining the Radiation Enhancement Effects of Gold Nanoparticles in Cells in a Combined Treatment with Cisplatin and Radiation at Therapeutic Megavoltage Energies",
+    "authors": [
+     "Yang C",
+     "Bromma K",
+     "Sung W",
+     "Schuemann J",
+     "Chithrani DB"
+    ],
+    "n_authors": 5,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Ryerson University Library and Archives",
+    "sim": 0.38
+   },
+   {
+    "DOI": "10.32920/14638683.v1",
+    "title": "Determining the Radiation Enhancement Effects of Gold Nanoparticles in Cells in a Combined Treatment with Cisplatin and Radiation at Therapeutic Megavoltage Energies",
+    "authors": [
+     "Yang C",
+     "Bromma K",
+     "Sung W",
+     "Schuemann J",
+     "Chithrani DB"
+    ],
+    "n_authors": 5,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Ryerson University Library and Archives",
+    "sim": 0.38
+   }
+  ]
+ },
+ "lechtman2011": {
+  "query": "Lechtman Implications on clinical scenario of gold nanoparticle radiosensitization in regards to photon energy nanoparticle size concentration and location",
+  "year": 2011,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/57/1/291",
+    "title": "Reply to Comment on ‘Implications on clinical scenario of gold nanoparticle radiosensitization in regards to photon energy, nanoparticle size, concentration and location’",
+    "authors": [
+     "Pignol JP",
+     "Lechtman E"
+    ],
+    "n_authors": 2,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2011,
+    "volume": "57",
+    "issue": "1",
+    "pages": "291-295",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.1088/0031-9155/56/15/001",
+    "title": "Implications on clinical scenario of gold nanoparticle radiosensitization in regards to photon energy, nanoparticle size, concentration and location",
+    "authors": [
+     "Lechtman E",
+     "Chattopadhyay N",
+     "Cai Z",
+     "Mashouf S",
+     "Reilly R",
+     "Pignol JP"
+    ],
+    "n_authors": 6,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2011,
+    "volume": "56",
+    "issue": "15",
+    "pages": "4631-4647",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1088/0031-9155/57/1/287",
+    "title": "Comment on ‘Implications on clinical scenario of gold nanoparticle radiosensitization in regards to photon energy, nanoparticle size, concentration and location’",
+    "authors": [
+     "McMahon SJ",
+     "Prise KM",
+     "Currell FJ"
+    ],
+    "n_authors": 3,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2011,
+    "volume": "57",
+    "issue": "1",
+    "pages": "287-290",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.95
+   }
+  ]
+ },
+ "rahman2009": {
+  "query": "Rahman Enhancement of radiation effects by gold nanoparticles for superficial radiation therapy",
+  "year": 2009,
+  "hits": [
+   {
+    "DOI": "10.1201/b22358-30",
+    "title": "Enhancement of Radiation Effects by Gold Nanoparticles for Superficial Radiation Therapy",
+    "authors": [
+     "Nordiana Rahman W",
+     "Bishara N",
+     "Ackerly T",
+     "Fa He C",
+     "Jackson P",
+     "Wong C",
+     "Davidson R",
+     "Geso M"
+    ],
+    "n_authors": 8,
+    "journal": "Nanomedicine in Cancer",
+    "journal_abbr": "",
+    "year": 2017,
+    "volume": null,
+    "issue": null,
+    "pages": "737-752",
+    "type": "book-chapter",
+    "publisher": "Pan Stanford",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1201/9781315114361-31",
+    "title": "Chapter 30: Enhancement of Radiation Effects by Gold Nanoparticles for Superficial Radiation Therapy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Nanomedicine in Cancer",
+    "journal_abbr": "",
+    "year": 2017,
+    "volume": null,
+    "issue": null,
+    "pages": "737-752",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.1016/j.nano.2009.01.014",
+    "title": "Enhancement of radiation effects by gold nanoparticles for superficial radiation therapy",
+    "authors": [
+     "Rahman WN",
+     "Bishara N",
+     "Ackerly T",
+     "He CF",
+     "Jackson P",
+     "Wong C",
+     "Davidson R",
+     "Geso M"
+    ],
+    "n_authors": 8,
+    "journal": "Nanomedicine: Nanotechnology, Biology and Medicine",
+    "journal_abbr": "Nanomedicine: Nanotechnology, Biology and Medicine",
+    "year": 2009,
+    "volume": "5",
+    "issue": "2",
+    "pages": "136-142",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.96
+   }
+  ]
+ },
+ "robar2002": {
+  "query": "Robar Tumour dose enhancement using modified megavoltage photon beams and contrast media",
+  "year": 2002,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/47/14/305",
+    "title": "Tumour dose enhancement using modified megavoltage photon beams and contrast media",
+    "authors": [
+     "Robar JL",
+     "Riccio SA",
+     "Martin MA"
+    ],
+    "n_authors": 3,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2002,
+    "volume": "47",
+    "issue": "14",
+    "pages": "2433-2449",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1088/0031-9155/51/21/007",
+    "title": "Generation and modelling of megavoltage photon beams for contrast-enhanced radiation therapy",
+    "authors": [
+     "Robar JL"
+    ],
+    "n_authors": 1,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2006,
+    "volume": "51",
+    "issue": "21",
+    "pages": "5487-5504",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.59
+   },
+   {
+    "DOI": "10.1016/s0167-8140(01)80947-6",
+    "title": "304 poster Brain tumour dose enhancement using contrast media and high photon beam quality",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2001,
+    "volume": "61",
+    "issue": null,
+    "pages": "S98-S99",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.54
+   }
+  ]
+ },
+ "matsudaira1980": {
+  "query": "Matsudaira Iodine contrast medium sensitizes cultured mammalian cells to X rays but not to gamma rays",
+  "year": 1980,
+  "hits": [
+   {
+    "DOI": "10.2307/3575225",
+    "title": "Iodine Contrast Medium Sensitizes Cultured Mammalian Cells to X Rays but Not to γ Rays",
+    "authors": [
+     "Matsudaira H",
+     "Ueno AM",
+     "Furuno I"
+    ],
+    "n_authors": 3,
+    "journal": "Radiation Research",
+    "journal_abbr": "Radiation Research",
+    "year": 1980,
+    "volume": "84",
+    "issue": "1",
+    "pages": "144",
+    "type": "journal-article",
+    "publisher": "JSTOR",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.2307/3575884",
+    "title": "Induction of Cell Killing, Micronuclei, and Mutation to 6-Thioguanine Resistance after Exposure to Low-Dose-Rate γ Rays and Tritiated Water in Cultured Mammalian Cells (L5178Y)",
+    "authors": [
+     "Ueno AM",
+     "Furuno-Fukushi I",
+     "Matsudaira H"
+    ],
+    "n_authors": 3,
+    "journal": "Radiation Research",
+    "journal_abbr": "Radiation Research",
+    "year": 1982,
+    "volume": "91",
+    "issue": "3",
+    "pages": "447",
+    "type": "journal-article",
+    "publisher": "JSTOR",
+    "sim": 0.32
+   },
+   {
+    "DOI": "10.2307/3577163",
+    "title": "Mutation Induction by Very Low Dose Rate γ Rays in Cultured Mouse Leukemia Cells L5178Y",
+    "authors": [
+     "Furuno-Fukushi I",
+     "Ueno AM",
+     "Matsudaira H"
+    ],
+    "n_authors": 3,
+    "journal": "Radiation Research",
+    "journal_abbr": "Radiation Research",
+    "year": 1988,
+    "volume": "115",
+    "issue": "2",
+    "pages": "273",
+    "type": "journal-article",
+    "publisher": "JSTOR",
+    "sim": 0.33
+   }
+  ]
+ },
+ "mello1983": {
+  "query": "Mello Radiation dose enhancement in tumors with iodine",
+  "year": 1983,
+  "hits": [
+   {
+    "DOI": "10.1118/1.595378",
+    "title": "Radiation dose enhancement in tumors with iodine",
+    "authors": [
+     "Mello RS",
+     "Callisen H",
+     "Winter J",
+     "Kagan AR",
+     "Norman A"
+    ],
+    "n_authors": 5,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1983,
+    "volume": "10",
+    "issue": "1",
+    "pages": "75-78",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1016/s0167-8140(87)80170-6",
+    "title": "Radiation dose enhancement therapy with iodine in rabbit VX-2 brain tumors",
+    "authors": [
+     "Iwamoto KS",
+     "Cochran ST",
+     "Winter J",
+     "Holburt E",
+     "Higashida RT",
+     "Norman A"
+    ],
+    "n_authors": 6,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 1987,
+    "volume": "8",
+    "issue": "2",
+    "pages": "161-170",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.64
+   },
+   {
+    "DOI": "10.1016/s1120-1797(22)03024-1",
+    "title": "RADIATION DOSE ENHANCEMENT IN EXTERNAL RADIOTHERAPY OF TUMORS LABELED WITH GOLD NANOPARTICLES",
+    "authors": [
+     "Vlastou E"
+    ],
+    "n_authors": 1,
+    "journal": "Physica Medica",
+    "journal_abbr": "Physica Medica",
+    "year": 2022,
+    "volume": "104",
+    "issue": null,
+    "pages": "S4",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.6
+   }
+  ]
+ },
+ "adam2003": {
+  "query": "Adam Synchrotron radiation therapy of malignant brain glioma loaded with an iodinated contrast agent first trial on rats bearing F98 gliomas",
+  "year": 2003,
+  "hits": [
+   {
+    "DOI": "10.1016/j.ijrobp.2003.07.007",
+    "title": "Synchrotron radiation therapy of malignant brain glioma loaded with an iodinated contrast agent: First trial on rats bearing F98 gliomas",
+    "authors": [
+     "Adam JF",
+     "Elleaume H",
+     "Joubert A",
+     "Biston MC",
+     "Charvet AM",
+     "Balosso J",
+     "Le Bas JF",
+     "Estève F"
+    ],
+    "n_authors": 8,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 2003,
+    "volume": "57",
+    "issue": "5",
+    "pages": "1413-1426",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.98
+   },
+   {
+    "DOI": "10.1016/j.ijrobp.2005.09.004",
+    "title": "Prolonged survival of Fischer rats bearing F98 glioma after iodine-enhanced synchrotron stereotactic radiotherapy",
+    "authors": [
+     "Adam JF",
+     "Joubert A",
+     "Biston MC",
+     "Charvet AM",
+     "Peoc’h M",
+     "Le Bas JF",
+     "Balosso J",
+     "Estève F",
+     "Elleaume H"
+    ],
+    "n_authors": 9,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 2006,
+    "volume": "64",
+    "issue": "2",
+    "pages": "603-611",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.29
+   },
+   {
+    "DOI": "10.1107/s0909049509016987",
+    "title": "Intracerebral delivery of 5-iodo-2′-deoxyuridine in combination with synchrotron stereotactic radiation for the therapy of the F98 glioma",
+    "authors": [
+     "Rousseau J",
+     "Adam JF",
+     "Deman P",
+     "Wu TD",
+     "Guerquin-Kern JL",
+     "Gouget B",
+     "Barth RF",
+     "Estève F",
+     "Elleaume H"
+    ],
+    "n_authors": 9,
+    "journal": "Journal of Synchrotron Radiation",
+    "journal_abbr": "J Synchrotron Rad",
+    "year": 2009,
+    "volume": "16",
+    "issue": "4",
+    "pages": "573-581",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "sim": 0.37
+   }
+  ]
+ },
+ "biston2004": {
+  "query": "Biston Cure of Fisher rats bearing radioresistant F98 glioma treated with cis-platinum and irradiated with monochromatic synchrotron X-rays",
+  "year": 2004,
+  "hits": [
+   {
+    "DOI": "10.1158/0008-5472.can-03-3600",
+    "title": "Cure of Fisher Rats Bearing Radioresistant F98 Glioma Treated with <b>\n                     <i>cis</i>\n                  </b>-Platinum and Irradiated with Monochromatic Synchrotron X-Rays",
+    "authors": [
+     "Biston MC",
+     "Joubert A",
+     "Adam JF",
+     "Elleaume H",
+     "Bohic S",
+     "Charvet AM",
+     "Estève F",
+     "Foray N",
+     "Balosso J"
+    ],
+    "n_authors": 9,
+    "journal": "Cancer Research",
+    "journal_abbr": "",
+    "year": 2004,
+    "volume": "64",
+    "issue": "7",
+    "pages": "2317-2323",
+    "type": "journal-article",
+    "publisher": "American Association for Cancer Research (AACR)",
+    "sim": 0.81
+   },
+   {
+    "DOI": "10.1016/s0167-8140(04)82507-6",
+    "title": "639 poster Rats with brain F98 glioma treated with cisplatinum and monochromatic synchrotron X-rays in conditions able to trigger Auger effect",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2004,
+    "volume": "73",
+    "issue": null,
+    "pages": "S279",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.62
+   },
+   {
+    "DOI": "10.1016/j.ijrobp.2005.09.004",
+    "title": "Prolonged survival of Fischer rats bearing F98 glioma after iodine-enhanced synchrotron stereotactic radiotherapy",
+    "authors": [
+     "Adam JF",
+     "Joubert A",
+     "Biston MC",
+     "Charvet AM",
+     "Peoc’h M",
+     "Le Bas JF",
+     "Balosso J",
+     "Estève F",
+     "Elleaume H"
+    ],
+    "n_authors": 9,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 2006,
+    "volume": "64",
+    "issue": "2",
+    "pages": "603-611",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.52
+   }
+  ]
+ },
+ "corde2004": {
+  "query": "Corde Synchrotron radiation-based experimental determination of the optimal energy for cell radiotoxicity enhancement following photoelectric effect on stable iodinated compounds",
+  "year": 2004,
+  "hits": [
+   {
+    "DOI": "10.1038/sj.bjc.6601951",
+    "title": "Synchrotron radiation-based experimental determination of the optimal energy for cell radiotoxicity enhancement following photoelectric effect on stable iodinated compounds",
+    "authors": [
+     "Corde S",
+     "Joubert A",
+     "Adam JF",
+     "Charvet AM",
+     "Le Bas JF",
+     "Estève F",
+     "Elleaume H",
+     "Balosso J"
+    ],
+    "n_authors": 8,
+    "journal": "British Journal of Cancer",
+    "journal_abbr": "Br J Cancer",
+    "year": 2004,
+    "volume": "91",
+    "issue": "3",
+    "pages": "544-551",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.98
+   },
+   {
+    "DOI": "10.2147/ijn.s59471",
+    "title": "Optimal energy for cell radiosensitivity enhancement by gold nanoparticles using synchrotron-based monoenergetic photon beams",
+    "authors": [
+     "Rahman WN",
+     "Geso M",
+     "Yagi N",
+     "Abdul Aziz SA",
+     "Corde S",
+     "Annabell N"
+    ],
+    "n_authors": 6,
+    "journal": "International Journal of Nanomedicine",
+    "journal_abbr": "IJN",
+    "year": 2014,
+    "volume": null,
+    "issue": null,
+    "pages": "2459",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.41
+   },
+   {
+    "DOI": "10.1107/s1600577517012711",
+    "title": "Enhancement of radiosensitivity of oral carcinoma cells by iodinated chlorin<i>p</i><sub>6</sub>copper complex in combination with synchrotron X-ray radiation",
+    "authors": [
+     "Sarbadhikary P",
+     "Dube A"
+    ],
+    "n_authors": 2,
+    "journal": "Journal of Synchrotron Radiation",
+    "journal_abbr": "J Synchrotron Rad",
+    "year": 2017,
+    "volume": "24",
+    "issue": "6",
+    "pages": "1265-1275",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "sim": 0.15
+   }
+  ]
+ },
+ "bray2024": {
+  "query": "Bray Global cancer statistics 2022 GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries",
+  "year": 2024,
+  "hits": [
+   {
+    "DOI": "10.3410/f.739487650.793592245",
+    "title": "Faculty Opinions recommendation of Global cancer statistics 2020: GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries.",
+    "authors": [
+     "Halloran C"
+    ],
+    "n_authors": 1,
+    "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+    "journal_abbr": "",
+    "year": 2022,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dataset",
+    "publisher": "H1 Connect",
+    "sim": 0.86
+   },
+   {
+    "DOI": "10.3410/f.734004835.793587632",
+    "title": "Faculty Opinions recommendation of Global cancer statistics 2018: GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries.",
+    "authors": [
+     "Huddart R"
+    ],
+    "n_authors": 1,
+    "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dataset",
+    "publisher": "H1 Connect",
+    "sim": 0.86
+   },
+   {
+    "DOI": "10.3410/f.734004835.793572727",
+    "title": "Faculty Opinions recommendation of Global cancer statistics 2018: GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries.",
+    "authors": [
+     "Jankowski J",
+     "Franklin J"
+    ],
+    "n_authors": 2,
+    "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dataset",
+    "publisher": "H1 Connect",
+    "sim": 0.86
+   }
+  ]
+ },
+ "delaney2005": {
+  "query": "Delaney The role of radiotherapy in cancer treatment estimating optimal utilization from a review of evidence-based clinical guidelines",
+  "year": 2005,
+  "hits": [
+   {
+    "DOI": "10.1002/cncr.21324",
+    "title": "The role of radiotherapy in cancer treatment",
+    "authors": [
+     "Delaney G",
+     "Jacob S",
+     "Featherstone C",
+     "Barton M"
+    ],
+    "n_authors": 4,
+    "journal": "Cancer",
+    "journal_abbr": "Cancer",
+    "year": 2005,
+    "volume": "104",
+    "issue": "6",
+    "pages": "1129-1137",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.49
+   },
+   {
+    "DOI": "10.1002/cncr.22057",
+    "title": "Erratum: Delaney G, Jacob S, Featherstone C, Barton M. The role of radiotherapy in cancer treatment: estimating optimal utilization from a review of evidence‐based clinical guidelines. <i>Cancer</i>. 2005; 104(6):1129–37.",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Cancer",
+    "journal_abbr": "Cancer",
+    "year": 2006,
+    "volume": "107",
+    "issue": "3",
+    "pages": "660-660",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.75
+   },
+   {
+    "DOI": "10.1002/cncr.21596",
+    "title": "Estimating the optimal radiotherapy utilization for carcinoma of the central nervous system, thyroid carcinoma, and carcinoma of unknown primary origin from evidence‐based clinical guidelines",
+    "authors": [
+     "Delaney G",
+     "Jacob S",
+     "Barton M"
+    ],
+    "n_authors": 3,
+    "journal": "Cancer",
+    "journal_abbr": "Cancer",
+    "year": 2005,
+    "volume": "106",
+    "issue": "2",
+    "pages": "453-465",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.45
+   }
+  ]
+ },
+ "baskar2012": {
+  "query": "Baskar Cancer and radiation therapy: current advances and future directions",
+  "year": 2012,
+  "hits": [
+   {
+    "DOI": "10.7150/ijms.3635",
+    "title": "Cancer and Radiation Therapy: Current Advances and Future Directions",
+    "authors": [
+     "Baskar R",
+     "Lee KA",
+     "Yeo R",
+     "Yeoh KW"
+    ],
+    "n_authors": 4,
+    "journal": "International Journal of Medical Sciences",
+    "journal_abbr": "Int. J. Med. Sci.",
+    "year": 2012,
+    "volume": "9",
+    "issue": "3",
+    "pages": "193-199",
+    "type": "journal-article",
+    "publisher": "Ivyspring International Publisher",
+    "sim": 0.95
+   },
+   {
+    "DOI": "10.46998/ijcmcr.2025.55.001363",
+    "title": "Cancer - Chemotherapy and Radiation Therapy: Current Advances and Future Directions: Narrative Review",
+    "authors": [
+     "Hakobyan G"
+    ],
+    "n_authors": 1,
+    "journal": "International Journal of Clinical Studies and Medical Case Reports",
+    "journal_abbr": "IJCMCR",
+    "year": 2025,
+    "volume": "55",
+    "issue": "3",
+    "pages": null,
+    "type": "journal-article",
+    "publisher": "International Journal of Clinical Studies and Medical Case Reports",
+    "sim": 0.77
+   },
+   {
+    "DOI": "10.69860/nobel.9786053359425.6",
+    "title": "Immunotherapy in Cancer Treatment: Current and Future Directions",
+    "authors": [
+     "Ozturk D"
+    ],
+    "n_authors": 1,
+    "journal": "The Latest Innovative Approaches in Radiation Therapy",
+    "journal_abbr": "",
+    "year": 2024,
+    "volume": null,
+    "issue": null,
+    "pages": "133-156",
+    "type": "book-chapter",
+    "publisher": "Nobel Tip Kitabevleri",
+    "sim": 0.65
+   }
+  ]
+ },
+ "wardman2007": {
+  "query": "Wardman Chemical radiosensitizers for use in radiotherapy",
+  "year": 2007,
+  "hits": [
+   {
+    "DOI": "10.1016/j.clon.2007.03.010",
+    "title": "Chemical Radiosensitizers for Use in Radiotherapy",
+    "authors": [
+     "Wardman P"
+    ],
+    "n_authors": 1,
+    "journal": "Clinical Oncology",
+    "journal_abbr": "Clinical Oncology",
+    "year": 2007,
+    "volume": "19",
+    "issue": "6",
+    "pages": "397-417",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.1016/0146-5724(84)90066-9",
+    "title": "Radiation chemistry in the clinic: Hypoxic cell radiosensitizers for radiotherapy",
+    "authors": [
+     "Wardman P"
+    ],
+    "n_authors": 1,
+    "journal": "Radiation Physics and Chemistry (1977)",
+    "journal_abbr": "Radiation Physics and Chemistry (1977)",
+    "year": 1984,
+    "volume": "24",
+    "issue": "3-4",
+    "pages": "293-305",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.67
+   },
+   {
+    "DOI": "10.1007/978-1-4757-0399-3_2",
+    "title": "Molecular Structure and Biological Activity of Hypoxic Cell Radiosensitizers and Hypoxic-Specific Cytotoxins",
+    "authors": [
+     "Wardman P"
+    ],
+    "n_authors": 1,
+    "journal": "Advanced Topics on Radiosensitizers of Hypoxic Cells",
+    "journal_abbr": "",
+    "year": 1982,
+    "volume": null,
+    "issue": null,
+    "pages": "49-75",
+    "type": "book-chapter",
+    "publisher": "Springer US",
+    "sim": 0.38
+   }
+  ]
+ },
+ "gill2019": {
+  "query": "Gill Vallis Transition metal compounds as cancer radiosensitizers",
+  "year": 2019,
+  "hits": [
+   {
+    "DOI": "10.1039/c8cs00641e",
+    "title": "Transition metal compounds as cancer radiosensitizers",
+    "authors": [
+     "Gill MR",
+     "Vallis KA"
+    ],
+    "n_authors": 2,
+    "journal": "Chemical Society Reviews",
+    "journal_abbr": "Chem. Soc. Rev.",
+    "year": 2019,
+    "volume": "48",
+    "issue": "2",
+    "pages": "540-557",
+    "type": "journal-article",
+    "publisher": "Royal Society of Chemistry (RSC)",
+    "sim": 0.9
+   },
+   {
+    "DOI": "10.1007/978-1-4613-1717-3_42",
+    "title": "Platinum Radiosensitizers",
+    "authors": [
+     "Picker DH"
+    ],
+    "n_authors": 1,
+    "journal": "Platinum and Other Metal Coordination Compounds in Cancer Chemotherapy",
+    "journal_abbr": "",
+    "year": 1988,
+    "volume": null,
+    "issue": null,
+    "pages": "355-366",
+    "type": "book-chapter",
+    "publisher": "Springer US",
+    "sim": 0.51
+   },
+   {
+    "DOI": "10.1017/cbo9781139096782.008",
+    "title": "Charge ordering in transition metal compounds",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Transition Metal Compounds",
+    "journal_abbr": "",
+    "year": 2014,
+    "volume": null,
+    "issue": null,
+    "pages": "238-268",
+    "type": "book-chapter",
+    "publisher": "Cambridge University Press",
+    "sim": 0.56
+   }
+  ]
+ },
+ "liu2013": {
+  "query": "Liu Silver nanoparticles: a novel radiation sensitizer for glioma",
+  "year": 2013,
+  "hits": [
+   {
+    "DOI": "10.1039/c3nr01351k",
+    "title": "Silver nanoparticles: a novel radiation sensitizer for glioma?",
+    "authors": [
+     "Liu P",
+     "Huang Z",
+     "Chen Z",
+     "Xu R",
+     "Wu H",
+     "Zang F",
+     "Wang C",
+     "Gu N"
+    ],
+    "n_authors": 8,
+    "journal": "Nanoscale",
+    "journal_abbr": "Nanoscale",
+    "year": 2013,
+    "volume": "5",
+    "issue": "23",
+    "pages": "11829",
+    "type": "journal-article",
+    "publisher": "Royal Society of Chemistry (RSC)",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1016/0360-3016(93)90925-l",
+    "title": "Estramustine: A novel chemical radiation sensitizer in human malignant glioma cells",
+    "authors": [
+     "Gabel M",
+     "Ryu S",
+     "Kim JH",
+     "Kim SH",
+     "Zarbo RJ",
+     "Brown RD"
+    ],
+    "n_authors": 6,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 1993,
+    "volume": "27",
+    "issue": null,
+    "pages": "307-308",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.58
+   },
+   {
+    "DOI": "10.1016/j.jrras.2024.101039",
+    "title": "Computed tomography imaging to evaluate the effects of gold-coated silver core-shell nanoparticles in pediatric glioma",
+    "authors": [
+     "Zhu K",
+     "Li Y"
+    ],
+    "n_authors": 2,
+    "journal": "Journal of Radiation Research and Applied Sciences",
+    "journal_abbr": "Journal of Radiation Research and Applied Sciences",
+    "year": 2024,
+    "volume": "17",
+    "issue": "4",
+    "pages": "101039",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.42
+   }
+  ]
+ },
+ "xu2009": {
+  "query": "Xu Ag nanoparticles sensitize IR-induced killing of cancer cells",
+  "year": 2009,
+  "hits": [
+   {
+    "DOI": "10.1038/cr.2009.89",
+    "title": "Ag nanoparticles sensitize IR-induced killing of cancer cells",
+    "authors": [
+     "Xu R",
+     "Ma J",
+     "Sun X",
+     "Chen Z",
+     "Jiang X",
+     "Guo Z",
+     "Huang L",
+     "Li Y",
+     "Wang M",
+     "Wang C",
+     "Liu J",
+     "Fan X",
+     "Gu J",
+     "Chen X",
+     "Zhang Y",
+     "Gu N"
+    ],
+    "n_authors": 16,
+    "journal": "Cell Research",
+    "journal_abbr": "Cell Res",
+    "year": 2009,
+    "volume": "19",
+    "issue": "8",
+    "pages": "1031-1034",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.98
+   },
+   {
+    "DOI": "10.1093/abbs/gmr015",
+    "title": "Silver nanocrystals sensitize magnetic-nanoparticle-mediated thermo-induced killing of cancer cells",
+    "authors": [
+     "Liu L",
+     "Ni F",
+     "Zhang J",
+     "Jiang X",
+     "Lu X",
+     "Guo Z",
+     "Xu R"
+    ],
+    "n_authors": 7,
+    "journal": "Acta Biochimica et Biophysica Sinica",
+    "journal_abbr": "ABBS",
+    "year": 2011,
+    "volume": "43",
+    "issue": "4",
+    "pages": "316-323",
+    "type": "journal-article",
+    "publisher": "China Science Publishing & Media Ltd.",
+    "sim": 0.61
+   },
+   {
+    "DOI": "10.1021/acsnano.6b07311.s001",
+    "title": "Graphene Oxide Induced Perturbation to Plasma Membrane and Cytoskeletal Meshwork Sensitize Cancer Cells to Chemotherapeutic Agents",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.33
+   }
+  ]
+ },
+ "liu2018": {
+  "query": "Liu Enhancement of radiotherapy efficacy by silver nanoparticles in hypoxic glioma cells",
+  "year": 2018,
+  "hits": [
+   {
+    "DOI": "10.1080/21691401.2018.1518912",
+    "title": "Enhancement of radiotherapy efficacy by silver nanoparticles in hypoxic glioma cells",
+    "authors": [
+     "Liu Z",
+     "Tan H",
+     "Zhang X",
+     "Chen F",
+     "Zhou Z",
+     "Hu X",
+     "Chang S",
+     "Liu P",
+     "Zhang H"
+    ],
+    "n_authors": 9,
+    "journal": "Artificial Cells, Nanomedicine, and Biotechnology",
+    "journal_abbr": "Artificial Cells, Nanomedicine, and Biotechnology",
+    "year": 2018,
+    "volume": "46",
+    "issue": "sup3",
+    "pages": "922-930",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.98
+   },
+   {
+    "DOI": "10.1021/acsnano.4c06753.s001",
+    "title": "2Nitroimidazole-Functionalized Superparamagnetic Iron Oxide Nanoparticles Detect Hypoxic Regions of Glioblastomas on MRI and Improve Radiotherapy Efficacy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.31
+   },
+   {
+    "DOI": "10.1021/acs.molpharmaceut.6b00523.s001",
+    "title": "Enhanced Antiglioblastoma Efficacy of Neovasculature and Glioma Cells Dual Targeted Nanoparticles",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.45
+   }
+  ]
+ },
+ "zhao2019": {
+  "query": "Zhao Enhancement of radiosensitization by silver nanoparticles functionalized with polyethylene glycol and aptamer AS1411 for glioma irradiation therapy",
+  "year": 2019,
+  "hits": [
+   {
+    "DOI": "10.2147/ijn.s224160",
+    "title": "&lt;p&gt;Enhancement of Radiosensitization by Silver Nanoparticles Functionalized with Polyethylene Glycol and Aptamer As1411 for Glioma Irradiation Therapy&lt;/p&gt;",
+    "authors": [
+     "Zhao J",
+     "Liu P",
+     "Ma J",
+     "Li D",
+     "Yang H",
+     "Chen W",
+     "Jiang Y"
+    ],
+    "n_authors": 7,
+    "journal": "International Journal of Nanomedicine",
+    "journal_abbr": "IJN",
+    "year": 2019,
+    "volume": "Volume 14",
+    "issue": null,
+    "pages": "9483-9496",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.21203/rs.3.rs-45987/v1",
+    "title": "Radiosensitization of breast cancer cells using AS1411 aptamer-conjugated gold nanoparticles",
+    "authors": [
+     "Mehrnia SS",
+     "Hashemi B",
+     "Mowla SJ",
+     "Nikkhah M",
+     "Arbabi A"
+    ],
+    "n_authors": 5,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.32
+   },
+   {
+    "DOI": "10.21203/rs.3.rs-45987/v2",
+    "title": "Radiosensitization of breast cancer cells using AS1411 aptamer-conjugated gold nanoparticles",
+    "authors": [
+     "",
+     "Hashemi B",
+     "Mowla SJ",
+     "Nikkhah M",
+     "Arbabi A"
+    ],
+    "n_authors": 5,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.32
+   }
+  ]
+ },
+ "lu2012": {
+  "query": "Lu Egg white-mediated green synthesis of silver nanoparticles with excellent biocompatibility and enhanced radiation effects on cancer cells",
+  "year": 2012,
+  "hits": [
+   {
+    "DOI": "10.2147/ijn.s29762",
+    "title": "Egg white-mediated green synthesis of silver nanoparticles with excellent biocompatibility and enhanced radiation effects on cancer cells",
+    "authors": [
+     "Lu R"
+    ],
+    "n_authors": 1,
+    "journal": "International Journal of Nanomedicine",
+    "journal_abbr": "IJN",
+    "year": 2012,
+    "volume": null,
+    "issue": null,
+    "pages": "2101",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.99
+   },
+   {
+    "DOI": "10.1021/acsami.4c07770.s001",
+    "title": "Scutellaria baicalensis Polysaccharide-Mediated Green Synthesis of Smaller Silver Nanoparticles with Enhanced Antimicrobial and Antibiofilm Activity",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.56
+   },
+   {
+    "DOI": "10.1021/acsabm.3c00974.s001",
+    "title": "Green Synthesis of Silver Nanoparticles Using Drymaria cordata and Their Biocompatibility with Hemoglobin: A Therapeutic Potential Approach",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.5
+   }
+  ]
+ },
+ "habiba2019": {
+  "query": "Habiba Enhancing colorectal cancer radiation therapy efficacy using silver nanoprisms decorated with graphene as radiosensitizers",
+  "year": 2019,
+  "hits": [
+   {
+    "DOI": "10.1038/s41598-019-53706-0",
+    "title": "Enhancing Colorectal Cancer Radiation Therapy Efficacy using Silver Nanoprisms Decorated with Graphene as Radiosensitizers",
+    "authors": [
+     "Habiba K",
+     "Aziz K",
+     "Sanders K",
+     "Santiago CM",
+     "Mahadevan LSK",
+     "Makarov V",
+     "Weiner BR",
+     "Morell G",
+     "Krishnan S"
+    ],
+    "n_authors": 9,
+    "journal": "Scientific Reports",
+    "journal_abbr": "Sci Rep",
+    "year": 2019,
+    "volume": "9",
+    "issue": "1",
+    "pages": "17120",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.1021/acs.nanolett.0c02487.s001",
+    "title": "Targeted Radiosensitizers for MR-Guided Radiation Therapy of Prostate Cancer",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.4
+   },
+   {
+    "DOI": "10.1021/acsabm.1c00803.s001",
+    "title": "PtFe3O4, PdFe3O4, and AuFe3O4 Nanoheterodimers and Their Efficacy as Radiosensitizers in Cancer Therapy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.41
+   }
+  ]
+ },
+ "asharani2009": {
+  "query": "AshaRani Cytotoxicity and genotoxicity of silver nanoparticles in human cells",
+  "year": 2009,
+  "hits": [
+   {
+    "DOI": "10.4053/er196-090428",
+    "title": "Cytotoxicity and Genotoxicity of Silver Nanoparticles in Human Cells",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Expert Reviews",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dataset",
+    "publisher": "National Nanomanufacturing Network",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1021/nn800596w",
+    "title": "Cytotoxicity and Genotoxicity of Silver Nanoparticles in Human Cells",
+    "authors": [
+     "AshaRani PV",
+     "Low Kah Mun G",
+     "Hande MP",
+     "Valiyaveettil S"
+    ],
+    "n_authors": 4,
+    "journal": "ACS Nano",
+    "journal_abbr": "ACS Nano",
+    "year": 2008,
+    "volume": "3",
+    "issue": "2",
+    "pages": "279-290",
+    "type": "journal-article",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.3389/fgene.2012.00104",
+    "title": "Enhanced Genotoxicity of Silver Nanoparticles in DNA Repair Deficient Mammalian Cells",
+    "authors": [
+     "Lim HK",
+     "Asharani PV",
+     "Hande MP"
+    ],
+    "n_authors": 3,
+    "journal": "Frontiers in Genetics",
+    "journal_abbr": "Front. Gene.",
+    "year": 2012,
+    "volume": "3",
+    "issue": null,
+    "pages": null,
+    "type": "journal-article",
+    "publisher": "Frontiers Media SA",
+    "sim": 0.68
+   }
+  ]
+ },
+ "wei2015": {
+  "query": "Wei Silver nanoparticles: synthesis, properties, and therapeutic applications",
+  "year": 2015,
+  "hits": [
+   {
+    "DOI": "10.5772/intechopen.96712",
+    "title": "Multifunctional Silver Nanoparticles: Synthesis and Applications",
+    "authors": [
+     "Hoang Nam N"
+    ],
+    "n_authors": 1,
+    "journal": "Silver Micro-Nanoparticles - Properties, Synthesis, Characterization, and Applications",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "book-chapter",
+    "publisher": "IntechOpen",
+    "sim": 0.71
+   },
+   {
+    "DOI": "10.1201/9781003278955-5",
+    "title": "Antibacterial Properties of Silver Nanoparticles",
+    "authors": [
+     "Facibeni A"
+    ],
+    "n_authors": 1,
+    "journal": "Silver Nanoparticles",
+    "journal_abbr": "",
+    "year": 2023,
+    "volume": null,
+    "issue": null,
+    "pages": "197-225",
+    "type": "book-chapter",
+    "publisher": "Jenny Stanford Publishing",
+    "sim": 0.37
+   },
+   {
+    "DOI": "10.1201/9781003278955-4",
+    "title": "In situ Synthesis of Silver Nanoparticles",
+    "authors": [
+     "Facibeni A"
+    ],
+    "n_authors": 1,
+    "journal": "Silver Nanoparticles",
+    "journal_abbr": "",
+    "year": 2023,
+    "volume": null,
+    "issue": null,
+    "pages": "161-195",
+    "type": "book-chapter",
+    "publisher": "Jenny Stanford Publishing",
+    "sim": 0.39
+   }
+  ]
+ },
+ "burdusel2018": {
+  "query": "Burdusel Biomedical applications of silver nanoparticles: an up-to-date overview",
+  "year": 2018,
+  "hits": [
+   {
+    "DOI": "10.3390/nano8090681",
+    "title": "Biomedical Applications of Silver Nanoparticles: An Up-to-Date Overview",
+    "authors": [
+     "Burdușel AC",
+     "Gherasim O",
+     "Grumezescu AM",
+     "Mogoantă L",
+     "Ficai A",
+     "Andronescu E"
+    ],
+    "n_authors": 6,
+    "journal": "Nanomaterials",
+    "journal_abbr": "Nanomaterials",
+    "year": 2018,
+    "volume": "8",
+    "issue": "9",
+    "pages": "681",
+    "type": "journal-article",
+    "publisher": "MDPI AG",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.61186/jcc.6.4.1",
+    "title": "Biomedical applications of copper nanoparticles: an up-to-date overview",
+    "authors": [
+     "Khosravi N",
+     "Alzufairi A",
+     "Zahed P",
+     "Abouchenari A",
+     "Asgaran S",
+     "Reza-Soltani S",
+     "Moazzami Goudarzi Z"
+    ],
+    "n_authors": 7,
+    "journal": "Journal of Composites and Compounds",
+    "journal_abbr": "J. compos. compd.",
+    "year": 2024,
+    "volume": "6",
+    "issue": "21",
+    "pages": null,
+    "type": "journal-article",
+    "publisher": "Apex Publishing",
+    "sim": 0.89
+   },
+   {
+    "DOI": "10.17760/d20290580",
+    "title": "Biomedical applications of gold and silver nanoparticles",
+    "authors": [
+     "Zhang"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "Northeastern University Library",
+    "sim": 0.69
+   }
+  ]
+ },
+ "swanner2015": {
+  "query": "Swanner Differential cytotoxic and radiosensitizing effects of silver nanoparticles on triple-negative breast cancer and non-triple-negative breast cells",
+  "year": 2015,
+  "hits": [
+   {
+    "DOI": "10.2147/ijn.s80349",
+    "title": "Differential cytotoxic and radiosensitizing effects of silver nanoparticles on triple-negative breast cancer and non-triple-negative breast cells",
+    "authors": [
+     "Singh R",
+     "Swanner J",
+     "Mims J",
+     "Akman S",
+     "Furdui C",
+     "Torti S",
+     "Carroll D"
+    ],
+    "n_authors": 7,
+    "journal": "International Journal of Nanomedicine",
+    "journal_abbr": "IJN",
+    "year": 2015,
+    "volume": null,
+    "issue": null,
+    "pages": "3937",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.1021/acs.bioconjchem.9b00755.s001",
+    "title": "Targeting Triple Negative Breast Cancer Cells with Novel Cytotoxic PeptideDoxorubicin Conjugates",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.33
+   },
+   {
+    "DOI": "10.1021/acs.jnatprod.0c00423.s008",
+    "title": "Triple-Negative Breast Cancer Cells Exhibit Differential Sensitivity to Cardenolides from Calotropis gigantea",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.27
+   }
+  ]
+ },
+ "kwatra2013": {
+  "query": "Kwatra Nanoparticles in radiation therapy: a summary of various approaches to enhance radiosensitization in cancer",
+  "year": 2013,
+  "hits": [
+   {
+    "DOI": "10.1021/acsami.6b10132.s001",
+    "title": "Enhanced Radiosensitization of Gold Nanospikes via Hyperthermia in Combined Cancer Radiation and Photothermal Therapy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.31
+   },
+   {
+    "DOI": "10.1021/acsnano.9b05976.s001",
+    "title": "Nanoparticles Encapsulating Nitrosylated Maytansine To Enhance Radiation Therapy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.35
+   },
+   {
+    "DOI": "10.1088/1361-6528/aba02b",
+    "title": "Nuclear-targeted gold nanoparticles enhance cancer cell radiosensitization",
+    "authors": [
+     "Özçelik S",
+     "Pratx G"
+    ],
+    "n_authors": 2,
+    "journal": "Nanotechnology",
+    "journal_abbr": "Nanotechnology",
+    "year": 2020,
+    "volume": "31",
+    "issue": "41",
+    "pages": "415102",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.47
+   }
+  ]
+ },
+ "song2017": {
+  "query": "Song Emerging nanotechnology and advanced materials for cancer radiation therapy",
+  "year": 2017,
+  "hits": [
+   {
+    "DOI": "10.1002/adma.201700996",
+    "title": "Emerging Nanotechnology and Advanced Materials for Cancer Radiation Therapy",
+    "authors": [
+     "Song G",
+     "Cheng L",
+     "Chao Y",
+     "Yang K",
+     "Liu Z"
+    ],
+    "n_authors": 5,
+    "journal": "Advanced Materials",
+    "journal_abbr": "Advanced Materials",
+    "year": 2017,
+    "volume": "29",
+    "issue": "32",
+    "pages": "1700996",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.1002/adma.201870084",
+    "title": "Cancer Therapy: Emerging Strategies of Cancer Therapy Based on Ferroptosis (Adv. Mater. 12/2018)",
+    "authors": [
+     "Shen Z",
+     "Song J",
+     "Yung BC",
+     "Zhou Z",
+     "Wu A",
+     "Chen X"
+    ],
+    "n_authors": 6,
+    "journal": "Advanced Materials",
+    "journal_abbr": "Advanced Materials",
+    "year": 2018,
+    "volume": "30",
+    "issue": "12",
+    "pages": "1870084",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.39
+   },
+   {
+    "DOI": "10.1002/adma.201704007",
+    "title": "Emerging Strategies of Cancer Therapy Based on Ferroptosis",
+    "authors": [
+     "Shen Z",
+     "Song J",
+     "Yung BC",
+     "Zhou Z",
+     "Wu A",
+     "Chen X"
+    ],
+    "n_authors": 6,
+    "journal": "Advanced Materials",
+    "journal_abbr": "Advanced Materials",
+    "year": 2018,
+    "volume": "30",
+    "issue": "12",
+    "pages": "1704007",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.46
+   }
+  ]
+ },
+ "zhang2009": {
+  "query": "Zhang Quantifying tumor-selective radiation dose enhancements using gold nanoparticles: a Monte Carlo simulation study",
+  "year": 2009,
+  "hits": [
+   {
+    "DOI": "10.1007/s10544-009-9309-5",
+    "title": "Quantifying tumor-selective radiation dose enhancements using gold nanoparticles: a monte carlo simulation study",
+    "authors": [
+     "Zhang SX",
+     "Gao J",
+     "Buchholz TA",
+     "Wang Z",
+     "Salehpour MR",
+     "Drezek RA",
+     "Yu TK"
+    ],
+    "n_authors": 7,
+    "journal": "Biomedical Microdevices",
+    "journal_abbr": "Biomed Microdevices",
+    "year": 2009,
+    "volume": "11",
+    "issue": "4",
+    "pages": "925-933",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.22215/etd/2020-13956",
+    "title": "Heterogeneous multiscale Monte Carlo models for radiation therapy using gold nanoparticles",
+    "authors": [
+     "Martinov M"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "Carleton University",
+    "sim": 0.46
+   },
+   {
+    "DOI": "10.1016/j.radphyschem.2018.10.027",
+    "title": "Monte Carlo simulation of dose enhancement due to silver nanoparticles implantation in brain tumor brachytherapy using a digital phantom",
+    "authors": [
+     "Taha E",
+     "Djouider F",
+     "Banoqitah E"
+    ],
+    "n_authors": 3,
+    "journal": "Radiation Physics and Chemistry",
+    "journal_abbr": "Radiation Physics and Chemistry",
+    "year": 2019,
+    "volume": "156",
+    "issue": null,
+    "pages": "15-21",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.21
+   }
+  ]
+ },
+ "jones2010": {
+  "query": "Jones Estimation of microscopic dose enhancement factor around gold nanoparticles by Monte Carlo calculations",
+  "year": 2010,
+  "hits": [
+   {
+    "DOI": "10.1118/1.3455703",
+    "title": "Estimation of microscopic dose enhancement factor around gold nanoparticles by Monte Carlo calculations",
+    "authors": [
+     "Jones BL",
+     "Krishnan S",
+     "Cho SH"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2010,
+    "volume": "37",
+    "issue": "7Part1",
+    "pages": "3809-3816",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.1118/1.3182706",
+    "title": "TH-D-210A-04: Monte Carlo Calculations of Microscopic Dose Enhancement Factor for Gold Nanoparticle-Aided Radiation Therapy",
+    "authors": [
+     "Jones B",
+     "Krishnan S",
+     "Cho S"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2009,
+    "volume": "36",
+    "issue": "6Part28",
+    "pages": "2819-2819",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.65
+   },
+   {
+    "DOI": "10.1016/j.brachy.2018.04.044",
+    "title": "Macroscopic and Microscopic Dose Enhancement Factor (def) for Tumor Diffusion with Gold Nanoparticles (gnps) Using Monte Carlo Simulations: 103Pd, 125I, and Electronic Brachytherapy (ebt) Sources",
+    "authors": [
+     "Safigholi H",
+     "Song WY"
+    ],
+    "n_authors": 2,
+    "journal": "Brachytherapy",
+    "journal_abbr": "Brachytherapy",
+    "year": 2018,
+    "volume": "17",
+    "issue": "4",
+    "pages": "S32-S33",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.57
+   }
+  ]
+ },
+ "leung2011": {
+  "query": "Leung Irradiation of gold nanoparticles by x-rays: Monte Carlo simulation of dose enhancements and the spatial properties of the secondary electrons production",
+  "year": 2011,
+  "hits": [
+   {
+    "DOI": "10.1118/1.3539623",
+    "title": "Irradiation of gold nanoparticles by x‐rays: Monte Carlo simulation of dose enhancements and the spatial properties of the secondary electrons production",
+    "authors": [
+     "Leung MKK",
+     "Chow JCL",
+     "Chithrani BD",
+     "Lee MJG",
+     "Oms B",
+     "Jaffray DA"
+    ],
+    "n_authors": 6,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2011,
+    "volume": "38",
+    "issue": "2",
+    "pages": "624-631",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.1118/1.3612631",
+    "title": "SU‐E‐T‐668: Comparison of the Physical Characteristics of Secondary Electrons and Dose Enhancement from X‐Ray Irradiation of Gold Nanoparticles Using Monte Carlo Simulation",
+    "authors": [
+     "Leung M",
+     "Chow J",
+     "Chithrani D",
+     "Lee M",
+     "Jaffray D"
+    ],
+    "n_authors": 5,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2011,
+    "volume": "38",
+    "issue": "6Part21",
+    "pages": "3643-3644",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.37
+   },
+   {
+    "DOI": "10.5353/th_b4546086",
+    "title": "Monte Carlo simulation of positron induced secondary electrons in thin carbon foils",
+    "authors": [
+     "Cai L"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "The University of Hong Kong Libraries",
+    "sim": 0.47
+   }
+  ]
+ },
+ "roeske2007": {
+  "query": "Roeske Characterization of the theoretical radiation dose enhancement from nanoparticles",
+  "year": 2007,
+  "hits": [
+   {
+    "DOI": "10.1177/153303460700600504",
+    "title": "Characterization of the Theorectical Radiation Dose Enhancement from Nanoparticles",
+    "authors": [
+     "Roeske JC",
+     "Nuñez L",
+     "Hoggarth M",
+     "Labay E",
+     "Weichselbaum RR"
+    ],
+    "n_authors": 5,
+    "journal": "Technology in Cancer Research &amp; Treatment",
+    "journal_abbr": "Technol Cancer Res Treat",
+    "year": 2007,
+    "volume": "6",
+    "issue": "5",
+    "pages": "395-401",
+    "type": "journal-article",
+    "publisher": "SAGE Publications",
+    "sim": 0.95
+   },
+   {
+    "DOI": "10.1118/1.3468349",
+    "title": "SU‐GG‐J‐125: Monte Carlo Simulation of Dose Enhancement in Tumors Using Gold Nanoparticles",
+    "authors": [
+     "Quinn M",
+     "Gao M",
+     "Albuquerque K",
+     "Roeske J"
+    ],
+    "n_authors": 4,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2010,
+    "volume": "37",
+    "issue": "6Part11",
+    "pages": "3174-3174",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.55
+   },
+   {
+    "DOI": "10.1016/j.radphyschem.2016.06.002",
+    "title": "Dose Distribution and Dose Enhancement by Using Gadolinium Nanoparticles Implant in Brain Tumor in Stereotactic Brachytherapy",
+    "authors": [
+     "Banoqitah E",
+     "Djouider F"
+    ],
+    "n_authors": 2,
+    "journal": "Radiation Physics and Chemistry",
+    "journal_abbr": "Radiation Physics and Chemistry",
+    "year": 2016,
+    "volume": "127",
+    "issue": null,
+    "pages": "68-71",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.45
+   }
+  ]
+ },
+ "ma2001": {
+  "query": "Ma AAPM protocol for 40-300 kV x-ray beam dosimetry in radiotherapy and radiobiology",
+  "year": 2001,
+  "hits": [
+   {
+    "DOI": "10.1002/mp.16239",
+    "title": "Erratum: “AAPM protocol for 40–300 kV x‐ray beam dosimetry in radiotherapy and radiobiology”",
+    "authors": [
+     "Ma (chair) C",
+     "Coffey C",
+     "DeWerd L",
+     "Liu C",
+     "Nath R",
+     "Seltzer S",
+     "Seuntjens J"
+    ],
+    "n_authors": 7,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2023,
+    "volume": "50",
+    "issue": "6",
+    "pages": "3886-3886",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.1118/1.1374247",
+    "title": "AAPM protocol for 40–300 kV x‐ray beam dosimetry in radiotherapy and radiobiology",
+    "authors": [
+     "Ma C",
+     "Coffey CW",
+     "DeWerd LA",
+     "Liu C",
+     "Nath R",
+     "Seltzer SM",
+     "Seuntjens JP"
+    ],
+    "n_authors": 7,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2001,
+    "volume": "28",
+    "issue": "6",
+    "pages": "868-893",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1016/s0167-8140(16)31276-2",
+    "title": "SP-0027: New IAEA-AAPM Code of Practice for dosimetry of small photon fields used in external beam radiotherapy",
+    "authors": [
+     "Palmans H"
+    ],
+    "n_authors": 1,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2016,
+    "volume": "119",
+    "issue": null,
+    "pages": "S10-S11",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.41
+   }
+  ]
+ },
+ "hill2014": {
+  "query": "Hill Advances in kilovoltage x-ray beam dosimetry",
+  "year": 2014,
+  "hits": [
+   {
+    "DOI": "10.1201/9781315154879-5",
+    "title": "Kilovoltage X-ray beam dosimetry and imaging",
+    "authors": [
+     "Hill R",
+     "Poder J"
+    ],
+    "n_authors": 2,
+    "journal": "Radiochromic Film",
+    "journal_abbr": "",
+    "year": 2017,
+    "volume": null,
+    "issue": null,
+    "pages": "81-100",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.69
+   },
+   {
+    "DOI": "10.1016/j.ejmp.2016.01.209",
+    "title": "Advances in kilovoltage x-ray beam dosimetry by monte carlo calculations and multiple detector intercomparison",
+    "authors": [
+     "Scalchi P",
+     "Avossa C",
+     "Hill R",
+     "Francescon P",
+     "Piermattei A"
+    ],
+    "n_authors": 5,
+    "journal": "Physica Medica",
+    "journal_abbr": "Physica Medica",
+    "year": 2016,
+    "volume": "32",
+    "issue": null,
+    "pages": "60-61",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.55
+   },
+   {
+    "DOI": "10.1201/9781351005388-23",
+    "title": "Kilovoltage X-Ray Beam Dosimetry",
+    "authors": [
+     "Ma CMC"
+    ],
+    "n_authors": 1,
+    "journal": "Radiation Therapy Dosimetry: A Practical Handbook",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": "355-374",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.79
+   }
+  ]
+ },
+ "grosswendt1990": {
+  "query": "Grosswendt Dependence of the photon backscatter factor for water on source-to-phantom distance and irradiation field size",
+  "year": 1990,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/35/9/004",
+    "title": "Dependence of the photon backscatter factor for water on source-to-phantom distance and irradiation field size",
+    "authors": [
+     "Grosswendt B"
+    ],
+    "n_authors": 1,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 1990,
+    "volume": "35",
+    "issue": "9",
+    "pages": "1233-1245",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.95
+   },
+   {
+    "DOI": "10.1088/0031-9155/38/2/007",
+    "title": "Dependence of the photon backscatter factor for water on irradiation field size and source-to-phantom distances between 1.5 and 10 cm",
+    "authors": [
+     "Grosswendt B"
+    ],
+    "n_authors": 1,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 1993,
+    "volume": "38",
+    "issue": "2",
+    "pages": "305-310",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.7
+   },
+   {
+    "DOI": "10.1093/oxfordjournals.rpd.a080549",
+    "title": "Conversion Factors for the IAEA Cube Phantom for External Photon Irradiation",
+    "authors": [
+     "Grosswendt B"
+    ],
+    "n_authors": 1,
+    "journal": "Radiation Protection Dosimetry",
+    "journal_abbr": "",
+    "year": 1989,
+    "volume": "29",
+    "issue": "3",
+    "pages": "177-182",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.45
+   }
+  ]
+ },
+ "kramers1923": {
+  "query": "Kramers On the theory of X-ray absorption and of the continuous X-ray spectrum",
+  "year": 1923,
+  "hits": [
+   {
+    "DOI": "10.1080/14786442308565244",
+    "title": "XCIII. <i>On the theory of X-ray absorption and of the continuous X-ray spectrum</i>",
+    "authors": [
+     "Kramers HA"
+    ],
+    "n_authors": 1,
+    "journal": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science",
+    "journal_abbr": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science",
+    "year": 1923,
+    "volume": "46",
+    "issue": "275",
+    "pages": "836-871",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.88
+   },
+   {
+    "DOI": "10.1002/xrs.1300020209",
+    "title": "The ‘absorption jump’ of the continuous spectrum from a chromium target X‐ray tube",
+    "authors": [
+     "Castellano EE",
+     "Alvarez AG"
+    ],
+    "n_authors": 2,
+    "journal": "X-Ray Spectrometry",
+    "journal_abbr": "X-Ray Spectrometry",
+    "year": 1973,
+    "volume": "2",
+    "issue": "2",
+    "pages": "91-91",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.53
+   },
+   {
+    "DOI": "10.1036/1097-8542.br2307131",
+    "title": "First x-ray absorption spectrum of a single atom",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "database",
+    "publisher": "McGraw-Hill Professional",
+    "sim": 0.46
+   }
+  ]
+ },
+ "birch1979": {
+  "query": "Birch Marshall Computation of bremsstrahlung X-ray spectra and comparison with spectra measured with a Ge(Li) detector",
+  "year": 1979,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/24/3/002",
+    "title": "Computation of bremsstrahlung X-ray spectra and comparison with spectra measured with a Ge(Li) detector",
+    "authors": [
+     "R Birch",
+     "M Marshall"
+    ],
+    "n_authors": 2,
+    "journal": "Physics in Medicine &amp; Biology",
+    "journal_abbr": "pmb",
+    "year": 1979,
+    "volume": "24",
+    "issue": "3",
+    "pages": "505-517",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.6009/jjrt.kj00001359359",
+    "title": "3. Computation of Bremsstrahlung X-ray Spectra and Comparison with Spectra Measured with a Higt Pure Ge Detector",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Japanese Journal of Radiological Technology",
+    "journal_abbr": "Nippon Hoshasen Gijutsu Gakkai Zasshi",
+    "year": 1989,
+    "volume": "45",
+    "issue": "4",
+    "pages": "548-549",
+    "type": "journal-article",
+    "publisher": "Japanese Society of Radiological Technology",
+    "sim": 0.87
+   },
+   {
+    "DOI": "10.1107/s0021889883011218",
+    "title": "Correction for escape in X-ray spectra measured using a Ge detector",
+    "authors": [
+     "Steenstrup S"
+    ],
+    "n_authors": 1,
+    "journal": "Journal of Applied Crystallography",
+    "journal_abbr": "J Appl Crystallogr",
+    "year": 1983,
+    "volume": "16",
+    "issue": "6",
+    "pages": "641-644",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "sim": 0.56
+   }
+  ]
+ },
+ "tucker1991": {
+  "query": "Tucker Barnes Chakraborty Semiempirical model for generating tungsten target x-ray spectra",
+  "year": 1991,
+  "hits": [
+   {
+    "DOI": "10.1118/1.596709",
+    "title": "Semiempirical model for generating tungsten target x‐ray spectra",
+    "authors": [
+     "Tucker DM",
+     "Barnes GT",
+     "Chakraborty DP"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1991,
+    "volume": "18",
+    "issue": "2",
+    "pages": "211-218",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.82
+   },
+   {
+    "DOI": "10.1118/1.596686",
+    "title": "Molybdenum target x‐ray spectra: A semiempirical model",
+    "authors": [
+     "Tucker DM",
+     "Barnes GT",
+     "Wu X"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1991,
+    "volume": "18",
+    "issue": "3",
+    "pages": "402-407",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.39
+   },
+   {
+    "DOI": "10.1118/1.596848",
+    "title": "A comparison of semiempirical models for generating tungsten target x‐ray spectra",
+    "authors": [
+     "Bissonnette J",
+     "Schreiner LJ"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1992,
+    "volume": "19",
+    "issue": "3",
+    "pages": "579-582",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.82
+   }
+  ]
+ },
+ "boone1997": {
+  "query": "Boone Seibert An accurate method for computer-generating tungsten anode x-ray spectra from 30 to 140 kV",
+  "year": 1997,
+  "hits": [
+   {
+    "DOI": "10.1118/1.597953",
+    "title": "An accurate method for computer‐generating tungsten anode x‐ray spectra from 30 to 140 kV",
+    "authors": [
+     "Boone JM",
+     "Seibert JA"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1997,
+    "volume": "24",
+    "issue": "11",
+    "pages": "1661-1670",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1118/1.4866216",
+    "title": "Tungsten anode spectral model using interpolating cubic splines: Unfiltered x‐ray spectra from 20 kV to 640 kV",
+    "authors": [
+     "Hernandez AM",
+     "Boone JM"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2014,
+    "volume": "41",
+    "issue": "4",
+    "pages": "042101",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.4
+   },
+   {
+    "DOI": "10.1118/1.4955120",
+    "title": "A model of tungsten anode x-ray spectra",
+    "authors": [
+     "Hernández G",
+     "Fernández F"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2016,
+    "volume": "43",
+    "issue": "8Part1",
+    "pages": "4655-4664",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.51
+   }
+  ]
+ },
+ "poludniowski2007a": {
+  "query": "Poludniowski Evans Calculation of x-ray spectra emerging from an x-ray tube. Part I. Electron penetration characteristics in x-ray targets",
+  "year": 2007,
+  "hits": [
+   {
+    "DOI": "10.1118/1.2734725",
+    "title": "Calculation of x‐ray spectra emerging from an x‐ray tube. Part I. Electron penetration characteristics in x‐ray targets",
+    "authors": [
+     "Poludniowski GG",
+     "Evans PM"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2007,
+    "volume": "34",
+    "issue": "6Part1",
+    "pages": "2164-2174",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.9
+   },
+   {
+    "DOI": "10.1118/1.2734726",
+    "title": "Calculation of x‐ray spectra emerging from an x‐ray tube. Part II. X‐ray production and filtration in x‐ray targets",
+    "authors": [
+     "Poludniowski GG"
+    ],
+    "n_authors": 1,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2007,
+    "volume": "34",
+    "issue": "6Part1",
+    "pages": "2175-2186",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.74
+   },
+   {
+    "DOI": "10.1201/9781351228251-10",
+    "title": "Calculation of X-ray Spectra",
+    "authors": [
+     "Poludniowski G"
+    ],
+    "n_authors": 1,
+    "journal": "Handbook of X-ray Imaging",
+    "journal_abbr": "",
+    "year": 2017,
+    "volume": null,
+    "issue": null,
+    "pages": "185-202",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.34
+   }
+  ]
+ },
+ "poludniowski2007b": {
+  "query": "Poludniowski Calculation of x-ray spectra emerging from an x-ray tube. Part II. X-ray production and filtration in x-ray targets",
+  "year": 2007,
+  "hits": [
+   {
+    "DOI": "10.1118/1.2734726",
+    "title": "Calculation of x‐ray spectra emerging from an x‐ray tube. Part II. X‐ray production and filtration in x‐ray targets",
+    "authors": [
+     "Poludniowski GG"
+    ],
+    "n_authors": 1,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2007,
+    "volume": "34",
+    "issue": "6Part1",
+    "pages": "2175-2186",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1118/1.2734725",
+    "title": "Calculation of x‐ray spectra emerging from an x‐ray tube. Part I. Electron penetration characteristics in x‐ray targets",
+    "authors": [
+     "Poludniowski GG",
+     "Evans PM"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2007,
+    "volume": "34",
+    "issue": "6Part1",
+    "pages": "2164-2174",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.75
+   },
+   {
+    "DOI": "10.1201/9781003058168-3",
+    "title": "X-ray production",
+    "authors": [
+     "Poludniowski G",
+     "Omar A",
+     "Andreo P"
+    ],
+    "n_authors": 3,
+    "journal": "Calculating X-ray Tube Spectra",
+    "journal_abbr": "",
+    "year": 2022,
+    "volume": null,
+    "issue": null,
+    "pages": "19-32",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.22
+   }
+  ]
+ },
+ "poludniowski2009": {
+  "query": "Poludniowski SpekCalc: a program to calculate photon spectra from tungsten anode x-ray tubes",
+  "year": 2009,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/54/19/n01",
+    "title": "<i>SpekCalc</i>: a program to calculate photon spectra from tungsten anode x-ray tubes",
+    "authors": [
+     "Poludniowski G",
+     "Landry G",
+     "DeBlois F",
+     "Evans PM",
+     "Verhaegen F"
+    ],
+    "n_authors": 5,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2009,
+    "volume": "54",
+    "issue": "19",
+    "pages": "N433-N438",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.9
+   },
+   {
+    "DOI": "10.1118/1.3181281",
+    "title": "SU‐FF‐I‐160: SpekCalc: A Free and User‐Friendly Software Program for Calculating X‐Ray Tube Spectra",
+    "authors": [
+     "Poludniowski G",
+     "Deblois F",
+     "Landry G",
+     "Evans P",
+     "Verhaegen F"
+    ],
+    "n_authors": 5,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2009,
+    "volume": "36",
+    "issue": "6Part5",
+    "pages": "2472-2472",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.44
+   },
+   {
+    "DOI": "10.1201/9781003058168-2",
+    "title": "Basics of x-ray tubes",
+    "authors": [
+     "Poludniowski G",
+     "Omar A",
+     "Andreo P"
+    ],
+    "n_authors": 3,
+    "journal": "Calculating X-ray Tube Spectra",
+    "journal_abbr": "",
+    "year": 2022,
+    "volume": null,
+    "issue": null,
+    "pages": "7-18",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.25
+   }
+  ]
+ },
+ "poludniowski2021": {
+  "query": "Poludniowski Technical Note: SpekPy v2.0 a software toolkit for modeling x-ray tube spectra",
+  "year": 2021,
+  "hits": [
+   {
+    "DOI": "10.1002/mp.14945",
+    "title": "Technical Note: SpekPy v2.0—a software toolkit for modeling x‐ray tube spectra",
+    "authors": [
+     "Poludniowski G",
+     "Omar A",
+     "Bujila R",
+     "Andreo P"
+    ],
+    "n_authors": 4,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2021,
+    "volume": "48",
+    "issue": "7",
+    "pages": "3630-3637",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.9
+   },
+   {
+    "DOI": "10.2139/ssrn.5440215",
+    "title": "The SpekPy toolkit for modelling x-ray tube spectra: extension to transmission targets and additional target materials",
+    "authors": [
+     "Poludniowski G",
+     "Omar A"
+    ],
+    "n_authors": 2,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2025,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Elsevier BV",
+    "sim": 0.47
+   },
+   {
+    "DOI": "10.1016/j.ejmp.2020.04.026",
+    "title": "A validation of SpekPy: A software toolkit for modelling X-ray tube spectra",
+    "authors": [
+     "Bujila R",
+     "Omar A",
+     "Poludniowski G"
+    ],
+    "n_authors": 3,
+    "journal": "Physica Medica",
+    "journal_abbr": "Physica Medica",
+    "year": 2020,
+    "volume": "75",
+    "issue": null,
+    "pages": "44-54",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.77
+   }
+  ]
+ },
+ "bujila2020": {
+  "query": "Bujila A validation of SpekPy: A software toolkit for modelling X-ray tube spectra",
+  "year": 2020,
+  "hits": [
+   {
+    "DOI": "10.1016/j.ejmp.2020.04.026",
+    "title": "A validation of SpekPy: A software toolkit for modelling X-ray tube spectra",
+    "authors": [
+     "Bujila R",
+     "Omar A",
+     "Poludniowski G"
+    ],
+    "n_authors": 3,
+    "journal": "Physica Medica",
+    "journal_abbr": "Physica Medica",
+    "year": 2020,
+    "volume": "75",
+    "issue": null,
+    "pages": "44-54",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1002/mp.14945",
+    "title": "Technical Note: SpekPy v2.0—a software toolkit for modeling x‐ray tube spectra",
+    "authors": [
+     "Poludniowski G",
+     "Omar A",
+     "Bujila R",
+     "Andreo P"
+    ],
+    "n_authors": 4,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2021,
+    "volume": "48",
+    "issue": "7",
+    "pages": "3630-3637",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.76
+   },
+   {
+    "DOI": "10.2139/ssrn.5440215",
+    "title": "The SpekPy toolkit for modelling x-ray tube spectra: extension to transmission targets and additional target materials",
+    "authors": [
+     "Poludniowski G",
+     "Omar A"
+    ],
+    "n_authors": 2,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2025,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Elsevier BV",
+    "sim": 0.49
+   }
+  ]
+ },
+ "omar2018": {
+  "query": "Omar Andreo Poludniowski A model for the emission of K and L x rays from an x-ray tube",
+  "year": 2018,
+  "hits": [
+   {
+    "DOI": "10.1002/mp.14359",
+    "title": "A model for the energy and angular distribution of x rays emitted from an x‐ray tube. Part I. Bremsstrahlung production",
+    "authors": [
+     "Omar A",
+     "Andreo P",
+     "Poludniowski G"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2020,
+    "volume": "47",
+    "issue": "10",
+    "pages": "4763-4774",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.49
+   },
+   {
+    "DOI": "10.1201/9781003058168",
+    "title": "Calculating X-ray Tube Spectra",
+    "authors": [
+     "Poludniowski G",
+     "Omar A",
+     "Andreo P"
+    ],
+    "n_authors": 3,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2022,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "monograph",
+    "publisher": "CRC Press",
+    "sim": 0.24
+   },
+   {
+    "DOI": "10.1201/9781003058168-10",
+    "title": "Optimizing the tube potential",
+    "authors": [
+     "Poludniowski G",
+     "Omar A",
+     "Andreo P"
+    ],
+    "n_authors": 3,
+    "journal": "Calculating X-ray Tube Spectra",
+    "journal_abbr": "",
+    "year": 2022,
+    "volume": null,
+    "issue": null,
+    "pages": "125-134",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.21
+   }
+  ]
+ },
+ "omar2020a": {
+  "query": "Omar A model for the energy and angular distribution of x rays emitted from an x-ray tube. Part I. Bremsstrahlung production",
+  "year": 2020,
+  "hits": [
+   {
+    "DOI": "10.1002/mp.14359",
+    "title": "A model for the energy and angular distribution of x rays emitted from an x‐ray tube. Part I. Bremsstrahlung production",
+    "authors": [
+     "Omar A",
+     "Andreo P",
+     "Poludniowski G"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2020,
+    "volume": "47",
+    "issue": "10",
+    "pages": "4763-4774",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.1002/mp.14360",
+    "title": "A model for the energy and angular distribution of x rays emitted from an x‐ray tube. Part II. Validation of x‐ray spectra from 20 to 300 kV",
+    "authors": [
+     "Omar A",
+     "Andreo P",
+     "Poludniowski G"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2020,
+    "volume": "47",
+    "issue": "9",
+    "pages": "4005-4019",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.76
+   },
+   {
+    "DOI": "10.1023/a:1016058300321",
+    "title": "Energy Spectra and Angular Distribution of Bremsstrahlung Emitted from a Thick Tungsten Target by 11.8 MeV Electrons",
+    "authors": [
+     "Abibullaev NA",
+     "Begimkulov KK",
+     "Salikhbaev US"
+    ],
+    "n_authors": 3,
+    "journal": "Atomic Energy",
+    "journal_abbr": "Atomic Energy",
+    "year": 2002,
+    "volume": "92",
+    "issue": "3",
+    "pages": "272-273",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.57
+   }
+  ]
+ },
+ "omar2020b": {
+  "query": "Omar A model for the energy and angular distribution of x rays emitted from an x-ray tube. Part II. Validation of x-ray spectra from 20 to 300 kV",
+  "year": 2020,
+  "hits": [
+   {
+    "DOI": "10.1002/mp.14360",
+    "title": "A model for the energy and angular distribution of x rays emitted from an x‐ray tube. Part II. Validation of x‐ray spectra from 20 to 300 kV",
+    "authors": [
+     "Omar A",
+     "Andreo P",
+     "Poludniowski G"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2020,
+    "volume": "47",
+    "issue": "9",
+    "pages": "4005-4019",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1002/mp.14359",
+    "title": "A model for the energy and angular distribution of x rays emitted from an x‐ray tube. Part I. Bremsstrahlung production",
+    "authors": [
+     "Omar A",
+     "Andreo P",
+     "Poludniowski G"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2020,
+    "volume": "47",
+    "issue": "10",
+    "pages": "4763-4774",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.76
+   },
+   {
+    "DOI": "10.1051/epjap:2007038",
+    "title": "On X-ray tube spectra, the dependence on the angular and electron energy of X-rays from the targets",
+    "authors": [
+     "Shaltout AA"
+    ],
+    "n_authors": 1,
+    "journal": "The European Physical Journal Applied Physics",
+    "journal_abbr": "Eur. Phys. J. Appl. Phys.",
+    "year": 2007,
+    "volume": "37",
+    "issue": "3",
+    "pages": "291-297",
+    "type": "journal-article",
+    "publisher": "EDP Sciences",
+    "sim": 0.31
+   }
+  ]
+ },
+ "punnoose2016": {
+  "query": "Punnoose Technical Note: spektr 3.0 A computational tool for x-ray spectrum modeling and analysis",
+  "year": 2016,
+  "hits": [
+   {
+    "DOI": "10.1118/1.4955438",
+    "title": "Technical Note:\n                    <scp>spektr</scp>\n                    3.0-A computational tool for x-ray spectrum modeling and analysis",
+    "authors": [
+     "Punnoose J",
+     "Xu J",
+     "Sisniega A",
+     "Zbijewski W",
+     "Siewerdsen JH"
+    ],
+    "n_authors": 5,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2016,
+    "volume": "43",
+    "issue": "8Part1",
+    "pages": "4711-4717",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.74
+   },
+   {
+    "DOI": "10.1118/1.1758350",
+    "title": "Spektr: A computational tool for x‐ray spectral analysis and imaging system optimization",
+    "authors": [
+     "Siewerdsen JH",
+     "Waese AM",
+     "Moseley DJ",
+     "Richard S",
+     "Jaffray DA"
+    ],
+    "n_authors": 5,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2004,
+    "volume": "31",
+    "issue": "11",
+    "pages": "3057-3067",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.57
+   },
+   {
+    "DOI": "10.2523/12052-ms",
+    "title": "MONTE CARLO COMPUTATIONAL MODEL FOR THE GAMMA-RAY SPECTROSCOPY TOOL (GST)",
+    "authors": [
+     "Tsang J",
+     "Michael L"
+    ],
+    "n_authors": 2,
+    "journal": "Proceedings of SPE Annual Technical Conference and Exhibition",
+    "journal_abbr": "",
+    "year": 1983,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "proceedings-article",
+    "publisher": "Society of Petroleum Engineers",
+    "sim": 0.53
+   }
+  ]
+ },
+ "ay2004": {
+  "query": "Ay Monte Carlo simulation of x-ray spectra in diagnostic radiology and mammography using MCNP4C",
+  "year": 2004,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/49/21/004",
+    "title": "Monte Carlo simulation of x-ray spectra in diagnostic radiology and mammography using MCNP4C",
+    "authors": [
+     "Ay MR",
+     "Shahriari M",
+     "Sarkar S",
+     "Adib M",
+     "Zaidi H"
+    ],
+    "n_authors": 5,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2004,
+    "volume": "49",
+    "issue": "21",
+    "pages": "4897-4917",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.98
+   },
+   {
+    "DOI": "10.1109/nssmic.2007.4436992",
+    "title": "The influence of energy indexing algorithm and electron substeps on MCNP4C electron transport: application in Monte Carlo simulation of s-ray spectra in diagnostic radiology and mammography",
+    "authors": [
+     "Ay M",
+     "Ghadiri H",
+     "Gafarian P",
+     "Sarkar S",
+     "Zaidi H"
+    ],
+    "n_authors": 5,
+    "journal": "2007 IEEE Nuclear Science Symposium Conference Record",
+    "journal_abbr": "",
+    "year": 2007,
+    "volume": null,
+    "issue": null,
+    "pages": "4006-4011",
+    "type": "proceedings-article",
+    "publisher": "IEEE",
+    "sim": 0.56
+   },
+   {
+    "DOI": "10.1016/j.apradiso.2008.10.007",
+    "title": "Monte Carlo simulation of X-ray spectra and evaluation of filter effect using MCNP4C and FLUKA code",
+    "authors": [
+     "Taleei R",
+     "Shahriari M"
+    ],
+    "n_authors": 2,
+    "journal": "Applied Radiation and Isotopes",
+    "journal_abbr": "Applied Radiation and Isotopes",
+    "year": 2009,
+    "volume": "67",
+    "issue": "2",
+    "pages": "266-271",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.62
+   }
+  ]
+ },
+ "verhaegen1999": {
+  "query": "Verhaegen Monte Carlo modelling of radiotherapy kV x-ray units",
+  "year": 1999,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/44/7/315",
+    "title": "Monte Carlo modelling of radiotherapy kV x-ray units",
+    "authors": [
+     "Verhaegen F",
+     "Nahum AE",
+     "Putte SVd",
+     "Namito Y"
+    ],
+    "n_authors": 4,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 1999,
+    "volume": "44",
+    "issue": "7",
+    "pages": "1767-1789",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1201/9781003211846-7",
+    "title": "Monte Carlo Modelling of External Electron Beams in Radiotherapy",
+    "authors": [
+     "Verhaegen F"
+    ],
+    "n_authors": 1,
+    "journal": "Monte Carlo Techniques in Radiation Therapy",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": "69-75",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.59
+   },
+   {
+    "DOI": "10.1201/9781003211846-6",
+    "title": "Monte Carlo Modelling of External Photon Beams in Radiotherapy",
+    "authors": [
+     "Verhaegen F"
+    ],
+    "n_authors": 1,
+    "journal": "Monte Carlo Techniques in Radiation Therapy",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": "43-67",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.6
+   }
+  ]
+ },
+ "kawrakow2000": {
+  "query": "Kawrakow Accurate condensed history Monte Carlo simulation of electron transport. I. EGSnrc, the new EGS4 version",
+  "year": 2000,
+  "hits": [
+   {
+    "DOI": "10.1118/1.598917",
+    "title": "Accurate condensed history Monte Carlo simulation of electron transport. I.\n                    <scp>EGS</scp>\n                    nrc, the new\n                    <scp>EGS4</scp>\n                    version",
+    "authors": [
+     "Kawrakow I"
+    ],
+    "n_authors": 1,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2000,
+    "volume": "27",
+    "issue": "3",
+    "pages": "485-498",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.64
+   },
+   {
+    "DOI": "10.1118/1.598918",
+    "title": "Accurate condensed history Monte Carlo simulation of electron transport. II. Application to ion chamber response simulations",
+    "authors": [
+     "Kawrakow I"
+    ],
+    "n_authors": 1,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2000,
+    "volume": "27",
+    "issue": "3",
+    "pages": "499-513",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.68
+   },
+   {
+    "DOI": "10.1007/978-3-642-18211-2_23",
+    "title": "The EGSnrc System, a Status Report",
+    "authors": [
+     "Kawrakow I",
+     "Rogers DWO"
+    ],
+    "n_authors": 2,
+    "journal": "Advanced Monte Carlo for Radiation Physics, Particle Transport Simulation and Applications",
+    "journal_abbr": "",
+    "year": 2001,
+    "volume": null,
+    "issue": null,
+    "pages": "135-140",
+    "type": "book-chapter",
+    "publisher": "Springer Berlin Heidelberg",
+    "sim": 0.19
+   }
+  ]
+ },
+ "agostinelli2003": {
+  "query": "Agostinelli Geant4 a simulation toolkit",
+  "year": 2003,
+  "hits": [
+   {
+    "DOI": "10.2172/799992",
+    "title": "Geant4 - A Simulation Toolkit",
+    "authors": [
+     "Wright DH"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2002,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "Office of Scientific and Technical Information (OSTI)",
+    "sim": 0.79
+   },
+   {
+    "DOI": "10.1007/978-3-642-18211-2_86",
+    "title": "Medical Applications of the Geant4 Toolkit",
+    "authors": [
+     "Agostinelli S",
+     "Chauvie S",
+     "Foppiano F",
+     "Garelli S",
+     "Marchetto F",
+     "Pia MG",
+     "Nieminen P",
+     "Rolando V",
+     "Solano A"
+    ],
+    "n_authors": 9,
+    "journal": "Advanced Monte Carlo for Radiation Physics, Particle Transport Simulation and Applications",
+    "journal_abbr": "",
+    "year": 2001,
+    "volume": null,
+    "issue": null,
+    "pages": "543-548",
+    "type": "book-chapter",
+    "publisher": "Springer Berlin Heidelberg",
+    "sim": 0.49
+   },
+   {
+    "DOI": "10.70675/461d3132z3607z4674zb0a2z1f6a1564e20f",
+    "title": "Development and application of the Geant4-DNA toolkit for the simulation of radiobiological effects at the sub-cellular scale",
+    "authors": [
+     "Shin WG"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "Agence Bibliographique de l'Enseignement Supérieur",
+    "sim": 0.37
+   }
+  ]
+ },
+ "seltzer1986": {
+  "query": "Seltzer Berger Bremsstrahlung energy spectra from electrons with kinetic energy 1 keV-10 GeV incident on screened nuclei and orbital electrons of neutral atoms with Z = 1-100",
+  "year": 1986,
+  "hits": [
+   {
+    "DOI": "10.1016/0092-640x(86)90014-8",
+    "title": "Bremsstrahlung energy spectra from electrons with kinetic energy 1 keV–10 GeV incident on screened nuclei and orbital electrons of neutral atoms with Z = 1–100",
+    "authors": [
+     "Seltzer SM",
+     "Berger MJ"
+    ],
+    "n_authors": 2,
+    "journal": "Atomic Data and Nuclear Data Tables",
+    "journal_abbr": "Atomic Data and Nuclear Data Tables",
+    "year": 1986,
+    "volume": "35",
+    "issue": "3",
+    "pages": "345-418",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1016/0092-640x(81)90015-2",
+    "title": "Bremsstrahlung energy spectra from electrons of kinetic energy 1 keV ≤ T1 ≤ 2000 keV incident on neutral atoms 2 ≤ Z ≤ 92",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Atomic Data and Nuclear Data Tables",
+    "journal_abbr": "Atomic Data and Nuclear Data Tables",
+    "year": 1981,
+    "volume": "26",
+    "issue": "5",
+    "pages": "477-481",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.69
+   },
+   {
+    "DOI": "10.1016/0092-640x(77)90045-6",
+    "title": "Bremsstrahlung energy spectra from electrons of kinetic energy 1 keV ≤ T1 ≤ 2000 keV incident on neutral atoms 2 ≤ Z ≤ 92",
+    "authors": [
+     "Pratt R",
+     "Tseng H",
+     "Lee C",
+     "Kissel L",
+     "MacCallum C",
+     "Riley M"
+    ],
+    "n_authors": 6,
+    "journal": "Atomic Data and Nuclear Data Tables",
+    "journal_abbr": "Atomic Data and Nuclear Data Tables",
+    "year": 1977,
+    "volume": "20",
+    "issue": "2",
+    "pages": "175-209",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.69
+   }
+  ]
+ },
+ "koch1959": {
+  "query": "Koch Motz Bremsstrahlung cross-section formulas and related data",
+  "year": 1959,
+  "hits": [
+   {
+    "DOI": "10.1103/revmodphys.31.920",
+    "title": "Bremsstrahlung Cross-Section Formulas and Related Data",
+    "authors": [
+     "KOCH HW",
+     "MOTZ JW"
+    ],
+    "n_authors": 2,
+    "journal": "Reviews of Modern Physics",
+    "journal_abbr": "Rev. Mod. Phys.",
+    "year": 1959,
+    "volume": "31",
+    "issue": "4",
+    "pages": "920-955",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.1103/physrev.96.544",
+    "title": "Differential Cross-Section Measurements for 1-Mev Bremsstrahlung",
+    "authors": [
+     "Motz JW",
+     "Miller W"
+    ],
+    "n_authors": 2,
+    "journal": "Physical Review",
+    "journal_abbr": "Phys. Rev.",
+    "year": 1954,
+    "volume": "96",
+    "issue": "2",
+    "pages": "544-545",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.31
+   },
+   {
+    "DOI": "10.1103/physrev.100.1560",
+    "title": "Bremsstrahlung Differential Cross-Section Measurements for 0.5- and 1.0-Mev Electrons",
+    "authors": [
+     "Motz JW"
+    ],
+    "n_authors": 1,
+    "journal": "Physical Review",
+    "journal_abbr": "Phys. Rev.",
+    "year": 1955,
+    "volume": "100",
+    "issue": "6",
+    "pages": "1560-1571",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.54
+   }
+  ]
+ },
+ "elwert1939": {
+  "query": "Elwert Verschärfte Berechnung von Intensität und Polarisation im kontinuierlichen Röntgenspektrum",
+  "year": 1939,
+  "hits": [
+   {
+    "DOI": "10.1002/andp.19394260206",
+    "title": "Verschärfte Berechnung von Intensität und Polarisation im kontinuierlichen Röntgenspektrum<sup>1</sup>",
+    "authors": [
+     "Elwert G"
+    ],
+    "n_authors": 1,
+    "journal": "Annalen der Physik",
+    "journal_abbr": "Annalen der Physik",
+    "year": 1939,
+    "volume": "426",
+    "issue": "2",
+    "pages": "178-208",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.9
+   },
+   {
+    "DOI": "10.1515/9783112786635-004",
+    "title": "3. Numerische Berechnung von Modellatmosphären",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Intensität und Polarisation des Zenitlichtes im Laufe der Dämmerung",
+    "journal_abbr": "",
+    "year": 1968,
+    "volume": null,
+    "issue": null,
+    "pages": "20-40",
+    "type": "book-chapter",
+    "publisher": "De Gruyter",
+    "sim": 0.35
+   },
+   {
+    "DOI": "10.1515/9783112786635-001",
+    "title": "Zusammenfassung",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Intensität und Polarisation des Zenitlichtes im Laufe der Dämmerung",
+    "journal_abbr": "",
+    "year": 1968,
+    "volume": null,
+    "issue": null,
+    "pages": "4-4",
+    "type": "book-chapter",
+    "publisher": "De Gruyter",
+    "sim": 0.09
+   }
+  ]
+ },
+ "bethe1934": {
+  "query": "Bethe Heitler On the stopping of fast particles and on the creation of positive electrons",
+  "year": 1934,
+  "hits": [
+   {
+    "DOI": "10.1142/9789812795755_0006",
+    "title": "On the Stopping of Fast Particles and on the Creation of Positive Electrons",
+    "authors": [
+     "Bethe H",
+     "Heitler W"
+    ],
+    "n_authors": 2,
+    "journal": "World Scientific Series in 20th Century Physics",
+    "journal_abbr": "",
+    "year": 1997,
+    "volume": null,
+    "issue": null,
+    "pages": "187-218",
+    "type": "book-chapter",
+    "publisher": "WORLD SCIENTIFIC",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1098/rspa.1934.0140",
+    "title": "On the stopping of fast particles and on the creation of positive electrons",
+    "authors": [
+     "Bethe H",
+     "Heitler W"
+    ],
+    "n_authors": 2,
+    "journal": "Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character",
+    "journal_abbr": "",
+    "year": 1934,
+    "volume": "146",
+    "issue": "856",
+    "pages": "83-112",
+    "type": "journal-article",
+    "publisher": "The Royal Society",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1038/132892a0",
+    "title": "Stopping of Fast Particles with Emission of Radiation and the Birth of Positive Electrons",
+    "authors": [
+     "HEITLER W",
+     "SAUTER F"
+    ],
+    "n_authors": 2,
+    "journal": "Nature",
+    "journal_abbr": "Nature",
+    "year": 1933,
+    "volume": "132",
+    "issue": "3345",
+    "pages": "892-892",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.66
+   }
+  ]
+ },
+ "gryzinski1965": {
+  "query": "Gryzinski Classical theory of atomic collisions. I. Theory of inelastic collisions",
+  "year": 1965,
+  "hits": [
+   {
+    "DOI": "10.1103/physrev.138.a336",
+    "title": "Classical Theory of Atomic Collisions. I. Theory of Inelastic Collisions",
+    "authors": [
+     "Gryziński M"
+    ],
+    "n_authors": 1,
+    "journal": "Physical Review",
+    "journal_abbr": "Phys. Rev.",
+    "year": 1965,
+    "volume": "138",
+    "issue": "2A",
+    "pages": "A336-A358",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1021/acs.jctc.5c00504.s001",
+    "title": "Mixed Quantum/Classical Theory Approach to Rotationally Inelastic Molecular Collisions Implemented on a Quantum Computer",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.49
+   },
+   {
+    "DOI": "10.1021/acs.jctc.5c00504.s003",
+    "title": "Mixed Quantum/Classical Theory Approach to Rotationally Inelastic Molecular Collisions Implemented on a Quantum Computer",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.49
+   }
+  ]
+ },
+ "llovet2014": {
+  "query": "Llovet Powell Salvat Jablonski Cross sections for inner-shell ionization by electron impact",
+  "year": 2014,
+  "hits": [
+   {
+    "DOI": "10.1063/1.4832851",
+    "title": "Cross Sections for Inner-Shell Ionization by Electron Impact",
+    "authors": [
+     "Llovet X",
+     "Powell CJ",
+     "Salvat F",
+     "Jablonski A"
+    ],
+    "n_authors": 4,
+    "journal": "Journal of Physical and Chemical Reference Data",
+    "journal_abbr": "",
+    "year": 2014,
+    "volume": "43",
+    "issue": "1",
+    "pages": "013102",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.79
+   },
+   {
+    "DOI": "10.1063/1.3195046",
+    "title": "Practical formulas for inner-shell ionization cross sections by electron impact: Applications in quantitative Auger electron spectroscopy",
+    "authors": [
+     "Jablonski A",
+     "Salvat F",
+     "Powell CJ"
+    ],
+    "n_authors": 3,
+    "journal": "Journal of Applied Physics",
+    "journal_abbr": "",
+    "year": 2009,
+    "volume": "106",
+    "issue": "5",
+    "pages": "053706",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.46
+   },
+   {
+    "DOI": "10.1063/1.3304836",
+    "title": "Erratum: “Practical formulas for inner-shell ionization cross sections by electron impact: Applications in quantitative Auger electron spectroscopy” [J. Appl. Phys. 106, 053706 (2009)]",
+    "authors": [
+     "Jablonski A",
+     "Salvat F",
+     "Powell CJ"
+    ],
+    "n_authors": 3,
+    "journal": "Journal of Applied Physics",
+    "journal_abbr": "",
+    "year": 2010,
+    "volume": "107",
+    "issue": "3",
+    "pages": "039901",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.41
+   }
+  ]
+ },
+ "bote2008": {
+  "query": "Bote Salvat Calculations of inner-shell ionization by electron impact with the distorted-wave and plane-wave Born approximations",
+  "year": 2008,
+  "hits": [
+   {
+    "DOI": "10.1103/physreva.77.042701",
+    "title": "Calculations of inner-shell ionization by electron impact with the distorted-wave and plane-wave Born approximations",
+    "authors": [
+     "Bote D",
+     "Salvat F"
+    ],
+    "n_authors": 2,
+    "journal": "Physical Review A",
+    "journal_abbr": "Phys. Rev. A",
+    "year": 2008,
+    "volume": "77",
+    "issue": "4",
+    "pages": "042701",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.95
+   },
+   {
+    "DOI": "10.1103/physreva.67.062710",
+    "title": "Distorted-wave calculation of cross sections for inner-shell ionization by electron and positron impact",
+    "authors": [
+     "Segui S",
+     "Dingfelder M",
+     "Salvat F"
+    ],
+    "n_authors": 3,
+    "journal": "Physical Review A",
+    "journal_abbr": "Phys. Rev. A",
+    "year": 2003,
+    "volume": "67",
+    "issue": "6",
+    "pages": "062710",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.54
+   },
+   {
+    "DOI": "10.1017/s1431927606064907",
+    "title": "New Measurements and Calculations of Inner-shell Ionization Cross Sections by Electron Impact",
+    "authors": [
+     "Llovet X",
+     "Merlet C",
+     "Bote D",
+     "Fernández-Varea J",
+     "Salvat F"
+    ],
+    "n_authors": 5,
+    "journal": "Microscopy and Microanalysis",
+    "journal_abbr": "Microsc Microanal",
+    "year": 2006,
+    "volume": "12",
+    "issue": "S02",
+    "pages": "844-845",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.55
+   }
+  ]
+ },
+ "green1961": {
+  "query": "Green Cosslett The efficiency of production of characteristic x-radiation in thick targets of a pure element",
+  "year": 1961,
+  "hits": [
+   {
+    "DOI": "10.1088/0370-1328/78/6/315",
+    "title": "The Efficiency of Production of Characteristic X-radiation in Thick Targets of a Pure Element",
+    "authors": [
+     "Green M",
+     "Cosslett VE"
+    ],
+    "n_authors": 2,
+    "journal": "Proceedings of the Physical Society",
+    "journal_abbr": "Proc. Phys. Soc.",
+    "year": 1961,
+    "volume": "78",
+    "issue": "6",
+    "pages": "1206-1214",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.1016/b978-1-4832-3322-2.50024-x",
+    "title": "The Efficiency of Production of Characteristic X Radiation",
+    "authors": [
+     "GREEN M"
+    ],
+    "n_authors": 1,
+    "journal": "X-ray Optics and X-ray Microanalysis",
+    "journal_abbr": "",
+    "year": 1963,
+    "volume": null,
+    "issue": null,
+    "pages": "185-192",
+    "type": "book-chapter",
+    "publisher": "Elsevier",
+    "sim": 0.69
+   },
+   {
+    "DOI": "10.1063/1.1713305",
+    "title": "Efficiency of Production of Characteristic X Radiation from Pure Elements Bombarded by Electrons",
+    "authors": [
+     "Brown DB",
+     "Ogilvie RE"
+    ],
+    "n_authors": 2,
+    "journal": "Journal of Applied Physics",
+    "journal_abbr": "",
+    "year": 1964,
+    "volume": "35",
+    "issue": "2",
+    "pages": "309-314",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.68
+   }
+  ]
+ },
+ "whiddington1912": {
+  "query": "Whiddington The transmission of cathode rays through matter",
+  "year": 1912,
+  "hits": [
+   {
+    "DOI": "10.1098/rspa.1912.0028",
+    "title": "The transmission of cathode rays through matter",
+    "authors": [
+     "Whiddington R"
+    ],
+    "n_authors": 1,
+    "journal": "Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character",
+    "journal_abbr": "",
+    "year": 1912,
+    "volume": "86",
+    "issue": "588",
+    "pages": "360-370",
+    "type": "journal-article",
+    "publisher": "The Royal Society",
+    "sim": 0.89
+   },
+   {
+    "DOI": "10.1259/jrs.1914.0063",
+    "title": "Transmission of Kathode Rays through Matter",
+    "authors": [
+     "Whiddington R"
+    ],
+    "n_authors": 1,
+    "journal": "Journal of the Röntgen Society",
+    "journal_abbr": "",
+    "year": 1914,
+    "volume": "10",
+    "issue": "41",
+    "pages": "113-114",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.82
+   },
+   {
+    "DOI": "10.1098/rspa.1914.0023",
+    "title": "The transmission of cathode rays through matter",
+    "authors": [
+     "Whiddington R",
+     "Thomson JJ"
+    ],
+    "n_authors": 2,
+    "journal": "Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character",
+    "journal_abbr": "",
+    "year": 1914,
+    "volume": "89",
+    "issue": "614",
+    "pages": "554-560",
+    "type": "journal-article",
+    "publisher": "The Royal Society",
+    "sim": 0.89
+   }
+  ]
+ },
+ "bethe1930": {
+  "query": "Bethe Zur Theorie des Durchgangs schneller Korpuskularstrahlen durch Materie",
+  "year": 1930,
+  "hits": [
+   {
+    "DOI": "10.1002/andp.19303970303",
+    "title": "Zur Theorie des Durchgangs schneller Korpuskularstrahlen durch Materie",
+    "authors": [
+     "Bethe H"
+    ],
+    "n_authors": 1,
+    "journal": "Annalen der Physik",
+    "journal_abbr": "Annalen der Physik",
+    "year": 1930,
+    "volume": "397",
+    "issue": "3",
+    "pages": "325-400",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1002/andp.19324060506",
+    "title": "Zur Theorie des Durchgangs schneller Elektronen durch Materie",
+    "authors": [
+     "Møller C"
+    ],
+    "n_authors": 1,
+    "journal": "Annalen der Physik",
+    "journal_abbr": "Annalen der Physik",
+    "year": 1932,
+    "volume": "406",
+    "issue": "5",
+    "pages": "531-585",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.82
+   },
+   {
+    "DOI": "10.1515/9783112747278-010",
+    "title": "7*.1) Die analytische Theorie des Durchgangs von schnellen geladenen Teilchen durch Materie",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Prinzipien der Theorie der Atomkerne",
+    "journal_abbr": "",
+    "year": 1957,
+    "volume": null,
+    "issue": null,
+    "pages": "15-22",
+    "type": "book-chapter",
+    "publisher": "De Gruyter",
+    "sim": 0.68
+   }
+  ]
+ },
+ "schoonjans2011": {
+  "query": "Schoonjans The xraylib library for X-ray-matter interactions. Recent developments",
+  "year": 2011,
+  "hits": [
+   {
+    "DOI": "10.1016/j.sab.2011.09.011",
+    "title": "The xraylib library for X-ray–matter interactions. Recent developments",
+    "authors": [
+     "Schoonjans T",
+     "Brunetti A",
+     "Golosio B",
+     "Sanchez del Rio M",
+     "Solé VA",
+     "Ferrero C",
+     "Vincze L"
+    ],
+    "n_authors": 7,
+    "journal": "Spectrochimica Acta Part B: Atomic Spectroscopy",
+    "journal_abbr": "Spectrochimica Acta Part B: Atomic Spectroscopy",
+    "year": 2011,
+    "volume": "66",
+    "issue": "11-12",
+    "pages": "776-784",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1117/12.892688",
+    "title": "The xraylib library for x-ray-matter interaction cross sections: new developments and applications",
+    "authors": [
+     "Schoonjans T",
+     "Brunetti A",
+     "Golosio B",
+     "Sanchez del Rio M",
+     "Solé VA",
+     "Ferrero C",
+     "Vincze L"
+    ],
+    "n_authors": 7,
+    "journal": "SPIE Proceedings",
+    "journal_abbr": "",
+    "year": 2011,
+    "volume": "8141",
+    "issue": null,
+    "pages": "814110",
+    "type": "proceedings-article",
+    "publisher": "SPIE",
+    "sim": 0.74
+   },
+   {
+    "DOI": "10.3390/books978-3-0365-3393-3",
+    "title": "Recent Developments on Protein–Ligand Interactions",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2022,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "edited-book",
+    "publisher": "MDPI",
+    "sim": 0.29
+   }
+  ]
+ },
+ "krause1979": {
+  "query": "Krause Atomic radiative and radiationless yields for K and L shells",
+  "year": 1979,
+  "hits": [
+   {
+    "DOI": "10.1063/1.555594",
+    "title": "Atomic radiative and radiationless yields for <i>K</i> and <i>L</i> shells",
+    "authors": [
+     "Krause MO"
+    ],
+    "n_authors": 1,
+    "journal": "Journal of Physical and Chemical Reference Data",
+    "journal_abbr": "",
+    "year": 1979,
+    "volume": "8",
+    "issue": "2",
+    "pages": "307-327",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.85
+   },
+   {
+    "DOI": "10.1039/b103366m",
+    "title": "Measurement of total, radiative and radiationless (Auger) vacancy transfer probabilities from K to Li sub-shells of Cs, Ba and La",
+    "authors": [
+     "Ertugrul M"
+    ],
+    "n_authors": 1,
+    "journal": "Journal of Analytical Atomic Spectrometry",
+    "journal_abbr": "J. Anal. At. Spectrom.",
+    "year": 2001,
+    "volume": "17",
+    "issue": "1",
+    "pages": "64-68",
+    "type": "journal-article",
+    "publisher": "Royal Society of Chemistry (RSC)",
+    "sim": 0.5
+   },
+   {
+    "DOI": "10.1016/0092-640x(79)90037-8",
+    "title": "Relativistic radiationless transition probabilities for atomic K- and L-shells",
+    "authors": [
+     "Chen MH",
+     "Crasemann B",
+     "Mark H"
+    ],
+    "n_authors": 3,
+    "journal": "Atomic Data and Nuclear Data Tables",
+    "journal_abbr": "Atomic Data and Nuclear Data Tables",
+    "year": 1979,
+    "volume": "24",
+    "issue": "1",
+    "pages": "13-37",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.58
+   }
+  ]
+ },
+ "bambynek1972": {
+  "query": "Bambynek X-ray fluorescence yields, Auger, and Coster-Kronig transition probabilities",
+  "year": 1972,
+  "hits": [
+   {
+    "DOI": "10.1103/revmodphys.44.716",
+    "title": "X-Ray Fluorescence Yields, Auger, and Coster-Kronig Transition Probabilities",
+    "authors": [
+     "BAMBYNEK W",
+     "CRASEMANN B",
+     "FINK RW",
+     "FREUND HU",
+     "MARK H",
+     "SWIFT CD",
+     "PRICE RE",
+     "RAO PV"
+    ],
+    "n_authors": 8,
+    "journal": "Reviews of Modern Physics",
+    "journal_abbr": "Rev. Mod. Phys.",
+    "year": 1972,
+    "volume": "44",
+    "issue": "4",
+    "pages": "716-813",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1103/revmodphys.46.853",
+    "title": "Erratum: X-ray fluorescence yields, Auger, and Coster-Kronig transition probabilities",
+    "authors": [
+     "Bambynek W",
+     "Crasemann B",
+     "Fink RW",
+     "Freund HU",
+     "Mark H",
+     "Swift CD",
+     "Price RE",
+     "Rao PV"
+    ],
+    "n_authors": 8,
+    "journal": "Reviews of Modern Physics",
+    "journal_abbr": "Rev. Mod. Phys.",
+    "year": 1974,
+    "volume": "46",
+    "issue": "4",
+    "pages": "853-853",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.21236/ada042228",
+    "title": "L Shell Fluorescence Yields and Coster-Kronig Transition Probabilities Using Radioactive Sources.",
+    "authors": [
+     "Palms JM",
+     "Rao PV",
+     "Wood RE"
+    ],
+    "n_authors": 3,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 1975,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "Defense Technical Information Center",
+    "sim": 0.7
+   }
+  ]
+ },
+ "deslattes2003": {
+  "query": "Deslattes X-ray transition energies: new approach to a comprehensive evaluation",
+  "year": 2003,
+  "hits": [
+   {
+    "DOI": "10.1063/1.56172",
+    "title": "X-ray transition energies-new comprehensive evaluation",
+    "authors": [
+     "Deslattes RD",
+     "Kessler EG",
+     "Indelicato P",
+     "Lindroth E"
+    ],
+    "n_authors": 4,
+    "journal": "AIP Conference Proceedings",
+    "journal_abbr": "",
+    "year": 1998,
+    "volume": null,
+    "issue": null,
+    "pages": "89-104",
+    "type": "proceedings-article",
+    "publisher": "AIP",
+    "sim": 0.8
+   },
+   {
+    "DOI": "10.1103/revmodphys.75.35",
+    "title": "X-ray transition energies: new approach to a comprehensive evaluation",
+    "authors": [
+     "Deslattes RD",
+     "Kessler EG",
+     "Indelicato P",
+     "de Billy L",
+     "Lindroth E",
+     "Anton J"
+    ],
+    "n_authors": 6,
+    "journal": "Reviews of Modern Physics",
+    "journal_abbr": "Rev. Mod. Phys.",
+    "year": 2003,
+    "volume": "75",
+    "issue": "1",
+    "pages": "35-99",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.1051/jphyscol:1987997",
+    "title": "SYSTEMATICS OF X-RAY TRANSITION ENERGIES FOR HIGH-Z ATOMS",
+    "authors": [
+     "DESLATTES RD",
+     "KESSLER EG",
+     "KIM YK",
+     "INDELICATO P"
+    ],
+    "n_authors": 4,
+    "journal": "Le Journal de Physique Colloques",
+    "journal_abbr": "J. Phys. Colloques",
+    "year": 1987,
+    "volume": "48",
+    "issue": "C9",
+    "pages": "C9-591-C9-595",
+    "type": "journal-article",
+    "publisher": "EDP Sciences",
+    "sim": 0.54
+   }
+  ]
+ },
+ "hubbell1975": {
+  "query": "Hubbell Atomic form factors, incoherent scattering functions, and photon scattering cross sections",
+  "year": 1975,
+  "hits": [
+   {
+    "DOI": "10.1063/1.555554",
+    "title": "Erratum: Atomic Form Factors, Incoherent Scattering Functions, and Photon Scattering Cross Sections",
+    "authors": [
+     "Hubbell JH",
+     "Veigele WJ",
+     "Briggs EA",
+     "Brown RT",
+     "Cromer DT",
+     "Howerton RJ"
+    ],
+    "n_authors": 6,
+    "journal": "Journal of Physical and Chemical Reference Data",
+    "journal_abbr": "",
+    "year": 1977,
+    "volume": "6",
+    "issue": "2",
+    "pages": "615-616",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.93
+   },
+   {
+    "DOI": "10.1063/1.555523",
+    "title": "Atomic form factors, incoherent scattering functions, and photon scattering cross sections",
+    "authors": [
+     "Hubbell JH",
+     "Veigele WJ",
+     "Briggs EA",
+     "Brown RT",
+     "Cromer DT",
+     "Howerton RJ"
+    ],
+    "n_authors": 6,
+    "journal": "Journal of Physical and Chemical Reference Data",
+    "journal_abbr": "",
+    "year": 1975,
+    "volume": "4",
+    "issue": "3",
+    "pages": "471-538",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1063/1.555593",
+    "title": "Relativistic atomic form factors and photon coherent scattering cross sections",
+    "authors": [
+     "Hubbell JH",
+     "O/verbo/ I"
+    ],
+    "n_authors": 2,
+    "journal": "Journal of Physical and Chemical Reference Data",
+    "journal_abbr": "",
+    "year": 1979,
+    "volume": "8",
+    "issue": "1",
+    "pages": "69-106",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "sim": 0.67
+   }
+  ]
+ },
+ "seltzer1993": {
+  "query": "Seltzer Calculation of photon mass energy-transfer and mass energy-absorption coefficients",
+  "year": 1993,
+  "hits": [
+   {
+    "DOI": "10.2307/3578607",
+    "title": "Calculation of Photon Mass Energy-Transfer and Mass Energy-Absorption Coefficients",
+    "authors": [
+     "Seltzer SM"
+    ],
+    "n_authors": 1,
+    "journal": "Radiation Research",
+    "journal_abbr": "Radiation Research",
+    "year": 1993,
+    "volume": "136",
+    "issue": "2",
+    "pages": "147",
+    "type": "journal-article",
+    "publisher": "JSTOR",
+    "sim": 0.95
+   },
+   {
+    "DOI": "10.6028/nist.ir.4680",
+    "title": "Mass energy-transfer and mass energy-absorption coefficients, including\n                        in-flight positron annihilation for photon energies 1 keV to 100 MeV",
+    "authors": [
+     "Higgins PD",
+     "Attix FH",
+     "Hubbell JH",
+     "Seltzer SM",
+     "Berger MJ",
+     "Sibata CH"
+    ],
+    "n_authors": 6,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 1991,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "National Institute of Standards and Technology",
+    "sim": 0.47
+   },
+   {
+    "DOI": "10.6028/nist.ir.4812",
+    "title": "Mass energy-transfer and mass energy-absorption coefficients, including\n                        in-flight positron annihilation for photon energies 1 keV to 100 MeV",
+    "authors": [
+     "Higgens PD",
+     "Attix FH",
+     "Hubbell JH",
+     "Seltzer SM",
+     "Berger MJ",
+     "Sibata CH"
+    ],
+    "n_authors": 6,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 1992,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "National Institute of Standards and Technology",
+    "sim": 0.47
+   }
+  ]
+ },
+ "harris2020": {
+  "query": "Harris Array programming with NumPy",
+  "year": 2020,
+  "hits": [
+   {
+    "DOI": "10.14293/s2199-1006.1.sor-uncat.a7759461.v1.raugfi",
+    "title": "Review of \"Array programming with NumPy\"",
+    "authors": [
+     "Singh A"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "peer-review",
+    "publisher": "ScienceOpen",
+    "sim": 0.83
+   },
+   {
+    "DOI": "10.3410/f.738677898.793581450",
+    "title": "Faculty Opinions recommendation of Array programming with NumPy.",
+    "authors": [
+     "Malmstroem L"
+    ],
+    "n_authors": 1,
+    "journal": "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dataset",
+    "publisher": "H1 Connect",
+    "sim": 0.65
+   },
+   {
+    "DOI": "10.1017/cbo9781139871754.006",
+    "title": "NumPy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "Learning Scientific Programming with Python",
+    "journal_abbr": "",
+    "year": 2015,
+    "volume": null,
+    "issue": null,
+    "pages": "184-279",
+    "type": "book-chapter",
+    "publisher": "Cambridge University Press",
+    "sim": 0.25
+   }
+  ]
+ },
+ "virtanen2020": {
+  "query": "Virtanen SciPy 1.0: fundamental algorithms for scientific computing in Python",
+  "year": 2020,
+  "hits": [
+   {
+    "DOI": "10.14293/s2199-1006.1.sor-life.a7056644.v1.rysreg",
+    "title": "Review of \"SciPy 1.0: fundamental algorithms for scientific computing in Python\"",
+    "authors": [
+     "Singh A"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2021,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "peer-review",
+    "publisher": "ScienceOpen",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.1007/979-8-8688-0413-7_1",
+    "title": "Introduction to Computing with Python",
+    "authors": [
+     "Johansson R"
+    ],
+    "n_authors": 1,
+    "journal": "Numerical Python",
+    "journal_abbr": "",
+    "year": 2024,
+    "volume": null,
+    "issue": null,
+    "pages": "1-28",
+    "type": "book-chapter",
+    "publisher": "Apress",
+    "sim": 0.46
+   },
+   {
+    "DOI": "10.1007/978-1-4842-4246-9_1",
+    "title": "Introduction to Computing with Python",
+    "authors": [
+     "Johansson R"
+    ],
+    "n_authors": 1,
+    "journal": "Numerical Python",
+    "journal_abbr": "",
+    "year": 2018,
+    "volume": null,
+    "issue": null,
+    "pages": "1-41",
+    "type": "book-chapter",
+    "publisher": "Apress",
+    "sim": 0.46
+   }
+  ]
+ },
+ "hunter2007": {
+  "query": "Hunter Matplotlib: A 2D graphics environment",
+  "year": 2007,
+  "hits": [
+   {
+    "DOI": "10.1109/mcse.2007.55",
+    "title": "Matplotlib: A 2D Graphics Environment",
+    "authors": [
+     "Hunter JD"
+    ],
+    "n_authors": 1,
+    "journal": "Computing in Science &amp; Engineering",
+    "journal_abbr": "Comput. Sci. Eng.",
+    "year": 2007,
+    "volume": "9",
+    "issue": "3",
+    "pages": "90-95",
+    "type": "journal-article",
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.4135/9781529772401.n1",
+    "title": "Gary White Explains How to Create and Set Options for 2D Histograms in Matplotlib",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "2D Histograms",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "book-chapter",
+    "publisher": "Gary White",
+    "sim": 0.24
+   },
+   {
+    "DOI": "10.1201/9781003256861-5",
+    "title": "Graphics—Matplotlib",
+    "authors": [
+     "Clough DE",
+     "Chapra SC"
+    ],
+    "n_authors": 2,
+    "journal": "Introduction to Engineering and Scientific Computing with Python",
+    "journal_abbr": "",
+    "year": 2022,
+    "volume": null,
+    "issue": null,
+    "pages": "137-174",
+    "type": "book-chapter",
+    "publisher": "CRC Press",
+    "sim": 0.35
+   }
+  ]
+ },
+ "rosa2017": {
+  "query": "Rosa Biological mechanisms of gold nanoparticle radiosensitization",
+  "year": 2017,
+  "hits": [
+   {
+    "DOI": "10.1186/s12645-017-0026-0",
+    "title": "Biological mechanisms of gold nanoparticle radiosensitization",
+    "authors": [
+     "Rosa S",
+     "Connolly C",
+     "Schettino G",
+     "Butterworth KT",
+     "Prise KM"
+    ],
+    "n_authors": 5,
+    "journal": "Cancer Nanotechnology",
+    "journal_abbr": "Cancer Nano",
+    "year": 2017,
+    "volume": "8",
+    "issue": "1",
+    "pages": "2",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1021/acsnano.8b07982.s001",
+    "title": "Cross-Correlative Single-Cell Analysis Reveals Biological Mechanisms of Nanoparticle Radiosensitization",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.72
+   },
+   {
+    "DOI": "10.1039/c2nr31227a",
+    "title": "Physical basis and biological mechanisms of gold nanoparticle radiosensitization",
+    "authors": [
+     "Butterworth KT",
+     "McMahon SJ",
+     "Currell FJ",
+     "Prise KM"
+    ],
+    "n_authors": 4,
+    "journal": "Nanoscale",
+    "journal_abbr": "Nanoscale",
+    "year": 2012,
+    "volume": "4",
+    "issue": "16",
+    "pages": "4830",
+    "type": "journal-article",
+    "publisher": "Royal Society of Chemistry (RSC)",
+    "sim": 0.88
+   }
+  ]
+ },
+ "penninckx2020": {
+  "query": "Penninckx Gold nanoparticles as a potent radiosensitizer: a transdisciplinary approach from physics to patient",
+  "year": 2020,
+  "hits": [
+   {
+    "DOI": "10.3390/cancers12082021",
+    "title": "Gold Nanoparticles as a Potent Radiosensitizer: A Transdisciplinary Approach from Physics to Patient",
+    "authors": [
+     "Penninckx S",
+     "Heuskin AC",
+     "Michiels C",
+     "Lucas S"
+    ],
+    "n_authors": 4,
+    "journal": "Cancers",
+    "journal_abbr": "Cancers",
+    "year": 2020,
+    "volume": "12",
+    "issue": "8",
+    "pages": "2021",
+    "type": "journal-article",
+    "publisher": "MDPI AG",
+    "sim": 0.95
+   },
+   {
+    "DOI": "10.1021/acsabm.5c00908.s001",
+    "title": "Theranostic Gold Nanoparticles Encapsulated in a PEGylated Liposome as an Effective Radiosensitizer for Cancer Radiation Therapy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.49
+   },
+   {
+    "DOI": "10.18632/oncotarget.19837",
+    "title": "Gold nanoparticles as a potent radiosensitizer in neutron therapy",
+    "authors": [
+     "Kim EH",
+     "Kim MS",
+     "Song HS",
+     "Yoo SH",
+     "Sai S",
+     "Chung K",
+     "Sung J",
+     "Jeong YK",
+     "Jo Y",
+     "Yoon M"
+    ],
+    "n_authors": 10,
+    "journal": "Oncotarget",
+    "journal_abbr": "Oncotarget",
+    "year": 2017,
+    "volume": "8",
+    "issue": "68",
+    "pages": "112390-112400",
+    "type": "journal-article",
+    "publisher": "Impact Journals, LLC",
+    "sim": 0.61
+   }
+  ]
+ },
+ "chithrani2010": {
+  "query": "Chithrani Gold nanoparticles as radiation sensitizers in cancer therapy",
+  "year": 2010,
+  "hits": [
+   {
+    "DOI": "10.1667/rr1984.1",
+    "title": "Gold Nanoparticles as Radiation Sensitizers in Cancer Therapy",
+    "authors": [
+     "Chithrani DB",
+     "Jelveh S",
+     "Jalali F",
+     "van Prooijen M",
+     "Allen C",
+     "Bristow RG",
+     "Hill RP",
+     "Jaffray DA"
+    ],
+    "n_authors": 8,
+    "journal": "Radiation Research",
+    "journal_abbr": "Radiation Research",
+    "year": 2010,
+    "volume": "173",
+    "issue": "6",
+    "pages": "719",
+    "type": "journal-article",
+    "publisher": "Radiation Research Society",
+    "sim": 0.92
+   },
+   {
+    "DOI": "10.1016/j.jmir.2015.01.013",
+    "title": "Gold Nanoparticles for Radiation Therapy",
+    "authors": [
+     "Cruje C",
+     "Chithrani DB",
+     "Shing LK"
+    ],
+    "n_authors": 3,
+    "journal": "Journal of Medical Imaging and Radiation Sciences",
+    "journal_abbr": "Journal of Medical Imaging and Radiation Sciences",
+    "year": 2015,
+    "volume": "46",
+    "issue": "1",
+    "pages": "S3",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.67
+   },
+   {
+    "DOI": "10.1117/12.2295461",
+    "title": "Cancer nanomedicine: gold nanoparticle mediated combined cancer therapy",
+    "authors": [
+     "Bromma K",
+     "Chithrani DB",
+     "Yang C"
+    ],
+    "n_authors": 3,
+    "journal": "Colloidal Nanoparticles for Biomedical Applications XIII",
+    "journal_abbr": "",
+    "year": 2018,
+    "volume": null,
+    "issue": null,
+    "pages": "32",
+    "type": "proceedings-article",
+    "publisher": "SPIE",
+    "sim": 0.63
+   }
+  ]
+ },
+ "brun2009": {
+  "query": "Brun Sanche Sicard-Roselli Parameters governing gold nanoparticle X-ray radiosensitization of DNA in solution",
+  "year": 2009,
+  "hits": [
+   {
+    "DOI": "10.1016/j.colsurfb.2009.03.025",
+    "title": "Parameters governing gold nanoparticle X-ray radiosensitization of DNA in solution",
+    "authors": [
+     "Brun E",
+     "Sanche L",
+     "Sicard-Roselli C"
+    ],
+    "n_authors": 3,
+    "journal": "Colloids and Surfaces B: Biointerfaces",
+    "journal_abbr": "Colloids and Surfaces B: Biointerfaces",
+    "year": 2009,
+    "volume": "72",
+    "issue": "1",
+    "pages": "128-134",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.86
+   },
+   {
+    "DOI": "10.1051/radiopro:2008645",
+    "title": "Experimental Evidence of Gold Nanoparticle Radio-sensitization in vitro",
+    "authors": [
+     "Brun E",
+     "Simon-Deckers A",
+     "Carriere M",
+     "Sanche L",
+     "Sicard-Roselli C"
+    ],
+    "n_authors": 5,
+    "journal": "Radioprotection",
+    "journal_abbr": "Radioprotection",
+    "year": 2008,
+    "volume": "43",
+    "issue": "5",
+    "pages": "185",
+    "type": "journal-article",
+    "publisher": "EDP Sciences",
+    "sim": 0.56
+   },
+   {
+    "DOI": "10.1016/j.radphyschem.2016.05.024",
+    "title": "Actual questions raised by nanoparticle radiosensitization",
+    "authors": [
+     "Brun E",
+     "Sicard-Roselli C"
+    ],
+    "n_authors": 2,
+    "journal": "Radiation Physics and Chemistry",
+    "journal_abbr": "Radiation Physics and Chemistry",
+    "year": 2016,
+    "volume": "128",
+    "issue": null,
+    "pages": "134-142",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.46
+   }
+  ]
+ },
+ "rahman2014": {
+  "query": "Rahman Optimal energy for cell radiosensitivity enhancement by gold nanoparticles using synchrotron-based monoenergetic photon beams",
+  "year": 2014,
+  "hits": [
+   {
+    "DOI": "10.2147/ijn.s59471",
+    "title": "Optimal energy for cell radiosensitivity enhancement by gold nanoparticles using synchrotron-based monoenergetic photon beams",
+    "authors": [
+     "Rahman WN",
+     "Geso M",
+     "Yagi N",
+     "Abdul Aziz SA",
+     "Corde S",
+     "Annabell N"
+    ],
+    "n_authors": 6,
+    "journal": "International Journal of Nanomedicine",
+    "journal_abbr": "IJN",
+    "year": 2014,
+    "volume": null,
+    "issue": null,
+    "pages": "2459",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.22215/etd/2012-06811",
+    "title": "Synchrotron-based coherent scatter x-ray projection imaging using an array of monoenergetic pencil beams",
+    "authors": [
+     "Landheer K"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "Carleton University",
+    "sim": 0.34
+   },
+   {
+    "DOI": "10.1063/1.3478186",
+    "title": "Dosimetry And Its Enhancement Using Gold Nanoparticles In Synchrotron Based Microbeam And Stereotactic Radiosurgery",
+    "authors": [
+     "Rahman WN",
+     "Wong CJ",
+     "Yagi N",
+     "Davidson R",
+     "Geso M",
+     "Siu KKW"
+    ],
+    "n_authors": 6,
+    "journal": "AIP Conference Proceedings",
+    "journal_abbr": "",
+    "year": 2010,
+    "volume": null,
+    "issue": null,
+    "pages": "107-110",
+    "type": "proceedings-article",
+    "publisher": "AIP",
+    "sim": 0.57
+   }
+  ]
+ },
+ "spiers1949": {
+  "query": "Spiers The influence of energy absorption and electron range on dosage in irradiated bone",
+  "year": 1949,
+  "hits": [
+   {
+    "DOI": "10.1259/0007-1285-22-261-521",
+    "title": "The Influence of Energy Absorption and Electron Range on Dosage in Irradiated Bone",
+    "authors": [
+     "Spiers FW"
+    ],
+    "n_authors": 1,
+    "journal": "The British Journal of Radiology",
+    "journal_abbr": "BJR",
+    "year": 1949,
+    "volume": "22",
+    "issue": "261",
+    "pages": "521-533",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1259/0007-1285-24-283-365",
+    "title": "II. Dosage in Irradiated Soft Tissue and Bone",
+    "authors": [
+     "Spiers FW"
+    ],
+    "n_authors": 1,
+    "journal": "The British Journal of Radiology",
+    "journal_abbr": "BJR",
+    "year": 1951,
+    "volume": "24",
+    "issue": "283",
+    "pages": "365-370",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.42
+   },
+   {
+    "DOI": "10.1016/j.elspec.2021.147111",
+    "title": "Production of secondary electrons and photons and energy absorption mechanisms in amorphous carbon irradiated by photons in the energy range of 0.03 to 17.4 keV",
+    "authors": [
+     "Kochur A",
+     "Chaynikov A",
+     "Yavna V"
+    ],
+    "n_authors": 3,
+    "journal": "Journal of Electron Spectroscopy and Related Phenomena",
+    "journal_abbr": "Journal of Electron Spectroscopy and Related Phenomena",
+    "year": 2021,
+    "volume": "252",
+    "issue": null,
+    "pages": "147111",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.4
+   }
+  ]
+ },
+ "das1995": {
+  "query": "Das Chopra Backscatter dose perturbation in kilovoltage photon beams at high atomic number interfaces",
+  "year": 1995,
+  "hits": [
+   {
+    "DOI": "10.1118/1.597594",
+    "title": "Backscatter dose perturbation in kilovoltage photon beams at high atomic number interfaces",
+    "authors": [
+     "Das IJ",
+     "Chopra KL"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1995,
+    "volume": "22",
+    "issue": "6",
+    "pages": "767-773",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1118/1.596345",
+    "title": "Backscatter dose perturbation at high atomic number interfaces in megavoltage photon beams",
+    "authors": [
+     "Das IJ",
+     "Kahn FM"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1989,
+    "volume": "16",
+    "issue": "3",
+    "pages": "367-375",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.65
+   },
+   {
+    "DOI": "10.1118/1.597943",
+    "title": "Forward dose perturbation at high atomic number interfaces in kilovoltage x‐ray beams",
+    "authors": [
+     "Das IJ"
+    ],
+    "n_authors": 1,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 1997,
+    "volume": "24",
+    "issue": "11",
+    "pages": "1781-1787",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.56
+   }
+  ]
+ },
+ "mesbahi2010": {
+  "query": "Mesbahi A review on gold nanoparticles radiosensitization effect in radiation therapy of cancer",
+  "year": 2010,
+  "hits": [
+   {
+    "DOI": "10.1016/j.rpor.2010.09.001",
+    "title": "A review on gold nanoparticles radiosensitization effect in radiation therapy of cancer",
+    "authors": [
+     "Mesbahi A"
+    ],
+    "n_authors": 1,
+    "journal": "Reports of Practical Oncology &amp; Radiotherapy",
+    "journal_abbr": "Reports of Practical Oncology &amp; Radiotherapy",
+    "year": 2010,
+    "volume": "15",
+    "issue": "6",
+    "pages": "176-180",
+    "type": "journal-article",
+    "publisher": "VM Media SP. zo.o VM Group SK",
+    "sim": 0.96
+   },
+   {
+    "DOI": "10.1021/acsami.6b10132.s001",
+    "title": "Enhanced Radiosensitization of Gold Nanospikes via Hyperthermia in Combined Cancer Radiation and Photothermal Therapy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.47
+   },
+   {
+    "DOI": "10.1021/acsami.7b01112.s001",
+    "title": "Shape-Dependent Radiosensitization Effect of Gold Nanostructures in Cancer Radiotherapy: Comparison of Gold Nanoparticles, Nanospikes, and Nanorods",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.48
+   }
+  ]
+ },
+ "jain2012": {
+  "query": "Jain Hirst O Sullivan Gold nanoparticles as novel agents for cancer therapy",
+  "year": 2012,
+  "hits": [
+   {
+    "DOI": "10.1259/bjr/59448833",
+    "title": "Gold nanoparticles as novel agents for cancer therapy",
+    "authors": [
+     "Jain S",
+     "Hirst DG",
+     "O'Sullivan JM"
+    ],
+    "n_authors": 3,
+    "journal": "The British Journal of Radiology",
+    "journal_abbr": "BJR",
+    "year": 2012,
+    "volume": "85",
+    "issue": "1010",
+    "pages": "101-113",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "sim": 0.83
+   },
+   {
+    "DOI": "10.1201/9781003538455-13",
+    "title": "Role of Gold Nanoparticles as Novel Agents for Cancer Diagnosis and Therapy",
+    "authors": [
+     "Adiga U",
+     "Rai T",
+     "Desy TM",
+     "Adiga S"
+    ],
+    "n_authors": 4,
+    "journal": "Metals in Medicine",
+    "journal_abbr": "",
+    "year": 2024,
+    "volume": null,
+    "issue": null,
+    "pages": "393-435",
+    "type": "book-chapter",
+    "publisher": "Apple Academic Press",
+    "sim": 0.76
+   },
+   {
+    "DOI": "10.1021/acsami.7b00294.s001",
+    "title": "Anti-EGFR Antibody Conjugation of Fucoidan-Coated Gold Nanorods as Novel Photothermal Ablation Agents for Cancer Therapy",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.56
+   }
+  ]
+ },
+ "kirkby2016": {
+  "query": "Koger Kirkby Optimization of photon beam energies in gold nanoparticle enhanced arc radiation therapy using Monte Carlo methods",
+  "year": 2016,
+  "hits": [
+   {
+    "DOI": "10.1088/1361-6560/61/24/8839",
+    "title": "Optimization of photon beam energies in gold nanoparticle enhanced arc radiation therapy using Monte Carlo methods",
+    "authors": [
+     "Koger B",
+     "Kirkby C"
+    ],
+    "n_authors": 2,
+    "journal": "Physics in Medicine &amp; Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2016,
+    "volume": "61",
+    "issue": "24",
+    "pages": "8839-8853",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.95
+   },
+   {
+    "DOI": "10.1118/1.4894897",
+    "title": "Sci—Thur AM: YIS ‐ 04: Gold Nanoparticle Enhanced Arc Radiotherapy: A Monte Carlo Feasibility Study",
+    "authors": [
+     "Koger B",
+     "Kirkby C"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2014,
+    "volume": "41",
+    "issue": "8Part1",
+    "pages": "1-2",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.61
+   },
+   {
+    "DOI": "10.1088/978-0-7503-2396-3ch6",
+    "title": "Nanoparticle-aided radiation therapy: challenges of treatment planning",
+    "authors": [
+     "Kirkby C",
+     "Koger B"
+    ],
+    "n_authors": 2,
+    "journal": "Nanoparticle Enhanced Radiation Therapy",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": "6-1-6-31",
+    "type": "book-chapter",
+    "publisher": "IOP Publishing",
+    "sim": 0.39
+   }
+  ]
+ },
+ "woodcock1965": {
+  "query": "Woodcock Techniques used in the GEM code for Monte Carlo neutronics calculations in reactors and other systems of complex geometry",
+  "year": 1965,
+  "hits": [
+   {
+    "DOI": "10.20868/upm.thesis.32887",
+    "title": "Monte Carlo Neutronics and Thermal-hydraulics coupling applied to Fast Reactors",
+    "authors": [
+     "Vázquez Antolín M"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "Universidad Politecnica de Madrid - University Library",
+    "sim": 0.39
+   },
+   {
+    "DOI": "10.2172/6575894",
+    "title": "Application of artificial intelligence techniques to the acceleration of Monte Carlo transport calculations. [Application to MCN code]",
+    "authors": [
+     "Maconald J",
+     "Cashwell E"
+    ],
+    "n_authors": 2,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 1978,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "Office of Scientific and Technical Information (OSTI)",
+    "sim": 0.5
+   },
+   {
+    "DOI": "10.1007/bfb0049034",
+    "title": "PARTMC : A partticle transport Monte-Carlo code",
+    "authors": [
+     "Bruhat JP",
+     "Mattei M"
+    ],
+    "n_authors": 2,
+    "journal": "Lecture Notes in Physics",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": "56-61",
+    "type": "book-chapter",
+    "publisher": "Springer-Verlag",
+    "sim": 0.26
+   }
+  ]
+ },
+ "fano1955": {
+  "query": "Fano Note on the Bragg-Gray cavity principle for measuring energy dissipation",
+  "year": 1954,
+  "hits": [
+   {
+    "DOI": "10.2307/3570368",
+    "title": "Note on the Bragg-Gray Cavity Principle for Measuring Energy Dissipation",
+    "authors": [
+     "Fano U"
+    ],
+    "n_authors": 1,
+    "journal": "Radiation Research",
+    "journal_abbr": "Radiation Research",
+    "year": 1954,
+    "volume": "1",
+    "issue": "3",
+    "pages": "237",
+    "type": "journal-article",
+    "publisher": "JSTOR",
+    "sim": 0.97
+   },
+   {
+    "DOI": "10.1117/1.oe.59.8.087105",
+    "title": "Fiber Bragg grating sensor for measuring rate of dissipation of turbulent kinetic energy of ocean",
+    "authors": [
+     "Wang L",
+     "Wang Y",
+     "Wang J",
+     "Ch'ien L",
+     "Li F"
+    ],
+    "n_authors": 5,
+    "journal": "Optical Engineering",
+    "journal_abbr": "Opt. Eng.",
+    "year": 2020,
+    "volume": "59",
+    "issue": "08",
+    "pages": "1-11",
+    "type": "journal-article",
+    "publisher": "SPIE-Intl Soc Optical Eng",
+    "sim": 0.49
+   },
+   {
+    "DOI": "10.2307/3570546",
+    "title": "An Investigation of the Bragg-Gray Principle with Fluorescent X-Rays",
+    "authors": [
+     "Larson HV"
+    ],
+    "n_authors": 1,
+    "journal": "Radiation Research",
+    "journal_abbr": "Radiation Research",
+    "year": 1956,
+    "volume": "5",
+    "issue": "5",
+    "pages": "558",
+    "type": "journal-article",
+    "publisher": "JSTOR",
+    "sim": 0.58
+   }
+  ]
+ },
+ "berger1987": {
+  "query": "Berger Hubbell XCOM: Photon cross sections on a personal computer",
+  "year": 1987,
+  "hits": [
+   {
+    "DOI": "10.2172/6016002",
+    "title": "XCOM: Photon cross sections on a personal computer",
+    "authors": [
+     "Berger M",
+     "Hubbell J"
+    ],
+    "n_authors": 2,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 1987,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "Office of Scientific and Technical Information (OSTI)",
+    "sim": 0.87
+   },
+   {
+    "DOI": "10.6028/nbs.ir.87-3597",
+    "title": "XCOM :",
+    "authors": [
+     "Berger MJ",
+     "Hubbell JH"
+    ],
+    "n_authors": 2,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 1987,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "National Bureau of Standards",
+    "sim": 0.14
+   },
+   {
+    "DOI": "10.6028/nbs.nsrds.29",
+    "title": "Photon cross sections, attenuation coefficients, and energy absorption coefficients from 10 keV to 100 GeV",
+    "authors": [
+     "Hubbell JH"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 1969,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "report",
+    "publisher": "National Bureau of Standards",
+    "sim": 0.44
+   }
+  ]
+ },
+ "pignol2003": {
+  "query": "Pignol Rakovitch Beachey Le Sech Clinical significance of atomic inner shell ionization (ISI) and Auger cascade for radiosensitization using IUdR, BUdR, platinum salts, or gadolinium porphyrin compounds",
+  "year": 2003,
+  "hits": [
+   {
+    "DOI": "10.1016/s0360-3016(02)04508-x",
+    "title": "Clinical significance of atomic inner shell ionization (ISI) and Auger cascade for radiosensitization using IUdR, BUdR, platinum salts, or gadolinium porphyrin compounds",
+    "authors": [
+     "Pignol JP",
+     "Rakovitch E",
+     "Beachey D",
+     "Le Sech C"
+    ],
+    "n_authors": 4,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 2003,
+    "volume": "55",
+    "issue": "4",
+    "pages": "1082-1091",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.91
+   },
+   {
+    "DOI": "10.1118/1.2241159",
+    "title": "SU-FF-T-236: Experimental Validation of the Inner Shell Ionisation Model to Predict the Radiosensitisation Induced by the IDU and BrDU Halogenated Pyrimidine",
+    "authors": [
+     "Pignol J",
+     "Mihai A",
+     "Beachey D",
+     "Rakovitch E",
+     "Wong S"
+    ],
+    "n_authors": 5,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2006,
+    "volume": "33",
+    "issue": "6Part10",
+    "pages": "2102-2102",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.43
+   },
+   {
+    "DOI": "10.1016/j.jqsrt.2023.108561",
+    "title": "Cascade energy reemission after inner-shell ionization of atomic gold. Role of photo- and cascade-produced electrons in radiosensitization using gold-containing agents",
+    "authors": [
+     "Chaynikov A",
+     "Kochur A",
+     "Dudenko A",
+     "Yavna V"
+    ],
+    "n_authors": 4,
+    "journal": "Journal of Quantitative Spectroscopy and Radiative Transfer",
+    "journal_abbr": "Journal of Quantitative Spectroscopy and Radiative Transfer",
+    "year": 2023,
+    "volume": "302",
+    "issue": null,
+    "pages": "108561",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.46
+   }
+  ]
+ },
+ "verhaegen2005": {
+  "query": "Verhaegen Reniers Deblois Devic Seuntjens Hristov Dosimetric and microdosimetric study of contrast-enhanced radiotherapy with kilovolt x-rays",
+  "year": 2005,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/50/15/005",
+    "title": "Dosimetric and microdosimetric study of contrast-enhanced radiotherapy with kilovolt x-rays",
+    "authors": [
+     "Verhaegen F",
+     "Reniers B",
+     "Deblois F",
+     "Devic S",
+     "Seuntjens J",
+     "Hristov D"
+    ],
+    "n_authors": 6,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2005,
+    "volume": "50",
+    "issue": "15",
+    "pages": "3555-3569",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.78
+   },
+   {
+    "DOI": "10.1118/1.1998093",
+    "title": "SU-FF-T-364: Photo-Electric Effect with a Vengeance: Dosimetric and Microdosimetric Characterization of Contrast-Enhanced Radiation Therapy Using Kilovolt X-Rays",
+    "authors": [
+     "Verhaegen F",
+     "Reniers B",
+     "DeBlois F",
+     "Devic S",
+     "Seuntjens J",
+     "Hristov D"
+    ],
+    "n_authors": 6,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2005,
+    "volume": "32",
+    "issue": "6Part12",
+    "pages": "2034-2034",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.62
+   },
+   {
+    "DOI": "10.1016/s0167-8140(17)32249-1",
+    "title": "EP-1717: Image Quality Comparison Between Two Radiotherapy Simulators",
+    "authors": [
+     "Tomic N",
+     "Papaconstadopoulos P",
+     "Seuntjens J",
+     "DeBlois F",
+     "Devic S"
+    ],
+    "n_authors": 5,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2017,
+    "volume": "123",
+    "issue": null,
+    "pages": "S941-S942",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.25
+   }
+  ]
+ },
+ "solberg1992": {
+  "query": "Solberg Iwamoto Norman Calculation of radiation dose enhancement factors for dose enhancement therapy of brain tumours",
+  "year": 1992,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/37/2/010",
+    "title": "Calculation of radiation dose enhancement factors for dose enhancement therapy of brain tumours",
+    "authors": [
+     "Solberg TD",
+     "Iwamoto KS",
+     "Norman A"
+    ],
+    "n_authors": 3,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 1992,
+    "volume": "37",
+    "issue": "2",
+    "pages": "439-443",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.89
+   },
+   {
+    "DOI": "10.1097/00004424-199111001-00040",
+    "title": "Iodinated Contrast Agents for Brain Tumor Localization and Radiation Dose Enhancement",
+    "authors": [
+     "NORMAN A",
+     "IWAMOTO KS",
+     "COCHRAN ST"
+    ],
+    "n_authors": 3,
+    "journal": "Investigative Radiology",
+    "journal_abbr": "Investigative Radiology",
+    "year": 1991,
+    "volume": "26",
+    "issue": null,
+    "pages": "S120-S121",
+    "type": "journal-article",
+    "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+    "sim": 0.43
+   },
+   {
+    "DOI": "10.1016/s0167-8140(87)80170-6",
+    "title": "Radiation dose enhancement therapy with iodine in rabbit VX-2 brain tumors",
+    "authors": [
+     "Iwamoto KS",
+     "Cochran ST",
+     "Winter J",
+     "Holburt E",
+     "Higashida RT",
+     "Norman A"
+    ],
+    "n_authors": 6,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 1987,
+    "volume": "8",
+    "issue": "2",
+    "pages": "161-170",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.51
+   }
+  ]
+ },
+ "rose1999": {
+  "query": "Rose Norman Ingram Aoki Solberg Wagner First radiotherapy of human metastatic brain tumors delivered by a computerized tomography scanner (CTRx)",
+  "year": 1999,
+  "hits": [
+   {
+    "DOI": "10.1016/s0360-3016(99)00347-8",
+    "title": "First radiotherapy of human metastatic brain tumors delivered by a computerized tomography scanner (CTRx)",
+    "authors": [
+     "Rose J",
+     "Norman A",
+     "Ingram M",
+     "Aoki C",
+     "Solberg T",
+     "Mesa A"
+    ],
+    "n_authors": 6,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 1999,
+    "volume": "45",
+    "issue": "5",
+    "pages": "1127-1132",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.84
+   },
+   {
+    "DOI": "10.1016/0360-3016(94)90649-1",
+    "title": "First experience with radiation therapy of small brain tumors delivered by a computerized tomography scanner",
+    "authors": [
+     "Holt Rose J",
+     "Norman A",
+     "Ingram M"
+    ],
+    "n_authors": 3,
+    "journal": "International Journal of Radiation Oncology*Biology*Physics",
+    "journal_abbr": "International Journal of Radiation Oncology*Biology*Physics",
+    "year": 1994,
+    "volume": "30",
+    "issue": null,
+    "pages": "166-167",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.67
+   },
+   {
+    "DOI": "10.1016/0167-8140(93)90030-c",
+    "title": "Diagnosis and treatment of spontaneous canine brain tumors with a CT scanner",
+    "authors": [
+     "Iwamoto K",
+     "Norman A",
+     "Freshwater D",
+     "Ingram M",
+     "Skillen R"
+    ],
+    "n_authors": 5,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 1993,
+    "volume": "26",
+    "issue": "1",
+    "pages": "76-78",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.39
+   }
+  ]
+ },
+ "mcmahon2016": {
+  "query": "McMahon Paganetti Prise Optimising element choice for nanoparticle radiosensitisers",
+  "year": 2016,
+  "hits": [
+   {
+    "DOI": "10.1039/c5nr07089a",
+    "title": "Optimising element choice for nanoparticle radiosensitisers",
+    "authors": [
+     "McMahon SJ",
+     "Paganetti H",
+     "Prise KM"
+    ],
+    "n_authors": 3,
+    "journal": "Nanoscale",
+    "journal_abbr": "Nanoscale",
+    "year": 2016,
+    "volume": "8",
+    "issue": "1",
+    "pages": "581-589",
+    "type": "journal-article",
+    "publisher": "Royal Society of Chemistry (RSC)",
+    "sim": 0.83
+   },
+   {
+    "DOI": "10.1118/1.4925410",
+    "title": "MO‐FG‐BRA‐06: Material Optimisation for Nanoparticle‐Sensitized Radiotherapy",
+    "authors": [
+     "McMahon S",
+     "Paganetti H",
+     "Prise K"
+    ],
+    "n_authors": 3,
+    "journal": "Medical Physics",
+    "journal_abbr": "Medical Physics",
+    "year": 2015,
+    "volume": "42",
+    "issue": "6Part29",
+    "pages": "3565-3566",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.53
+   },
+   {
+    "DOI": "10.1038/srep33290",
+    "title": "Mechanistic Modelling of DNA Repair and Cellular Survival Following Radiation-Induced DNA Damage",
+    "authors": [
+     "McMahon SJ",
+     "Schuemann J",
+     "Paganetti H",
+     "Prise KM"
+    ],
+    "n_authors": 4,
+    "journal": "Scientific Reports",
+    "journal_abbr": "Sci Rep",
+    "year": 2016,
+    "volume": "6",
+    "issue": "1",
+    "pages": "33290",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.32
+   }
+  ]
+ },
+ "sung2017": {
+  "query": "Sung Ho Ha Optimal energy for dose enhancement nanoparticles",
+  "year": 2017,
+  "hits": [
+   {
+    "DOI": "10.1109/milcom.2005.1605718",
+    "title": "Distributed Optimal Cell Provisioning in Heterogeneous Wireless Mobile Networks",
+    "authors": [
+     "Young Ha Hwang",
+     "Sung-Kee Noh",
+     "Byung Ho Chung",
+     "Sang-Ha Kim"
+    ],
+    "n_authors": 4,
+    "journal": "MILCOM 2005 - 2005 IEEE Military Communications Conference",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": "1-5",
+    "type": "proceedings-article",
+    "publisher": "IEEE",
+    "sim": 0.27
+   },
+   {
+    "DOI": "10.1109/isr.2013.6695653",
+    "title": "Optimal bio-inspired structure of a quadruped by the method of energy efficiency",
+    "authors": [
+     "Sung Ho Park",
+     "Dong Pyo Hong"
+    ],
+    "n_authors": 2,
+    "journal": "IEEE ISR 2013",
+    "journal_abbr": "",
+    "year": 2013,
+    "volume": null,
+    "issue": null,
+    "pages": "1-4",
+    "type": "proceedings-article",
+    "publisher": "IEEE",
+    "sim": 0.27
+   },
+   {
+    "DOI": "10.1109/mis.2003.1249171",
+    "title": "Fuzzy Web ad selector based on Web usage mining",
+    "authors": [
+     "Sung Min Bae",
+     "Sang Chan Park",
+     "Sung Ho Ha"
+    ],
+    "n_authors": 3,
+    "journal": "IEEE Intelligent Systems",
+    "journal_abbr": "IEEE Intell. Syst.",
+    "year": 2003,
+    "volume": "18",
+    "issue": "6",
+    "pages": "62-69",
+    "type": "journal-article",
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "sim": 0.22
+   }
+  ]
+ },
+ "haume2016": {
+  "query": "Haume Rosa Grellet Gold nanoparticles for cancer radiotherapy: a review",
+  "year": 2016,
+  "hits": [
+   {
+    "DOI": "10.1186/s12645-016-0021-x",
+    "title": "Gold nanoparticles for cancer radiotherapy: a review",
+    "authors": [
+     "Haume K",
+     "Rosa S",
+     "Grellet S",
+     "Śmiałek MA",
+     "Butterworth KT",
+     "Solov’yov AV",
+     "Prise KM",
+     "Golding J",
+     "Mason NJ"
+    ],
+    "n_authors": 9,
+    "journal": "Cancer Nanotechnology",
+    "journal_abbr": "Cancer Nano",
+    "year": 2016,
+    "volume": "7",
+    "issue": "1",
+    "pages": "8",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.85
+   },
+   {
+    "DOI": "10.1021/acsami.7b01112.s001",
+    "title": "Shape-Dependent Radiosensitization Effect of Gold Nanostructures in Cancer Radiotherapy: Comparison of Gold Nanoparticles, Nanospikes, and Nanorods",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.5
+   },
+   {
+    "DOI": "10.1021/acsabm.2c00965.s001",
+    "title": "Enhanced In Vivo Radiotherapy of Breast Cancer Using Gadolinium Oxide and Gold Hybrid Nanoparticles",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.31
+   }
+  ]
+ },
+ "kakade2015": {
+  "query": "Kakade Sharma Dose enhancement in gold nanoparticle-aided radiotherapy for the therapeutic photon beams using Monte Carlo technique",
+  "year": 2015,
+  "hits": [
+   {
+    "DOI": "10.4103/0973-1482.147691",
+    "title": "Dose enhancement in gold nanoparticle-aided radiotherapy for the therapeutic photon beams using Monte Carlo technique",
+    "authors": [
+     "Sharma S",
+     "Kakade N"
+    ],
+    "n_authors": 2,
+    "journal": "Journal of Cancer Research and Therapeutics",
+    "journal_abbr": "J Can Res Ther",
+    "year": 2015,
+    "volume": "11",
+    "issue": "1",
+    "pages": "94",
+    "type": "journal-article",
+    "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+    "sim": 0.94
+   },
+   {
+    "DOI": "10.1118/1.4956546",
+    "title": "SU-F-T-361: Dose Enhancement Due to Nanoparticle Addition in Skin Radiotherapy: A Monte Carlo Study Using Kilovoltage Photon Beams",
+    "authors": [
+     "Zheng X",
+     "Chow J"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2016,
+    "volume": "43",
+    "issue": "6Part18",
+    "pages": "3546-3546",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.53
+   },
+   {
+    "DOI": "10.3390/nano10040637",
+    "title": "Dose Enhancement for the Flattening-Filter-Free and Flattening-Filter Photon Beams in Nanoparticle-Enhanced Radiotherapy: A Monte Carlo Phantom Study",
+    "authors": [
+     "Martelli S",
+     "Chow JCL"
+    ],
+    "n_authors": 2,
+    "journal": "Nanomaterials",
+    "journal_abbr": "Nanomaterials",
+    "year": 2020,
+    "volume": "10",
+    "issue": "4",
+    "pages": "637",
+    "type": "journal-article",
+    "publisher": "MDPI AG",
+    "sim": 0.49
+   }
+  ]
+ },
+ "khoshgard2014": {
+  "query": "Khoshgard Hashemi Arbabi Rasaee Radiosensitization effect of folate-conjugated gold nanoparticles on HeLa cancer cells under orthovoltage superficial radiotherapy techniques",
+  "year": 2014,
+  "hits": [
+   {
+    "DOI": "10.1088/0031-9155/59/9/2249",
+    "title": "Radiosensitization effect of folate-conjugated gold nanoparticles on HeLa cancer cells under orthovoltage superficial radiotherapy techniques",
+    "authors": [
+     "Khoshgard K",
+     "Hashemi B",
+     "Arbabi A",
+     "Rasaee MJ",
+     "Soleimani M"
+    ],
+    "n_authors": 5,
+    "journal": "Physics in Medicine and Biology",
+    "journal_abbr": "Phys. Med. Biol.",
+    "year": 2014,
+    "volume": "59",
+    "issue": "9",
+    "pages": "2249-2263",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "sim": 0.9
+   },
+   {
+    "DOI": "10.21203/rs.3.rs-45987/v1",
+    "title": "Radiosensitization of breast cancer cells using AS1411 aptamer-conjugated gold nanoparticles",
+    "authors": [
+     "Mehrnia SS",
+     "Hashemi B",
+     "Mowla SJ",
+     "Nikkhah M",
+     "Arbabi A"
+    ],
+    "n_authors": 5,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.42
+   },
+   {
+    "DOI": "10.21203/rs.3.rs-45987/v2",
+    "title": "Radiosensitization of breast cancer cells using AS1411 aptamer-conjugated gold nanoparticles",
+    "authors": [
+     "",
+     "Hashemi B",
+     "Mowla SJ",
+     "Nikkhah M",
+     "Arbabi A"
+    ],
+    "n_authors": 5,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.42
+   }
+  ]
+ },
+ "ahmad2024ag": {
+  "query": "silver nanoparticles dose enhancement Monte Carlo kilovoltage x-ray radiotherapy",
+  "year": null,
+  "hits": [
+   {
+    "DOI": "10.1016/s0167-8140(21)01440-7",
+    "title": "PO-1422: Monte Carlo study of dose deposition in kilovoltage X-ray radiotherapy using gold as dose enhancer",
+    "authors": [
+     "Spiga J",
+     "Pellicioli P",
+     "Duffy J",
+     "Manger S",
+     "Bravin A"
+    ],
+    "n_authors": 5,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2020,
+    "volume": "152",
+    "issue": null,
+    "pages": "S755",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.47
+   },
+   {
+    "DOI": "10.1118/1.4956546",
+    "title": "SU-F-T-361: Dose Enhancement Due to Nanoparticle Addition in Skin Radiotherapy: A Monte Carlo Study Using Kilovoltage Photon Beams",
+    "authors": [
+     "Zheng X",
+     "Chow J"
+    ],
+    "n_authors": 2,
+    "journal": "Medical Physics",
+    "journal_abbr": "Med. Phys.",
+    "year": 2016,
+    "volume": "43",
+    "issue": "6Part18",
+    "pages": "3546-3546",
+    "type": "journal-article",
+    "publisher": "Wiley",
+    "sim": 0.46
+   },
+   {
+    "DOI": "10.22215/etd/2011-09737",
+    "title": "Efficient Monte Carlo simulations in kilovoltage x-ray beams",
+    "authors": [
+     "Mainegra Hing E"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "Carleton University",
+    "sim": 0.54
+   },
+   {
+    "DOI": "10.26226/morressier.5cb7218fae0a090015830716",
+    "title": "Monte Carlo investigation of dose enhancement due to gold nanoparticles in particle beam therapy",
+    "authors": [
+     "Hee S",
+     "hwi j"
+    ],
+    "n_authors": 2,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2019,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "posted-content",
+    "publisher": "Morressier GmbH",
+    "sim": 0.48
+   },
+   {
+    "DOI": "10.1016/j.ejmp.2020.09.022",
+    "title": "Monte Carlo studies in Gold Nanoparticles enhanced radiotherapy: The impact of modelled parameters in dose enhancement",
+    "authors": [
+     "Vlastou E",
+     "Diamantopoulos S",
+     "Efstathopoulos EP"
+    ],
+    "n_authors": 3,
+    "journal": "Physica Medica",
+    "journal_abbr": "Physica Medica",
+    "year": 2020,
+    "volume": "80",
+    "issue": null,
+    "pages": "57-64",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.34
+   }
+  ]
+ },
+ "agnp_radio_review": {
+  "query": "silver nanoparticles radiosensitizers review cancer radiotherapy",
+  "year": null,
+  "hits": [
+   {
+    "DOI": "10.1021/acsami.4c19601.s001",
+    "title": "Enhancing Chordoma Radiotherapy: Ta@PVP Nanoparticles as Potent Radiosensitizers",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.47
+   },
+   {
+    "DOI": "10.1016/s0167-8140(25)03099-3",
+    "title": "4043 Evaluation of biocompatible gold/silver nanoparticles as radiosensitizers in a prostate cancer model",
+    "authors": [
+     "Lacavalla MA",
+     "Cazzola S",
+     "Vurro F",
+     "Alborghetti L",
+     "Pizzardi S",
+     "Spinelli AE",
+     "Amendola V"
+    ],
+    "n_authors": 7,
+    "journal": "Radiotherapy and Oncology",
+    "journal_abbr": "Radiotherapy and Oncology",
+    "year": 2025,
+    "volume": "206",
+    "issue": null,
+    "pages": "S4018-S4019",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "sim": 0.59
+   },
+   {
+    "DOI": "10.54499/2023.03174.bd",
+    "title": "",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": 2023,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "grant",
+    "publisher": "Fundacao para a Ciencia e a Tecnologia (unidadeFCCN)",
+    "sim": 0.0
+   },
+   {
+    "DOI": "10.1007/s12668-022-01057-y",
+    "title": "Potentials of Bismuth-Based Nanoparticles and Baicalein Natural Compounds as Radiosensitizers in Cancer Radiotherapy: a Review",
+    "authors": [
+     "Sisin NNT",
+     "Rahman WN"
+    ],
+    "n_authors": 2,
+    "journal": "BioNanoScience",
+    "journal_abbr": "BioNanoSci.",
+    "year": 2023,
+    "volume": "13",
+    "issue": "1",
+    "pages": "300-321",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "sim": 0.59
+   },
+   {
+    "DOI": "10.2147/ijn.s272902",
+    "title": "&lt;p&gt;Gold Nanoparticles as Radiosensitizers in Cancer Radiotherapy&lt;/p&gt;",
+    "authors": [
+     "Chen Y",
+     "Yang J",
+     "Fu S",
+     "Wu J"
+    ],
+    "n_authors": 4,
+    "journal": "International Journal of Nanomedicine",
+    "journal_abbr": "IJN",
+    "year": 2020,
+    "volume": "Volume 15",
+    "issue": null,
+    "pages": "9407-9430",
+    "type": "journal-article",
+    "publisher": "Informa UK Limited",
+    "sim": 0.75
+   }
+  ]
+ },
+ "agnp_ros": {
+  "query": "silver nanoparticles radiosensitization reactive oxygen species mechanism",
+  "year": null,
+  "hits": [
+   {
+    "DOI": "10.1021/acsnano.4c01625.s001",
+    "title": "Reactive Oxygen Species Amplifier for Apoptosis-Ferroptosis Mediated High-Efficiency Radiosensitization of Tumors",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.33
+   },
+   {
+    "DOI": "10.18130/v30b95",
+    "title": "Correlation of Disinfection A ction of Silver Nanoparticles to Silver Ion Release and Reactive Oxygen Species Generation Characteristics",
+    "authors": [
+     "Fauss EK"
+    ],
+    "n_authors": 1,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "dissertation",
+    "publisher": "University of Virginia",
+    "sim": 0.56
+   },
+   {
+    "DOI": "10.1021/acs.chemrestox.6c00061.s001",
+    "title": "Silver Nanoparticles Induce TET-Dependent Genome-Wide DNA Hydroxymethylation Alterations in Mouse Embryonic Stem Cells via Reactive Oxygen Species Signaling",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.51
+   },
+   {
+    "DOI": "10.1021/acs.biomac.8b01423.s001",
+    "title": "Cinnamaldehyde-Based Poly(ester-thioacetal) To Generate Reactive Oxygen Species for Fabricating Reactive Oxygen Species-Responsive Nanoparticles",
+    "authors": [],
+    "n_authors": 0,
+    "journal": "",
+    "journal_abbr": "",
+    "year": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "type": "component",
+    "publisher": "American Chemical Society (ACS)",
+    "sim": 0.38
+   },
+   {
+    "DOI": "10.1016/b978-0-12-822481-6.00017-7",
+    "title": "Nanotechnological modifications of nanoparticles on reactive oxygen and nitrogen species",
+    "authors": [
+     "Madkour LH"
+    ],
+    "n_authors": 1,
+    "journal": "Reactive Oxygen Species (ROS), Nanoparticles, and Endoplasmic Reticulum (ER) Stress-Induced Cell Death Mechanisms",
+    "journal_abbr": "",
+    "year": 2020,
+    "volume": null,
+    "issue": null,
+    "pages": "449-488",
+    "type": "book-chapter",
+    "publisher": "Elsevier",
+    "sim": 0.52
+   }
+  ]
+ }
+}

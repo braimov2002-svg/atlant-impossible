@@ -1,0 +1,223 @@
+{
+ "mcmahon2011": {
+  "DOI": "10.1038/srep00018",
+  "title": "Biological consequences of nanoscale energy deposition near irradiated heavy atom nanoparticles",
+  "authors": [
+   "McMahon",
+   "Hyland",
+   "Muir",
+   "Coulter"
+  ],
+  "n": 13,
+  "journal": "Scientific Reports",
+  "year": 2011,
+  "volume": "1",
+  "issue": "1",
+  "pages": "18"
+ },
+ "lechtman2011": {
+  "DOI": "10.1088/0031-9155/56/15/001",
+  "title": "Implications on clinical scenario of gold nanoparticle radiosensitization in regards to photon energy, nanoparticle size, concentration and location",
+  "authors": [
+   "Lechtman",
+   "Chattopadhyay",
+   "Cai",
+   "Mashouf"
+  ],
+  "n": 6,
+  "journal": "Physics in Medicine and Biology",
+  "year": 2011,
+  "volume": "56",
+  "issue": "15",
+  "pages": "4631-4647"
+ },
+ "bray2024": {
+  "DOI": "10.3322/caac.21834",
+  "title": "Global cancer statistics 2022: GLOBOCAN estimates of incidence and mortality worldwide for 36 cancers in 185 countries",
+  "authors": [
+   "Bray",
+   "Laversanne",
+   "Sung",
+   "Ferlay"
+  ],
+  "n": 7,
+  "journal": "CA: A Cancer Journal for Clinicians",
+  "year": 2024,
+  "volume": "74",
+  "issue": "3",
+  "pages": "229-263"
+ },
+ "asharani2009": {
+  "DOI": "10.1021/nn800596w",
+  "title": "Cytotoxicity and Genotoxicity of Silver Nanoparticles in Human Cells",
+  "authors": [
+   "AshaRani",
+   "Low Kah Mun",
+   "Hande",
+   "Valiyaveettil"
+  ],
+  "n": 4,
+  "journal": "ACS Nano",
+  "year": 2008,
+  "volume": "3",
+  "issue": "2",
+  "pages": "279-290"
+ },
+ "wei2015": {
+  "DOI": "10.1016/j.drudis.2014.11.014",
+  "title": "Silver nanoparticles: synthesis, properties, and therapeutic applications",
+  "authors": [
+   "Wei",
+   "Lu",
+   "Xu",
+   "Patel"
+  ],
+  "n": 6,
+  "journal": "Drug Discovery Today",
+  "year": 2015,
+  "volume": "20",
+  "issue": "5",
+  "pages": "595-601"
+ },
+ "ma2001": {
+  "DOI": "10.1118/1.1374247",
+  "title": "AAPM protocol for 40–300 kV x‐ray beam dosimetry in radiotherapy and radiobiology",
+  "authors": [
+   "Ma",
+   "Coffey",
+   "DeWerd",
+   "Liu"
+  ],
+  "n": 7,
+  "journal": "Medical Physics",
+  "year": 2001,
+  "volume": "28",
+  "issue": "6",
+  "pages": "868-893"
+ },
+ "hill2014": {
+  "DOI": "10.1088/0031-9155/59/6/R183",
+  "title": "Advances in kilovoltage x-ray beam dosimetry",
+  "authors": [
+   "Hill",
+   "Healy",
+   "Holloway",
+   "Kuncic"
+  ],
+  "n": 6,
+  "journal": "Physics in Medicine and Biology",
+  "year": 2014,
+  "volume": "59",
+  "issue": "6",
+  "pages": "R183-R231"
+ },
+ "omar2018": {
+  "DOI": "10.1016/j.nimb.2018.10.026",
+  "title": "A model for the emission of K and L x rays from an x-ray tube",
+  "authors": [
+   "Omar",
+   "Andreo",
+   "Poludniowski"
+  ],
+  "n": 3,
+  "journal": "Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms",
+  "year": 2018,
+  "volume": "437",
+  "issue": null,
+  "pages": "36-47"
+ },
+ "agostinelli2003": {
+  "DOI": "10.1016/S0168-9002(03)01368-8",
+  "title": "Geant4—a simulation toolkit",
+  "authors": [
+   "Agostinelli",
+   "Allison",
+   "Amako",
+   "Apostolakis"
+  ],
+  "n": 127,
+  "journal": "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment",
+  "year": 2003,
+  "volume": "506",
+  "issue": "3",
+  "pages": "250-303"
+ },
+ "bethe1934": {
+  "DOI": "10.1098/rspa.1934.0140",
+  "title": "On the stopping of fast particles and on the creation of positive electrons",
+  "authors": [
+   "Bethe",
+   "Heitler"
+  ],
+  "n": 2,
+  "journal": "Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character",
+  "year": 1934,
+  "volume": "146",
+  "issue": "856",
+  "pages": "83-112"
+ },
+ "deslattes2003": {
+  "DOI": "10.1103/RevModPhys.75.35",
+  "title": "X-ray transition energies: new approach to a comprehensive evaluation",
+  "authors": [
+   "Deslattes",
+   "Kessler",
+   "Indelicato",
+   "de Billy"
+  ],
+  "n": 6,
+  "journal": "Reviews of Modern Physics",
+  "year": 2003,
+  "volume": "75",
+  "issue": "1",
+  "pages": "35-99"
+ },
+ "hubbell1975": {
+  "DOI": "10.1063/1.555523",
+  "title": "Atomic form factors, incoherent scattering functions, and photon scattering cross sections",
+  "authors": [
+   "Hubbell",
+   "Veigele",
+   "Briggs",
+   "Brown"
+  ],
+  "n": 6,
+  "journal": "Journal of Physical and Chemical Reference Data",
+  "year": 1975,
+  "volume": "4",
+  "issue": "3",
+  "pages": "471-538"
+ },
+ "harris2020": {
+  "DOI": "10.1038/s41586-020-2649-2",
+  "title": "Array programming with NumPy",
+  "authors": [
+   "Harris",
+   "Millman",
+   "van der Walt",
+   "Gommers"
+  ],
+  "n": 26,
+  "journal": "Nature",
+  "year": 2020,
+  "volume": "585",
+  "issue": "7825",
+  "pages": "357-362"
+ },
+ "virtanen2020": {
+  "DOI": "10.1038/s41592-019-0686-2",
+  "title": "SciPy 1.0: fundamental algorithms for scientific computing in Python",
+  "authors": [
+   "Virtanen",
+   "Gommers",
+   "Oliphant",
+   "Haberland"
+  ],
+  "n": 112,
+  "journal": "Nature Methods",
+  "year": 2020,
+  "volume": "17",
+  "issue": "3",
+  "pages": "261-272"
+ }
+}

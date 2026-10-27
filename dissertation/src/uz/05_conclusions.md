@@ -1,0 +1,35 @@
+# XULOSA
+
+Dissertatsiyaning asosiy natijalari quyidagilardan iborat.
+
+1. Adabiyotlar tahlili yuqori Z li elementlar tufayli dozaning kuchayishi megavoltli fotonlarga qaraganda kilovoltli fotonlar uchun ancha katta ekanligini hamda kumush nanozarrachalari glioma, ko‘krak bezi saratoni va kolorektal saraton modellarini radiosensibilizatsiya qilishi qayd etilganini ko‘rsatdi. Ag va yumshoq to‘qimaning massaviy energiya yutilish koeffitsiyentlari nisbati Ag K-chegarasidan (25,514 keV) pastda, 8–25 keV da 21–32 ni, 30–45 keV da esa 100–139 ni tashkil etadi. Dozani kuchaytirish koeffitsiyentining (DEF) mis anodli trubkalarning konstruksiyasi va filtrlanishiga bog‘liqligi ko‘rib chiqilgan adabiyotlarda miqdoriy jihatdan o‘rganilmagan.
+
+2. Mis anodli trubka spektrining qalin nishon uchun yarim analitik modeli — ishlab chiqilgan model (IM) yaratildi. U Bete ionizatsion tormozlanish qobiliyatiga, Elvert ko‘paytuvchisi kiritilgan norelyativistik Bete–Gaytler tormozlanish nurlanishi kesimiga va Grizinskiyning K-qobiq ionizatsiyasi kesimiga asoslangan bo‘lib, tormozlanish nurlanishi ta’sirida hosil bo‘ladigan va yopiq ko‘rinishdagi ifoda bilan tavsiflanadigan K flyuoressensiyani (chiziqlar intensivligining 4,5–4,8 %), anodda o‘z-o‘zini yutishni va filtrlashni o‘z ichiga oladi.
+
+3. Yagona moslashtiriladigan parametr — elektronlarning chuqurlik koeffitsiyenti $\eta = 0{,}40$ — 45 kV da SpekPy v2 tormozlanish spektrining shakliga moslashtirildi (o‘rtacha kvadratik chetlanish 2,46 %, to‘g‘ri chiziqli harakatlanuvchi elektronlar, ya’ni $\eta = 1$ uchun esa 8,47 %). Qayta moslashtirishsiz IM 25–50 kV kuchlanishlar va 6–30° anod burchaklari uchun 1 mm Al bilan filtrlangan dastalarning yarim susaytirish qatlamini (YSQ) −3,5 dan −4,6 % gacha bo‘lgan chetlanishlar bilan, ularning o‘rtacha energiyasini esa 0,54 keV aniqlik bilan takrorlaydi. IM Cu K chiziqlarini 25–43 % ga kam, havodagi kermaning absolyut qiymatini esa 8–42 % ga ortiq baholaydi, biroq Al bilan filtrlangan dastalar uchun uning DEF qiymatlari SpekPy qiymatlari bilan 1–2 % doirasida mos keladi.
+
+4. Filtrlanmagan 45 kV li spektrda (anod burchagi 12°, 0,5 mm Be, 10 sm havo) Cu K chiziqlari ustunlik qiladi (fotonlarning 68,5 %); Ag K-chegarasidan yuqorida fotonlarning atigi 4,64 % joylashgan. Dasta yumshoq (o‘rtacha energiya 10,38 keV, birinchi YSQ 0,0478 mm Al) va intensiv: 10 sm masofada havodagi kerma 383 mGr/(mA·s) ni, ya’ni 40 mA da 15,3 Gr/s ni tashkil etadi.
+
+5. Anod burchagi (6–30°), trubka kuchlanishi (25–50 kV) va Be oyna (0,15–2 mm) havodagi kermani 163–463 mGr/(mA·s) oralig‘ida o‘zgartiradi, biroq 1 % Ag uchun DEF 1,19–1,21 oralig‘ida qoladi, chunki dozani asosan Cu K chiziqlari va 3–15 keV energiyali fotonlar hosil qiladi, ular uchun esa Ag/to‘qima nisbati atigi 21–27 ni tashkil etadi.
+
+6. Qo‘shimcha filtrlash hal qiluvchi omil hisoblanadi: 1 % Ag uchun DEF 1 mm Al bilan 1,48 ga, 2 mm Al bilan 1,62 ga va 0,2 mm Cu bilan 1,80 ga teng bo‘ladi, biroq buning evaziga havodagi kerma 120–1300 marta kamayadi. DEF − 1 kattaligi Agning massa ulushiga proporsional (har 1 % Ag ga filtrsiz 0,20 va 1 mm Al bilan 0,48).
+
+7. Havodagi kerma bo‘yicha bir xil o‘tkazishda 9–45 keV oralig‘ida yutilish chegaralariga ega bo‘lmagan yengil va o‘rtacha Z li filtrlar (Al, Si, Ca, Sc, Ti) optimal hisoblanadi, K-chegaralari 20–30 keV da joylashgan filtrlar (Mo, Ag, Sn) esa kuchli filtrlashda eng kam samarali bo‘ladi, chunki ular aynan kumush eng samarali bo‘lgan sohada kuchli yutadi: 0,1 % o‘tkazishda 1 % Ag uchun DEF Ti filtr bilan 1,91 ga, Ag filtr bilan esa atigi 1,34 ga teng.
+
+8. 1 mm Al bilan filtrlashda kumush kiritilgan yupqa sohadagi 1 % Ag uchun DEF chuqurlik ortishi bilan sirtdagi 1,48 dan 20 mm chuqurlikda 1,69 gacha ortadi (dastaning qattiqlashishi), biroq sirtdan boshlab bir tekis kumush kiritilgan soha ichida 10 mm chuqurlikda 1,21 gacha kamayadi (o‘z-o‘zini ekranlash). 1 % Ag saqlovchi 10 mm qalinlikdagi qatlam uchun Monte-Karlo usulida olingan DEF qiymatlari qayta yutilgan Ag K flyuoressensiya nurlanishi va sochilgan fotonlar hisobiga analitik qiymatlardan 1–10 % yuqori bo‘ldi, qatlam ortidagi doza esa kumushsiz holdagi qiymatning taxminan 0,80 qismigacha pasaydi.
+
+9. 1 mm Al bilan filtrlashda 1 % Ag uchun DEF 25 kV dagi 1,27 dan 50 kV dagi 1,52 gacha ortadi. Massa birligiga nisbatan kumush 45 kV da Gd, Pt, Au va Biga qaraganda kuchsizroq fizik sensibilizator hisoblanadi (1 mm Al bilan DEF 1,48 ga teng, Au uchun esa 2,16) va yod (1,46) bilan taqqoslanarli, shu sababli kumush nanozarrachalarining oltin nanozarrachalariga nisbatan qayd etilgan biologik ustunligi kimyoviy, biologik va nanomiqyosdagi mexanizmlar mavjudligiga ishora qiladi.
+
+10. 1 % Ag va 1 mm Al uchun DEF = 1,48 ± 0,02 (qamrov koeffitsiyenti $k = 1$), tayanch muhitni tanlash esa uni 0,057 gacha o‘zgartiradi. xraylib 4.3.0 kutubxonasining CS_Energy funksiyasi 30 keV da kislorodning massaviy energiya yutilish koeffitsiyentini 37 % ga kamaytirib beradi va 1,48 o‘rniga 1,72 ga teng DEF qiymatiga olib kelgan bo‘lar edi, shu sababli NIST jadvallaridan foydalanish zarur.
+
+## Amaliy tavsiyalar
+
+1. 1–2 mm qalinlikdagi Al filtrdan (yoki 0,1–0,3 mm qalinlikdagi Ti filtrdan) foydalanish lozim; filtrlanmagan dastalar, yupqa Cu filtrlar hamda Mo, Ag yoki Sn filtrlardan foydalanmaslik kerak.
+2. Dastani trubka kuchlanishi, anod burchagi, oyna, filtrlar va o‘lchangan birinchi YSQ (1 mm Al bilan filtrlash uchun hisoblangan qiymati 0,83 mm Al) orqali tavsiflash, DEFni esa spektr va tayanch muhit bilan birga keltirish lozim.
+3. Nurlantirishlarni to‘qima kermasi asosida rejalashtirish (10 sm masofada va 40 mA da 2 Gr doza 1 mm Al bilan 14,6 s da, 2 mm Al bilan esa 32,5 s da beriladi), trubkaning nurlanish chiqishini esa dozimetriya yordamida tasdiqlash kerak.
+4. Kumushning kamida 0,5 % massa ulushidan (1 mm Al bilan DEF 1,24) foydalanish lozim.
+5. Qalin namunalar uchun DEFning chuqurlikka bog‘liqligini, o‘z-o‘zini ekranlashni va kumush kiritilgan soha ortida dozaning kamayishini hisobga olish zarur.
+
+## Keyingi tadqiqotlar istiqbollari
+
+Olingan spektrlar bilan nurlantirilgan kumush nanozarrachalari atrofida elektronlar ko‘chishini nanomiqyosda Monte-Karlo usulida modellashtirish dozaning mikroskopik kuchayishini makroskopik DEF bilan bog‘lash imkonini beradi. CdTe yoki Si detektori yordamida spektrni o‘lchash Cu K chiziqlarining intensivligini va trubkaning absolyut nurlanish chiqishini tekshirish hamda IMni takomillashtirish yo‘nalishlarini (elektronlarning teskari sochilishi, bo‘sag‘a yaqinidagi K-qobiq ionizatsiyasi kesimlari) belgilash imkonini beradi. Tavsiya etilgan filtrlash sharoitida o‘tkaziladigan in vitro tajribalar dozaning fizik kuchayishini kislorodning faol shakllari hosil bo‘lishi kabi kimyoviy va biologik mexanizmlardan ajratish imkonini beradi. Va nihoyat, kumushning biologik ustunligi fizik DEF ma’lum bo‘lgan sharoitda ham saqlanib qolishini tekshirish uchun oltin va kumush nanozarrachalarini bir xil massaviy konsentratsiyalarda va bir xil spektrlarda taqqoslash lozim.

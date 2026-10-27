@@ -9,23 +9,23 @@ Table: {#tab:abbrev} Qisqartmalar va belgilar.
 | ALARA | oqilona erishish mumkin bo‘lgan darajada past |
 | AuNZ | oltin nanozarrachasi |
 | BH-E | Elvert ko‘paytuvchisi kiritilgan norelyativistik Bete–Gaytler tormozlanish nurlanishi kesimi |
-| ZZM | zaryadli zarralar muvozanati |
 | CSDA | uzluksiz sekinlashish yaqinlashuvi |
 | DEF | dozani kuchaytirish koeffitsiyenti |
-| IM | ishlab chiqilgan model (ushbu ishdagi rentgen spektrining yarim analitik modeli) |
 | DNK | dezoksiribonuklein kislota |
-| YSQ | yarim susaytirish qatlami (YSQ1 va YSQ2 — birinchi va ikkinchi yarim susaytirish qatlamlari) |
 | IAEA | Atom energiyasi bo‘yicha xalqaro agentlik |
 | ICRU | Radiatsion birliklar va o‘lchovlar bo‘yicha xalqaro komissiya |
 | IEC | Xalqaro elektrotexnika komissiyasi |
+| IM | ishlab chiqilgan model (ushbu ishdagi rentgen spektrining yarim analitik modeli) |
+| KFSh | kislorodning faol shakllari |
 | kVp | kilovolt-pik (rentgen trubkasining cho‘qqi kuchlanishi) |
 | MK | Monte-Karlo (usuli) |
 | NIST | Standartlar va texnologiyalar milliy instituti (AQSh) |
-| KFSh | kislorodning faol shakllari |
 | RT | nur terapiyasi |
 | SER | sensibilizatsiya koeffitsiyenti |
 | TASMIP | interpolyatsion polinomlardan foydalanadigan volfram anodning spektral modeli |
 | TBC | Tucker–Barnes–Chakraborty spektr modeli |
+| YSQ | yarim susaytirish qatlami (YSQ1 va YSQ2 — birinchi va ikkinchi yarim susaytirish qatlamlari) |
+| ZZM | zaryadli zarralar muvozanati |
 | $D$ | yutilgan doza, Gr |
 | $E$ | foton energiyasi, keV |
 | $\bar{E}$ | spektrdagi fotonlarning o‘rtacha energiyasi, keV |

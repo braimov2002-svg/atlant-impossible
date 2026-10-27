@@ -4,7 +4,7 @@
 
 The developed model (DM) is implemented in the Python module `xspec.py`; the fragments are verbatim (energies in keV, lengths in cm). Omitted are the Bethe stopping power (ICRU Report 37 constants [@icru37], no density-effect correction; {{REF:eq:bethe}}, {{REF:eq:fminus}}), the electron depth with the fitted $\eta = 0.40$ ({{REF:eq:csda}}, {{REF:eq:depth}}), the thick-target integral for isotropic emission ({{REF:eq:thick}}), the direct K lines ({{REF:eq:charK}}) and the filtration, fluence and air kerma ({{REF:eq:filter}}, {{REF:eq:fluence}}, {{REF:eq:kerma}}).
 
-`brems_dcs` returns Kramers' cross-section ({{REF:eq:kramers}}) or, by default, the non-relativistic Bethe–Heitler one ({{REF:eq:bhnr}}) with the Elwert factor ({{REF:eq:elwert}}); `sigma_K_gryzinski` is the Gryziński K-shell ionisation cross-section ({{REF:eq:gryz}}) for the overvoltage $U = T/E_K$.
+`brems_dcs` returns Kramers' cross-section ({{REF:eq:kramers}}) or, by default, the non-relativistic Bethe–Heitler one ({{REF:eq:bhnr}}) with the Elwert factor ({{REF:eq:elwert}}); `sigma_K_gryzinski` is the Gryziński K-shell ionisation cross-section ({{REF:eq:gryz}}) for the overvoltage ratio $U_K = T/E_K$ (variable `U`).
 
 ```python
 def brems_dcs(T, k, Z, model='BH-E'):

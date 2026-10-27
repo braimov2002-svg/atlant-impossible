@@ -65,7 +65,7 @@ for L in LANGS:
                ['Beryllium window thickness', '0.5 mm', '0.15–2.0 mm'],
                ['Focus–sample distance (air path)', '10 cm', '–'],
                ['Tube current', '40 mA', '–'],
-               ['Added filters', 'none', 'Al 0.25–6 mm; Ti, Ni, Cu, Mo, Ag, Sn; 54 elements Z = 13–83'],
+               ['Added filters', 'none', 'Al 0.25–6 mm; Ti, Ni, Cu, Mo, Ag, Sn; 43 elements Z = 13–83'],
                ['Energy bin width', '0.05 keV', '–']],
         'ru': [['Напряжение на трубке (постоянное)', '45 кВ', '20–50 кВ (SpekPy), до 80 кВ (модель)'],
                ['Материал анода (мишени)', 'Cu, Z = 29, ρ = 8,96 г/см³', 'W (валидация)'],
@@ -73,7 +73,7 @@ for L in LANGS:
                ['Толщина бериллиевого окна', '0,5 мм', '0,15–2,0 мм'],
                ['Расстояние фокус–образец (воздушный путь)', '10 см', '–'],
                ['Ток трубки', '40 мА', '–'],
-               ['Дополнительные фильтры', 'нет', 'Al 0,25–6 мм; Ti, Ni, Cu, Mo, Ag, Sn; 54 элемента Z = 13–83'],
+               ['Дополнительные фильтры', 'нет', 'Al 0,25–6 мм; Ti, Ni, Cu, Mo, Ag, Sn; 43 элемента Z = 13–83'],
                ['Ширина энергетического интервала', '0,05 кэВ', '–']],
         'uz': [['Trubka kuchlanishi (o‘zgarmas)', '45 kV', '20–50 kV (SpekPy), 80 kV gacha (model)'],
                ['Anod (nishon) materiali', 'Cu, Z = 29, ρ = 8,96 g/sm³', 'W (validatsiya)'],
@@ -81,7 +81,7 @@ for L in LANGS:
                ['Berilliy oyna qalinligi', '0,5 mm', '0,15–2,0 mm'],
                ['Fokus–namuna masofasi (havo yo‘li)', '10 sm', '–'],
                ['Trubka toki', '40 mA', '–'],
-               ['Qo‘shimcha filtrlar', 'yo‘q', 'Al 0,25–6 mm; Ti, Ni, Cu, Mo, Ag, Sn; Z = 13–83 bo‘lgan 54 element'],
+               ['Qo‘shimcha filtrlar', 'yo‘q', 'Al 0,25–6 mm; Ti, Ni, Cu, Mo, Ag, Sn; Z = 13–83 bo‘lgan 43 element'],
                ['Energiya oralig‘i kengligi', '0,05 keV', '–']]}[L]
     T.setdefault('t2_1', {})[L] = (title, table(H, rows))
 

@@ -4,7 +4,7 @@
 
 2. The developed model (DM) is a semi-analytical thick-target model of the copper-anode tube spectrum (Bethe stopping power, non-relativistic Bethe–Heitler cross-section with the Elwert factor, Gryziński K-shell cross-section) that includes closed-form bremsstrahlung-induced K fluorescence (4.5–4.8 % of the line intensity), anode self-absorption and filtration.
 
-3. Its single parameter, the electron depth factor $\eta = 0.40$, was fitted to the SpekPy v2 bremsstrahlung shape at 45 kV (root-mean-square deviation 2.46 %). Without refitting, the DM reproduces the half-value layer (HVL) of 1 mm Al-filtered beams at 25–50 kV and 6–30° anode angles within −3.5 to −4.6 %; it underestimates the Cu K lines by 25–43 % and overestimates the air kerma by 8–42 %, yet its DEFs with Al filters agree with SpekPy within 1–2 %.
+3. Its single parameter, the electron depth factor $\eta = 0.40$, was fitted to the SpekPy v2 bremsstrahlung shape at 45 kV (root-mean-square deviation 2.46 %). Without refitting, the DM reproduces the half-value layer (HVL) of 1 mm Al-filtered beams at 25–50 kV and 6–30° anode angles within −3.5 to −4.6 %; it underestimates the Cu K lines by 25–43 % and overestimates the air kerma by 8–42 %, yet its DEFs with Al filters agree with SpekPy within 2 %.
 
 4. The unfiltered 45 kV spectrum (12° anode, 0.5 mm Be, 10 cm air) is soft (mean energy 10.38 keV, first HVL 0.0478 mm Al), intense (383 mGy/mAs, i.e. 15.3 Gy/s at 40 mA) and dominated by the Cu K lines (68.5 % of photons, against 4.64 % above the Ag K-edge).
 

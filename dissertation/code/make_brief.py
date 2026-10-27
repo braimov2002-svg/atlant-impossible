@@ -85,7 +85,7 @@ A('## DEF (kerma/CPE approximation, surface, ICRU-44 tissue; Table t3_5; Fig. fi
 for r_ in R['DEF_table']:
     A(f"- {r_['label']}: " + ', '.join(f"w={w*100:.1f}%: {r_[f'SP_{w}']}" for w in R['WS']) + f" (DM 1 %: {r_['DM_0.01']}; water as reference medium 1 %: {r_['SPw_0.01']})")
 A('- DEF − 1 is proportional to w: DEF = 1 + w (<mu_en,Ag>/<mu_en,t> − 1), the bracket being the spectrum-averaged ratio; (DEF−1) per 1 % Ag: 0.20 (no filter), 0.38 (Al 0.5), 0.48 (Al 1.0), 0.62 (Al 2.0), 0.80 (Cu 0.2).')
-A('- DM and SpekPy DEFs agree within 0.4 % without filter and within 1–2 % with Al filters (up to 4.6 % for 0.1–0.2 mm Cu, where the K-line deficit of the DM matters).')
+A('- DM and SpekPy DEFs agree within 0.1 % without filter, within 0.5–1.4 % with Al filters and within 2.2 % at most (Cu 0.1–0.2 mm, where the K-line deficit of the DM matters; DEF values, not DEF−1).')
 A('- Energy-resolved analysis (Fig. fig14): without filter the dose integrand is dominated by Cu K lines and 3–15 keV photons where the Ag/tissue ratio is only 21–27; with 1 mm Al the integrand is concentrated at 15–45 keV and ~half of the photons lie above the Ag K-edge.')
 A('')
 A('## Optimisation of filtration (Tables t3_6, t3_7; Figs. fig16, fig17)')
@@ -93,7 +93,7 @@ for TK, lab in [('0.1', '10 %'), ('0.01', '1 %'), ('0.001', '0.1 %')]:
     best = sorted(R['filter_scan'], key=lambda s: -s[f'DEF1_{TK}'])[:4]
     worst = sorted(R['filter_scan'], key=lambda s: s[f'DEF1_{TK}'])[:3]
     A(f"- equal transmission {lab}: best " + ', '.join(f"{s['sym']} {s[f'DEF1_{TK}']} ({s[f't_um_{TK}']} µm)" for s in best) + '; worst ' + ', '.join(f"{s['sym']} {s[f'DEF1_{TK}']}" for s in worst))
-A('- At equal transmission the light/medium-Z absorbers Si, Ca, Sc, Al, Ti are practically equivalent (differences ≤ 0.3 %); of them Al and Ti are the practical materials (Ca, Sc are chemically/technically unsuitable).')
+A('- At equal transmission the light/medium-Z absorbers Si, Ca, Sc, Al, Ti are practically equivalent at 10 % and 1 % transmission (differences ≤ 0.3 %); at 0.1 % transmission Sc/Ca/Ti/V give 1.907 and Al 1.884 (1.2 % lower); of them Al and Ti are the practical materials (Ca, Sc are chemically/technically unsuitable).')
 A('- Conclusion: for a Cu-anode tube, the best filters for Ag dose enhancement are low/medium-Z absorbers without absorption edges in 9–45 keV (Al, Ti) or with K-edges below the Cu Kα energy (Fe, Co: they absorb Cu Kα strongly); K-edge filters with edges between 20 and 30 keV (Mo, Ag, Sn) are the worst at strong filtration because they remove the photons above the Ag K-edge. Practical choice: Al 1–2 mm (or Ti 0.1–0.3 mm).')
 for e_ in R['exposure']:
     A(f"- exposure {e_['label']}: tissue kerma {e_['tissue_kerma_Gy_per_mAs']*1e3:.3g} mGy/mAs, {e_['tissue_kerma_Gy_per_mAs']*40:.3g} Gy/s at 40 mA, time for 2 Gy {e_['time_s_2Gy_40mA']} s")

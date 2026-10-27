@@ -63,7 +63,7 @@ Al bilan filtrlangan dastalar uchun IM SpekPy yordamida hisoblangan yarim susayt
 | $K$ | kerma (kinetic energy released per unit mass), Gy; $K_{\mathrm{air}}$ is the air kerma |
 | $R(E)$, $\langle R\rangle$ | ratio of the $\mu_{en}/\rho$ of silver to that of tissue at energy $E$; its dose-weighted spectral mean |
 | K$\alpha$, K$\beta$ | characteristic lines of the K series (transitions to the K shell from the L shell and from the M and N shells, respectively) |
-| $S(T)$ | collision stopping power of the anode material for an electron of kinetic energy $T$; $S/\rho$ is the mass collision stopping power, MeV cm$^2$/g |
+| $S(T)$ | collision stopping power of the anode material for an electron of kinetic energy $T$; $S/\rho$ is the mass collision stopping power, MeV cm^2^/g |
 | $T$ | kinetic energy of an electron, keV |
 | $T_0$ | initial kinetic energy of the electrons at the anode, $T_0 = eU$ (maximum photon energy), keV |
 | $U$ | tube voltage, kV |
@@ -71,9 +71,9 @@ Al bilan filtrlangan dastalar uchun IM SpekPy yordamida hisoblangan yarim susayt
 | $Z$ | atomic number |
 | $\eta$ | electron depth factor, the single adjustable parameter of the DM |
 | $\theta$ | anode angle (angle between the anode surface and the central ray of the beam) |
-| $\mu$ | linear attenuation coefficient, cm$^{-1}$ |
-| $\mu/\rho$ | mass attenuation coefficient, cm$^2$/g ($\rho$ is the density) |
-| $\mu_{en}/\rho$ | mass energy-absorption coefficient, cm$^2$/g |
+| $\mu$ | linear attenuation coefficient, cm^−1^ |
+| $\mu/\rho$ | mass attenuation coefficient, cm^2^/g ($\rho$ is the density) |
+| $\mu_{en}/\rho$ | mass energy-absorption coefficient, cm^2^/g |
 | $\sigma_K$ | cross-section of K-shell ionisation by electron impact, b |
 | $\Phi(E)$ | spectral photon fluence (photon fluence per unit energy interval) |
 | $\Psi(E)$ | spectral energy fluence, $\Psi(E) = E\,\Phi(E)$ |
@@ -118,13 +118,13 @@ Spectrum models range from empirical [43] and semi-empirical [44, 45] to determi
 
 **Practical significance.** The DM software provides the spectrum, air kerma and beam quality of low-voltage copper-anode tubes for planning radiobiological experiments with silver. For a 45 kV tube, a 1–2 mm aluminium filter (or 0.1–0.3 mm titanium) is recommended; with aluminium, a tissue kerma of 2 Gy at the sample surface (10 cm from the focus, 40 mA) takes about 15–33 s. The CS_Energy function of xraylib 4.3.0 underestimates the mass energy-absorption coefficients of light elements at 15–45 keV by up to 37 % (oxygen at 30 keV), which would overestimate the DEF (1.72 instead of 1.48 for 1 % silver and 1 mm Al), so the NIST tables should be used.
 
-**Reliability of the results.** Reliability rests on evaluated data (NIST photon interaction tables [59], ICRU Report 37 stopping-power parameters [68]) and independent checks. The Bethe formula reproduces the NIST ESTAR collision stopping power of water at 50 keV (6.603 MeV cm$^2$/g) [69], and the DM reproduces the SpekPy HVL for a tungsten anode at 50–100 kV within 6 %. The MC energy-transfer coefficients reproduce the NIST mass energy-absorption coefficients of H, C and O at 20–40 keV within 0.3 %. The sensitivity analysis gives DEF = 1.48 ± 0.02 (coverage factor $k = 1$) for 1 % silver and 1 mm Al.
+**Reliability of the results.** Reliability rests on evaluated data (NIST photon interaction tables [59], ICRU Report 37 stopping-power parameters [68]) and independent checks. The Bethe formula reproduces the NIST ESTAR collision stopping power of water at 50 keV (6.603 MeV cm^2^/g) [69], and the DM reproduces the SpekPy HVL for a tungsten anode at 50–100 kV within 6 %. The MC energy-transfer coefficients reproduce the NIST mass energy-absorption coefficients of H, C and O at 20–40 keV within 0.3 %. The sensitivity analysis gives DEF = 1.48 ± 0.02 (coverage factor $k = 1$) for 1 % silver and 1 mm Al.
 
 **Approbation of the results.** The results were reported at [to be completed by the author: conferences and seminars where the results were reported].
 
 **Publications.** The results are published in [to be completed by the author: list of publications].
 
-**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: 87 pages, 23 figures, 17 tables and 121 references. Chapter 1 reviews the literature, Chapter 2 presents the methods and Chapter 3 the results and their discussion.
+**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: 90 pages, 0 figures, 0 tables and 121 references. Chapter 1 reviews the literature, Chapter 2 presents the methods and Chapter 3 the results and their discussion.
 
 
 # CHAPTER 1. RADIOSENSITIZATION BY HIGH-Z ELEMENTS AND X-RAY SPECTRUM MODELING: LITERATURE REVIEW
@@ -374,7 +374,7 @@ where $n_a = \rho N_A/A$ is the number of atoms per unit volume of the anode, $\
 
 ## 2.4. Characteristic radiation
 
-An electron with an energy above the K-shell binding energy $E_K$ (8.979 keV for copper) can ionise the K shell; the vacancy is filled with the emission either of a characteristic photon, with the probability $\omega_K$ (the fluorescence yield, 0.454 for copper), or of an Auger electron [73, 74]. The DM includes the four strongest lines, K$\alpha_1$ (K–L$_3$, 8.048 keV), K$\alpha_2$ (K–L$_2$, 8.028 keV), K$\beta_1$ (K–M$_3$) and K$\beta_3$ (K–M$_2$), the last two at 8.905 keV, with relative intensities $p_j$ (radiative rates normalised over the four lines) of 0.583, 0.299, 0.078 and 0.040; the copper L lines (below 1 keV) are absorbed in the window. K vacancies arise directly from electron impact and indirectly from the absorption of bremsstrahlung photons above $E_K$. The K-shell ionisation cross-section is given by the binary-encounter formula of Gryziński [57]:
+An electron with an energy above the K-shell binding energy $E_K$ (8.979 keV for copper) can ionise the K shell; the vacancy is filled with the emission either of a characteristic photon, with the probability $\omega_K$ (the fluorescence yield, 0.454 for copper), or of an Auger electron [73, 74]. The DM includes the four strongest lines, K$\alpha_1$ (K–L~3~, 8.048 keV), K$\alpha_2$ (K–L~2~, 8.028 keV), K$\beta_1$ (K–M~3~) and K$\beta_3$ (K–M~2~), the last two at 8.905 keV, with relative intensities $p_j$ (radiative rates normalised over the four lines) of 0.583, 0.299, 0.078 and 0.040; the copper L lines (below 1 keV) are absorbed in the window. K vacancies arise directly from electron impact and indirectly from the absorption of bremsstrahlung photons above $E_K$. The K-shell ionisation cross-section is given by the binary-encounter formula of Gryziński [57]:
 
 $$\sigma_K(T) = \frac{\pi e^{4} n_K}{E_K^{2}}\,\frac{1}{U_K}\left(\frac{U_K - 1}{U_K + 1}\right)^{3/2}\left[1 + \frac{2}{3}\left(1 - \frac{1}{2U_K}\right)\ln\left(2.7 + \sqrt{U_K - 1}\right)\right]$$
 
@@ -455,7 +455,7 @@ $$\Phi(E) = \frac{n_e\,Q}{r^{2}}\,\mathcal{T}(E)\left[N_b(E) + \sum_{j} N_j\,\de
 EQNUM[2.16]
 
 
-where $\Phi(E)$ is the number of photons per unit area and per unit energy interval (cm$^{-2}$ keV$^{-1}$), $Q$ the exposure in mAs, $n_e = 6.242\times10^{15}$ the number of electrons per mAs, $N_j$ the total yield of line $j$, and $\delta$ the Dirac delta function. Numerically, each delta function is replaced by $N_j/\Delta E$ in the bin of width $\Delta E$ = 0.05 keV that contains $E_j$. With the spectral energy fluence $\Psi(E) = E\,\Phi(E)$, the output of the tube is characterised by the air kerma [62, 76]:
+where $\Phi(E)$ is the number of photons per unit area and per unit energy interval (cm^−2^ keV^−1^), $Q$ the exposure in mAs, $n_e = 6.242\times10^{15}$ the number of electrons per mAs, $N_j$ the total yield of line $j$, and $\delta$ the Dirac delta function. Numerically, each delta function is replaced by $N_j/\Delta E$ in the bin of width $\Delta E$ = 0.05 keV that contains $E_j$. With the spectral energy fluence $\Psi(E) = E\,\Phi(E)$, the output of the tube is characterised by the air kerma [62, 76]:
 
 $$K_{\mathrm{air}} = \int_{0}^{T_0} \Phi(E)\,E\left(\frac{\mu_{en}}{\rho}\right)_{\mathrm{air}}\mathrm{d}E$$
 
@@ -910,7 +910,7 @@ $$t_D = \frac{D}{c\,I\int_{0}^{T_0} \Phi(E)\,E\,\left(\mu_{en}/\rho\right)_t\,\m
 EQNUM[3.3]
 
 
-where $D$ = 2 Gy, $I$ = 40 mA, $\Phi(E)$ is the fluence spectrum per unit tube charge at 10 cm (cm$^{-2}$ keV$^{-1}$ mAs$^{-1}$), $(\mu_{en}/\rho)_t$ refers to ICRU-44 tissue and $c = 1.602 \times 10^{-13}$ Gy g keV$^{-1}$ converts keV/g into Gy; under CPE this kerma equals the absorbed dose at the surface, without backscatter (Section 2.5). Without a filter 2 Gy are delivered in 0.12 s, which is difficult to time reproducibly, whereas 1 mm and 2 mm Al need 14.6 and 32.5 s. The 0.2 mm Cu filter owes the highest DEF of the studied set (1.80) only to its very strong attenuation (at an equal transmission of 0.1 %, Cu gives 1.74, Al and Ti 1.88–1.91); it needs 158.4 s, and its DEF changes steeply with thickness (Fig. 3.12), which makes it sensitive to tolerances.
+where $D$ = 2 Gy, $I$ = 40 mA, $\Phi(E)$ is the fluence spectrum per unit tube charge at 10 cm (cm^−2^ keV^−1^ mAs^−1^), $(\mu_{en}/\rho)_t$ refers to ICRU-44 tissue and $c = 1.602 \times 10^{-13}$ Gy g keV^−1^ converts keV/g into Gy; under CPE this kerma equals the absorbed dose at the surface, without backscatter (Section 2.5). Without a filter 2 Gy are delivered in 0.12 s, which is difficult to time reproducibly, whereas 1 mm and 2 mm Al need 14.6 and 32.5 s. The 0.2 mm Cu filter owes the highest DEF of the studied set (1.80) only to its very strong attenuation (at an equal transmission of 0.1 %, Cu gives 1.74, Al and Ti 1.88–1.91); it needs 158.4 s, and its DEF changes steeply with thickness (Fig. 3.12), which makes it sensitive to tolerances.
 
 
 

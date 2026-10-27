@@ -165,6 +165,9 @@ def preprocess(lang, text, order, counts):
         title, body = raw[0], '\n'.join(raw[2:])
         return f'\n\nTable: {labels["__cap_" + tid]}{title}\n\n{body}\n\n'
     text = re.sub(r'\{\{TABLE:([\w]+)\}\}', tab_sub, text)
+    # superscripts/subscripts written without a base (cm$^{-1}$, H$_2$O) -> native Word super/subscript
+    text = re.sub(r'\$\^\{?([-−+]?\d+)\}?\$', lambda m: '^' + m.group(1).replace('-', '−') + '^', text)
+    text = re.sub(r'\$_\{?(\d+)\}?\$', r'~\1~', text)
     text = re.sub(r'^Table:\s*\{#tab:abbrev\}.*$', '', text, flags=re.M)
     text = re.sub(r'^Table:\s*\{#(tab:[\w]+)\}\s*',
                   lambda m: 'Table: ' + labels.get('__cap_' + m.group(1), ''), text, flags=re.M)
@@ -552,6 +555,30 @@ def fix_math(doc):
             b = OxmlElement('m:begChr'); b.set(qn('m:val'), '('); dpr.insert(0, b)
         if dpr.find('{%s}endChr' % M) is None:
             e = OxmlElement('m:endChr'); e.set(qn('m:val'), ')'); dpr.append(e)
+    # simple bracketed content gets ordinary (non-stretchy) parentheses, which LibreOffice draws too thin otherwise
+    tall = {'{%s}%s' % (M, t) for t in ('f', 'nary', 'rad', 'm', 'eqArr', 'limLow', 'limUpp', 'd')}
+    for d in list(body.iter('{%s}d' % M)):
+        dpr = d.find('{%s}dPr' % M)
+        es = d.findall('{%s}e' % M)
+        if len(es) != 1:
+            continue
+        if any(x.tag in tall for x in es[0].iter()):
+            continue
+        beg = dpr.find('{%s}begChr' % M).get(qn('m:val'))
+        end = dpr.find('{%s}endChr' % M).get(qn('m:val'))
+        parent, idx = d.getparent(), d.getparent().index(d)
+
+        def mrun(ch):
+            r = OxmlElement('m:r')
+            t = OxmlElement('m:t')
+            t.text = ch
+            r.append(t)
+            return r
+        new = [mrun(beg)] + list(es[0]) + [mrun(end)]
+        new = [x for x in new if x.tag not in ('{%s}ctrlPr' % M, '{%s}argPr' % M)]
+        parent.remove(d)
+        for k, x in enumerate(new):
+            parent.insert(idx + k, x)
     for mp in body.iter('{%s}oMathPara' % M):
         ppr = mp.find('{%s}oMathParaPr' % M)
         if ppr is None:

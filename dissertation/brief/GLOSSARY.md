@@ -104,4 +104,4 @@ comma, "кэВ", "кВ", "мм", "см", "мкм", "Гр", "мГр", "мА·с".
 | standard error | стандартная ошибка | standart xatolik |
 | Ag-loaded (region, tissue) | содержащий серебро (область, ткань) | Ag kiritilgan (soha, to‘qima) |
 | scale (nanoscale, macroscopic scale) | масштаб (наномасштабный, макроскопический масштаб) | miqyos (nanomiqyosdagi, makroskopik miqyos) |
-| author names in running text | латиницей, как в оригинале, с «и др.» (Poludniowski и др.); эпонимы теорий и формул — по-русски (формула Крамерса) | lotin yozuvida, asl holida (Poludniowski va boshq.) |
+| author names in running text | латиницей, как в оригинале, с «и др.» (Poludniowski и др.); эпонимы теорий и формул — по-русски (формула Крамерса) | lotin yozuvida, asl holida, “et al.” = “va hammualliflar” (Poludniowski va hammualliflar) |

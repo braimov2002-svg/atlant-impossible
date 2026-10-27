@@ -357,10 +357,11 @@ BASE = (('Al', 1.0),)
 def def_sp(kvp=KVP, th=THETA, be_mm=BE_MM, filters=BASE, w=0.01, tissue=TISSUE, scale_ag=1.0, scale_t=1.0):
     s = spek(kvp=kvp, th=th, be_mm=be_mm, filters=filters)
     k, f = s.get_spectrum()
+    # a change of the tissue coefficients acts on both doses (numerator and reference)
     mt = mass_coeff(tissue, k, 'muen') * scale_t
     ma = mass_coeff(47, k, 'muen') * scale_ag
     psi = f * k
-    return (psi * ((1 - w) * mt + w * ma)).sum() / (psi * mass_coeff(tissue, k, 'muen')).sum()
+    return (psi * ((1 - w) * mt + w * ma)).sum() / (psi * mt).sum()
 
 
 d0 = def_sp()
@@ -371,7 +372,7 @@ for name, lo, hi in [
         ('Be window ±0.1 mm', def_sp(be_mm=0.4), def_sp(be_mm=0.6)),
         ('Al filter ±5%', def_sp(filters=(('Al', 0.95),)), def_sp(filters=(('Al', 1.05),))),
         ('mu_en/rho Ag ±2%', def_sp(scale_ag=0.98), def_sp(scale_ag=1.02)),
-        ('mu_en/rho tissue ±1%', def_sp(scale_t=1.01), def_sp(scale_t=0.99)),
+        ('mu_en/rho tissue ±1%', def_sp(scale_t=0.99), def_sp(scale_t=1.01)),
         ('tissue composition (ICRU 4-component / water)', def_sp(tissue=TISSUE4), def_sp(tissue=WATER)),
 ]:
     sens.append(dict(name=name, low=r(lo, 4), high=r(hi, 4), delta=r(max(abs(lo - d0), abs(hi - d0)), 4)))

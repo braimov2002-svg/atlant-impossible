@@ -24,15 +24,15 @@ Table: {#tab:abbrev} Qisqartmalar va belgilar.
 | $D$ | yutilgan doza, Gr |
 | $E$ | foton energiyasi, keV |
 | $\bar{E}$ | spektrdagi fotonlarning o‘rtacha energiyasi, keV |
-| $E_K$ | K-qobiqdagi bog‘lanish energiyasi (K yutilish chegarasining energiyasi), keV |
+| $E_K$ | K-qobiqning bog‘lanish energiyasi (K yutilish chegarasining energiyasi), keV |
 | $K$ | kerma (massa birligida ajralgan kinetik energiya), Gr; $K_{\mathrm{air}}$ — havodagi kerma |
-| K$\alpha$, K$\beta$ | K seriyasining xarakteristik chiziqlari (mos ravishda L qobiqdan hamda M va N qobiqlardan K qobiqqa o‘tishlar) |
+| K$\alpha$, K$\beta$ | K seriyasining xarakteristik chiziqlari (mos ravishda L-qobiqdan hamda M- va N-qobiqlardan K-qobiqqa o‘tishlar) |
 | $S(T)$ | kinetik energiyasi $T$ bo‘lgan elektron uchun anod materialining ionizatsion tormozlanish qobiliyati; $S/\rho$ — massaviy ionizatsion tormozlanish qobiliyati, MeV sm$^2$/g |
 | $T$ | elektronning kinetik energiyasi, keV |
 | $U$ | trubka kuchlanishi, kV |
 | $w$ | to‘qimadagi kumushning (yoki boshqa yuqori Z li elementning) massa ulushi |
 | $Z$ | atom raqami |
-| $\eta$ | elektronlarning chuqurlik koeffitsiyenti, IM ning yagona moslashtiriladigan parametri |
+| $\eta$ | elektronlarning chuqurlik koeffitsiyenti, IMning yagona moslashtiriladigan parametri |
 | $\theta$ | anod burchagi (anod sirti bilan dastaning markaziy nuri orasidagi burchak) |
 | $\mu$ | chiziqli susayish koeffitsiyenti, sm$^{-1}$ |
 | $\mu/\rho$ | massaviy susayish koeffitsiyenti, sm$^2$/g ($\rho$ — zichlik) |

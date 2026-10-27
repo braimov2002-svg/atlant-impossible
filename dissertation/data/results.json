@@ -2705,9 +2705,9 @@
    },
    {
     "name": "mu_en/rho tissue \u00b11%",
-    "low": 1.4918,
-    "high": 1.472,
-    "delta": 0.0099
+    "low": 1.4869,
+    "high": 1.4771,
+    "delta": 0.005
    },
    {
     "name": "tissue composition (ICRU 4-component / water)",
@@ -2729,7 +2729,7 @@
     "delta": 0.0066
    }
   ],
-  "combined_u": 0.0165
+  "combined_u": 0.0157
  },
  "exposure": [
   {

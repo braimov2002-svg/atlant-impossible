@@ -90,3 +90,9 @@ comma, "кэВ", "кВ", "мм", "см", "мкм", "Гр", "мГр", "мА·с".
 | LIST OF ABBREVIATIONS AND SYMBOLS | СПИСОК СОКРАЩЕНИЙ И ОБОЗНАЧЕНИЙ | QISQARTMALAR VA BELGILAR RO‘YXATI |
 | INTRODUCTION | ВВЕДЕНИЕ | KIRISH |
 | Keywords | Ключевые слова | Kalit so‘zlar |
+| x-ray diffraction (XRD) | рентгеноструктурный анализ (РСА) | rentgen-struktur tahlili (RST) |
+| electron depth factor η | коэффициент глубины проникновения электронов η | elektronlarning chuqurlik koeffitsiyenti η |
+| ionising radiation | ионизирующее излучение | ionlashtiruvchi nurlanish |
+| anticancer | противоопухолевый (о лечении рака) | saratonga qarshi |
+| Kramers, Bethe–Heitler, Elwert, Gryzinski, Birch–Marshall (in running text) | Крамерс, Бете–Гайтлер, Эльверт, Гризинский, Бёрч–Маршалл (склоняются) | Kramers, Bete–Gaytler, Elvert, Grizinskiy, Birch–Marshall |
+| Monte Carlo code names (EGSnrc, Geant4, PENELOPE, MCNP) | без перевода | tarjimasiz |

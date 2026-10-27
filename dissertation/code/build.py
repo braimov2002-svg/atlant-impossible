@@ -555,6 +555,26 @@ def fix_math(doc):
             b = OxmlElement('m:begChr'); b.set(qn('m:val'), '('); dpr.insert(0, b)
         if dpr.find('{%s}endChr' % M) is None:
             e = OxmlElement('m:endChr'); e.set(qn('m:val'), ')'); dpr.append(e)
+    # upright words (\mathrm{DEF}, \mathrm{Ag}, function names) come as one-letter runs; merge them and mark them as
+    # normal text, otherwise LibreOffice sets them in italics with letter spacing
+    def upright_letters(r):
+        rpr, t = r.find('{%s}rPr' % M), r.find('{%s}t' % M)
+        sty = rpr.find('{%s}sty' % M) if rpr is not None else None
+        return t is not None and sty is not None and sty.get(qn('m:val')) == 'p' and re.fullmatch(r'[^\W\d_]+', t.text or '')
+    for r in list(body.iter('{%s}r' % M)):
+        if r.getparent() is None or not upright_letters(r):
+            continue
+        t = r.find('{%s}t' % M)
+        nxt = r.getnext()
+        while nxt is not None and nxt.tag == '{%s}r' % M and upright_letters(nxt):
+            t.text += nxt.find('{%s}t' % M).text
+            after = nxt.getnext()
+            nxt.getparent().remove(nxt)
+            nxt = after
+        rpr = r.find('{%s}rPr' % M)
+        sty = rpr.find('{%s}sty' % M)       # m:nor and m:sty are alternatives in the schema
+        sty.addprevious(OxmlElement('m:nor'))
+        rpr.remove(sty)
     # simple bracketed content gets ordinary (non-stretchy) parentheses, which LibreOffice draws too thin otherwise
     tall = {'{%s}%s' % (M, t) for t in ('f', 'nary', 'rad', 'm', 'eqArr', 'limLow', 'limUpp', 'd')}
     for d in list(body.iter('{%s}d' % M)):

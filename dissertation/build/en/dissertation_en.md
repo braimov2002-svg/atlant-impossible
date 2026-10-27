@@ -124,7 +124,7 @@ Spectrum models range from empirical [43] and semi-empirical [44, 45] to determi
 
 **Publications.** The results are published in [to be completed by the author: list of publications].
 
-**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: 90 pages, 0 figures, 0 tables and 121 references. Chapter 1 reviews the literature, Chapter 2 presents the methods and Chapter 3 the results and discussion.
+**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: 84 pages, 23 figures, 17 tables and 121 references. Chapter 1 reviews the literature, Chapter 2 presents the methods and Chapter 3 the results and discussion.
 
 
 # CHAPTER 1. RADIOSENSITIZATION BY HIGH-Z ELEMENTS AND X-RAY SPECTRUM MODELING: LITERATURE REVIEW

@@ -23,7 +23,7 @@ Al bilan filtrlangan dastalar uchun IM SpekPy yordamida hisoblangan yarim susayt
 ::: {custom-style="Annotation"}
 The effectiveness of anticancer radiotherapy is still limited by the tolerance of healthy tissues, and one strategy to optimise the dose delivered in external radiotherapy is the use of radiosensitizers. This work studies the radio-enhancement effect of silver (Ag) in biological matter irradiated with kilovoltage x-rays and quantifies it by the dose enhancement factor (DEF). The spectrum of a 45 kV copper-anode x-ray tube needed for the DEF calculations is modelled as a function of the tube design, technical parameters and filters. To this end, a semi-analytical thick-target model with one fitted parameter, the developed model (DM), was created and validated against SpekPy v2. The DEF was calculated in the kerma approximation with NIST mass energy-absorption coefficients and verified by Monte Carlo photon transport.
 
-For Al-filtered beams, the DM reproduces the SpekPy half-value layer within 5 % and the DEF within 2 %. The unfiltered spectrum is dominated by the Cu K lines at 8.0–8.9 keV (68.5 % of the photons), so the DEF for 1 % Ag by mass is only 1.20 and remains within 1.19–1.21 when the anode angle, tube voltage or beryllium window is changed. Added filtration is the decisive parameter: 1 mm Al raises the DEF to 1.48 ± 0.02 (k = 1), 2 mm Al to 1.62 and 0.2 mm Cu to 1.80, while the air kerma decreases 120–1300-fold. At equal transmission, light and medium-Z filters (Al, Ti) are optimal, whereas filters with K-edges at 20–30 keV (Mo, Ag, Sn) are the least effective at strong filtration. The DEF increases with depth (beam hardening) and decreases inside a heavily loaded region (self-shielding); Monte Carlo calculations confirm these values within 1–10 %. Per unit mass, Ag is a weaker physical sensitizer than Au, Pt, Bi or Gd and is comparable to iodine. The xraylib 4.3.0 energy-absorption data for light elements were found to be up to 37 % too low, which would overestimate the DEF. The results support the choice of filtration and exposure conditions for experiments with Ag-containing radiosensitizers.
+For beams filtered with 1 mm Al, the DM reproduces the SpekPy half-value layer within 5 %, and with Al filters the DEF within 2 %. The unfiltered spectrum is dominated by the Cu K lines at 8.0–8.9 keV (68.5 % of the photons), so the DEF for 1 % Ag by mass is only 1.20 and remains within 1.19–1.21 when the anode angle, tube voltage or beryllium window is changed. Added filtration is the decisive parameter: 1 mm Al raises the DEF to 1.48 ± 0.02 (k = 1), 2 mm Al to 1.62 and 0.2 mm Cu to 1.80, while the air kerma decreases 120–1300-fold. At equal transmission, light and medium-Z filters (Al, Ti) are optimal, whereas filters with K-edges at 20–30 keV (Mo, Ag, Sn) are the least effective at strong filtration. The DEF increases with depth (beam hardening) and decreases inside a heavily loaded region (self-shielding); Monte Carlo calculations confirm these values within 1–10 %. Per unit mass, Ag is a weaker physical sensitizer than Au, Pt, Bi or Gd and is comparable to iodine. The xraylib 4.3.0 energy-absorption data for light elements were found to be up to 56 % too low, which would overestimate the DEF. The results support the choice of filtration and exposure conditions for experiments with Ag-containing radiosensitizers.
 
 **Keywords:** x-ray tube spectrum; copper anode; bremsstrahlung; characteristic radiation; filtration; silver; radiosensitization; dose enhancement factor; kilovoltage x-rays; Monte Carlo method.
 :::
@@ -124,7 +124,7 @@ For Al-filtered beams, the DM reproduces the SpekPy half-value layer within 5 % 
 
 **Публикации.** Результаты опубликованы в [заполняется автором: список публикаций].
 
-**Структура и объём диссертации.** Диссертация включает аннотации, список сокращений, введение, три главы, заключение, список литературы и приложения; она изложена на 101 с., содержит 23 рис. и 17 табл., число источников в списке литературы — 121. В главе 1 представлен обзор литературы, в главе 2 — методы, а в главе 3 — результаты и их обсуждение.
+**Структура и объём диссертации.** Диссертация включает аннотации, список сокращений, введение, три главы, заключение, список литературы и приложения; она изложена на 90 с., содержит 0 рис. и 0 табл., число источников в списке литературы — 121. В главе 1 представлен обзор литературы, в главе 2 — методы, а в главе 3 — результаты и их обсуждение.
 
 
 # ГЛАВА 1. РАДИОСЕНСИБИЛИЗАЦИЯ ЭЛЕМЕНТАМИ С ВЫСОКИМ АТОМНЫМ НОМЕРОМ И МОДЕЛИРОВАНИЕ СПЕКТРА РЕНТГЕНОВСКОГО ИЗЛУЧЕНИЯ: ОБЗОР ЛИТЕРАТУРЫ
@@ -179,7 +179,7 @@ EQNUM[1.4]
 
 
 
-![Рис. 1.1. Массовые коэффициенты ослабления (сплошные линии) и поглощения энергии (штриховые линии) серебра и мягкой ткани МКРЕ-44 в диапазоне 1–50 кэВ (данные NIST). Вертикальная штриховая линия отмечает K-край Ag при 25,51 кэВ; стрелка указывает края L-подоболочек Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig02_coeffs.png){width=13.5cm}
+![Рис. 1.1. Массовые коэффициенты ослабления (сплошные линии) и поглощения энергии (штриховые линии) серебра и мягкой ткани МКРЕ-44 в диапазоне 1–50 кэВ (данные NIST). Вертикальная штриховая линия отмечает K-край Ag при 25,51 кэВ; стрелка указывает края L-подоболочек Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig02_coeffs.png){width=12.5cm}
 
 
 
@@ -201,7 +201,7 @@ Spiers впервые проанализировал, как повышенно�
 
 
 
-![Рис. 1.2. Отношение массовых коэффициентов поглощения энергии Ag, I, Gd, Pt, Au и Bi к соответствующему коэффициенту мягкой ткани МКРЕ-44 в диапазоне 5–45 кэВ (данные NIST). Вертикальная штриховая линия отмечает K-край Ag при 25,51 кэВ.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig03_ratio.png){width=13.5cm}
+![Рис. 1.2. Отношение массовых коэффициентов поглощения энергии Ag, I, Gd, Pt, Au и Bi к соответствующему коэффициенту мягкой ткани МКРЕ-44 в диапазоне 5–45 кэВ (данные NIST). Вертикальная штриховая линия отмечает K-край Ag при 25,51 кэВ.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig03_ratio.png){width=12.5cm}
 
 
 
@@ -277,7 +277,7 @@ Table: Таблица 1.2. Сравнение подходов к моделир
 
 
 
-![Рис. 2.1. Принципиальная схема моделируемой трубки с отражательной мишенью и медным анодом и геометрии облучения: фотоны, испускаемые вдоль центрального луча под углом анода θ, проходят через бериллиевое окно, дополнительный фильтр и воздушный промежуток (расстояние фокус–образец d, в тексте обозначаемое r) к образцу ткани, содержащей Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig01_tube.png){width=13.5cm}
+![Рис. 2.1. Принципиальная схема моделируемой трубки с отражательной мишенью и медным анодом и геометрии облучения: фотоны, испускаемые вдоль центрального луча под углом анода θ, проходят через бериллиевое окно, дополнительный фильтр и воздушный промежуток (расстояние фокус–образец d, в тексте обозначаемое r) к образцу ткани, содержащей Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig01_tube.png){width=12.5cm}
 
 
 
@@ -334,7 +334,7 @@ EQNUM[2.4]
 
 
 
-![Рис. 2.2. Замедление электронов и ионизация K-оболочки в медном аноде: (a) ионизационная тормозная способность по Бете (сплошная линия, левая ось) и глубина проникновения, на которой электрон с начальной энергией 45 кэВ замедлился до энергии T, при η = 0,40 и θ = 12° (штриховая линия, правая ось); (b) сечение ионизации K-оболочки меди по Гризинскому.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig04_electron.png){width=13.5cm}
+![Рис. 2.2. Замедление электронов и ионизация K-оболочки в медном аноде: (a) ионизационная тормозная способность по Бете (сплошная линия, левая ось) и глубина проникновения, на которой электрон с начальной энергией 45 кэВ замедлился до энергии T, при η = 0,40 и θ = 12° (штриховая линия, правая ось); (b) сечение ионизации K-оболочки меди по Гризинскому.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig04_electron.png){width=12.5cm}
 
 
 
@@ -655,7 +655,7 @@ Table: Таблица 3.1. Сравнение разработанной мод�
 
 
 
-![Рис. 3.1. Спектры трубки с медным анодом при 45 кВ (базовая геометрия), рассчитанные по SpekPy v2 и по разработанной модели, без дополнительной фильтрации (слева) и с фильтром 1,0 мм Al (справа), нормированные на одинаковую площадь тормозного излучения выше 9,6 кэВ; на нижних панелях — их отношение.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig05_validation_cu.png){width=13.5cm}
+![Рис. 3.1. Спектры трубки с медным анодом при 45 кВ (базовая геометрия), рассчитанные по SpekPy v2 и по разработанной модели, без дополнительной фильтрации (слева) и с фильтром 1,0 мм Al (справа), нормированные на одинаковую площадь тормозного излучения выше 9,6 кэВ; на нижних панелях — их отношение.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig05_validation_cu.png){width=12.5cm}
 
 
 
@@ -675,7 +675,7 @@ Table: Таблица 3.2. Проверка модели для W-анода (θ
 
 
 
-![Рис. 3.2. Спектры трубки с вольфрамовым анодом (θ = 12°, 2,5 мм Al) при 50, 80 и 100 кВ, рассчитанные по SpekPy v2 (сплошные линии) и по разработанной модели (штриховые линии, η = 0,40), нормированные на одинаковую площадь.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig06_validation_w.png){width=13.5cm}
+![Рис. 3.2. Спектры трубки с вольфрамовым анодом (θ = 12°, 2,5 мм Al) при 50, 80 и 100 кВ, рассчитанные по SpekPy v2 (сплошные линии) и по разработанной модели (штриховые линии, η = 0,40), нормированные на одинаковую площадь.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig06_validation_w.png){width=12.5cm}
 
 
 
@@ -685,7 +685,7 @@ Table: Таблица 3.2. Проверка модели для W-анода (θ
 
 
 
-![Рис. 3.3. Спектр трубки с медным анодом при 45 кВ (θ = 12°, 0,5 мм Be, 10 см воздуха), рассчитанный по SpekPy v2 и по разработанной модели. Штриховая линия отмечает K-край Ag (25,514 кэВ).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig07_baseline.png){width=13.5cm}
+![Рис. 3.3. Спектр трубки с медным анодом при 45 кВ (θ = 12°, 0,5 мм Be, 10 см воздуха), рассчитанный по SpekPy v2 и по разработанной модели. Штриховая линия отмечает K-край Ag (25,514 кэВ).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig07_baseline.png){width=12.5cm}
 
 
 
@@ -721,7 +721,7 @@ Table: Таблица 3.3. Характеристические K-линии Cu 
 
 
 
-![Рис. 3.4. Влияние угла анода (6–30°) на спектр трубки с медным анодом при 45 кВ (0,5 мм Be, 10 см воздуха; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig08_angle.png){width=13.5cm}
+![Рис. 3.4. Влияние угла анода (6–30°) на спектр трубки с медным анодом при 45 кВ (0,5 мм Be, 10 см воздуха; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig08_angle.png){width=12.5cm}
 
 
 
@@ -729,7 +729,7 @@ Table: Таблица 3.3. Характеристические K-линии Cu 
 
 
 
-![Рис. 3.5. Спектры трубки с медным анодом при напряжениях на трубке 25–50 кВ (базовая геометрия; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig09_kvp.png){width=13.5cm}
+![Рис. 3.5. Спектры трубки с медным анодом при напряжениях на трубке 25–50 кВ (базовая геометрия; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig09_kvp.png){width=12.5cm}
 
 
 
@@ -737,7 +737,7 @@ Table: Таблица 3.3. Характеристические K-линии Cu 
 
 
 
-![Рис. 3.6. Влияние толщины бериллиевого окна (0,15–2,0 мм) на низкоэнергетическую часть спектра трубки с медным анодом при 45 кВ (θ = 12°, 10 см воздуха; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig10_be.png){width=13.5cm}
+![Рис. 3.6. Влияние толщины бериллиевого окна (0,15–2,0 мм) на низкоэнергетическую часть спектра трубки с медным анодом при 45 кВ (θ = 12°, 10 см воздуха; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig10_be.png){width=12.5cm}
 
 
 
@@ -769,7 +769,7 @@ Table: Таблица 3.4. Влияние конструктивных пара�
 
 
 
-![Рис. 3.7. Спектры трубки с медным анодом при 45 кВ с дополнительными фильтрами Al толщиной 0,25–2,0 мм (базовая геометрия; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig11_al.png){width=13.5cm}
+![Рис. 3.7. Спектры трубки с медным анодом при 45 кВ с дополнительными фильтрами Al толщиной 0,25–2,0 мм (базовая геометрия; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig11_al.png){width=12.5cm}
 
 
 
@@ -777,7 +777,7 @@ Table: Таблица 3.4. Влияние конструктивных пара�
 
 
 
-![Рис. 3.8. Спектры трубки с медным анодом при 45 кВ с фильтром Ni толщиной 0,02 мм и с фильтрами Cu толщиной 0,05–0,2 мм (базовая геометрия; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig12_cu_ni.png){width=13.5cm}
+![Рис. 3.8. Спектры трубки с медным анодом при 45 кВ с фильтром Ni толщиной 0,02 мм и с фильтрами Cu толщиной 0,05–0,2 мм (базовая геометрия; SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig12_cu_ni.png){width=12.5cm}
 
 
 
@@ -785,7 +785,7 @@ Table: Таблица 3.4. Влияние конструктивных пара�
 
 
 
-![Рис. 3.9. Спектры трубки с медным анодом при 45 кВ с фильтрами Mo 0,05 мм, Ag 0,05 мм и Sn 0,05 и 0,1 мм в сравнении со спектром с фильтром 1,0 мм Al, отнесённые к максимуму спектра с фильтром Al (SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig13_kedge.png){width=13.5cm}
+![Рис. 3.9. Спектры трубки с медным анодом при 45 кВ с фильтрами Mo 0,05 мм, Ag 0,05 мм и Sn 0,05 и 0,1 мм в сравнении со спектром с фильтром 1,0 мм Al, отнесённые к максимуму спектра с фильтром Al (SpekPy v2). Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig13_kedge.png){width=12.5cm}
 
 
 
@@ -818,7 +818,7 @@ Table: Таблица 3.5. Параметры качества пучка, от�
 
 
 
-![Рис. 3.10. Подынтегральная функция дозы $E\,\Phi(E)\,\mu_{en}/\rho$ для мягкой ткани МКРЕ-44 (закрашенная область) и ткани с 1 % Ag (линия) без фильтрации (слева) и с фильтром 1,0 мм Al (справа); трубка с медным анодом при 45 кВ, SpekPy v2. Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig14_integrand.png){width=13.5cm}
+![Рис. 3.10. Подынтегральная функция дозы $E\,\Phi(E)\,\mu_{en}/\rho$ для мягкой ткани МКРЕ-44 (закрашенная область) и ткани с 1 % Ag (линия) без фильтрации (слева) и с фильтром 1,0 мм Al (справа); трубка с медным анодом при 45 кВ, SpekPy v2. Штриховая линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig14_integrand.png){width=12.5cm}
 
 
 
@@ -826,7 +826,7 @@ Table: Таблица 3.5. Параметры качества пучка, от�
 
 
 
-![Рис. 3.11. Зависимость коэффициента усиления дозы для мягкой ткани МКРЕ-44 от массовой доли Ag при различных дополнительных фильтрах (спектры SpekPy v2, приближение кермы на поверхности).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig15_def_conc.png){width=13.5cm}
+![Рис. 3.11. Зависимость коэффициента усиления дозы для мягкой ткани МКРЕ-44 от массовой доли Ag при различных дополнительных фильтрах (спектры SpekPy v2, приближение кермы на поверхности).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig15_def_conc.png){width=12.5cm}
 
 
 
@@ -861,7 +861,7 @@ Table: Таблица 3.6. Коэффициент усиления дозы мя
 
 
 
-![Рис. 3.12. Зависимость коэффициента усиления дозы для 1 % Ag от относительной воздушной кермы для фильтров из Al, Ti, Ni, Cu, Mo, Ag и Sn возрастающей толщины (трубка с медным анодом при 45 кВ, базовая геометрия; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig16_tradeoff.png){width=13.5cm}
+![Рис. 3.12. Зависимость коэффициента усиления дозы для 1 % Ag от относительной воздушной кермы для фильтров из Al, Ti, Ni, Cu, Mo, Ag и Sn возрастающей толщины (трубка с медным анодом при 45 кВ, базовая геометрия; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig16_tradeoff.png){width=12.5cm}
 
 
 
@@ -878,7 +878,7 @@ EQNUM[3.2]
 
 
 
-![Рис. 3.13. Коэффициент усиления дозы для 1 % Ag с фильтрами из элементов с Z = 13–83, толщина которых обеспечивает одинаковое пропускание по воздушной керме 10 %, 1 % и 0,1 % (трубка с медным анодом при 45 кВ, базовая геометрия; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig17_filter_scan.png){width=13.5cm}
+![Рис. 3.13. Коэффициент усиления дозы для 1 % Ag с фильтрами из элементов с Z = 13–83, толщина которых обеспечивает одинаковое пропускание по воздушной керме 10 %, 1 % и 0,1 % (трубка с медным анодом при 45 кВ, базовая геометрия; SpekPy v2).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig17_filter_scan.png){width=12.5cm}
 
 
 
@@ -938,7 +938,7 @@ Table: Таблица 3.8. Мощность кермы в ткани на пов
 
 
 
-![Рис. 3.14. Зависимость коэффициента усиления дозы для 1 % Ag от глубины расположения области, содержащей серебро, в мягкой ткани без серебра для нефильтрованного пучка при 45 кВ и с четырьмя дополнительными фильтрами (SpekPy, первичный пучок, приближение кермы).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig18_def_depth.png){width=13.5cm}
+![Рис. 3.14. Зависимость коэффициента усиления дозы для 1 % Ag от глубины расположения области, содержащей серебро, в мягкой ткани без серебра для нефильтрованного пучка при 45 кВ и с четырьмя дополнительными фильтрами (SpekPy, первичный пучок, приближение кермы).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig18_def_depth.png){width=12.5cm}
 
 
 
@@ -967,7 +967,7 @@ Cu и Sn — крайние случаи. Пучок, отфильтрованн
 
 
 
-![Рис. 3.15. Зависимость коэффициента усиления дозы от глубины внутри области, равномерно содержащей серебро и начинающейся от поверхности: 0,5; 1,0 и 2,0 % Ag, фильтры Al 1,0 мм (сплошные линии) и Sn 0,1 мм (штриховые линии), самоэкранирование учтено.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig19_def_slab.png){width=13.5cm}
+![Рис. 3.15. Зависимость коэффициента усиления дозы от глубины внутри области, равномерно содержащей серебро и начинающейся от поверхности: 0,5; 1,0 и 2,0 % Ag, фильтры Al 1,0 мм (сплошные линии) и Sn 0,1 мм (штриховые линии), самоэкранирование учтено.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig19_def_slab.png){width=12.5cm}
 
 
 
@@ -977,7 +977,7 @@ Cu и Sn — крайние случаи. Пучок, отфильтрованн
 
 
 
-![Рис. 3.16. Зависимость коэффициента усиления дозы для 1 % Ag от напряжения на трубке (фильтры Al 0,5 и 1,0 мм): SpekPy v2 для 20–50 кВ (сплошные линии) и разработанная модель для 60–80 кВ (штриховые линии); вертикальная линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig20_def_kvp.png){width=13.5cm}
+![Рис. 3.16. Зависимость коэффициента усиления дозы для 1 % Ag от напряжения на трубке (фильтры Al 0,5 и 1,0 мм): SpekPy v2 для 20–50 кВ (сплошные линии) и разработанная модель для 60–80 кВ (штриховые линии); вертикальная линия отмечает K-край Ag.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig20_def_kvp.png){width=12.5cm}
 
 
 
@@ -996,7 +996,7 @@ Table: Таблица 3.10. DEF (1 % Ag) в зависимости от напр
 
 
 
-![Рис. 3.17. Коэффициент усиления дозы для мягкой ткани, содержащей 1 % по массе Ag, I, Gd, Pt, Au или Bi, при 45 кВ без дополнительного фильтра и с фильтром Al 1,0 мм или Sn 0,1 мм (SpekPy, приближение кермы).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig21_elements.png){width=13.5cm}
+![Рис. 3.17. Коэффициент усиления дозы для мягкой ткани, содержащей 1 % по массе Ag, I, Gd, Pt, Au или Bi, при 45 кВ без дополнительного фильтра и с фильтром Al 1,0 мм или Sn 0,1 мм (SpekPy, приближение кермы).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig21_elements.png){width=12.5cm}
 
 
 
@@ -1022,7 +1022,7 @@ Table: Таблица 3.11. DEF мягкой ткани, содержащей 1 
 
 
 
-![Рис. 3.18. Глубинные профили коэффициента усиления дозы в мягкой ткани со слоем толщиной 10 мм, содержащим 1 % Ag, на глубинах 2–12 мм (серая полоса) без фильтра (слева) и с фильтром Al 1,0 мм (справа): метод Монте-Карло (сплошная линия, закрашенная полоса — ±2 стандартные ошибки) и аналитическая модель кермы (штриховая линия).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig22_mc.png){width=13.5cm}
+![Рис. 3.18. Глубинные профили коэффициента усиления дозы в мягкой ткани со слоем толщиной 10 мм, содержащим 1 % Ag, на глубинах 2–12 мм (серая полоса) без фильтра (слева) и с фильтром Al 1,0 мм (справа): метод Монте-Карло (сплошная линия, закрашенная полоса — ±2 стандартные ошибки) и аналитическая модель кермы (штриховая линия).](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig22_mc.png){width=12.5cm}
 
 
 
@@ -1051,7 +1051,7 @@ Table: Таблица 3.12. DEF по методу Монте-Карло и ан�
 
 
 
-![Рис. 3.19. Чувствительность коэффициента усиления дозы (1 % Ag, Al 1,0 мм, DEF = 1,482) к входным параметрам на двух границах интервала варьирования каждого параметра. Модель спектра: РМ относительно SpekPy; эталонная среда: четырёхкомпонентная ткань МКРЕ (большее изменение) и вода; η: относительно значения РМ.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig23_sensitivity.png){width=13.5cm}
+![Рис. 3.19. Чувствительность коэффициента усиления дозы (1 % Ag, Al 1,0 мм, DEF = 1,482) к входным параметрам на двух границах интервала варьирования каждого параметра. Модель спектра: РМ относительно SpekPy; эталонная среда: четырёхкомпонентная ткань МКРЕ (большее изменение) и вода; η: относительно значения РМ.](/home/user/atlant-impossible/dissertation/code/../figures/ru/fig23_sensitivity.png){width=12.5cm}
 
 
 

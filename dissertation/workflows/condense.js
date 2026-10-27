@@ -16,7 +16,7 @@ const SCHEMA = {
   required: ['file', 'words_before', 'words_after', 'summary'],
 }
 
-const results = await parallel(args.items.map(it => () => agent(`You are the senior editor of a master's dissertation in medical physics ("X-Ray Spectrum Modeling for the Study of Radio-Enhancement in Biological Matter with Ag"), written in Pandoc Markdown. The whole dissertation must fit about 90 A4 pages (Times New Roman 14 pt, 1.5 spacing) in each of its three language versions, and it is currently about 35 % too long. Your job: condense ONE file, ${ROOT}/src/en/${it.file}, to at most ${it.budget} words as measured by \`wc -w\` (currently about ${it.now}), editing it in place.
+const results = await parallel(args.items.map(it => () => agent(`You are the senior editor of a master's dissertation in medical physics ("X-Ray Spectrum Modeling for the Study of Radio-Enhancement in Biological Matter with Ag"), written in Pandoc Markdown. The whole dissertation must fit about 90 A4 pages (Times New Roman 14 pt, 1.5 spacing) in each of its three language versions, ${args.context || 'and it is currently about 35 % too long.'} Your job: condense ONE file, ${ROOT}/src/en/${it.file}, to at most ${it.budget} words as measured by \`wc -w\` (currently about ${it.now}), editing it in place.
 
 First read ${ROOT}/brief/CONVENTIONS.md (markup rules) and ${ROOT}/brief/OUTLINE.md (structure and main messages), then the whole file.
 

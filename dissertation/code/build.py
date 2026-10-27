@@ -614,6 +614,31 @@ def postprocess(path, lang, pages):
             l_.set(qn('w:val'), langcode)
         except Exception:
             pass
+    # automatic hyphenation of the body text (headings, captions, title page and contents excluded)
+    st = doc.settings.element
+    tab = st.find(qn('w:defaultTabStop'))
+    for k, (tag, val) in enumerate([('w:autoHyphenation', None), ('w:consecutiveHyphenLimit', '2'),
+                                    ('w:hyphenationZone', '357'), ('w:doNotHyphenateCaps', None)]):
+        el = OxmlElement(tag)
+        if val:
+            el.set(qn('w:val'), val)
+        tab.addnext(el)
+        tab = el
+    for s in doc.styles:
+        if s.type == 1 and (s.name.startswith(('Heading', 'Title', 'TOC', 'Caption', 'Image Caption', 'Table Caption'))
+                            or s.name in ('Compact', 'Source Code', 'Reference')):
+            ppr = s.element.get_or_add_pPr()
+            if ppr.find(qn('w:suppressAutoHyphens')) is None:
+                after = {qn('w:' + t) for t in ('kinsoku', 'wordWrap', 'overflowPunct', 'topLinePunct', 'autoSpaceDE',
+                         'autoSpaceDN', 'bidi', 'adjustRightInd', 'snapToGrid', 'spacing', 'ind', 'contextualSpacing',
+                         'mirrorIndents', 'suppressOverlap', 'jc', 'textDirection', 'textAlignment', 'textboxTightWrap',
+                         'outlineLvl', 'divId', 'cnfStyle', 'rPr', 'sectPr', 'pPrChange')}
+                nxt = next((c for c in ppr if c.tag in after), None)
+                el = OxmlElement('w:suppressAutoHyphens')
+                if nxt is None:
+                    ppr.append(el)
+                else:
+                    nxt.addprevious(el)
     doc.core_properties.title = TITLE[lang]['title']
     doc.core_properties.author = ''
     doc.save(path)

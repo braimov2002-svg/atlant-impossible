@@ -9,7 +9,7 @@ comma, "кэВ", "кВ", "мм", "см", "мкм", "Гр", "мГр", "мА·с".
 | English | Русский | O‘zbekcha |
 |---|---|---|
 | dose enhancement factor (DEF) | коэффициент усиления дозы (DEF) | dozani kuchaytirish koeffitsiyenti (DEF) |
-| radio-enhancement / radiosensitization | радиоусиление / радиосенсибилизация | radiokuchayish / radiosensibilizatsiya |
+| radio-enhancement / radiosensitization | радиоусиление / радиосенсибилизация | radiokuchaytirish / radiosensibilizatsiya |
 | radiosensitizer | радиосенсибилизатор | radiosensibilizator |
 | radiotherapy, external-beam radiotherapy | лучевая терапия, дистанционная лучевая терапия | nur terapiyasi, masofaviy nur terapiyasi |
 | normal (healthy) tissue tolerance | толерантность нормальных (здоровых) тканей | normal (sog‘lom) to‘qimalarning chidamliligi (tolerantligi) |

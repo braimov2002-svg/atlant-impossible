@@ -2,7 +2,7 @@
 
 **Title (EN):** X-Ray Spectrum Modeling for the Study of Radio-Enhancement in Biological Matter with Ag
 **Title (RU):** Моделирование спектра рентгеновского излучения для исследования радиоусиления в биологической среде с Ag
-**Title (UZ):** Biologik muhitda Ag bilan radiokuchayishni tadqiq qilish uchun rentgen nurlanishi spektrini modellashtirish
+**Title (UZ):** Biologik muhitda Ag bilan radiokuchaytirishni tadqiq qilish uchun rentgen nurlanishi spektrini modellashtirish
 
 **Annotation given by the supervisor (keep its meaning):** The effectiveness of anticancer radiotherapy is still
 limited by the tolerance of healthy tissues. One strategy to optimise the dose delivered in external radiotherapy is

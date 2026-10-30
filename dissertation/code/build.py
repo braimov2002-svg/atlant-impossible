@@ -38,32 +38,32 @@ ROMAN = {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5}
 
 TITLE = {
     'en': dict(ministry='MINISTRY OF HIGHER EDUCATION, SCIENCE AND INNOVATION OF THE REPUBLIC OF UZBEKISTAN',
-               univ='[NAME OF THE UNIVERSITY]', fac='Faculty: [name of the faculty]', dep='Department: [name of the department]',
-               rights='As a manuscript', udc='UDC 539.12.04:615.849', author='[FULL NAME OF THE STUDENT]',
+               univ='NATIONAL UNIVERSITY OF UZBEKISTAN NAMED AFTER MIRZO ULUGBEK', fac='FACULTY OF PHYSICS',
+               rights='As a manuscript', udc='UDC 539.12:531.51', spec='70531201 – Medical Physics',
+               author='RAYIMOVA MUXLISA BAXROH QIZI',
                title='X-RAY SPECTRUM MODELING FOR THE STUDY OF RADIO-ENHANCEMENT IN BIOLOGICAL MATTER WITH Ag',
-               spec='Specialty: [code] – [name of the master’s specialty]',
-               kind='MASTER’S DISSERTATION\nfor the academic degree of Master',
-               sup='Scientific supervisor:\n[academic degree, title, full name]',
-               admit='“Admitted to defence”\nHead of the department ____________ [full name]\n“___” ____________ 2026',
-               city='[City] – 2026'),
+               kind='Dissertation for the academic degree of Master\nMASTER’S DISSERTATION',
+               sup_head='Scientific supervisor:',
+               sup='Candidate of Physical and Mathematical Sciences,\nAssociate Professor G.A. Abdullayeva',
+               city='Tashkent – 2026'),
     'ru': dict(ministry='МИНИСТЕРСТВО ВЫСШЕГО ОБРАЗОВАНИЯ, НАУКИ И ИННОВАЦИЙ РЕСПУБЛИКИ УЗБЕКИСТАН',
-               univ='[НАЗВАНИЕ УНИВЕРСИТЕТА]', fac='Факультет: [название факультета]', dep='Кафедра: [название кафедры]',
-               rights='На правах рукописи', udc='УДК 539.12.04:615.849', author='[ФАМИЛИЯ ИМЯ ОТЧЕСТВО СТУДЕНТА]',
+               univ='НАЦИОНАЛЬНЫЙ УНИВЕРСИТЕТ УЗБЕКИСТАНА ИМЕНИ МИРЗО УЛУГБЕКА', fac='ФИЗИЧЕСКИЙ ФАКУЛЬТЕТ',
+               rights='На правах рукописи', udc='УДК 539.12:531.51', spec='70531201 – Медицинская физика',
+               author='РАЙИМОВА МУХЛИСА БАХРОХ КИЗИ',
                title='МОДЕЛИРОВАНИЕ СПЕКТРА РЕНТГЕНОВСКОГО ИЗЛУЧЕНИЯ ДЛЯ ИССЛЕДОВАНИЯ РАДИОУСИЛЕНИЯ В БИОЛОГИЧЕСКОЙ СРЕДЕ С Ag',
-               spec='Специальность: [шифр] – [название магистерской специальности]',
-               kind='МАГИСТЕРСКАЯ ДИССЕРТАЦИЯ\nна соискание академической степени магистра',
-               sup='Научный руководитель:\n[учёная степень, звание, Ф. И. О.]',
-               admit='«Допускается к защите»\nЗаведующий кафедрой ____________ [Ф. И. О.]\n«___» ____________ 2026 г.',
-               city='[Город] – 2026'),
+               kind='Диссертация на соискание академической степени магистра\nМАГИСТЕРСКАЯ ДИССЕРТАЦИЯ',
+               sup_head='Научный руководитель:',
+               sup='к.ф.-м.н., доц. Абдуллаева Г.А.',
+               city='Ташкент – 2026'),
     'uz': dict(ministry='O‘ZBEKISTON RESPUBLIKASI OLIY TA’LIM, FAN VA INNOVATSIYALAR VAZIRLIGI',
-               univ='[UNIVERSITET NOMI]', fac='Fakultet: [fakultet nomi]', dep='Kafedra: [kafedra nomi]',
-               rights='Qo‘lyozma huquqida', udc='UO‘K 539.12.04:615.849', author='[TALABANING FAMILIYASI, ISMI, OTASINING ISMI]',
-               title='BIOLOGIK MUHITDA Ag BILAN RADIOKUCHAYISHNI TADQIQ QILISH UCHUN RENTGEN NURLANISHI SPEKTRINI MODELLASHTIRISH',
-               spec='Mutaxassislik: [shifr] – [magistratura mutaxassisligi nomi]',
-               kind='Magistr akademik darajasini olish uchun yozilgan\nMAGISTRLIK DISSERTATSIYASI',
-               sup='Ilmiy rahbar:\n[ilmiy darajasi, unvoni, F. I. Sh.]',
-               admit='“Himoyaga ruxsat etiladi”\nKafedra mudiri ____________ [F. I. Sh.]\n“___” ____________ 2026-yil',
-               city='[Shahar] – 2026'),
+               univ='MIRZO ULUG‘BEK NOMIDAGI O‘ZBEKISTON MILLIY UNIVERSITETI', fac='FIZIKA FAKULTETI',
+               rights='Qo‘lyozma huquqida', udc='UDK: 539.12:531.51', spec='70531201 – Tibbiyot fizikasi',
+               author='RAYIMOVA MUXLISA BAXROH QIZI',
+               title='BIOLOGIK MUHITDA Ag BILAN RADIOKUCHAYTIRISHNI TADQIQ QILISH UCHUN RENTGEN NURLANISHI SPEKTRINI MODELLASHTIRISH',
+               kind='Magistr akademik darajasini olish uchun yozilgan\nDISSERTATSIYA',
+               sup_head='Ilmiy rahbar:',
+               sup='f.-m.f.n. dots. Abdullayeva G.A.',
+               city='Toshkent – 2026'),
 }
 
 
@@ -485,16 +485,15 @@ def insert_title_page(doc, lang):
 
     P(T['ministry'], 'TitleCenter', bold=True, space_after=6)
     P(T['univ'], 'TitleCenter', bold=True, space_after=6)
-    P(T['fac'] + '\n' + T['dep'], 'TitleCenter', space_after=30)
-    P(T['udc'], 'TitleLeft', space_after=0)
-    P(T['rights'], 'TitleRight', space_after=40)
+    P(T['fac'], 'TitleCenter', bold=True, space_after=40)
+    P(T['rights'] + '\n' + T['udc'], 'TitleRight', space_after=40)
+    P(T['spec'], 'TitleCenter', space_after=24)
     P(T['author'], 'TitleCenter', bold=True, space_after=30)
     P(T['title'], 'TitleBig', bold=True, space_after=30)
-    P(T['spec'], 'TitleCenter', space_after=24)
-    P(T['kind'], 'TitleCenter', bold=True, space_after=50)
-    P(T['admit'], 'TitleLeft', space_after=24, size=13)
-    P(T['sup'], 'TitleRight', space_after=60)
-    last = P(T['city'], 'TitleCenter', bold=True)
+    P(T['kind'], 'TitleCenter', space_after=60)
+    P(T['sup_head'], 'TitleRight', bold=True, space_after=0)
+    P(T['sup'], 'TitleRight', space_after=90)
+    last = P(T['city'], 'TitleCenter')
     last.add_run().add_break(WD_BREAK.PAGE)
     for p in paras:
         first.addprevious(p._p)

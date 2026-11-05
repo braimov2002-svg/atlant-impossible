@@ -12,13 +12,14 @@ Spektr modellari empirik [@boone1997] va yarim empirik [@birch1979; @tucker1991]
 
 **Tadqiqotning vazifalari.** Quyidagi vazifalar hal qilindi:
 
-1. Yuqori Z li elementlar, ayniqsa kumush yordamidagi radiosensibilizatsiya hamda spektrni modellashtirishga oid adabiyotlarni sharhlash.
-2. Elektronlarning sekinlashishi, tormozlanish nurlanishi, bevosita hosil bo‘ladigan va tormozlanish nurlanishi ta’sirida hosil bo‘ladigan K nurlanish, anodda o‘z-o‘zini yutish va filtrlashni hisobga oluvchi mis anodli trubka spektrining qalin nishon uchun yarim analitik modelini ishlab chiqish.
-3. Modelni SpekPy v2 bilan solishtirib validatsiya qilish va uning yagona parametrini moslashtirish.
-4. Spektr va dasta sifatini anod burchagi, trubka kuchlanishi, berilliy oyna va filtrlarga bog‘liq holda hisoblash.
-5. Massa bo‘yicha 0,1–2 % kumush uchun DEFni hisoblash va maqbul doza quvvatida uni eng katta qiymatga yetkazadigan filtrlarni topish.
-6. DEFning chuqurlikka bog‘liqligini va o‘z-o‘zini ekranlashni mustaqil MK verifikatsiyasi bilan o‘rganish.
-7. Kumushni boshqa yuqori Z li elementlar bilan taqqoslash, DEF noaniqligini baholash va tajribalar uchun tavsiyalar ishlab chiqish.
+1. Biologik muhitning radiatsion shikastlanishi hamda yuqori Z li elementlar, ayniqsa kumush nanozarrachalari yordamidagi radiosensibilizatsiyaga oid adabiyotlarni sharhlash.
+2. Kilovoltli fotonlarning kumush va biologik muhitlar (yumshoq to‘qima, bosh miya, suyak, suv) bilan o‘zaro ta’sirini hamda ularning susayish va energiya yutilish koeffitsiyentlarini tahlil qilish.
+3. Elektronlarning sekinlashishi, tormozlanish nurlanishi, bevosita hosil bo‘ladigan va tormozlanish nurlanishi ta’sirida hosil bo‘ladigan K nurlanish, anodda o‘z-o‘zini yutish va filtrlashni hisobga oluvchi mis anodli trubka spektrining qalin nishon uchun yarim analitik modelini ishlab chiqish.
+4. Modelni SpekPy v2 bilan solishtirib validatsiya qilish va uning yagona parametrini moslashtirish.
+5. Spektr va dasta sifatini anod burchagi, trubka kuchlanishi, berilliy oyna va filtrlarga bog‘liq holda hisoblash.
+6. Massa bo‘yicha 0,1–2 % kumush uchun DEFni hisoblash va maqbul doza quvvatida uni eng katta qiymatga yetkazadigan filtrlarni topish.
+7. DEFning chuqurlikka bog‘liqligini va o‘z-o‘zini ekranlashni mustaqil MK verifikatsiyasi bilan o‘rganish.
+8. Kumushni boshqa yuqori Z li elementlar bilan taqqoslash, DEF noaniqligini baholash va tajribalar uchun tavsiyalar ishlab chiqish.
 
 **Tadqiqotning obyekti.** Tadqiqot obyekti 45 kV li mis anodli trubkaning rentgen nurlanishi va uning kumush saqlovchi yumshoq to‘qima bilan o‘zaro ta’siridir.
 
@@ -42,4 +43,4 @@ Spektr modellari empirik [@boone1997] va yarim empirik [@birch1979; @tucker1991]
 
 **Natijalarning e’lon qilinganligi.** Natijalar quyidagi ishlarda e’lon qilingan: [muallif tomonidan to‘ldiriladi: nashrlar ro‘yxati].
 
-**Dissertatsiyaning tuzilishi va hajmi.** Dissertatsiya annotatsiyalar, qisqartmalar ro‘yxati, kirish, uch bob, xulosa, foydalanilgan adabiyotlar ro‘yxati va ilovalardan iborat: {{COUNT:pages}} bet, {{COUNT:figures}} ta rasm, {{COUNT:tables}} ta jadval va {{COUNT:refs}} ta adabiyot manbasi. I bobda adabiyotlar sharhi berilgan, II bobda usullar, III bobda esa natijalar va muhokama bayon etilgan.
+**Dissertatsiyaning tuzilishi va hajmi.** Dissertatsiya annotatsiyalar, qisqartmalar ro‘yxati, kirish, uch bob, xulosa, foydalanilgan adabiyotlar ro‘yxati va ilovalardan iborat: {{COUNT:pages}} bet, {{COUNT:figures}} ta rasm, {{COUNT:tables}} ta jadval va {{COUNT:refs}} ta adabiyot manbasi. I bobda biologik muhitning radiatsion shikastlanishi va kumush yordamida radiosensibilizatsiyaga oid adabiyotlar sharhi berilgan, II bobda rentgen nurlarining biologik muhit va kumush bilan o‘zaro ta’siri ko‘rib chiqilgan, III bobda esa rentgen trubkasi, uning spektrini va DEFni hisoblash hamda muhokama bayon etilgan.

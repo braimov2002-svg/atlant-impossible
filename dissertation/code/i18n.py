@@ -9,7 +9,7 @@ L = {
     'pan_tissue': {'en': '(a) ICRU-44 soft tissue', 'ru': '(a) мягкая ткань МКРЕ-44', 'uz': '(a) ICRU-44 yumshoq to‘qima'},
     'pan_ag': {'en': '(b) silver', 'ru': '(b) серебро', 'uz': '(b) kumush'},
     'm_tissue': {'en': 'Soft tissue', 'ru': 'Мягкая ткань', 'uz': 'Yumshoq to‘qima'},
-    'm_brain': {'en': 'Brain', 'ru': 'Головной мозг', 'uz': 'Miya'},
+    'm_brain': {'en': 'Brain', 'ru': 'Головной мозг', 'uz': 'Bosh miya'},
     'm_bone': {'en': 'Cortical bone', 'ru': 'Кортикальная кость', 'uz': 'Kortikal suyak'},
     'm_water': {'en': 'Water', 'ru': 'Вода', 'uz': 'Suv'},
     'muen_lab': {'en': r'$\mu_{en}/\rho$, cm$^2$ g$^{-1}$', 'ru': r'$\mu_{en}/\rho$, см$^2$ г$^{-1}$', 'uz': r'$\mu_{en}/\rho$, sm$^2$ g$^{-1}$'},

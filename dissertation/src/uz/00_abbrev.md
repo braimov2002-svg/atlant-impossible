@@ -9,16 +9,19 @@ Table: {#tab:abbrev} Qisqartmalar va belgilar.
 | ALARA | oqilona erishish mumkin bo‘lgan darajada past |
 | AuNZ | oltin nanozarrachasi |
 | BH-E | Elvert ko‘paytuvchisi kiritilgan norelyativistik Bete–Gaytler tormozlanish nurlanishi kesimi |
+| BIU | DNKning bir ipli uzilishi |
 | CSDA | uzluksiz sekinlashish yaqinlashuvi |
 | DEF | dozani kuchaytirish koeffitsiyenti |
 | DNK | dezoksiribonuklein kislota |
 | IAEA | Atom energiyasi bo‘yicha xalqaro agentlik |
 | ICRU | Radiatsion birliklar va o‘lchovlar bo‘yicha xalqaro komissiya |
 | IEC | Xalqaro elektrotexnika komissiyasi |
+| IIU | DNKning ikki ipli uzilishi |
 | IM | ishlab chiqilgan model (ushbu ishdagi rentgen spektrining yarim analitik modeli) |
 | KFSh | kislorodning faol shakllari |
 | kVp | kilovolt-pik (rentgen trubkasining cho‘qqi kuchlanishi) |
 | MK | Monte-Karlo (usuli) |
+| mtDNK | mitoxondrial DNK |
 | NIST | Standartlar va texnologiyalar milliy instituti (AQSh) |
 | RT | nur terapiyasi |
 | SER | sensibilizatsiya koeffitsiyenti |

@@ -107,7 +107,8 @@ LAYOUT = {
 
 
 POST = {
-    'en': {'02_ch1b': [('carry their energy away (Section 2.1)', 'carry their energy away (Section 2.1.1)'),
+    'en': {'00_annotation': [('and is comparable to iodine.', 'and is comparable to iodine. In brain and water the DEF is practically the same as in soft tissue, whereas in cortical bone it is only 1.03–1.12.')],
+           '02_ch1b': [('carry their energy away (Section 2.1)', 'carry their energy away (Section 2.1.1)'),
                        ('(Sections 2.1 and 1.4)', '(Sections 2.2 and 1.4)')],
            '03_ch2b': [('(Sections 2.1 and 1.4)', '(Sections 2.2 and 1.4)'),
                        ('ranges studied in Chapter 3', 'ranges studied in Sections 3.2 and 3.3'),
@@ -115,14 +116,16 @@ POST = {
                        ('electron depth factor (Chapter 2)', 'electron depth factor (Section 3.2.2)')],
            '04_ch3a': [('filter optimisation in Chapter 3.', 'filter optimisation in Section 3.3.5.')],
            '06_appendix': [('auxiliary checks of Chapter 2 excluded', 'auxiliary checks of Section 3.2 excluded')]},
-    'ru': {'02_ch1b': [('(раздел 2.1)', '(раздел 2.1.1)'), ('(разделы 2.1 и 1.4)', '(разделы 2.2 и 1.4)')],
+    'ru': {'00_annotation': [('и сопоставимо с йодом.', 'и сопоставимо с йодом. В головном мозге и воде DEF практически такой же, как в мягкой ткани, тогда как в кортикальной кости он составляет лишь 1,03–1,12.')],
+           '02_ch1b': [('(раздел 2.1)', '(раздел 2.1.1)'), ('(разделы 2.1 и 1.4)', '(разделы 2.2 и 1.4)')],
            '03_ch2b': [('(разделы 2.1 и 1.4)', '(разделы 2.2 и 1.4)'),
                        ('исследованные в главе 3;', 'исследованные в разделах 3.2 и 3.3;'),
                        ('как показано в главе 3 для', 'как показано в разделе 3.3.5 для'),
                        ('электронов (глава 2)', 'электронов (раздел 3.2.2)')],
            '04_ch3a': [('оптимизации фильтров в главе 3.', 'оптимизации фильтров в разделе 3.3.5.')],
            '06_appendix': [('вспомогательных проверок главы 2)', 'вспомогательных проверок раздела 3.2)')]},
-    'uz': {'02_ch1b': [('(2.1-bo‘lim)', '(2.1.1-bo‘lim)'), ('2.1- va 1.4-bo‘limlar', '2.2- va 1.4-bo‘limlar')],
+    'uz': {'00_annotation': [('yod bilan taqqoslanarli.', 'yod bilan taqqoslanarli. Bosh miya va suvda DEF amalda yumshoq to‘qimadagi bilan bir xil, kortikal suyakda esa atigi 1,03–1,12 ga teng.')],
+           '02_ch1b': [('(2.1-bo‘lim)', '(2.1.1-bo‘lim)'), ('2.1- va 1.4-bo‘limlar', '2.2- va 1.4-bo‘limlar')],
            '03_ch2b': [('2.1- va 1.4-bo‘limlar', '2.2- va 1.4-bo‘limlar'),
                        ('III bobda o‘rganilgan oraliqlar', '3.2- va 3.3-bo‘limlarda o‘rganilgan oraliqlar'),
                        ('III bobda bu yutilish', '3.3.5-bo‘limda bu yutilish'),
@@ -130,6 +133,22 @@ POST = {
            '04_ch3a': [('III bobdagi filtrni optimallashtirishning', '3.3.5-bo‘limdagi filtrni optimallashtirishning')],
            '06_appendix': [('II bobdagi yordamchi tekshiruvlar', '3.2-bo‘limdagi yordamchi tekshiruvlar')]},
 }
+
+
+NEW_ABBR = {'en': ['| DSB | double-strand break of DNA |', '| mtDNA | mitochondrial DNA |', '| SSB | single-strand break of DNA |'],
+            'ru': ['| ДР | двунитевой разрыв ДНК |', '| мтДНК | митохондриальная ДНК |', '| ОР | однонитевой разрыв ДНК |'],
+            'uz': ['| BIU | DNKning bir ipli uzilishi |', '| IIU | DNKning ikki ipli uzilishi |', '| mtDNK | mitoxondrial DNK |']}
+
+
+def add_abbr(text, lang):
+    lines = text.split('\n')
+    rows = [i for i, l in enumerate(lines) if l.startswith('| ') and '$' not in l.split('|')[1] and not l.startswith('| Abbrev')
+            and not re.match(r'\| (Сокращение|Qisqartma)', l)]
+    abbr = [lines[i] for i in rows] + NEW_ABBR[lang]
+    cyr = lambda r: bool(re.match(r'\| [А-Яа-яЁё]', r))
+    abbr.sort(key=lambda r: (not cyr(r) if lang == 'ru' else 0, r.split('|')[1].strip().lower()))
+    out = lines[:rows[0]] + abbr + lines[rows[-1] + 1:]
+    return '\n'.join(out)
 
 
 def renumber(item, n):
@@ -161,6 +180,8 @@ def build(lang):
                 out.append('\n'.join(piece(p)).strip('\n'))
         text = '\n\n'.join(x for x in out if x.strip()) + '\n'
         text = re.sub(r'\n{3,}', '\n\n', text)
+        if fname == '00_abbrev':
+            text = add_abbr(text, lang)
         for a, b in POST[lang].get(fname, []):
             if text.count(a) != 1:
                 print('POST mismatch', lang, fname, a, text.count(a))

@@ -14,16 +14,19 @@ Table: {#tab:abbrev} Abbreviations and symbols.
 | DEF | dose enhancement factor |
 | DM | developed model (the semi-analytical x-ray spectrum model of this work) |
 | DNA | deoxyribonucleic acid |
+| DSB | double-strand break of DNA |
 | HVL | half-value layer (HVL1 and HVL2 are the first and second half-value layers) |
 | IAEA | International Atomic Energy Agency |
 | ICRU | International Commission on Radiation Units and Measurements |
 | IEC | International Electrotechnical Commission |
 | kVp | kilovolt peak (peak voltage of the x-ray tube) |
 | MC | Monte Carlo (method) |
+| mtDNA | mitochondrial DNA |
 | NIST | National Institute of Standards and Technology (USA) |
 | ROS | reactive oxygen species |
 | RT | radiotherapy |
 | SER | sensitizer enhancement ratio |
+| SSB | single-strand break of DNA |
 | TASMIP | tungsten anode spectral model using interpolating polynomials |
 | TBC | Tucker–Barnes–Chakraborty spectrum model |
 | $D$ | absorbed dose, Gy |

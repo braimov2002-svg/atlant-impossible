@@ -1,6 +1,19 @@
 """Figure labels in English, Russian and Uzbek (Latin script)."""
 
 L = {
+    'cs': {'en': r'Mass cross-section, cm$^2$ g$^{-1}$', 'ru': r'Массовое сечение, см$^2$ г$^{-1}$', 'uz': r'Massaviy kesim, sm$^2$ g$^{-1}$'},
+    'photo': {'en': 'photoelectric', 'ru': 'фотоэффект', 'uz': 'fotoeffekt'},
+    'incoh': {'en': 'incoherent (Compton)', 'ru': 'некогерентное (комптоновское)', 'uz': 'nokogerent (kompton)'},
+    'coh': {'en': 'coherent (Rayleigh)', 'ru': 'когерентное (рэлеевское)', 'uz': 'kogerent (reley)'},
+    'total': {'en': 'total', 'ru': 'полное', 'uz': 'to‘liq'},
+    'pan_tissue': {'en': '(a) ICRU-44 soft tissue', 'ru': '(а) мягкая ткань МКРЕ-44', 'uz': '(a) ICRU-44 yumshoq to‘qima'},
+    'pan_ag': {'en': '(b) silver', 'ru': '(б) серебро', 'uz': '(b) kumush'},
+    'm_tissue': {'en': 'Soft tissue', 'ru': 'Мягкая ткань', 'uz': 'Yumshoq to‘qima'},
+    'm_brain': {'en': 'Brain', 'ru': 'Мозг', 'uz': 'Miya'},
+    'm_bone': {'en': 'Cortical bone', 'ru': 'Кортикальная кость', 'uz': 'Kortikal suyak'},
+    'm_water': {'en': 'Water', 'ru': 'Вода', 'uz': 'Suv'},
+    'muen_lab': {'en': r'$\mu_{en}/\rho$, cm$^2$ g$^{-1}$', 'ru': r'$\mu_{en}/\rho$, см$^2$ г$^{-1}$', 'uz': r'$\mu_{en}/\rho$, sm$^2$ g$^{-1}$'},
+    'ratio_med': {'en': r'Ratio $R$ = $(\mu_{en}/\rho)_{Ag}$ / $(\mu_{en}/\rho)_{medium}$', 'ru': r'Отношение $R$ = $(\mu_{en}/\rho)_{Ag}$ / $(\mu_{en}/\rho)_{среда}$', 'uz': r'Nisbat $R$ = $(\mu_{en}/\rho)_{Ag}$ / $(\mu_{en}/\rho)_{muhit}$'},
     'E': {'en': 'Photon energy, keV', 'ru': 'Энергия фотонов, кэВ', 'uz': 'Foton energiyasi, keV'},
     'Te': {'en': 'Electron kinetic energy, keV', 'ru': 'Кинетическая энергия электрона, кэВ',
            'uz': 'Elektronning kinetik energiyasi, keV'},

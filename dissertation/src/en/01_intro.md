@@ -12,13 +12,14 @@ Spectrum models range from empirical [@boone1997] and semi-empirical [@birch1979
 
 **Tasks of the research.** The following tasks were solved:
 
-1. To review the literature on radiosensitization by high-Z elements, especially silver, and on spectrum modelling.
-2. To develop a semi-analytical thick-target spectrum model of a copper-anode tube including electron slowing-down, bremsstrahlung, direct and bremsstrahlung-induced K radiation, anode self-absorption and filtration.
-3. To validate the model against SpekPy v2 and fit its single parameter.
-4. To calculate the spectrum and beam quality versus anode angle, tube voltage, beryllium window and filters.
-5. To calculate the DEF for 0.1–2 % silver by mass and find the filters that maximise it at an acceptable dose rate.
-6. To study the depth dependence of the DEF and self-shielding, with independent MC verification.
-7. To compare silver with other high-Z elements, estimate the DEF uncertainty and formulate experimental recommendations.
+1. To review the literature on the radiation damage of biological matter and on radiosensitization by high-Z elements, especially silver nanoparticles.
+2. To analyse the interaction of kilovoltage photons with silver and with biological media (soft tissue, brain, bone, water) and their attenuation and energy-absorption coefficients.
+3. To develop a semi-analytical thick-target spectrum model of a copper-anode tube including electron slowing-down, bremsstrahlung, direct and bremsstrahlung-induced K radiation, anode self-absorption and filtration.
+4. To validate the model against SpekPy v2 and fit its single parameter.
+5. To calculate the spectrum and beam quality versus anode angle, tube voltage, beryllium window and filters.
+6. To calculate the DEF for 0.1–2 % silver by mass and find the filters that maximise it at an acceptable dose rate.
+7. To study the depth dependence of the DEF and self-shielding, with independent MC verification.
+8. To compare silver with other high-Z elements, estimate the DEF uncertainty and formulate experimental recommendations.
 
 **Object of the research.** The object is the x-ray radiation of a 45 kV copper-anode tube and its interaction with silver-containing soft tissue.
 
@@ -42,4 +43,4 @@ Spectrum models range from empirical [@boone1997] and semi-empirical [@birch1979
 
 **Publications.** The results are published in [to be completed by the author: list of publications].
 
-**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: {{COUNT:pages}} pages, {{COUNT:figures}} figures, {{COUNT:tables}} tables and {{COUNT:refs}} references. Chapter 1 reviews the literature, Chapter 2 presents the methods and Chapter 3 the results and discussion.
+**Structure and volume of the dissertation.** The dissertation comprises annotations, a list of abbreviations, an introduction, three chapters, conclusions, references and appendices: {{COUNT:pages}} pages, {{COUNT:figures}} figures, {{COUNT:tables}} tables and {{COUNT:refs}} references. Chapter 1 reviews radiation damage of biological matter and radiosensitization by silver, Chapter 2 the interaction of x-rays with biological matter and silver, and Chapter 3 presents the x-ray tube, the calculation of its spectrum and of the DEF, and the discussion.

@@ -503,8 +503,8 @@ def toc_entries(doc):
     out = []
     for p in doc.paragraphs:
         sn = p.style.name
-        if sn in ('Heading 1', 'Heading 2') and p.text.strip():
-            out.append((1 if sn == 'Heading 1' else 2, p.text.strip()))
+        if sn in ('Heading 1', 'Heading 2', 'Heading 3') and p.text.strip():
+            out.append((int(sn[-1]), p.text.strip()))
     return out
 
 
@@ -529,8 +529,8 @@ def insert_toc(doc, lang, entries, pages):
             p.paragraph_format.left_indent = Cm(0)
             p.paragraph_format.first_line_indent = Cm(0)
         else:
-            p.paragraph_format.left_indent = Cm(1.25)
-            p.paragraph_format.first_line_indent = Cm(-0.5)
+            p.paragraph_format.left_indent = Cm(1.25 if lvl == 2 else 2.25)
+            p.paragraph_format.first_line_indent = Cm(-0.5 if lvl == 2 else -0.75)
         short = txt
         r = p.add_run(short)
         if lvl == 1:

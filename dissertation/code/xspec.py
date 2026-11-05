@@ -51,7 +51,7 @@ AIR = 'air'
 TISSUE = 'tissue'          # ICRU-44 soft tissue, rho = 1.06 g/cm3
 WATER = 'water'
 TISSUE4 = {1: 0.101174, 6: 0.111, 7: 0.026, 8: 0.761826}   # ICRU four-component
-COMPOUND_RHO = {'tissue': 1.06, 'water': 1.0, 'air': 1.20479e-3}
+COMPOUND_RHO = {'tissue': 1.06, 'water': 1.0, 'air': 1.20479e-3, 'bone': 1.92, 'brain': 1.04}
 
 
 def beta2(T):

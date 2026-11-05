@@ -464,10 +464,55 @@ def fig_sensitivity(lang):
     save(fig, 'fig23_sensitivity', lang)
 
 
+def fig_partial(lang):
+    h, a = csv('partial_cs.csv')
+    E = a[:, 0]
+    fig, axs = plt.subplots(1, 2, figsize=(W1, 3.2), sharey=False)
+    for ax, name, pan in [(axs[0], 'tissue', 'pan_tissue'), (axs[1], 'Ag', 'pan_ag')]:
+        i = h.index(name + '_photo')
+        ph, inc, coh = a[:, i], a[:, i + 1], a[:, i + 2]
+        ax.loglog(E, ph + inc + coh, color='k', lw=1.6, label=t('total', lang))
+        ax.loglog(E, ph, color=C[1], label=t('photo', lang))
+        ax.loglog(E, inc, color=C[0], ls='--', label=t('incoh', lang))
+        ax.loglog(E, coh, color=C[2], ls=':', label=t('coh', lang))
+        ax.set_xlim(1, 200)
+        ax.set_ylim(1e-3, 1e4)
+        ax.set_title(t(pan, lang), fontsize=9.5)
+        ax.set_xlabel(t('E', lang))
+        if name == 'Ag':
+            agk_line(ax, lang, y=0.05, left=True)
+    axs[0].set_ylabel(t('cs', lang))
+    axs[0].legend(loc='lower left', fontsize=7.8)
+    fig.tight_layout()
+    save(fig, 'fig24_partial', lang)
+
+
+def fig_media(lang):
+    h, a = csv('media_coeffs.csv')
+    E = a[:, 0]
+    fig, axs = plt.subplots(1, 2, figsize=(W1, 3.2))
+    for m, c, ls in [('tissue', C[0], '-'), ('brain', C[2], '--'), ('bone', C[3], '-'), ('water', C[4], ':')]:
+        axs[0].loglog(E, a[:, h.index(m + '_muen')], color=c, ls=ls, label=t('m_' + m, lang))
+        axs[1].plot(E, a[:, h.index('47_muen')] / a[:, h.index(m + '_muen')], color=c, ls=ls, label=t('m_' + m, lang))
+    axs[0].set_xlim(1, 100)
+    axs[0].set_xlabel(t('E', lang))
+    axs[0].set_ylabel(t('muen_lab', lang))
+    axs[0].legend(loc='lower left', fontsize=7.8)
+    axs[0].set_title({'en': '(a)', 'ru': '(а)', 'uz': '(a)'}[lang], fontsize=9.5)
+    axs[1].set_xlim(5, 50)
+    axs[1].set_xlabel(t('E', lang))
+    axs[1].set_ylabel(t('ratio_med', lang), fontsize=8.6)
+    axs[1].set_title({'en': '(b)', 'ru': '(б)', 'uz': '(b)'}[lang], fontsize=9.5)
+    agk_line(axs[1], lang, y=0.55, left=True)
+    loc_ticks(axs[1], lang)
+    fig.tight_layout()
+    save(fig, 'fig25_media', lang)
+
+
 if __name__ == '__main__':
     for lang in ['en', 'ru', 'uz']:
         for f in [fig_tube, fig_coeffs, fig_ratio, fig_electron, fig_validation, fig_validation_w, fig_baseline,
                   fig_studies, fig_integrand, fig_def_conc, fig_tradeoff, fig_scan, fig_depth, fig_slab, fig_kvp,
-                  fig_elements, fig_mc, fig_sensitivity]:
+                  fig_elements, fig_mc, fig_sensitivity, fig_partial, fig_media]:
             f(lang)
     print('figures done')

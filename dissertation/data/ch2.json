@@ -1,0 +1,288 @@
+{
+ "crossover_keV": {
+  "tissue": 28.4,
+  "brain": 28.4,
+  "bone": 55.2,
+  "water": 27.9
+ },
+ "shares": {
+  "Ag": {
+   "10.0": {
+    "photo": 0.978,
+    "incoh": 0.001,
+    "coh": 0.021
+   },
+   "20.0": {
+    "photo": 0.932,
+    "incoh": 0.005,
+    "coh": 0.063
+   },
+   "30.0": {
+    "photo": 0.979,
+    "incoh": 0.003,
+    "coh": 0.018
+   },
+   "45.0": {
+    "photo": 0.962,
+    "incoh": 0.009,
+    "coh": 0.028
+   }
+  },
+  "tissue": {
+   "10.0": {
+    "photo": 0.93,
+    "incoh": 0.029,
+    "coh": 0.041
+   },
+   "20.0": {
+    "photo": 0.682,
+    "incoh": 0.214,
+    "coh": 0.105
+   },
+   "30.0": {
+    "photo": 0.401,
+    "incoh": 0.479,
+    "coh": 0.12
+   },
+   "45.0": {
+    "photo": 0.167,
+    "incoh": 0.74,
+    "coh": 0.093
+   }
+  },
+  "brain": {
+   "10.0": {
+    "photo": 0.93,
+    "incoh": 0.029,
+    "coh": 0.041
+   },
+   "20.0": {
+    "photo": 0.682,
+    "incoh": 0.214,
+    "coh": 0.104
+   },
+   "30.0": {
+    "photo": 0.402,
+    "incoh": 0.478,
+    "coh": 0.119
+   },
+   "45.0": {
+    "photo": 0.168,
+    "incoh": 0.74,
+    "coh": 0.093
+   }
+  },
+  "bone": {
+   "10.0": {
+    "photo": 0.981,
+    "incoh": 0.005,
+    "coh": 0.015
+   },
+   "20.0": {
+    "photo": 0.919,
+    "incoh": 0.039,
+    "coh": 0.042
+   },
+   "30.0": {
+    "photo": 0.809,
+    "incoh": 0.122,
+    "coh": 0.068
+   },
+   "45.0": {
+    "photo": 0.594,
+    "incoh": 0.316,
+    "coh": 0.09
+   }
+  },
+  "water": {
+   "10.0": {
+    "photo": 0.928,
+    "incoh": 0.029,
+    "coh": 0.043
+   },
+   "20.0": {
+    "photo": 0.672,
+    "incoh": 0.219,
+    "coh": 0.109
+   },
+   "30.0": {
+    "photo": 0.388,
+    "incoh": 0.487,
+    "coh": 0.125
+   },
+   "45.0": {
+    "photo": 0.158,
+    "incoh": 0.746,
+    "coh": 0.096
+   }
+  }
+ },
+ "coeff_table": [
+  {
+   "E": 8.05,
+   "tissue_mu": 10.2245,
+   "tissue_muen": 9.7429,
+   "ratio_tissue": 21.1,
+   "brain_mu": 10.2799,
+   "brain_muen": 9.7954,
+   "ratio_brain": 21.0,
+   "bone_mu": 52.2998,
+   "bone_muen": 49.0197,
+   "ratio_bone": 4.2,
+   "water_mu": 10.1811,
+   "water_muen": 9.7218,
+   "ratio_water": 21.2
+  },
+  {
+   "E": 10.0,
+   "tissue_mu": 5.3788,
+   "tissue_muen": 4.9864,
+   "ratio_tissue": 23.0,
+   "brain_mu": 5.4102,
+   "brain_muen": 5.016,
+   "ratio_brain": 22.9,
+   "bone_mu": 28.5143,
+   "bone_muen": 26.7966,
+   "ratio_bone": 4.3,
+   "water_mu": 5.3291,
+   "water_muen": 4.9434,
+   "ratio_water": 23.2
+  },
+  {
+   "E": 15.0,
+   "tissue_mu": 1.6995,
+   "tissue_muen": 1.4019,
+   "ratio_tissue": 27.0,
+   "brain_mu": 1.7103,
+   "brain_muen": 1.4116,
+   "ratio_brain": 26.8,
+   "bone_mu": 9.0313,
+   "bone_muen": 8.3843,
+   "ratio_bone": 4.5,
+   "water_mu": 1.6727,
+   "water_muen": 1.3734,
+   "ratio_water": 27.5
+  },
+  {
+   "E": 20.0,
+   "tissue_mu": 0.823,
+   "tissue_muen": 0.5662,
+   "ratio_tissue": 29.9,
+   "brain_mu": 0.8281,
+   "brain_muen": 0.5705,
+   "ratio_brain": 29.7,
+   "bone_mu": 4.0008,
+   "bone_muen": 3.5992,
+   "ratio_bone": 4.7,
+   "water_mu": 0.8096,
+   "water_muen": 0.5503,
+   "ratio_water": 30.8
+  },
+  {
+   "E": 30.0,
+   "tissue_mu": 0.379,
+   "tissue_muen": 0.1615,
+   "ratio_tissue": 102.8,
+   "brain_mu": 0.3811,
+   "brain_muen": 0.1629,
+   "ratio_brain": 101.9,
+   "bone_mu": 1.3311,
+   "bone_muen": 1.0691,
+   "ratio_bone": 15.5,
+   "water_mu": 0.3756,
+   "water_muen": 0.1556,
+   "ratio_water": 106.7
+  },
+  {
+   "E": 40.0,
+   "tissue_mu": 0.2688,
+   "tissue_muen": 0.0721,
+   "ratio_tissue": 136.8,
+   "brain_mu": 0.2702,
+   "brain_muen": 0.0727,
+   "ratio_brain": 135.7,
+   "bone_mu": 0.6655,
+   "bone_muen": 0.4502,
+   "ratio_bone": 21.9,
+   "water_mu": 0.2683,
+   "water_muen": 0.0695,
+   "ratio_water": 142.1
+  }
+ ],
+ "rho": {
+  "tissue": 1.06,
+  "brain": 1.04,
+  "bone": 1.92,
+  "water": 1.0
+ },
+ "composition": {
+  "tissue": {
+   "1": 0.102,
+   "6": 0.143,
+   "7": 0.034,
+   "8": 0.708,
+   "11": 0.002,
+   "15": 0.003,
+   "16": 0.003,
+   "17": 0.002,
+   "19": 0.003
+  },
+  "brain": {
+   "1": 0.107,
+   "6": 0.145,
+   "7": 0.022,
+   "8": 0.712,
+   "11": 0.002,
+   "15": 0.004,
+   "16": 0.002,
+   "17": 0.003,
+   "19": 0.003
+  },
+  "bone": {
+   "1": 0.034,
+   "6": 0.155,
+   "7": 0.042,
+   "8": 0.435,
+   "11": 0.001,
+   "12": 0.002,
+   "15": 0.103,
+   "16": 0.003,
+   "20": 0.225
+  },
+  "water": {
+   "1": 0.111894,
+   "8": 0.888106
+  }
+ },
+ "DEF_media": [
+  {
+   "filter": "none",
+   "tissue": 1.2015,
+   "brain": 1.2004,
+   "bone": 1.0326,
+   "water": 1.2018
+  },
+  {
+   "filter": "Al 1.0",
+   "tissue": 1.4819,
+   "brain": 1.4782,
+   "bone": 1.0679,
+   "water": 1.4965
+  },
+  {
+   "filter": "Al 2.0",
+   "tissue": 1.6232,
+   "brain": 1.6183,
+   "bone": 1.0886,
+   "water": 1.644
+  },
+  {
+   "filter": "Cu 0.2",
+   "tissue": 1.8041,
+   "brain": 1.7981,
+   "bone": 1.1229,
+   "water": 1.8274
+  }
+ ],
+ "kanaya_okayama_um_45keV": 5.656
+}

@@ -45,6 +45,12 @@ DOI = {
     'verhaegen2005': '10.1088/0031-9155/50/15/005', 'solberg1992': '10.1088/0031-9155/37/2/010', 'rose1999': '10.1016/s0360-3016(99)00347-8',
     'haume2016': '10.1186/s12645-016-0021-x', 'kakade2015': '10.4103/0973-1482.147691', 'khoshgard2014': '10.1088/0031-9155/59/9/2249',
     'icru85': '10.1093/jicru/ndr011', 'podgorsak2016': '10.1007/978-3-319-25382-4',
+    'zhang2022': '10.1039/d2ma00094f', 'lomax2013': '10.1016/j.clon.2013.06.007', 'azzam2012': '10.1016/j.canlet.2011.12.012',
+    'jackson2009': '10.1038/nature08467', 'santivasi2014': '10.1089/ars.2013.5668', 'kam2013': '10.1016/j.freeradbiomed.2013.07.024',
+    'lane1992': '10.1038/358015a0', 'obe2002': '10.1016/s0027-5107(02)00076-3', 'kanaya1972': '10.1088/0022-3727/5/1/308',
+    'compton1923': '10.1103/PhysRev.21.483', 'klein1929': '10.1007/BF01366453', 'hubbell2006': '10.1088/0031-9155/51/13/R15',
+    'bhattarai2017': '10.1039/C6NR08172J', 'zhu2017': '10.1039/C6NR08188F', 'zhao2021': '10.1088/1361-6528/abd20a',
+    'liu2018t': '10.7150/thno.22172', 'desouky2015': '10.1016/j.jrras.2015.03.003', 'sunilgowda2018': '10.1016/j.tiv.2018.06.015', 'ward1988': '10.1016/S0079-6603(08)60611-X',
 }
 
 MANUAL = {
@@ -67,6 +73,7 @@ MANUAL = {
     'salvat2019': 'Salvat F. PENELOPE-2018: A Code System for Monte Carlo Simulation of Electron and Photon Transport. – Paris: OECD Nuclear Energy Agency, 2019. – 420 p.',
     'woodcock1965': 'Woodcock E., Murphy T., Hemmings P., Longworth S. Techniques used in the GEM code for Monte Carlo neutronics calculations in reactors and other systems of complex geometry // Proceedings of the Conference on the Application of Computing Methods to Reactor Problems. ANL-7050. – Argonne: Argonne National Laboratory, 1965. – P. 557–579.',
     'kalos2008': 'Kalos M.H., Whitlock P.A. Monte Carlo Methods. – 2nd ed. – Weinheim: Wiley-VCH, 2008. – 215 p.',
+    'chernyaev2004': 'Черняев А.П. Взаимодействие ионизирующего излучения с веществом. – М.: Физматлит, 2004. – 152 с.',
     'spekpy_soft': 'SpekPy: a software toolkit for modelling the x-ray spectra from x-ray tubes, version 2.5.4 [Electronic resource]. – URL: https://bitbucket.org/spekpy/spekpy_release (accessed 27.10.2026).',
 }
 

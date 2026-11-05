@@ -812,5 +812,143 @@
   "doi": null,
   "text": "SpekPy: a software toolkit for modelling the x-ray spectra from x-ray tubes, version 2.5.4 [Electronic resource]. – URL: https://bitbucket.org/spekpy/spekpy_release (accessed 27.10.2026).",
   "manual": true
+ },
+ "zhang2022": {
+  "doi": "10.1039/d2ma00094f",
+  "text": "Zhang Y., Han X., Liu Y. [et al.] Research progress on nano-sensitizers for enhancing the effects of radiotherapy // Materials Advances. – 2022. – Vol. 3, No. 9. – P. 3709–3725. – DOI: 10.1039/d2ma00094f.",
+  "year": 2022,
+  "title": "Research progress on nano-sensitizers for enhancing the effects of radiotherapy",
+  "first_author": "Zhang"
+ },
+ "lomax2013": {
+  "doi": "10.1016/j.clon.2013.06.007",
+  "text": "Lomax M.E., Folkes L.K., O'Neill P. Biological Consequences of Radiation-induced DNA Damage: Relevance to Radiotherapy // Clinical Oncology. – 2013. – Vol. 25, No. 10. – P. 578–585. – DOI: 10.1016/j.clon.2013.06.007.",
+  "year": 2013,
+  "title": "Biological Consequences of Radiation-induced DNA Damage: Relevance to Radiotherapy",
+  "first_author": "Lomax"
+ },
+ "azzam2012": {
+  "doi": "10.1016/j.canlet.2011.12.012",
+  "text": "Azzam E.I., Jay-Gerin J.-P., Pain D. Ionizing radiation-induced metabolic oxidative stress and prolonged cell injury // Cancer Letters. – 2012. – Vol. 327, No. 1-2. – P. 48–60. – DOI: 10.1016/j.canlet.2011.12.012.",
+  "year": 2012,
+  "title": "Ionizing radiation-induced metabolic oxidative stress and prolonged cell injury",
+  "first_author": "Azzam"
+ },
+ "jackson2009": {
+  "doi": "10.1038/nature08467",
+  "text": "Jackson S.P., Bartek J. The DNA-damage response in human biology and disease // Nature. – 2009. – Vol. 461, No. 7267. – P. 1071–1078. – DOI: 10.1038/nature08467.",
+  "year": 2009,
+  "title": "The DNA-damage response in human biology and disease",
+  "first_author": "Jackson"
+ },
+ "santivasi2014": {
+  "doi": "10.1089/ars.2013.5668",
+  "text": "Santivasi W.L., Xia F. Ionizing Radiation-Induced DNA Damage, Response, and Repair // Antioxidants & Redox Signaling. – 2014. – Vol. 21, No. 2. – P. 251–259. – DOI: 10.1089/ars.2013.5668.",
+  "year": 2014,
+  "title": "Ionizing Radiation-Induced DNA Damage, Response, and Repair",
+  "first_author": "Santivasi"
+ },
+ "kam2013": {
+  "doi": "10.1016/j.freeradbiomed.2013.07.024",
+  "text": "Kam W.W.-Y., Banati R.B. Effects of ionizing radiation on mitochondria // Free Radical Biology and Medicine. – 2013. – Vol. 65. – P. 607–619. – DOI: 10.1016/j.freeradbiomed.2013.07.024.",
+  "year": 2013,
+  "title": "Effects of ionizing radiation on mitochondria",
+  "first_author": "Kam"
+ },
+ "lane1992": {
+  "doi": "10.1038/358015a0",
+  "text": "Lane D.P. p53, guardian of the genome // Nature. – 1992. – Vol. 358, No. 6381. – P. 15–16. – DOI: 10.1038/358015a0.",
+  "year": 1992,
+  "title": "p53, guardian of the genome",
+  "first_author": "Lane"
+ },
+ "obe2002": {
+  "doi": "10.1016/s0027-5107(02)00076-3",
+  "text": "Obe G., Pfeiffer P., Savage J.R.K. [et al.] Chromosomal aberrations: formation, identification and distribution // Mutation Research - Fundamental and Molecular Mechanisms of Mutagenesis. – 2002. – Vol. 504, No. 1-2. – P. 17–36. – DOI: 10.1016/s0027-5107(02)00076-3.",
+  "year": 2002,
+  "title": "Chromosomal aberrations: formation, identification and distribution",
+  "first_author": "Obe"
+ },
+ "kanaya1972": {
+  "doi": "10.1088/0022-3727/5/1/308",
+  "text": "Kanaya K., Okayama S. Penetration and energy-loss theory of electrons in solid targets // Journal of Physics D: Applied Physics. – 1972. – Vol. 5, No. 1. – P. 43–58. – DOI: 10.1088/0022-3727/5/1/308.",
+  "year": 1972,
+  "title": "Penetration and energy-loss theory of electrons in solid targets",
+  "first_author": "Kanaya"
+ },
+ "compton1923": {
+  "doi": "10.1103/PhysRev.21.483",
+  "text": "Compton A.H. A Quantum Theory of the Scattering of X-rays by Light Elements // Physical Review. – 1923. – Vol. 21, No. 5. – P. 483–502. – DOI: 10.1103/PhysRev.21.483.",
+  "year": 1923,
+  "title": "A Quantum Theory of the Scattering of X-rays by Light Elements",
+  "first_author": "Compton"
+ },
+ "klein1929": {
+  "doi": "10.1007/BF01366453",
+  "text": "Klein O., Nishina Y. Über die Streuung von Strahlung durch freie Elektronen nach der neuen relativistischen Quantendynamik von Dirac // Zeitschrift für Physik. – 1929. – Vol. 52, No. 11-12. – P. 853–868. – DOI: 10.1007/BF01366453.",
+  "year": 1929,
+  "title": "Über die Streuung von Strahlung durch freie Elektronen nach der neuen relativistischen Quantendynamik von Dirac",
+  "first_author": "Klein"
+ },
+ "hubbell2006": {
+  "doi": "10.1088/0031-9155/51/13/R15",
+  "text": "Hubbell J.H. Review and history of photon cross section calculations // Physics in Medicine and Biology. – 2006. – Vol. 51, No. 13. – P. R245–R262. – DOI: 10.1088/0031-9155/51/13/R15.",
+  "year": 2006,
+  "title": "Review and history of photon cross section calculations",
+  "first_author": "Hubbell"
+ },
+ "bhattarai2017": {
+  "doi": "10.1039/C6NR08172J",
+  "text": "Bhattarai S.R., Derry P.J., Aziz K. [et al.] Gold nanotriangles: scale up and X-ray radiosensitization effects in mice // Nanoscale. – 2017. – Vol. 9, No. 16. – P. 5085–5093. – DOI: 10.1039/C6NR08172J.",
+  "year": 2017,
+  "title": "Gold nanotriangles: scale up and X-ray radiosensitization effects in mice",
+  "first_author": "Bhattarai"
+ },
+ "zhu2017": {
+  "doi": "10.1039/C6NR08188F",
+  "text": "Zhu L., Guo D., Sun L. [et al.] Activation of autophagy by elevated reactive oxygen species rather than released silver ions promotes cytotoxicity of polyvinylpyrrolidone-coated silver nanoparticles in hematopoietic cells // Nanoscale. – 2017. – Vol. 9, No. 17. – P. 5489–5498. – DOI: 10.1039/C6NR08188F.",
+  "year": 2017,
+  "title": "Activation of autophagy by elevated reactive oxygen species rather than released silver ions promotes cytotoxicity of polyvinylpyrrolidone-coated silver nanoparticles in hematopoietic cells",
+  "first_author": "Zhu"
+ },
+ "zhao2021": {
+  "doi": "10.1088/1361-6528/abd20a",
+  "text": "Zhao J., Li D., Ma J. [et al.] Increasing the accumulation of aptamer AS1411 and verapamil conjugated silver nanoparticles in tumor cells to enhance the radiosensitivity of glioma // Nanotechnology. – 2021. – Vol. 32, No. 14. – Art. 145102. – DOI: 10.1088/1361-6528/abd20a.",
+  "year": 2021,
+  "title": "Increasing the accumulation of aptamer AS1411 and verapamil conjugated silver nanoparticles in tumor cells to enhance the radiosensitivity of glioma",
+  "first_author": "Zhao"
+ },
+ "liu2018t": {
+  "doi": "10.7150/thno.22172",
+  "text": "Liu Y., Zhang P., Li F. [et al.] Metal-based NanoEnhancers for Future Radiotherapy: Radiosensitizing and Synergistic Effects on Tumor Cells // Theranostics. – 2018. – Vol. 8, No. 7. – P. 1824–1849. – DOI: 10.7150/thno.22172.",
+  "year": 2018,
+  "title": "Metal-based NanoEnhancers for Future Radiotherapy: Radiosensitizing and Synergistic Effects on Tumor Cells",
+  "first_author": "Liu"
+ },
+ "sunilgowda2018": {
+  "doi": "10.1016/j.tiv.2018.06.015",
+  "text": "Sunil Gowda S.N., Rajasowmiya S., Vadivel V. [et al.] Gallic acid-coated sliver nanoparticle alters the expression of radiation-induced epithelial-mesenchymal transition in non-small lung cancer cells // Toxicology in Vitro. – 2018. – Vol. 52. – P. 170–177. – DOI: 10.1016/j.tiv.2018.06.015.",
+  "year": 2018,
+  "title": "Gallic acid-coated sliver nanoparticle alters the expression of radiation-induced epithelial-mesenchymal transition in non-small lung cancer cells",
+  "first_author": "Sunil Gowda"
+ },
+ "ward1988": {
+  "doi": "10.1016/S0079-6603(08)60611-X",
+  "text": "Ward J.F. DNA Damage Produced by Ionizing Radiation in Mammalian Cells: Identities, Mechanisms of Formation, and Reparability // Progress in Nucleic Acid Research and Molecular Biology. – 1988. – P. 95–125. – DOI: 10.1016/S0079-6603(08)60611-X.",
+  "year": 1988,
+  "title": "DNA Damage Produced by Ionizing Radiation in Mammalian Cells: Identities, Mechanisms of Formation, and Reparability",
+  "first_author": "Ward"
+ },
+ "chernyaev2004": {
+  "doi": null,
+  "text": "Черняев А.П. Взаимодействие ионизирующего излучения с веществом. – М.: Физматлит, 2004. – 152 с.",
+  "manual": true
+ },
+ "desouky2015": {
+  "doi": "10.1016/j.jrras.2015.03.003",
+  "text": "Desouky O., Ding N., Zhou G. Targeted and non-targeted effects of ionizing radiation // Journal of Radiation Research and Applied Sciences. – 2015. – Vol. 8, No. 2. – P. 247–254. – DOI: 10.1016/j.jrras.2015.03.003.",
+  "year": 2015,
+  "title": "Targeted and non-targeted effects of ionizing radiation",
+  "first_author": "Desouky"
  }
 }

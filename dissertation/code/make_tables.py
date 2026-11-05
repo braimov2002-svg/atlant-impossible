@@ -326,9 +326,50 @@ for L in LANGS:
          'uz': ['Parametr (o‘zgarish)', 'DEF (quyi)', 'DEF (yuqori)', '|ΔDEF|max']}[L]
     rows = [[names[it['name']][L], f(it['low'], 3, L), f(it['high'], 3, L), f(it['delta'], 3, L)] for it in R['sensitivity']['items']]
     rows.append([{'en': 'Combined standard uncertainty (k = 1), excluding the reference-medium choice',
-                  'ru': 'Суммарная стандартная неопределённость (k = 1) без учёта выбора опорной среды',
+                  'ru': 'Суммарная стандартная неопределённость (k = 1) без учёта выбора эталонной среды',
                   'uz': 'Umumiy standart noaniqlik (k = 1), tayanch muhit tanlovisiz'}[L], '', '', f(R['sensitivity']['combined_u'], 3, L)])
     T.setdefault('t3_12', {})[L] = (title, table(H, rows))
+
+# ---------------------------------------------------------------- Chapter 2 media and DEF in media (run_ch2.py)
+C2 = json.load(open(os.path.join(DATA, 'ch2.json')))
+MED = ['tissue', 'brain', 'bone', 'water']
+MNAME = {'tissue': {'en': 'Soft tissue', 'ru': 'Мягкая ткань', 'uz': 'Yumshoq to‘qima'},
+         'brain': {'en': 'Brain', 'ru': 'Мозг', 'uz': 'Miya'},
+         'bone': {'en': 'Cortical bone', 'ru': 'Кортикальная кость', 'uz': 'Kortikal suyak'},
+         'water': {'en': 'Water', 'ru': 'Вода', 'uz': 'Suv'}}
+SYM = {1: 'H', 6: 'C', 7: 'N', 8: 'O', 11: 'Na', 12: 'Mg', 15: 'P', 16: 'S', 17: 'Cl', 19: 'K', 20: 'Ca'}
+for L in LANGS:
+    title = {'en': 'Elemental composition (% by mass) and density of the biological media (ICRU Report 44, NIST)',
+             'ru': 'Элементный состав (% по массе) и плотность биологических сред (доклад МКРЕ 44, NIST)',
+             'uz': 'Biologik muhitlarning elementar tarkibi (massa bo‘yicha %) va zichligi (ICRU 44-hisoboti, NIST)'}[L]
+    H = [{'en': 'Element', 'ru': 'Элемент', 'uz': 'Element'}[L]] + [MNAME[m][L] for m in MED]
+    rows = []
+    for Z in sorted(SYM):
+        vals = [C2['composition'][m].get(str(Z)) for m in MED]
+        rows.append([SYM[Z]] + [f(100 * v, 1 if v < 0.999 else 1, L) if v else '–' for v in vals])
+    rows.append([{'en': 'Density, g/cm³', 'ru': 'Плотность, г/см³', 'uz': 'Zichlik, g/sm³'}[L]] + [f(C2['rho'][m], 2, L) for m in MED])
+    T.setdefault('t2_3', {})[L] = (title, table(H, rows))
+
+for L in LANGS:
+    title = {'en': 'Mass attenuation coefficient μ/ρ and mass energy-absorption coefficient μ_en/ρ (cm²/g) of the biological media and the ratio R of μ_en/ρ of silver to that of the medium (NIST data)',
+             'ru': 'Массовый коэффициент ослабления μ/ρ и массовый коэффициент поглощения энергии μ_en/ρ (см²/г) биологических сред и отношение R значений μ_en/ρ серебра и среды (данные NIST)',
+             'uz': 'Biologik muhitlarning massaviy susayish koeffitsiyenti μ/ρ va massaviy energiya yutilish koeffitsiyenti μ_en/ρ (sm²/g) hamda kumush va muhit μ_en/ρ qiymatlarining nisbati R (NIST ma’lumotlari)'}[L]
+    H = [{'en': 'Medium', 'ru': 'Среда', 'uz': 'Muhit'}[L], {'en': 'Quantity', 'ru': 'Величина', 'uz': 'Kattalik'}[L]] + \
+        [f"{f(r['E'], 2 if r['E'] % 1 else 0, L)} {KEV[L]}" for r in C2['coeff_table']]
+    rows = []
+    for m in MED:
+        rows.append([MNAME[m][L], 'μ/ρ'] + [f(r[m + '_mu'], 3 if r[m + '_mu'] < 10 else 2, L) for r in C2['coeff_table']])
+        rows.append(['', 'μ_en/ρ'] + [f(r[m + '_muen'], 3 if r[m + '_muen'] < 10 else 2, L) for r in C2['coeff_table']])
+        rows.append(['', 'R'] + [f(r['ratio_' + m], 1, L) for r in C2['coeff_table']])
+    T.setdefault('t2_4', {})[L] = (title, table(H, rows))
+
+for L in LANGS:
+    title = {'en': 'DEF for 1 % Ag by mass in different biological media (SpekPy v2 spectra, 45 kV, kerma approximation at the surface)',
+             'ru': 'DEF при массовой доле Ag 1 % в различных биологических средах (спектры SpekPy v2, 45 кВ, приближение кермы на поверхности)',
+             'uz': 'Turli biologik muhitlarda massa ulushi 1 % bo‘lgan Ag uchun DEF (SpekPy v2 spektrlari, 45 kV, sirtda kerma yaqinlashuvi)'}[L]
+    H = [{'en': 'Added filter', 'ru': 'Дополнительный фильтр', 'uz': 'Qo‘shimcha filtr'}[L]] + [MNAME[m][L] for m in MED]
+    rows = [[flab(r['filter'], L)] + [f(r[m], 3, L) for m in MED] for r in C2['DEF_media']]
+    T.setdefault('t3_13', {})[L] = (title, table(H, rows))
 
 for L in LANGS:
     d = os.path.join(DATA, 'tables', L)

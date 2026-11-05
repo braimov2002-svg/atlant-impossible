@@ -18,7 +18,9 @@ NUM = re.compile(r'\d\.\d+E[-+]\d+')
 TISSUE_ICRU44 = {1: 0.102, 6: 0.143, 7: 0.034, 8: 0.708, 11: 0.002, 15: 0.003, 16: 0.003, 17: 0.002, 19: 0.003}
 WATER = {1: 0.111894, 8: 0.888106}
 AIR = {6: 0.000124, 7: 0.755268, 8: 0.231781, 18: 0.012827}
-RHO = {'tissue': 1.06, 'water': 1.0, 'air': 1.20479e-3}
+BONE_ICRU44 = {1: 0.034, 6: 0.155, 7: 0.042, 8: 0.435, 11: 0.001, 12: 0.002, 15: 0.103, 16: 0.003, 20: 0.225}
+BRAIN_ICRU44 = {1: 0.107, 6: 0.145, 7: 0.022, 8: 0.712, 11: 0.002, 15: 0.004, 16: 0.002, 17: 0.003, 19: 0.003}
+RHO = {'tissue': 1.06, 'water': 1.0, 'air': 1.20479e-3, 'bone': 1.92, 'brain': 1.04}
 
 
 def _load(name):
@@ -52,12 +54,13 @@ def _interp(tab, E, col):
 
 
 def coeff(material, E, kind='muen'):
-    """material: atomic number, 'tissue' (ICRU-44 soft tissue), 'water', 'air',
+    """material: atomic number, 'tissue' (ICRU-44 soft tissue), 'bone' (ICRU-44 cortical bone),
+    'brain' (ICRU-44 grey/white matter), 'water', 'air',
     or a dict {Z: mass fraction}. kind: 'mu' or 'muen'. Returns cm^2/g."""
     col = 1 if kind == 'mu' else 2
     if isinstance(material, (int, np.integer)):
         return _interp(_load(int(material)), E, col)
-    comp = material if isinstance(material, dict) else {'tissue': TISSUE_ICRU44, 'water': WATER, 'air': AIR}[material]
+    comp = material if isinstance(material, dict) else {'tissue': TISSUE_ICRU44, 'water': WATER, 'air': AIR, 'bone': BONE_ICRU44, 'brain': BRAIN_ICRU44}[material]
     E = np.atleast_1d(np.asarray(E, float))
     out = np.zeros_like(E)
     for Z, w in comp.items():

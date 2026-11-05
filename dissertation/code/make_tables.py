@@ -334,7 +334,7 @@ for L in LANGS:
 C2 = json.load(open(os.path.join(DATA, 'ch2.json')))
 MED = ['tissue', 'brain', 'bone', 'water']
 MNAME = {'tissue': {'en': 'Soft tissue', 'ru': 'Мягкая ткань', 'uz': 'Yumshoq to‘qima'},
-         'brain': {'en': 'Brain', 'ru': 'Мозг', 'uz': 'Miya'},
+         'brain': {'en': 'Brain', 'ru': 'Головной мозг', 'uz': 'Miya'},
          'bone': {'en': 'Cortical bone', 'ru': 'Кортикальная кость', 'uz': 'Kortikal suyak'},
          'water': {'en': 'Water', 'ru': 'Вода', 'uz': 'Suv'}}
 SYM = {1: 'H', 6: 'C', 7: 'N', 8: 'O', 11: 'Na', 12: 'Mg', 15: 'P', 16: 'S', 17: 'Cl', 19: 'K', 20: 'Ca'}

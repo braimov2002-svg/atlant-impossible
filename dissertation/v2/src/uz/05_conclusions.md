@@ -1,0 +1,27 @@
+# XULOSA
+
+1. Yuqori Z li elementlar tufayli dozaning kuchayishi megavoltli fotonlarga qaraganda kilovoltli fotonlar uchun ancha katta, kumush nanozarrachalari esa glioma, sut bezi va kolorektal saraton modellarini radiosensibilizatsiya qilishi qayd etilgan. Massaviy energiya yutilish koeffitsiyentlarining Ag/to‘qima nisbati Ag K-chegarasidan (25,514 keV) pastdagi 21–32 dan 30–45 keV da 103–139 gacha ortadi, shu sababli kumush tufayli dozaning kuchayishi trubka spektri va uning filtrlanishi bilan belgilanadi.
+
+2. Ishlab chiqilgan model (IM) mis anodli trubka spektrining qalin nishon uchun yarim analitik modeli (Bete tormozlanish qobiliyati, Elvert ko‘paytuvchisi kiritilgan norelyativistik Bete–Gaytler kesimi, Grizinskiy K-qobiq kesimi) bo‘lib, tormozlanish nurlanishi ta’sirida hosil bo‘ladigan K flyuoressensiyani, anodda o‘z-o‘zini yutishni va filtrlashni o‘z ichiga oladi. Uning yagona parametri — elektronlarning chuqurlik koeffitsiyenti $\eta$ = 0,40 — 45 kV da SpekPy v2 tormozlanish nurlanishi spektrining shakliga 2,46 % o‘rtacha kvadratik chetlanish bilan moslashtirildi.
+
+3. Zaryadli zarralar muvozanati sharoitida DEF kumush kiritilgan va kiritilmagan to‘qimalar massaviy energiya yutilish koeffitsiyentlarining spektr bo‘yicha tortilgan nisbatidan iborat. Sirtda $\mathrm{DEF} - 1$ kumushning massa ulushiga proporsional, qiyalik esa doza spektrining Ag K-chegarasidan yuqoridagi ulushi bilan belgilanadi; to‘qima ichida DEF dastaning qattiqlashishi tufayli chuqurlik ortishi bilan kattalashadi, kumush katta miqdorda kiritilgan sohada esa o‘z-o‘zini ekranlash tufayli kamayadi.
+
+4. Kumushda 0,24 MeV gacha fotoeffekt ustunlik qiladi, shu sababli 45 kV li trubka spektrida o‘zaro ta’sir deyarli sof fotoelektrik xarakterga ega, K-chegarada esa susayish koeffitsiyenti 5,8 marta ortadi. 1–100 keV da suv, yumshoq to‘qima va miyaning massaviy susayish koeffitsiyentlari amalda teng, kortikal suyakda susayish 10–30 keV da yumshoq to‘qimadagiga qaraganda 3,5–5,3 marta, kumushda esa uning K-chegarasi bilan 30 keV oralig‘ida 97–108 marta kuchliroq.
+
+5. Filtrsiz 45 kV li mis anodli trubka juda intensiv manba (10 sm masofada va 40 mA da 15,3 Gr/s) bo‘lib, ekranlash, blokirovkalar va dozimetrik nazoratni talab qiladi. Birlamchi fotonlarning ko‘pi bilan 6×10⁻⁶ qismini o‘tkazadigan 1 mm li qo‘rg‘oshin qopqoq bilan jihozlangan qo‘rg‘oshinli himoya kamerasidagi BS1 trubkali (45 kV, 100 mkA) REIS-I qurilmasi biologik namunalarni xavfsiz nurlantirishni ta’minlaydi.
+
+6. Qalinligi 100 mkm bo‘lgan mis o‘tkazuvchi anodli 45 kVp li trubkaning spektri Cu K chiziqlari (8,05 va 8,91 keV) hamda 15–45 keV dagi, maksimumi taxminan 27–28 keV da bo‘lgan tormozlanish nurlanishining uzluksiz spektridan iborat; anodning o‘z-o‘zini filtrlashi 9 va 14 keV oralig‘idagi fotonlarni so‘ndiradi. 2,11 mm li alyuminiy filtr Cu K chiziqlarini va taxminan 20 keV dan past energiyali fotonlarni olib tashlaydi hamda spektrni Ag K-chegarasidan yuqorida jamlaydi, 30 mkm li filtr esa spektrni faqat ozgina o‘zgartiradi.
+
+7. $Z$ = 30–65 bo‘lgan elementlar K-qobig‘ining bog‘lanish energiyalari 9,7 va 52 keV oralig‘ida yotadi, yutilish esa K-chegarada 4,8–7,2 marta (kumush uchun 5,8 marta), L3 chegarada 2,6–4,7 marta, L1 va L2 chegaralarda 1,5 martadan kamroq ortadi. Kumushning K-chegarasi (25,5 keV) 45 kVp li trubka spektri ichida, samariyniki (46,8 keV) esa undan yuqorida yotadi.
+
+8. Yumshoq to‘qimaning DEF qiymati elementning massa ulushi ortishi bilan chiziqli ortadi. 1 % kumush uchun u 30 mkm li Al filtr bilan 1,40 ga, 2,11 mm li Al filtr bilan esa 1,98 ga teng (5 % kumush uchun 5,88). Yupqa filtrlashda samariy kumushdan samaraliroq (1 % uchun DEF 1,56), chunki uning L-chegaralari Cu K chiziqlaridan biroz pastda joylashgan; qalin filtrlashda esa kumush samariydan samaraliroq (1,81 ga nisbatan 1,98). Filtrlash kumush tufayli dozaning kuchayishi uchun hal qiluvchi parametr hisoblanadi.
+
+9. Natijalar kumush va kilovoltli rentgen trubkalari yordamida radiosensibilizatsiya imkoniyatini ko‘rsatadi. Ichki qobiq ionlashishidan keyingi Oje elektronlari va flyuoressensiya fotonlari kaskadlari dozaning mikroskopik taqsimotini kuchli darajada notekis qiladi, buni esa dozimetriyada va biologik samaradorlikni baholashda hisobga olish zarur.
+
+## Amaliy tavsiyalar
+
+1. Kumush saqlovchi namunalarni 45 kV li mis anodli trubka bilan nurlantirishda Cu K chiziqlarini va taxminan 20 keV dan past energiyali fotonlarni olib tashlaydigan qalin alyuminiy filtrlashdan (taxminan 2 mm, masalan, 2,11 mm Al) foydalanish lozim; filtrlanmagan va yupqa filtrlangan dastalardan qochish kerak.
+2. Dastani tavsiflash (kuchlanish, anod, oyna, filtrlar va o‘lchangan birinchi YSQ), DEFni esa spektr va tayanch muhit bilan birga keltirish lozim.
+3. Ekspozitsiya vaqtlarini tanlangan filtr uchun hisoblangan to‘qima kermasi quvvati asosida, qalin filtrlarda doza quvvati pastroq ekanligini hisobga olgan holda rejalashtirish, nurlanish chiqishini esa dozimetrik usulda tekshirish kerak.
+4. REIS-I generatorini faqat 1 mm li qo‘rg‘oshin qopqoq bilan jihozlangan radiatsiyaviy himoya kamerasida ishlatish; xodimlarni yuqori kuchlanishli blokdan kamida 1,5 m masofada, uning orqasida yoki yonida joylashtirish va doza quvvatini o‘lchash ishlarini olib borish lozim.
+5. Filtrni radiosensibilizator bilan birgalikda tanlash lozim: kumush kabi, K-chegarasi spektr ichida yotadigan elementlar uchun qattiq filtrlash foydali, samariy kabi, K-chegarasi fotonlarning maksimal energiyasidan yuqorida joylashgan elementlar uchun esa yupqa filtrlash afzalroq bo‘lishi mumkin.

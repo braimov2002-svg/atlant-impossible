@@ -2,7 +2,8 @@
 figures_v2.py - figures of the edited English version (v2): schematics redrawn
 with English labels, NIST-based cross-section and attenuation plots, and the
 author's chapter-3 images combined into (a)/(b) panels.
-Usage: python3 figures_v2.py <dir with the author's images>
+Usage: python3 figures_v2.py <dir with the author's images> [en|uz]
+(the Uzbek set reuses the English raster images and relabels the two author's plots that contain words)
 """
 import os, shutil, sys
 import numpy as np
@@ -16,9 +17,36 @@ import nist
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'data')
-OUT = os.path.join(HERE, '..', 'v2', 'figures', 'en')
 SRC = sys.argv[1] if len(sys.argv) > 1 else '.'
-os.makedirs(OUT, exist_ok=True)
+LANG = sys.argv[2] if len(sys.argv) > 2 else 'en'
+OUT = os.path.join(HERE, '..', 'v2', 'figures', LANG)
+EN_OUT = os.path.join(HERE, '..', 'v2', 'figures', 'en')
+UZ = {
+    'total': 'to‘liq kesim', 'photoelectric effect': 'fotoeffekt',
+    'Compton (incoherent) scattering': 'kompton (nokogerent) sochilishi',
+    'coherent (Rayleigh) scattering': 'kogerent (Reley) sochilishi',
+    'electron–positron pair production': 'elektron–pozitron jufti hosil bo‘lishi',
+    'Ag K-edge\n25.51 keV': 'Ag K-chegarasi\n25,51 keV', 'pair threshold\n1.022 MeV': 'juft hosil bo‘lish\nbo‘sag‘asi 1,022 MeV',
+    'Photon energy, MeV': 'Foton energiyasi, MeV', 'Photon energy, keV': 'Foton energiyasi, keV',
+    'Cross-section per atom, cm$^2$': 'Bir atomga to‘g‘ri keladigan kesim, sm$^2$',
+    'water': 'suv', 'soft tissue (ICRU-44)': 'yumshoq to‘qima (ICRU-44)', 'brain (ICRU-44)': 'miya (ICRU-44)',
+    'cortical bone (ICRU-44)': 'kortikal suyak (ICRU-44)', 'silver (Ag)': 'kumush (Ag)',
+    r'Mass attenuation coefficient $\mu/\rho$, cm$^2$ g$^{-1}$': r'Massaviy susayish koeffitsiyenti $\mu/\rho$, sm$^2$ g$^{-1}$',
+    'X-ray emitter\n(REIS-I, BS1 tube)': 'Rentgen nurlatkichi\n(REIS-I, BS1 trubka)', 'output\nwindow': 'chiqish\noynasi',
+    'vial with\nsample': 'namunali\nflakon', 'dosimeter detector head\n(DRG3-02)': 'dozimetr detektori\nboshchasi (DRG3-02)',
+    'lead shielding plates': 'qo‘rg‘oshin himoya plitalari', 'radiation\nshielding\nchamber': 'radiatsiyaviy\nhimoya\nkamerasi',
+    'electron beam': 'elektronlar dastasi', 'anode (target)': 'anod (nishon)', 'output window': 'chiqish oynasi',
+    'x-ray photons': 'rentgen fotonlari', 'maximum photon energy of the 45 kVp tube': '45 kVp trubkaning maksimal foton energiyasi',
+    'Atomic number $Z$': 'Atom raqami $Z$', 'K-shell binding energy $E_K$, keV': 'K-qobiqning bog‘lanish energiyasi $E_K$, keV',
+}
+
+
+def t(s):
+    return UZ.get(s, s) if LANG == 'uz' else s
+
+
+def dec(x):
+    return x.replace('.', ',') if LANG == 'uz' else x
 
 plt.rcParams.update({
     'font.family': 'Liberation Serif', 'mathtext.fontset': 'stix', 'font.size': 10.5,
@@ -41,21 +69,21 @@ def fig_xsec_ag():
     k = 107.8682 / 6.02214076e23          # cm2/g -> cm2 per atom
     m = (E >= 1e-3) & (E <= 100)
     fig, ax = plt.subplots(figsize=(6.3, 3.9))
-    ax.loglog(E[m], a[m, 6] * k, color='k', lw=1.7, label='total')
-    ax.loglog(E[m], a[m, 3] * k, color=C[1], label='photoelectric effect')
-    ax.loglog(E[m], a[m, 2] * k, color=C[0], ls='--', label='Compton (incoherent) scattering')
-    ax.loglog(E[m], a[m, 1] * k, color=C[2], ls=':', label='coherent (Rayleigh) scattering')
+    ax.loglog(E[m], a[m, 6] * k, color='k', lw=1.7, label=t('total'))
+    ax.loglog(E[m], a[m, 3] * k, color=C[1], label=t('photoelectric effect'))
+    ax.loglog(E[m], a[m, 2] * k, color=C[0], ls='--', label=t('Compton (incoherent) scattering'))
+    ax.loglog(E[m], a[m, 1] * k, color=C[2], ls=':', label=t('coherent (Rayleigh) scattering'))
     pr = (a[:, 4] + a[:, 5]) * k
     mp = m & (pr > 0)
-    ax.loglog(E[mp], pr[mp], color=C[3], ls='-.', label='electron–positron pair production')
+    ax.loglog(E[mp], pr[mp], color=C[3], ls='-.', label=t('electron–positron pair production'))
     ax.axvline(25.514e-3, color='0.4', ls='--', lw=0.8)
-    ax.text(27e-3, 2e-27, 'Ag K-edge\n25.51 keV', fontsize=8.3, color='0.3')
+    ax.text(27e-3, 2e-27, t('Ag K-edge\n25.51 keV'), fontsize=8.3, color='0.3')
     ax.axvline(1.022, color='0.4', ls=':', lw=0.8)
-    ax.text(1.1, 2e-27, 'pair threshold\n1.022 MeV', fontsize=8.3, color='0.3')
+    ax.text(1.1, 2e-27, t('pair threshold\n1.022 MeV'), fontsize=8.3, color='0.3')
     ax.set_xlim(1e-3, 100)
     ax.set_ylim(1e-27, 1e-17)
-    ax.set_xlabel('Photon energy, MeV')
-    ax.set_ylabel('Cross-section per atom, cm$^2$')
+    ax.set_xlabel(t('Photon energy, MeV'))
+    ax.set_ylabel(t('Cross-section per atom, cm$^2$'))
     ax.legend(loc='upper right', fontsize=8.4)
     save(fig, 'f2_xsec_ag')
 
@@ -67,10 +95,10 @@ def fig_media_mu():
     for mat, lab, c, ls in [('water', 'water', C[4], ':'), ('tissue', 'soft tissue (ICRU-44)', C[0], '-'),
                             ('brain', 'brain (ICRU-44)', C[2], '--'), ('bone', 'cortical bone (ICRU-44)', C[3], '-'),
                             (47, 'silver (Ag)', C[1], '-')]:
-        ax.loglog(E, nist.coeff(mat, E, 'mu'), color=c, ls=ls, label=lab)
+        ax.loglog(E, nist.coeff(mat, E, 'mu'), color=c, ls=ls, label=t(lab))
     ax.set_xlim(1, 100)
-    ax.set_xlabel('Photon energy, keV')
-    ax.set_ylabel(r'Mass attenuation coefficient $\mu/\rho$, cm$^2$ g$^{-1}$')
+    ax.set_xlabel(t('Photon energy, keV'))
+    ax.set_ylabel(t(r'Mass attenuation coefficient $\mu/\rho$, cm$^2$ g$^{-1}$'))
     ax.legend(loc='lower left')
     save(fig, 'f2_media_mu')
 
@@ -87,16 +115,16 @@ def fig_facility_scheme():
         ax.add_patch(Rectangle((14, y), 62, 2.2, facecolor='0.55', edgecolor='k', lw=0.8))
     # X-ray emitter, output window, vial, dosimeter head
     ax.add_patch(Rectangle((6, 13), 24, 14, facecolor='#d6e4f0', edgecolor='k', lw=1))
-    ax.text(18, 20, 'X-ray emitter\n(REIS-I, BS1 tube)', ha='center', va='center', fontsize=8.6)
+    ax.text(18, 20, t('X-ray emitter\n(REIS-I, BS1 tube)'), ha='center', va='center', fontsize=8.6)
     ax.add_patch(Rectangle((30, 16.5), 7, 7, facecolor='0.85', edgecolor='k', lw=1))
-    ax.text(33.5, 13.5, 'output\nwindow', ha='center', va='top', fontsize=7.6)
+    ax.text(33.5, 13.5, t('output\nwindow'), ha='center', va='top', fontsize=7.6)
     ax.add_patch(Circle((40.5, 20), 3.2, facecolor='#f5cba7', edgecolor='k', lw=1))
-    ax.text(40.5, 26.5, 'vial with\nsample', ha='center', va='bottom', fontsize=7.6)
+    ax.text(40.5, 26.5, t('vial with\nsample'), ha='center', va='bottom', fontsize=7.6)
     ax.add_patch(Rectangle((44, 15.5), 26, 9, facecolor='#e8f6e8', edgecolor='k', lw=1))
-    ax.text(57, 20, 'dosimeter detector head\n(DRG3-02)', ha='center', va='center', fontsize=8.2)
+    ax.text(57, 20, t('dosimeter detector head\n(DRG3-02)'), ha='center', va='center', fontsize=8.2)
     ax.annotate('', xy=(43.7, 20), xytext=(37.2, 20), arrowprops=dict(arrowstyle='->', color=C[1], lw=1.2))
-    ax.text(60, 35.5, 'lead shielding plates', ha='center', fontsize=8)
-    ax.text(84, 20, 'radiation\nshielding\nchamber', ha='center', va='center', fontsize=8)
+    ax.text(60, 35.5, t('lead shielding plates'), ha='center', fontsize=8)
+    ax.text(84, 20, t('radiation\nshielding\nchamber'), ha='center', va='center', fontsize=8)
     save(fig, 'f2_facility_scheme')
 
 
@@ -116,10 +144,10 @@ def fig_mechanism():
     ax.add_patch(Rectangle((51, 8), 3, 28.8, facecolor='0.3', edgecolor='none'))                # output window
     ax.add_patch(FancyArrow(4, 22, 39, 0, width=6, head_width=11, head_length=6, color='0.1'))
     ax.add_patch(FancyArrow(47, 22, 40, 0, width=6, head_width=11, head_length=6, color='0.55'))
-    ax.text(18, 40, 'electron beam', ha='center', fontsize=9)
-    ax.text(45.5, 40, 'anode (target)', ha='center', fontsize=9)
-    ax.text(62, 40, 'output window', ha='center', fontsize=9)
-    ax.text(84, 31, 'x-ray photons', ha='center', fontsize=9)
+    ax.text(18, 40, t('electron beam'), ha='center', fontsize=9)
+    ax.text(45.5, 40, t('anode (target)'), ha='center', fontsize=9)
+    ax.text(62, 40, t('output window'), ha='center', fontsize=9)
+    ax.text(84, 31, t('x-ray photons'), ha='center', fontsize=9)
     # dimensions x1, x2, x3
     y0 = 3.2
     for x in (40, 47, 51, 54):
@@ -173,14 +201,14 @@ def fig_ek():
     for z, lab in [(47, 'Ag'), (62, 'Sm')]:
         e = xr.EdgeEnergy(z, xr.K_SHELL)
         ax.plot([z], [e], 'o', ms=7, mfc='none', mec='k')
-        ax.annotate(f'{lab}: {e:.2f} keV', xy=(z, e), xytext=(z - 15, e + 5), fontsize=9,
+        ax.annotate(f'{lab}: ' + dec(f'{e:.2f}') + ' keV', xy=(z, e), xytext=(z - 15, e + 5), fontsize=9,
                     arrowprops=dict(arrowstyle='->', lw=0.7))
     ax.axhline(45, color='0.4', ls='--', lw=0.8)
-    ax.text(31, 46, 'maximum photon energy of the 45 kVp tube', fontsize=8.5, color='0.3')
+    ax.text(31, 46, t('maximum photon energy of the 45 kVp tube'), fontsize=8.5, color='0.3')
     ax.set_xlim(30, 65)
     ax.set_ylim(5, 55)
-    ax.set_xlabel('Atomic number $Z$')
-    ax.set_ylabel('K-shell binding energy $E_K$, keV')
+    ax.set_xlabel(t('Atomic number $Z$'))
+    ax.set_ylabel(t('K-shell binding energy $E_K$, keV'))
     save(fig, 'f3_ek')
 
 
@@ -212,18 +240,58 @@ def upscale(src, name, factor=3):
     im.resize((im.width * factor, im.height * factor), Image.LANCZOS).save(os.path.join(OUT, name + '.png'))
 
 
+def relabel_uz():
+    """Uzbek labels on the two author's plots that contain English words (spectra and DEF)."""
+    from PIL import ImageDraw, ImageFont
+    bold = '/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf'
+    white = (255, 255, 255)
+    im = Image.open(os.path.join(EN_OUT, 'f3_spectra.png')).convert('RGB')
+    d = ImageDraw.Draw(im)
+    d.rectangle([1018, 57, 1270, 91], fill=white)
+    d.rectangle([1018, 158, 1250, 199], fill=white)
+    fb = ImageFont.truetype(bold, 37)
+    for y, txt in ((52, 'filtrsiz'), (154, '30 mkm Al')):
+        x = 1027
+        for ch in txt:                       # letter-spaced like the original legend
+            d.text((x, y), ch, font=fb, fill=(0, 0, 0))
+            x += fb.getlength(ch) + 3
+    d.rectangle([56, 228, 108, 632], fill=white)
+    f2 = ImageFont.truetype(bold, 44)
+    new = 'N, foton/(s sr keV)'
+    lab = Image.new('RGB', (int(f2.getlength(new)) + 6, 56), white)
+    ImageDraw.Draw(lab).text((3, 2), new, font=f2, fill=(0, 0, 0))
+    lab = lab.rotate(90, expand=True)
+    im.paste(lab, (82 - lab.width // 2 + 3, 429 - lab.height // 2))
+    im.save(os.path.join(OUT, 'f3_spectra.png'))
+    im = Image.open(os.path.join(EN_OUT, 'f3_def.png')).convert('RGB')
+    d = ImageDraw.Draw(im)
+    f = ImageFont.truetype(bold, 42)
+    for y0, y1, txt in ((25, 61, 'Al filtr (30 mkm)'), (77, 114, 'Al filtr (2,11 mm)'),
+                        (132, 168, 'Al filtr (30 mkm)'), (186, 221, 'Al filtr (2,11 mm)')):
+        d.rectangle([432, y0 - 3, 800, y1 + 3], fill=white)
+        bb = d.textbbox((0, 0), '(', font=f)
+        d.text((440, (y0 + y1) / 2 - (bb[1] + bb[3]) / 2), txt, font=f, fill=(0, 0, 0))
+    im.save(os.path.join(OUT, 'f3_def.png'))
+
+
 if __name__ == '__main__':
+    os.makedirs(OUT, exist_ok=True)
     fig_xsec_ag()
     fig_media_mu()
     fig_facility_scheme()
-    fig_facility_photos()
     fig_mechanism()
     fig_anodes()
     fig_ek()
-    upscale(os.path.join(SRC, 'image14.png'), 'f3_spectra')
-    combine([os.path.join(SRC, 'image16.jpeg'), os.path.join(SRC, 'image17.jpeg')], 'f3_discont')
-    combine([os.path.join(SRC, 'image18.jpeg'), os.path.join(SRC, 'image19.jpeg')], 'f3_ratio_agsm')
-    upscale(os.path.join(SRC, 'image20.png'), 'f3_def')
+    if LANG == 'en':
+        fig_facility_photos()
+        upscale(os.path.join(SRC, 'image14.png'), 'f3_spectra')
+        combine([os.path.join(SRC, 'image16.jpeg'), os.path.join(SRC, 'image17.jpeg')], 'f3_discont')
+        combine([os.path.join(SRC, 'image18.jpeg'), os.path.join(SRC, 'image19.jpeg')], 'f3_ratio_agsm')
+        upscale(os.path.join(SRC, 'image20.png'), 'f3_def')
+    else:   # photos and symbol-only plots are language-neutral; two plots get Uzbek labels
+        for f in ('f2_facility_photos', 'f3_discont', 'f3_ratio_agsm'):
+            shutil.copy(os.path.join(EN_OUT, f + '.png'), os.path.join(OUT, f + '.png'))
+        relabel_uz()
     for f in ('fig01_tube', 'fig02_coeffs', 'fig03_ratio', 'fig04_electron'):
-        shutil.copy(os.path.join(HERE, '..', 'figures', 'en', f + '.png'), os.path.join(OUT, f + '.png'))
+        shutil.copy(os.path.join(HERE, '..', 'figures', LANG, f + '.png'), os.path.join(OUT, f + '.png'))
     print('v2 figures written to', OUT)

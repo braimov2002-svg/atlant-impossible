@@ -5,7 +5,7 @@ import html, json, os, re, time, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', 'data', 'refs.json')
-UA = {'User-Agent': 'dissertation-ref-check/1.0 (mailto:braimov2002@gmail.com)'}
+UA = {'User-Agent': 'dissertation-ref-check/1.0'}
 
 DOI = {
     'hainfeld2004': '10.1088/0031-9155/49/18/n03', 'cho2005': '10.1088/0031-9155/50/15/n01',
@@ -50,6 +50,8 @@ DOI = {
     'lane1992': '10.1038/358015a0', 'obe2002': '10.1016/s0027-5107(02)00076-3', 'kanaya1972': '10.1088/0022-3727/5/1/308',
     'compton1923': '10.1103/PhysRev.21.483', 'klein1929': '10.1007/BF01366453', 'hubbell2006': '10.1088/0031-9155/51/13/R15',
     'bhattarai2017': '10.1039/C6NR08172J', 'zhu2017': '10.1039/C6NR08188F', 'zhao2021': '10.1088/1361-6528/abd20a',
+    'abdullaeva2024': '10.1063/5.0193046', 'abdullaeva2022': '10.1088/1742-6596/2155/1/012030',
+    'campillo2021': '10.1016/j.radphyschem.2021.109437',
     'liu2018t': '10.7150/thno.22172', 'desouky2015': '10.1016/j.jrras.2015.03.003', 'sunilgowda2018': '10.1016/j.tiv.2018.06.015', 'ward1988': '10.1016/S0079-6603(08)60611-X',
 }
 

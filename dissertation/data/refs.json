@@ -950,5 +950,26 @@
   "year": 2015,
   "title": "Targeted and non-targeted effects of ionizing radiation",
   "first_author": "Desouky"
+ },
+ "abdullaeva2024": {
+  "doi": "10.1063/5.0193046",
+  "text": "Abdullaeva G.A., Kulabdullaev G.A., Kim A.A. [et al.] X-ray spectrum modeling for study of radio-enhancement with Ag and Sm // AIP Conference Proceedings. – 2024. – Vol. 3020. – Art. 060004. – DOI: 10.1063/5.0193046.",
+  "year": 2024,
+  "title": "X-ray spectrum modeling for study of radio-enhancement with Ag and Sm",
+  "first_author": "Abdullaeva"
+ },
+ "abdullaeva2022": {
+  "doi": "10.1088/1742-6596/2155/1/012030",
+  "text": "Abdullaeva G.A., Kulabdullaev G.A., Kim A.A. [et al.] Calculation of radiation dose enhancement by gadolinium compounds for radiation therapy // Journal of Physics: Conference Series. – 2022. – Vol. 2155, No. 1. – Art. 012030. – DOI: 10.1088/1742-6596/2155/1/012030.",
+  "year": 2022,
+  "title": "Calculation of radiation dose enhancement by gadolinium compounds for radiation therapy",
+  "first_author": "Abdullaeva"
+ },
+ "campillo2021": {
+  "doi": "10.1016/j.radphyschem.2021.109437",
+  "text": "Campillo-Rivera G.E., Torres-Cortes C.O., Vazquez-Bañuelos J. [et al.] X-ray spectra and gamma factors from 70 to 120 kV X-ray tube voltages // Radiation Physics and Chemistry. – 2021. – Vol. 184. – Art. 109437. – DOI: 10.1016/j.radphyschem.2021.109437.",
+  "year": 2021,
+  "title": "X-ray spectra and gamma factors from 70 to 120 kV X-ray tube voltages",
+  "first_author": "Campillo-Rivera"
  }
 }

@@ -22,6 +22,7 @@ from docx.shared import Pt, Cm, RGBColor
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = os.environ.get('DISS_ROOT', os.path.join(HERE, '..'))
 REFS = json.load(open(os.path.join(D, 'data', 'refs.json')))
+WIDE_FIGS = {'f3_discont', 'f3_ratio_agsm'}
 
 CFG = {
     'en': dict(fig='Fig. {}', figcap='Fig. {}. ', tab='Table {}', tabcap='Table {}. ', eq='({})',
@@ -156,7 +157,8 @@ def preprocess(lang, text, order, counts):
     def fig_sub(m):
         fid, cap = m.group(1), m.group(2).strip()
         path = os.path.join(D, 'figures', lang, fid + '.png')
-        return f'\n\n![{labels["__cap_" + fid]}{cap}]({path}){{width=13.5cm}}\n\n'
+        width = '16cm' if fid in WIDE_FIGS else '13.5cm'  # two-panel figures use the full text width
+        return f'\n\n![{labels["__cap_" + fid]}{cap}]({path}){{width={width}}}\n\n'
     text = re.sub(r'\{\{FIG:([\w]+)\|(.+?)\}\}', fig_sub, text, flags=re.S)
 
     def tab_sub(m):
@@ -688,16 +690,31 @@ def page_map(pdf, entries, lang):
     start = toc_first + 1
     while start < n and len(re.findall(r'\.{6,}', raw[start])) >= 5:
         start += 1
+    def keep(s):  # like norm, but case-preserving
+        s = s.replace(' ', ' ').replace('’', "'").replace('‘', "'").replace('ʻ', "'").replace('ʼ', "'")
+        return re.sub(r'[\s\-–—.,:;()]+', '', s)
+    line_starts = [[keep(l) for l in t.split('\n') if l.strip()] for t in raw]
     pages, cur = {}, start
     for lvl, txt in entries:
         if txt in c['ann_titles'].values():
             continue
         key = norm(txt)[:60]
+        # prefer a line that starts with the heading (case-sensitive for upper-case headings,
+        # so that CONCLUSIONS does not match "3.5. Conclusions to Chapter 3")
+        head = keep(txt)[:20]
+        found = None
         for j in range(cur, n):
-            if key and key in texts[j]:
-                pages[txt] = j + 1
-                cur = j
+            for l in line_starts[j]:
+                if (l.startswith(head) if txt.isupper() else l.lower().startswith(head.lower())):
+                    found = j
+                    break
+            if found is not None:
                 break
+        if found is None:
+            found = next((j for j in range(cur, n) if key and key in texts[j]), None)
+        if found is not None:
+            pages[txt] = found + 1
+            cur = found
     return pages, n
 
 

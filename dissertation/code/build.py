@@ -157,7 +157,7 @@ def preprocess(lang, text, order, counts):
     def fig_sub(m):
         fid, cap = m.group(1), m.group(2).strip()
         path = os.path.join(D, 'figures', lang, fid + '.png')
-        width = '16cm' if fid in WIDE_FIGS else '13.5cm'  # two-panel figures use the full text width
+        width = '16cm' if fid in WIDE_FIGS else '15cm'  # two-panel figures use the full text width
         return f'\n\n![{labels["__cap_" + fid]}{cap}]({path}){{width={width}}}\n\n'
     text = re.sub(r'\{\{FIG:([\w]+)\|(.+?)\}\}', fig_sub, text, flags=re.S)
 

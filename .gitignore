@@ -8,3 +8,4 @@ release/
 .env*.local
 next-env.d.ts
 coverage/
+.wrangler/

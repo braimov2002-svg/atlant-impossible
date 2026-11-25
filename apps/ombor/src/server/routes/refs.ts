@@ -42,6 +42,19 @@ app.put('/objects/:id', only('boss'), async (c) => {
   return c.json({ ok: true });
 });
 
+// Two spellings of one object: move everything into `into` and drop this one.
+app.post('/objects/:id/merge', only('boss'), async (c) => {
+  const id = Number(c.req.param('id'));
+  const into = Number((await c.req.json()).into);
+  if (!into || into === id || !(await first(c.env.DB, 'SELECT 1 FROM objects WHERE id = ?', into))) bad('invalid:object');
+  await c.env.DB.batch([
+    c.env.DB.prepare('UPDATE requests SET object_id = ? WHERE object_id = ?').bind(into, id),
+    c.env.DB.prepare('UPDATE receipts SET object_id = ? WHERE object_id = ?').bind(into, id),
+    c.env.DB.prepare('DELETE FROM objects WHERE id = ?').bind(id),
+  ]);
+  return c.json({ ok: true });
+});
+
 app.get('/suppliers', async (c) => c.json(await all(c.env.DB, 'SELECT id, name FROM suppliers ORDER BY name')));
 
 // Material names already used, for suggestions while typing.

@@ -129,7 +129,7 @@ describe('request → payment → receipt', () => {
   });
 
   it('lets only supply ask for a payment and only the boss approve it', async () => {
-    const pay = { request_id: requestId, supplier: 'GOLD METALL PLUS', amount: 90_000_000 };
+    const pay = { request_id: requestId, supplier: 'METALL SAVDO', amount: 90_000_000 };
     expect((await warehouse('POST', '/payments', pay)).status).toBe(403);
     expect((await supply('POST', '/payments', { ...pay, amount: 0 })).status).toBe(400);
     paymentId = (await supply('POST', '/payments', pay)).body.id;
@@ -143,7 +143,7 @@ describe('request → payment → receipt', () => {
 
   it('turns received goods into receipts and completes the request', async () => {
     const receive = (lines: any[]) =>
-      warehouse('POST', `/requests/${requestId}/receive`, { date: '2026-11-25', supplier: 'GOLD METALL PLUS', invoice_no: '1375', lines });
+      warehouse('POST', `/requests/${requestId}/receive`, { date: '2026-11-25', supplier: 'METALL SAVDO', invoice_no: '1375', lines });
     expect((await supply('POST', `/requests/${requestId}/receive`, { date: '2026-11-25', lines: [] })).status).toBe(403);
     expect((await receive([{ item_id: items[0].id, qty: 0 }])).status).toBe(400);
     expect((await receive([{ item_id: items[0].id, qty: 10, price: 700_000 }])).status).toBe(200);
@@ -158,7 +158,7 @@ describe('request → payment → receipt', () => {
     const list = (await boss('GET', '/receipts?q=АС-001-11-2026')).body;
     expect(list.total).toBe(3);
     expect(list.sum).toBe(18 * 700_000 + 12 * 9_000_000);
-    expect(list.rows[0]).toMatchObject({ object: 'Балтон', supplier: 'GOLD METALL PLUS', invoice_no: '1375' });
+    expect(list.rows[0]).toMatchObject({ object: 'Балтон', supplier: 'METALL SAVDO', invoice_no: '1375' });
   });
 
   it('refuses to drop a request line that already has receipts', async () => {
@@ -188,7 +188,7 @@ describe('request → payment → receipt', () => {
   });
 
   it('keeps the receipts journal to the warehouse', async () => {
-    const row = { date: '2026-11-25', name: 'Гвоздь 80', unit: 'кг', qty: 20, price: 11000.64, supplier: 'GAZIEV' };
+    const row = { date: '2026-11-25', name: 'Гвоздь 80', unit: 'кг', qty: 20, price: 11000.64, supplier: 'MIX SAVDO' };
     expect((await supply('POST', '/receipts', row)).status).toBe(403);
     expect((await warehouse('POST', '/receipts', { ...row, qty: -1 })).status).toBe(400);
     const id = (await warehouse('POST', '/receipts', row)).body.id;
@@ -206,7 +206,7 @@ describe('Excel import', () => {
     items: [{ name: 'Фанера 18 мм', unit: 'шт', qty: 50 }, { name: 'Гвоздь 100', unit: 'кг', qty: 20 }],
   }];
   const rows = [
-    { import_key: 'k1', date: '2026-01-10', code: 'SHERON 004', object: 'Шерон', name: 'Фанера 18 мм', unit: 'шт', qty: 50, price: 302500, supplier: 'AZIADREV' },
+    { import_key: 'k1', date: '2026-01-10', code: 'SHERON 004', object: 'Шерон', name: 'Фанера 18 мм', unit: 'шт', qty: 50, price: 302500, supplier: 'YOGOCH SAVDO' },
     { import_key: 'k2', date: '2026-01-11', code: 'SHERON 004', object: 'Шерон', name: 'Гвоздь 100', unit: 'кг', qty: 20, price: null, supplier: '' },
     { import_key: 'k3', date: '2026-01-12', code: 'Лукоил', object: 'Лукоил', name: 'Леска', unit: 'шт', qty: 100, price: null },
   ];
@@ -226,6 +226,18 @@ describe('Excel import', () => {
     const list = (await boss('GET', `/requests?object_id=${sheron.id}`)).body.rows;
     expect(list[0]).toMatchObject({ number: 'SHERON 004', status: 'received', item_count: 2 });
     expect((await boss('GET', `/requests/${list[0].id}`)).body.items.map((i: any) => i.received)).toEqual([50, 20]);
+  });
+
+  it('merges two spellings of one object', async () => {
+    const folders = (await boss('GET', '/objects')).body;
+    const from = folders.find((o: any) => o.name === 'Лукоил');
+    const into = folders.find((o: any) => o.name === 'Шерон');
+    expect((await supply('POST', `/objects/${from.id}/merge`, { into: into.id })).status).toBe(403);
+    expect((await boss('POST', `/objects/${from.id}/merge`, { into: from.id })).status).toBe(400);
+    expect((await boss('POST', `/objects/${from.id}/merge`, { into: into.id })).status).toBe(200);
+    const after = (await boss('GET', '/objects')).body;
+    expect(after.find((o: any) => o.name === 'Лукоил')).toBeUndefined();
+    expect(after.find((o: any) => o.name === 'Шерон').receipts).toBe(3);
   });
 
   it('adds nothing when the same file is loaded again', async () => {

@@ -94,3 +94,14 @@ export interface Dashboard {
   objects: { id: number | null; name: string | null; sum: number; count: number }[];
   badges: { pending: number; to_pay: number; open_requests: number };
 }
+
+export interface ObjectFolder {
+  id: number;
+  name: string;
+  prefix: string;
+  active: number;
+  requests: number;
+  open_requests: number;
+  receipts: number;
+  sum: number;
+}

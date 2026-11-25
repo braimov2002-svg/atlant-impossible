@@ -89,3 +89,14 @@ describe('readSheets', () => {
     expect(excelDate(null)).toBeNull();
   });
 });
+
+describe('latinName', () => {
+  it('writes file names in Latin letters', async () => {
+    const { latinName } = await import('../src/client/filename');
+    expect(latinName('Заявка АС-001-11-2026', 'pdf')).toBe('Zayavka-AS-001-11-2026.pdf');
+    expect(latinName('Приход 2026-11-01 2026-11-30', 'xlsx')).toBe('Prixod-2026-11-01-2026-11-30.xlsx');
+    expect(latinName('Заявка SHERON 004', 'pdf')).toBe('Zayavka-SHERON-004.pdf');
+    expect(latinName('Ғишт / Қум', 'pdf')).toBe('Gisht-Qum.pdf');
+    expect(latinName('«»', 'pdf')).toBe('file.pdf');
+  });
+});

@@ -10,6 +10,10 @@ import {
 
 const STEPS = ['open', 'approved', 'received'] as const;
 
+// The PDF code (with its font) is loaded only when someone asks for a PDF.
+const pdf = () => import('../pdf');
+const shareable = typeof navigator.canShare === 'function';
+
 const fileSize = (n: number) => (n >= 1048576 ? `${(n / 1048576).toFixed(1)} МБ` : `${Math.max(1, Math.round(n / 1024))} КБ`);
 
 /** Contracts attached to the request: anyone may open them; supply and the warehouse add them. */
@@ -173,8 +177,15 @@ export function RequestDetailPage({ id }: { id: number }) {
                 </p>
                 {r.note && <p className="muted" style={{ marginTop: 4 }}>{r.note}</p>}
                 <div className="row">
+                  <button className="btn accent" disabled={act.busy} onClick={() => act.run(async () => (await pdf()).downloadRequestPdf(id, t))}>
+                    <Icon name="download" size={18} /> {t('pdf')}
+                  </button>
+                  {shareable && (
+                    <button className="btn" disabled={act.busy} onClick={() => act.run(async () => (await pdf()).shareRequestPdf(id, t))}>
+                      <Icon name="share" size={18} /> {t('share')}
+                    </button>
+                  )}
                   <button className="btn" onClick={() => window.print()}><Icon name="print" size={18} /> {t('print')}</button>
-                  <button className="btn" onClick={() => window.print()}><Icon name="download" size={18} /> {t('pdf')}</button>
                   <button className="btn" onClick={() => exportRequest(id, t)}><Icon name="download" size={18} /> {t('excel')}</button>
                   {rights.changeRequest(r.created_by) && <a className="btn" href={`#/requests/${id}/edit`}><Icon name="edit" size={18} /> {t('edit')}</a>}
                 </div>
@@ -250,8 +261,13 @@ export function RequestDetailPage({ id }: { id: number }) {
 function PrintSheet({ r }: { r: RequestDetail }) {
   return (
     <div className="print-only sheet">
-      <h2>ЗАЯВКА / БУЮРТМА № {r.number}</h2>
-      <p style={{ textAlign: 'center' }}>ООО «Atlant Construction» · Объект: {r.object} · Дата / Сана: {fmtDate(r.date)}</p>
+      <div className="sheet-head">
+        <img src="/logo.png" alt="Atlant Construction" />
+        <div>
+          <h2>ЗАЯВКА № {r.number}</h2>
+          <p>Объект: {r.object} · Дата / Сана: {fmtDate(r.date)}</p>
+        </div>
+      </div>
       <table>
         <thead>
           <tr>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { ObjectFolder, RequestStatus, RequestSummary } from '../../shared/types';
 import { api, qs } from '../api';
-import { exportRequest } from '../excel';
 import { can, Empty, fmtDate, Icon, Loaded, PageHead, RequestBadge, useApp, useLoad } from '../ui';
 
 const PAGE = 30;
@@ -68,8 +67,8 @@ export function RequestList({ objectId }: { objectId?: number }) {
                       </div>
                       <div className="line" style={{ alignItems: 'center', gap: 2 }}>
                         <small className="muted">{fmtDate(r.date)}</small>
-                        <button className="iconbtn" title="Excel" aria-label={`Excel ${r.number}`}
-                          onClick={(e) => { e.preventDefault(); void exportRequest(r.id, t); }}>
+                        <button className="iconbtn" title={t('pdf')} aria-label={`${t('pdf')} ${r.number}`}
+                          onClick={(e) => { e.preventDefault(); void import('../pdf').then((m) => m.downloadRequestPdf(r.id, t)); }}>
                           <Icon name="download" size={18} />
                         </button>
                       </div>

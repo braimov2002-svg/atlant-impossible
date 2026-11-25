@@ -1,6 +1,7 @@
 import writeXlsxFile from 'write-excel-file';
 import type { Receipt, RequestDetail } from '../shared/types';
 import { api, qs } from './api';
+import { latinName } from './filename';
 import type { Tr } from './i18n';
 import { mapWorkbook, type Workbook } from './workbook';
 import { readSheets } from './xlsx';
@@ -26,7 +27,7 @@ export async function exportRequest(id: number, t: Tr) {
       { value: it.spec }, { value: it.executor },
     ]),
   ];
-  await save(rows, [6, 44, 10, 12, 12, 12, 22, 22, 18, 18, 18], `${r.number}.xlsx`);
+  await save(rows, [6, 44, 10, 12, 12, 12, 22, 22, 18, 18, 18], latinName(`Заявка ${r.number}`, 'xlsx'));
 }
 
 /** The receipts journal for a period, in the columns of the old workbook. */
@@ -44,7 +45,7 @@ export async function exportReceipts(filter: Record<string, string | number | nu
     [null, null, null, { value: t('total'), fontWeight: 'bold' }, null, null, null,
       number(rows.reduce((a, x) => a + x.qty * (x.price ?? 0), 0))],
   ];
-  await save(out, [12, 18, 18, 44, 8, 10, 14, 16, 30, 16, 18, 14, 16, 12, 24], `${name}.xlsx`);
+  await save(out, [12, 18, 18, 44, 8, 10, 14, 16, 30, 16, 18, 14, 16, 12, 24], latinName(name, 'xlsx'));
 }
 
 /** Reads the old workbook in the browser. Throws 'bad_file' without a «Приход» sheet. */

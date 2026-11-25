@@ -4,7 +4,7 @@ import { api } from '../api';
 import { exportRequest } from '../excel';
 import type { Key } from '../i18n';
 import {
-  can, ErrorLine, Field, fmtDate, fmtMoney, fmtQty, go, Icon, Loaded, PageHead, PaymentBadge, RequestBadge, Suggest,
+  can, ErrorLine, Field, fmtDate, fmtMoney, fmtStamp, fmtQty, go, Icon, Loaded, PageHead, PaymentBadge, RequestBadge, Suggest,
   useAction, useApp, useLoad,
 } from '../ui';
 
@@ -44,7 +44,7 @@ export function PaymentRow({ p, onChange, showRequest }: { p: Payment; onChange:
       <div className="meta">
         {showRequest && <a href={`#/requests/${p.request_id}`}><b>{p.request_number}</b></a>}
         {showRequest && p.object && <span>{p.object}</span>}
-        <span>{fmtDate(p.created_at)}</span>
+        <span>{fmtStamp(p.created_at)}</span>
         {p.created_by_name && <span>{p.created_by_name}</span>}
         {p.note && <span>{p.note}</span>}
       </div>

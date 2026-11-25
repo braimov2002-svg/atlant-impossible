@@ -39,7 +39,9 @@ beforeAll(async () => {
   });
   env = proxy.env;
   stop = proxy.dispose;
-  const sql = readFileSync(`${root}migrations/0001_init.sql`, 'utf8').replace(/^\s*--.*$/gm, '');
+  const sql = ['0001_init.sql', '0002_corrections.sql']
+    .map((f) => readFileSync(`${root}migrations/${f}`, 'utf8').replace(/--.*$/gm, ''))
+    .join('\n');
   for (const stmt of sql.split(';').map((s) => s.trim()).filter(Boolean)) await env.DB.prepare(stmt).run();
 }, 60_000);
 
@@ -196,7 +198,15 @@ describe('request → payment → receipt', () => {
     const got = (await boss('GET', '/receipts?q=ГВОЗДЬ')).body.rows[0];
     expect(got).toMatchObject({ qty: 25, price: null });
     expect((await boss('GET', '/names?q=гвоз')).body).toEqual([{ name: 'Гвоздь 80', unit: 'кг' }]);
-    expect((await warehouse('DELETE', `/receipts/${id}`)).status).toBe(200);
+    expect((await boss('GET', '/receipts?missing=price')).body.rows.map((r: any) => r.name)).toEqual(['Гвоздь 80']);
+    expect((await boss('GET', '/receipts?missing=supplier')).body.total).toBe(0);
+    // Saving again with nothing changed is not a correction.
+    await warehouse('PUT', `/receipts/${id}`, { ...row, qty: 25, price: '' });
+    expect((await warehouse('DELETE', `/receipts/${id}?reason=${encodeURIComponent('икки марта киритилган')}`)).status).toBe(200);
+    const log = (await boss('GET', '/receipts/corrections')).body;
+    expect(log.map((k: any) => k.action)).toEqual(['delete', 'edit']);
+    expect(log[0]).toMatchObject({ name: 'Гвоздь 80', reason: 'икки марта киритилган', user: 'ombor' });
+    expect(JSON.parse(log[1].changes)).toEqual({ qty: [20, 25], price: [11000.64, null] });
   });
 });
 

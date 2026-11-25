@@ -6,12 +6,41 @@ import { refreshStatus } from './requests';
 
 const app = new Hono<Env>();
 
+const SELECT = `SELECT x.id, x.date, x.code, x.object_id, o.name AS object, x.request_item_id, x.name, x.unit, x.qty, x.price,
+            s.name AS supplier, x.buyer, x.contract_no, x.invoice_no, x.vehicle, x.vehicle_date, x.currency, x.note
+       FROM receipts x LEFT JOIN objects o ON o.id = x.object_id LEFT JOIN suppliers s ON s.id = x.supplier_id`;
+const one = (db: D1Database, id: number) => first<Receipt>(db, `${SELECT} WHERE x.id = ?`, id);
+
+const TRACKED = ['date', 'code', 'object', 'name', 'unit', 'qty', 'price', 'supplier', 'buyer', 'contract_no', 'invoice_no',
+  'vehicle', 'vehicle_date', 'note'] as const;
+
+/** Writes a line to the corrections journal. */
+async function record(db: D1Database, action: 'edit' | 'delete', before: Receipt, after: Receipt | null, reason: string, userId: number) {
+  const changes: Record<string, [unknown, unknown]> = {};
+  for (const f of TRACKED) {
+    const a = before[f] ?? '';
+    const b = after ? (after[f] ?? '') : '';
+    if (after ? a !== b : a !== '') changes[f] = [before[f], after ? after[f] : null];
+  }
+  if (after && Object.keys(changes).length === 0) return; // saved without changing anything
+  await run(
+    db, 'INSERT INTO corrections (receipt_id, action, name, changes, reason, user_id) VALUES (?, ?, ?, ?, ?, ?)',
+    before.id, action, before.name, JSON.stringify(changes), reason, userId,
+  );
+}
+
 app.get('/', async (c) => {
   const q = text(c.req.query('q'), 80);
   const where = [`(?1 = '' OR x.search LIKE ?1 ESCAPE '\\')`];
   const p: (string | number)[] = [q ? like(q) : ''];
   const add = (sql: string, v: string | number) => { p.push(v); where.push(sql.replace('?', `?${p.length}`)); };
   if (c.req.query('object_id')) add('x.object_id = ?', Number(c.req.query('object_id')));
+  if (c.req.query('supplier_id')) add('x.supplier_id = ?', Number(c.req.query('supplier_id')));
+  // Rows that still need correcting.
+  const missing = c.req.query('missing');
+  if (missing === 'price') where.push('(x.price IS NULL OR x.price = 0)');
+  if (missing === 'supplier') where.push('x.supplier_id IS NULL');
+  if (missing === 'object') where.push('x.object_id IS NULL');
   if (c.req.query('from')) add('x.date >= ?', date(c.req.query('from'), 'from')!);
   if (c.req.query('to')) add('x.date <= ?', date(c.req.query('to'), 'to')!);
   // The Excel report asks for everything in the period at once.
@@ -63,7 +92,10 @@ const requestOf = async (db: D1Database, id: number) =>
 
 app.put('/:id', only('warehouse'), async (c) => {
   const id = Number(c.req.param('id'));
-  const v = await parse(c.env.DB, await c.req.json());
+  const body = await c.req.json();
+  const before = await one(c.env.DB, id);
+  if (!before) return bad('not_found', 404);
+  const v = await parse(c.env.DB, body);
   const res = await run(
     c.env.DB,
     `UPDATE receipts SET search = ?, date = ?, code = ?, object_id = ?, name = ?, unit = ?, qty = ?, price = ?, supplier_id = ?,
@@ -71,19 +103,33 @@ app.put('/:id', only('warehouse'), async (c) => {
     ...v, id,
   );
   if (!res.meta.changes) bad('not_found', 404);
+  await record(c.env.DB, 'edit', before, await one(c.env.DB, id), text(body.reason, 300), c.get('user').id);
   const requestId = await requestOf(c.env.DB, id);
-  if (requestId) await refreshStatus(c.env.DB, requestId);
+  if (requestId) await refreshStatus(c.env.DB, requestId, true);
   return c.json({ ok: true });
 });
 
 app.delete('/:id', only('warehouse'), async (c) => {
   const id = Number(c.req.param('id'));
   const requestId = await requestOf(c.env.DB, id);
-  const res = await run(c.env.DB, 'DELETE FROM receipts WHERE id = ?', id);
-  if (!res.meta.changes) bad('not_found', 404);
+  const before = await one(c.env.DB, id);
+  if (!before) return bad('not_found', 404);
+  await run(c.env.DB, 'DELETE FROM receipts WHERE id = ?', id);
+  await record(c.env.DB, 'delete', before, null, text(c.req.query('reason'), 300), c.get('user').id);
   // Fewer goods on record: the request may no longer be complete.
   if (requestId) await refreshStatus(c.env.DB, requestId, true);
   return c.json({ ok: true });
 });
+
+// The corrections journal, newest first.
+app.get('/corrections', async (c) =>
+  c.json(
+    await all(
+      c.env.DB,
+      `SELECT k.id, k.receipt_id, k.action, k.name, k.changes, k.reason, k.created_at, u.name AS user
+         FROM corrections k LEFT JOIN users u ON u.id = k.user_id ORDER BY k.id DESC LIMIT 300`,
+    ),
+  ),
+);
 
 export default app;

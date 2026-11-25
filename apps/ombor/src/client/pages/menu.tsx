@@ -11,7 +11,7 @@ export function MenuPage() {
   const act = useAction();
   const links: [string, string, Key][] = [
     ['/requests', 'list', 'requests'], ['/receipts', 'box', 'receipts'], ['/objects', 'building', 'objects'],
-    ['/supply', 'hand', 'supply'], ['/boss', 'bank', 'boss'],
+    ['/corrections', 'edit', 'corrections'], ['/supply', 'hand', 'supply'], ['/boss', 'bank', 'boss'],
     ...(user.role === 'admin' ? ([['/users', 'users', 'users'], ['/import', 'upload', 'import']] as [string, string, Key][]) : []),
   ];
   const change = () =>

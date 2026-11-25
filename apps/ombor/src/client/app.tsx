@@ -3,6 +3,7 @@ import type { Lang, User } from '../shared/types';
 import { api } from './api';
 import { translator, type Key } from './i18n';
 import { BossPage } from './pages/boss';
+import { CorrectionsPage } from './pages/corrections';
 import { HomePage } from './pages/home';
 import { ImportPage } from './pages/import';
 import { LoginPage } from './pages/login';
@@ -54,6 +55,7 @@ function page(route: string, user: User): ReactNode {
   if (seg[0] === 'supply') return <SupplyPage />;
   if (seg[0] === 'boss') return <BossPage />;
   if (seg[0] === 'objects') return id ? <ObjectPage id={id} /> : <ObjectsPage />;
+  if (seg[0] === 'corrections') return <CorrectionsPage />;
   if (seg[0] === 'menu') return <MenuPage />;
   if (seg[0] === 'users' && user.role === 'admin') return <UsersPage />;
   if (seg[0] === 'import' && user.role === 'admin') return <ImportPage />;

@@ -114,6 +114,14 @@ export const fmtQty = (n: number) => nf(3).format(n);
 export const fmtMoney = (n: number) => nf(2).format(n);
 export const fmtDate = (d: string | null | undefined) => (d ? `${d.slice(8, 10)}.${d.slice(5, 7)}.${d.slice(0, 4)}` : '');
 
+/** A server timestamp (UTC) shown in the viewer's own time. */
+export function fmtStamp(stamp: string | null | undefined, withTime = false) {
+  if (!stamp) return '';
+  const d = new Date(`${stamp.replace(' ', 'T')}Z`);
+  const day = `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
+  return withTime ? `${day} ${pad(d.getHours())}:${pad(d.getMinutes())}` : day;
+}
+
 const pad = (n: number) => String(n).padStart(2, '0');
 export const iso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 export const today = () => iso(new Date());
@@ -143,6 +151,7 @@ const ICONS: Record<string, string> = {
   out: 'M10 4H5v16h5M14 8l4 4-4 4M18 12H9',
   phone: 'M8 3h8v18H8zM11 18h2',
   key: 'M14 10a4 4 0 10-3.5 3.9L4 20v1h3v-2h2v-2h2l1.6-1.6',
+  filter: 'M3 5h18l-7 8v6l-4-2v-4z',
   globe: 'M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18',
 };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { ObjectFolder, RequestDetail } from '../../shared/types';
+import { ownOnly, type ObjectFolder, type RequestDetail } from '../../shared/types';
 import { api, qs } from '../api';
 import { ErrorLine, Field, go, Icon, PageHead, Suggest, today, useAction, useApp, useLoad } from '../ui';
 
@@ -9,10 +9,11 @@ const UNITS = ['шт', 'кг', 'т.н', 'м', 'п/м', 'м2', 'м3', 'литр',
 
 /** New request, or editing one when `id` is given. */
 export function RequestFormPage({ id }: { id?: number }) {
-  const { t, refreshBadges } = useApp();
+  const { user, t, refreshBadges } = useApp();
   const preset = new URLSearchParams(window.location.hash.split('?')[1] ?? '').get('object') ?? '';
   const [f, setF] = useState({ number: '', date: today(), object_id: preset, note: '' });
-  const [items, setItems] = useState<Item[]>([blank()]);
+  // A foreman or master asking for materials is the one who ordered them.
+  const [items, setItems] = useState<Item[]>([{ ...blank(), ordered_by: ownOnly(user.role) ? user.name : '' }]);
   const [names, setNames] = useState<{ name: string; unit: string }[]>([]);
   const [ready, setReady] = useState(!id);
   const objects = useLoad(() => api<ObjectFolder[]>('GET', '/objects'), []);

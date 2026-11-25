@@ -222,3 +222,4 @@ progress { width: 100%; height: 10px; }
 
 .changes { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
 .line > b { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.btn.busy { opacity: 0.6; }

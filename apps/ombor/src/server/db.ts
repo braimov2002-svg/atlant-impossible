@@ -1,5 +1,5 @@
 import { HTTPException } from 'hono/http-exception';
-import type { Role, User } from '../shared/types';
+import { ROLES, type Role, type User } from '../shared/types';
 
 export type Env = {
   Bindings: { DB: D1Database; ASSETS: Fetcher };
@@ -50,8 +50,7 @@ export function date(v: unknown, field: string, optional = false) {
   return s;
 }
 
-export const isRole = (v: unknown): v is Role =>
-  v === 'admin' || v === 'warehouse' || v === 'supply' || v === 'boss';
+export const isRole = (v: unknown): v is Role => ROLES.includes(v as Role);
 
 // --- reference tables ----------------------------------------------------
 

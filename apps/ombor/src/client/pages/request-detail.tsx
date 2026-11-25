@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { Payment, RequestDetail } from '../../shared/types';
-import { api } from '../api';
+import type { FileInfo, Payment, RequestDetail } from '../../shared/types';
+import { api, upload } from '../api';
 import { exportRequest } from '../excel';
 import type { Key } from '../i18n';
 import {
@@ -9,6 +9,55 @@ import {
 } from '../ui';
 
 const STEPS = ['open', 'approved', 'received'] as const;
+
+const fileSize = (n: number) => (n >= 1048576 ? `${(n / 1048576).toFixed(1)} МБ` : `${Math.max(1, Math.round(n / 1024))} КБ`);
+
+/** Contracts attached to the request: anyone may open them; supply and the warehouse add them. */
+function Documents({ requestId, files, onChange }: { requestId: number; files: FileInfo[]; onChange: () => void }) {
+  const { user, t } = useApp();
+  const act = useAction();
+  const add = async (list: FileList | null) => {
+    if (!list?.length) return;
+    // Several files may be picked at once; they go up one after another.
+    await act.run(async () => { for (const f of Array.from(list)) await upload(`/requests/${requestId}/files`, f); });
+    onChange();
+  };
+  const remove = (f: FileInfo) => confirm(t('confirm_delete')) && act.run(() => api('DELETE', `/files/${f.id}`)).then((ok) => ok && onChange());
+  return (
+    <>
+      <div className="line" style={{ alignItems: 'center' }}>
+        <h2>{t('documents')}</h2>
+        {can(user).attach && (
+          <label className={`btn small${act.busy ? ' busy' : ''}`}>
+            <Icon name="upload" size={16} /> {act.busy ? t('uploading') : t('attach')}
+            <input type="file" hidden multiple disabled={act.busy} accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.xls,.xlsx"
+              onChange={(e) => { void add(e.target.files); e.target.value = ''; }} />
+          </label>
+        )}
+      </div>
+      <ErrorLine text={act.error} />
+      <div className="card flush list">
+        {files.length === 0 && <p className="muted">{t('no_documents')}{can(user).attach && <><br /><small>{t('attach_hint')}</small></>}</p>}
+        {files.map((f) => (
+          <div key={f.id} className="line" style={{ alignItems: 'center' }}>
+            <a href={`/api/files/${f.id}`} target="_blank" rel="noopener" className="line" style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
+              <Icon name="file" />
+              <span>
+                <b style={{ whiteSpace: 'normal', overflowWrap: 'anywhere' }}>{f.name}</b>
+                <span className="meta" style={{ marginTop: 0 }}>
+                  <span>{fileSize(f.size)}</span><span>{fmtStamp(f.created_at)}</span>{f.uploaded_by_name && <span>{f.uploaded_by_name}</span>}
+                </span>
+              </span>
+            </a>
+            {can(user).attach && (user.role === 'admin' || f.uploaded_by === user.id) && (
+              <button className="iconbtn" disabled={act.busy} aria-label={`${t('delete')}: ${f.name}`} onClick={() => remove(f)}><Icon name="trash" size={18} /></button>
+            )}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
 
 export function Stepper({ status }: { status: RequestDetail['status'] }) {
   const { t } = useApp();
@@ -127,7 +176,7 @@ export function RequestDetailPage({ id }: { id: number }) {
                   <button className="btn" onClick={() => window.print()}><Icon name="print" size={18} /> {t('print')}</button>
                   <button className="btn" onClick={() => window.print()}><Icon name="download" size={18} /> {t('pdf')}</button>
                   <button className="btn" onClick={() => exportRequest(id, t)}><Icon name="download" size={18} /> {t('excel')}</button>
-                  {rights.requests && <a className="btn" href={`#/requests/${id}/edit`}><Icon name="edit" size={18} /> {t('edit')}</a>}
+                  {rights.changeRequest(r.created_by) && <a className="btn" href={`#/requests/${id}/edit`}><Icon name="edit" size={18} /> {t('edit')}</a>}
                 </div>
                 <div className="row">
                   {rights.receive && r.status !== 'received' && (
@@ -139,7 +188,7 @@ export function RequestDetailPage({ id }: { id: number }) {
                   {rights.receive && r.status === 'received' && (
                     <button className="btn" disabled={act.busy} onClick={() => post('reopen')}>{t('reopen')}</button>
                   )}
-                  {rights.requests && (
+                  {rights.changeRequest(r.created_by) && (
                     <button className="btn danger" disabled={act.busy} onClick={remove}><Icon name="trash" size={18} /> {t('delete')}</button>
                   )}
                 </div>
@@ -173,6 +222,8 @@ export function RequestDetailPage({ id }: { id: number }) {
                   );
                 })}
               </div>
+
+              <Documents requestId={id} files={r.files} onChange={q.reload} />
 
               <div className="line" style={{ alignItems: 'center' }}>
                 <h2>{t('payments')}</h2>

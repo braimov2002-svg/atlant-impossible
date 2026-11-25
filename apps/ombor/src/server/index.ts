@@ -4,6 +4,7 @@ import { sameOrigin, signedIn } from './auth';
 import type { Env } from './db';
 import auth from './routes/auth';
 import dashboard from './routes/dashboard';
+import files from './routes/files';
 import imports from './routes/import';
 import payments from './routes/payments';
 import receipts from './routes/receipts';
@@ -24,6 +25,7 @@ app.route('/payments', payments);
 app.route('/receipts', receipts);
 app.route('/dashboard', dashboard);
 app.route('/import', imports);
+app.route('/', files);
 app.route('/', refs);
 
 app.notFound((c) => c.json({ error: 'not_found' }, 404));

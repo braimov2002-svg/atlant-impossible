@@ -11,20 +11,27 @@ let stop: () => Promise<void>;
 /** A signed-in browser: remembers its cookie between calls. */
 function client() {
   let cookie = '';
-  return async (method: string, path: string, body?: unknown) => {
+  /** The plain response; `body` may be a form with a file. */
+  const raw = async (method: string, path: string, body?: unknown) => {
+    const form = body instanceof FormData;
     const res = await app.request(
       `http://test/api${path}`,
       {
         method,
-        headers: { 'content-type': 'application/json', ...(cookie ? { cookie } : {}) },
-        body: body === undefined ? undefined : JSON.stringify(body),
+        headers: { ...(form ? {} : { 'content-type': 'application/json' }), ...(cookie ? { cookie } : {}) },
+        body: body === undefined ? undefined : form ? body : JSON.stringify(body),
       },
       env,
     );
     const set = res.headers.get('set-cookie');
     if (set) cookie = set.split(';')[0];
+    return res;
+  };
+  const json = async (method: string, path: string, body?: unknown) => {
+    const res = await raw(method, path, body);
     return { status: res.status, body: (await res.json()) as any };
   };
+  return Object.assign(json, { raw });
 }
 
 const admin = client();
@@ -39,7 +46,7 @@ beforeAll(async () => {
   });
   env = proxy.env;
   stop = proxy.dispose;
-  const sql = ['0001_init.sql', '0002_corrections.sql']
+  const sql = ['0001_init.sql', '0002_corrections.sql', '0003_files.sql']
     .map((f) => readFileSync(`${root}migrations/${f}`, 'utf8').replace(/--.*$/gm, ''))
     .join('\n');
   for (const stmt of sql.split(';').map((s) => s.trim()).filter(Boolean)) await env.DB.prepare(stmt).run();
@@ -123,6 +130,30 @@ describe('request → payment → receipt', () => {
     expect((await warehouse('POST', '/requests', { ...body, items: [] })).status).toBe(400);
   });
 
+  it('lets foremen and masters hand in requests and change only their own', async () => {
+    const foreman = client();
+    const master = client();
+    for (const [c, login, role] of [[foreman, 'prorab', 'foreman'], [master, 'master', 'master']] as const) {
+      expect((await admin('POST', '/users', { login, name: login, role, password: 'parol123' })).status).toBe(200);
+      await c('POST', '/auth/login', { login, password: 'parol123' });
+    }
+    const body = { date: '2026-10-05', object_id: objectId, items: [{ name: 'Цемент', unit: 'мешок', qty: 40 }] };
+    const mine = await foreman('POST', '/requests', body);
+    expect(mine.body.number).toBe('АС-001-10-2026');
+    expect((await admin('POST', '/requests', body)).body.number).toBe('АС-002-10-2026'); // the head of the warehouse too
+    const edit = { number: mine.body.number, ...body, items: [{ name: 'Цемент', unit: 'мешок', qty: 50 }] };
+    expect((await master('PUT', `/requests/${mine.body.id}`, edit)).status).toBe(403);
+    expect((await master('DELETE', `/requests/${mine.body.id}`)).status).toBe(403);
+    expect((await foreman('PUT', `/requests/${requestId}`, edit)).status).toBe(403); // the warehouse keeper's request
+    expect((await foreman('PUT', `/requests/${mine.body.id}`, edit)).status).toBe(200);
+    // They only ask: no payments, no receiving, no receipts journal.
+    expect((await foreman('POST', '/payments', { request_id: mine.body.id, supplier: 'X', amount: 1 })).status).toBe(403);
+    expect((await master('POST', `/requests/${mine.body.id}/receive`, { date: '2026-10-06', lines: [] })).status).toBe(403);
+    expect((await master('POST', '/receipts', { date: '2026-10-06', name: 'x', qty: 1 })).status).toBe(403);
+    expect((await foreman('DELETE', `/requests/${mine.body.id}`)).status).toBe(200);
+    expect((await admin('DELETE', `/requests/${(await boss('GET', '/requests?from=2026-10-01&to=2026-10-31')).body.rows[0].id}`)).status).toBe(200);
+  });
+
   it('shows the request with nothing received yet', async () => {
     const d = (await boss('GET', `/requests/${requestId}`)).body;
     expect(d).toMatchObject({ number: 'АС-001-11-2026', object: 'Балтон', status: 'open', item_count: 2 });
@@ -162,6 +193,39 @@ describe('request → payment → receipt', () => {
     expect(list.sum).toBe(18 * 700_000 + 12 * 9_000_000);
     expect(list.rows[0]).toMatchObject({ object: 'Балтон', supplier: 'METALL SAVDO', invoice_no: '1375' });
   });
+
+  it('keeps contracts attached to a request', async () => {
+    const upload = (c: ReturnType<typeof client>, name: string, bytes: Uint8Array) => {
+      const form = new FormData();
+      form.append('file', new File([bytes as BlobPart], name));
+      return c.raw('POST', `/requests/${requestId}/files`, form);
+    };
+    // Bigger than one stored part, so the pieces must be joined back in order.
+    const pdf = new Uint8Array(1_300_000).map((_, i) => (i * 31) % 251);
+    expect((await upload(boss, 'шартнома.pdf', pdf)).status).toBe(403);
+    expect((await upload(supply, 'virus.html', pdf)).status).toBe(400);
+    expect((await upload(supply, 'empty.pdf', new Uint8Array(0))).status).toBe(400);
+    expect((await upload(supply, 'huge.pdf', new Uint8Array(10 * 1024 * 1024 + 1))).status).toBe(400);
+    expect((await upload(supply, 'Шартнома №119.pdf', pdf)).status).toBe(200);
+    expect((await upload(warehouse, 'накладной.jpg', pdf.slice(0, 5000))).status).toBe(200);
+    expect((await upload(admin, 'смета.xlsx', pdf.slice(0, 100))).status).toBe(200);
+
+    const files = (await boss('GET', `/requests/${requestId}`)).body.files;
+    expect(files.map((f: any) => [f.name, f.size, f.uploaded_by_name])).toEqual([
+      ['Шартнома №119.pdf', 1_300_000, 'snab'], ['накладной.jpg', 5000, 'ombor'], ['смета.xlsx', 100, 'Админ'],
+    ]);
+    const got = await boss.raw('GET', `/files/${files[0].id}`);
+    expect(got.headers.get('content-type')).toBe('application/pdf');
+    expect(got.headers.get('content-disposition')).toContain('inline');
+    expect(new Uint8Array(await got.arrayBuffer())).toEqual(pdf);
+    expect((await boss.raw('GET', `/files/${files[2].id}`)).headers.get('content-disposition')).toContain('attachment');
+    expect((await client().raw('GET', `/files/${files[0].id}`)).status).toBe(401);
+
+    expect((await warehouse('DELETE', `/files/${files[0].id}`)).status).toBe(403); // someone else's
+    expect((await warehouse('DELETE', `/files/${files[1].id}`)).status).toBe(200);
+    expect((await admin('DELETE', `/files/${files[0].id}`)).status).toBe(200);
+    expect((await boss('GET', `/requests/${requestId}`)).body.files).toHaveLength(1);
+  }, 30_000);
 
   it('refuses to drop a request line that already has receipts', async () => {
     const d = (await boss('GET', `/requests/${requestId}`)).body;

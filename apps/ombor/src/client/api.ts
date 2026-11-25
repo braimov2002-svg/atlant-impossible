@@ -26,6 +26,21 @@ export async function api<T = any>(method: string, path: string, body?: unknown)
   return data as T;
 }
 
+/** Sends one file (a contract) to the server. */
+export async function upload<T = any>(path: string, file: File): Promise<T> {
+  const form = new FormData();
+  form.append('file', file);
+  let res: Response;
+  try {
+    res = await fetch(`/api${path}`, { method: 'POST', body: form, credentials: 'same-origin' });
+  } catch {
+    throw new ApiError('network', 0);
+  }
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new ApiError((data as any).error ?? 'server_error', res.status);
+  return data as T;
+}
+
 export const qs = (params: Record<string, string | number | null | undefined>) => {
   const p = new URLSearchParams();
   for (const [k, v] of Object.entries(params)) if (v !== null && v !== undefined && v !== '') p.set(k, String(v));

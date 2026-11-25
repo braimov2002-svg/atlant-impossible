@@ -36,6 +36,8 @@ const NAV: Record<User['role'], NavItem[]> = {
   warehouse: [N.home, N.receipts, N.requests, N.supply, N.menu],
   supply: [N.home, N.requests, N.toPay, N.objects, N.menu],
   boss: [N.home, N.boss, N.supply, N.objects, N.menu],
+  foreman: [N.home, N.requests, N.objects, N.menu],
+  master: [N.home, N.requests, N.objects, N.menu],
   admin: [N.home, N.receipts, N.requests, N.supply, N.menu], // the head of the warehouse
 };
 

@@ -1,15 +1,19 @@
 import { Hono } from 'hono';
-import type { Payment, RequestDetail, RequestItem, RequestSummary } from '../../shared/types';
+import { ownOnly, type Payment, type RequestDetail, type RequestItem, type RequestSummary, type User } from '../../shared/types';
 import { only } from '../auth';
 import { all, bad, batch, date, first, lc, like, need, num, refId, run, text, type Env } from '../db';
+import { filesOf } from './files';
 import { PAYMENT_SELECT } from './payments';
 
 const app = new Hono<Env>();
-const writers = only('warehouse', 'supply');
+const writers = only('warehouse', 'supply', 'foreman', 'master');
+
+/** Foremen and masters may change only the requests they handed in. */
+const mayChange = (user: User, r: RequestDetail) => !ownOnly(user.role) || r.created_by === user.id;
 
 const SUMMARY = `
   SELECT r.id, r.number, r.date, r.object_id, o.name AS object, r.status, r.note,
-         u.name AS created_by_name,
+         r.created_by, u.name AS created_by_name,
          (SELECT count(*) FROM request_items i WHERE i.request_id = r.id) AS item_count,
          (SELECT count(*) FROM payments p WHERE p.request_id = r.id AND p.status = 'pending') AS pending_payments
     FROM requests r
@@ -105,7 +109,7 @@ export async function detail(db: D1Database, id: number): Promise<RequestDetail 
     id,
   );
   const payments = await all<Payment>(db, `${PAYMENT_SELECT} WHERE p.request_id = ? ORDER BY p.id DESC`, id);
-  return { ...r, items, payments };
+  return { ...r, items, payments, files: await filesOf(db, id) };
 }
 
 app.get('/:id', async (c) => {
@@ -155,6 +159,7 @@ app.put('/:id', writers, async (c) => {
   const b = await c.req.json();
   const old = await detail(c.env.DB, id);
   if (!old) return bad('not_found', 404);
+  if (!mayChange(c.get('user'), old)) bad('forbidden', 403);
   const day = date(b.date, 'date')!;
   const number = need(b.number, 'number', 40);
   const objectId = Number(b.object_id) || bad('required:object');
@@ -190,8 +195,10 @@ app.delete('/:id', writers, async (c) => {
   const id = Number(c.req.param('id'));
   const d = await detail(c.env.DB, id);
   if (!d) return bad('not_found', 404);
+  if (!mayChange(c.get('user'), d)) bad('forbidden', 403);
   const used = d.payments.length > 0 || d.items.some((i) => i.received > 0);
   if (used && c.get('user').role !== 'admin') bad('request_in_use', 409);
+  await run(c.env.DB, 'DELETE FROM file_parts WHERE file_id IN (SELECT id FROM files WHERE request_id = ?)', id);
   await run(c.env.DB, 'DELETE FROM requests WHERE id = ?', id);
   return c.json({ ok: true });
 });

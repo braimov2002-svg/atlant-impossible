@@ -1,9 +1,12 @@
-export type Role = 'admin' | 'warehouse' | 'supply' | 'boss';
+export type Role = 'admin' | 'warehouse' | 'supply' | 'boss' | 'foreman' | 'master';
 export type Lang = 'uz' | 'ru';
 export type RequestStatus = 'open' | 'approved' | 'received';
 export type PaymentStatus = 'pending' | 'approved' | 'rejected' | 'paid';
 
-export const ROLES: Role[] = ['admin', 'warehouse', 'supply', 'boss'];
+export const ROLES: Role[] = ['admin', 'warehouse', 'supply', 'boss', 'foreman', 'master'];
+
+/** Foremen and masters hand in requests and may change only their own. */
+export const ownOnly = (role: Role) => role === 'foreman' || role === 'master';
 
 export interface User {
   id: number;
@@ -57,14 +60,26 @@ export interface RequestSummary {
   object: string | null;
   status: RequestStatus;
   note: string;
+  created_by: number | null;
   created_by_name: string | null;
   item_count: number;
   pending_payments: number;
 }
 
+export interface FileInfo {
+  id: number;
+  name: string;
+  mime: string;
+  size: number;
+  uploaded_by: number | null;
+  uploaded_by_name: string | null;
+  created_at: string;
+}
+
 export interface RequestDetail extends RequestSummary {
   items: RequestItem[];
   payments: Payment[];
+  files: FileInfo[];
 }
 
 export interface Receipt {

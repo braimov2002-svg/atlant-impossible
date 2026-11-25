@@ -2,7 +2,7 @@ CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   login TEXT NOT NULL UNIQUE, -- always stored lower-cased
   name TEXT NOT NULL,
-  role TEXT NOT NULL CHECK (role IN ('admin','warehouse','supply','boss')),
+  role TEXT NOT NULL CHECK (role IN ('admin','warehouse','supply','boss','foreman','master')),
   lang TEXT NOT NULL DEFAULT 'uz' CHECK (lang IN ('uz','ru')),
   pass_hash TEXT NOT NULL,
   pass_salt TEXT NOT NULL,

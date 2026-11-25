@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import type { Lang, PaymentStatus, RequestStatus, User } from '../shared/types';
+import { ownOnly, type Lang, type PaymentStatus, type RequestStatus, type User } from '../shared/types';
 import { errorText, type Key, type Tr } from './i18n';
 
 // --- app-wide state ------------------------------------------------------
@@ -26,10 +26,13 @@ export const useApp = () => useContext(Ctx);
 /** What each role may change; the server enforces the same rules. */
 export const can = (u: User) => ({
   requests: u.role !== 'boss',
+  /** May this user edit or delete a request created by `authorId`? */
+  changeRequest: (authorId: number | null) => u.role !== 'boss' && (!ownOnly(u.role) || authorId === u.id),
   receive: u.role === 'admin' || u.role === 'warehouse',
   pay: u.role === 'admin' || u.role === 'supply',
+  attach: u.role === 'admin' || u.role === 'supply' || u.role === 'warehouse',
   decide: u.role === 'admin' || u.role === 'boss',
-  markPaid: u.role !== 'warehouse',
+  markPaid: u.role === 'admin' || u.role === 'supply' || u.role === 'boss',
   objects: u.role === 'admin' || u.role === 'boss',
   admin: u.role === 'admin',
 });
@@ -152,6 +155,7 @@ const ICONS: Record<string, string> = {
   phone: 'M8 3h8v18H8zM11 18h2',
   key: 'M14 10a4 4 0 10-3.5 3.9L4 20v1h3v-2h2v-2h2l1.6-1.6',
   filter: 'M3 5h18l-7 8v6l-4-2v-4z',
+  file: 'M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h6',
   globe: 'M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18',
 };
 

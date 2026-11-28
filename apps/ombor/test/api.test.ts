@@ -159,6 +159,7 @@ describe('request → payment → receipt', () => {
     expect(d).toMatchObject({ number: 'АС-001-11-2026', object: 'Балтон', status: 'open', item_count: 2 });
     items = d.items;
     expect(items.map((i) => i.received)).toEqual([0, 0]);
+    expect(d.signers).toEqual({ warehouse: 'Админ', foreman: '', manager: 'rahbar' });
   });
 
   it('lets only supply ask for a payment and only the boss approve it', async () => {
@@ -188,6 +189,11 @@ describe('request → payment → receipt', () => {
     d = (await boss('GET', `/requests/${requestId}`)).body;
     expect(d.status).toBe('received');
     expect(d.items.map((i: any) => i.received)).toEqual([18, 12]);
+    // The request shows what arrived, with prices and the invoice.
+    expect(d.sum).toBe(18 * 700_000 + 12 * 9_000_000);
+    expect(d.receipts.map((x: any) => [x.name, x.qty, x.price, x.invoice_no])).toEqual([
+      ['Бетон М300', 10, 700_000, '1375'], ['Бетон М300', 8, 700_000, '1375'], ['Арматура Д 12', 12, 9_000_000, '1375'],
+    ]);
     const list = (await boss('GET', '/receipts?q=АС-001-11-2026')).body;
     expect(list.total).toBe(3);
     expect(list.sum).toBe(18 * 700_000 + 12 * 9_000_000);
@@ -298,7 +304,7 @@ describe('Excel import', () => {
     const sheron = folders.find((o: any) => o.name === 'Шерон');
     expect(sheron).toMatchObject({ prefix: 'SHERON', requests: 1, open_requests: 0, receipts: 2, sum: 50 * 302500 });
     const list = (await boss('GET', `/requests?object_id=${sheron.id}`)).body.rows;
-    expect(list[0]).toMatchObject({ number: 'SHERON 004', status: 'received', item_count: 2 });
+    expect(list[0]).toMatchObject({ number: 'SHERON 004', status: 'received', item_count: 2, sum: 50 * 302500 });
     expect((await boss('GET', `/requests/${list[0].id}`)).body.items.map((i: any) => i.received)).toEqual([50, 20]);
   });
 

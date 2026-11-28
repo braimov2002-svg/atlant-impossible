@@ -76,7 +76,9 @@ export function mapWorkbook(prihod: SheetRow[], zayavka: SheetRow[]): Workbook {
     const code = readCode(str(c[1]));
     noteObject(code);
     const total = numOf(c[6]);
-    const price = typeof c[5] === 'number' && c[5] > 0 ? c[5] : Number.isFinite(total) && total > 0 ? total / qty : null;
+    // The «Сумма» column is what the workbook totals, so it decides the price
+    // (in a few rows «Цена» × «Кол-во» does not equal it); «Цена» is the fallback.
+    const price = Number.isFinite(total) && total > 0 ? total / qty : typeof c[5] === 'number' && c[5] > 0 ? c[5] : null;
     const row = {
       date, code: code.request ?? str(c[1]), object: code.object, name, unit: str(c[3]), qty, price,
       supplier: str(c[7]), buyer: str(c[8]), contract_no: str(c[10]), invoice_no: str(c[11]), vehicle: str(c[12]),

@@ -156,7 +156,7 @@ export function ReceiptsJournal({ objectId = '', missing }: { objectId?: string;
                   <thead>
                     <tr>
                       <th>{t('name')}</th><th>{t('date')}</th><th>{t('code')}</th><th className="num">{t('qty')}</th>
-                      <th className="num">{t('price')}</th><th className="num">{t('sum')}</th><th>{t('supplier')}</th><th />
+                      <th className="num">{t('price')}</th><th className="num">{t('sum')}</th><th>{t('supplier')}</th><th>{t('contract_no')}</th><th />
                     </tr>
                   </thead>
                   <tbody>
@@ -169,6 +169,7 @@ export function ReceiptsJournal({ objectId = '', missing }: { objectId?: string;
                         <td data-l={t('price')} className="num">{x.price ? fmtMoney(x.price) : <span className="muted">{t('no_price')}</span>}</td>
                         <td data-l={t('sum')} className="num"><b>{x.price ? fmtMoney(x.qty * x.price) : ''}</b></td>
                         <td data-l={t('supplier')}>{x.supplier}</td>
+                        <td data-l={t('contract_no')}>{x.contract_no}</td>
                         <td>{mayEdit && (
                           <button className="iconbtn" aria-label={`${t('edit')}: ${x.name}`} onClick={() => { setEditing(x); window.scrollTo(0, 0); }}>
                             <Icon name="edit" size={18} />

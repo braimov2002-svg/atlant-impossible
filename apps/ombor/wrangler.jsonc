@@ -13,8 +13,7 @@
     {
       "binding": "DB",
       "database_name": "ombor",
-      // Replaced by the deploy workflow with the real id of your D1 database.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "0cd4d560-4379-45a2-917b-1bb0520dea25",
       "migrations_dir": "migrations"
     }
   ]

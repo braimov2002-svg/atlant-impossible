@@ -7,7 +7,8 @@
     "dev": "vite build && wrangler dev",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
-    "deploy": "vite build && wrangler d1 migrations apply ombor --remote && wrangler deploy"
+    "deploy": "vite build && wrangler d1 migrations apply ombor --remote && wrangler deploy",
+    "deploy:embedded": "vite build && node scripts/embed.mjs && wrangler d1 migrations apply ombor --remote --config .embedded/wrangler.json && wrangler deploy --config .embedded/wrangler.json"
   },
   "dependencies": {
     "fflate": "^0.8.2",

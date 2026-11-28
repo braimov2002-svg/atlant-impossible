@@ -64,6 +64,8 @@ export interface RequestSummary {
   created_by_name: string | null;
   item_count: number;
   pending_payments: number;
+  /** What has arrived for this request so far, in money. */
+  sum: number;
 }
 
 export interface FileInfo {
@@ -80,6 +82,8 @@ export interface RequestDetail extends RequestSummary {
   items: RequestItem[];
   payments: Payment[];
   files: FileInfo[];
+  /** Receipt rows of this request: prices, suppliers, contracts. */
+  receipts: Receipt[];
 }
 
 export interface Receipt {

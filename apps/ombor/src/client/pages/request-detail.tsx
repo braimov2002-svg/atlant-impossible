@@ -234,6 +234,39 @@ export function RequestDetailPage({ id }: { id: number }) {
                 })}
               </div>
 
+              {r.receipts.length > 0 && (
+                <>
+                  <div className="line" style={{ alignItems: 'center' }}>
+                    <h2>{t('receipts')}</h2>
+                    <b>{fmtMoney(r.sum)} {t('sum_unit')}</b>
+                  </div>
+                  <div className="card flush">
+                    <table className="tbl">
+                      <thead>
+                        <tr>
+                          <th>{t('name')}</th><th>{t('date')}</th><th className="num">{t('qty')}</th><th className="num">{t('price')}</th>
+                          <th className="num">{t('sum')}</th><th>{t('supplier')}</th><th>{t('contract_no')}</th><th>{t('invoice_no')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {r.receipts.map((x) => (
+                          <tr key={x.id}>
+                            <td className="main-cell">{x.name}</td>
+                            <td data-l={t('date')} className="nowrap">{fmtDate(x.date)}</td>
+                            <td data-l={t('qty')} className="num">{fmtQty(x.qty)} {x.unit}</td>
+                            <td data-l={t('price')} className="num">{x.price ? fmtMoney(x.price) : <span className="muted">{t('no_price')}</span>}</td>
+                            <td data-l={t('sum')} className="num"><b>{x.price ? fmtMoney(x.qty * x.price) : ''}</b></td>
+                            <td data-l={t('supplier')}>{x.supplier}</td>
+                            <td data-l={t('contract_no')}>{x.contract_no}</td>
+                            <td data-l={t('invoice_no')}>{x.invoice_no}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
+
               <Documents requestId={id} files={r.files} onChange={q.reload} />
 
               <div className="line" style={{ alignItems: 'center' }}>

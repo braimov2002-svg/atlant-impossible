@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { ownOnly, type Payment, type RequestDetail, type RequestItem, type RequestSummary, type User } from '../../shared/types';
+import { ownOnly, type Payment, type Receipt, type RequestDetail, type RequestItem, type RequestSummary, type User } from '../../shared/types';
 import { only } from '../auth';
 import { all, bad, batch, date, first, lc, like, need, num, refId, run, text, type Env } from '../db';
 import { filesOf } from './files';
@@ -15,7 +15,9 @@ const SUMMARY = `
   SELECT r.id, r.number, r.date, r.object_id, o.name AS object, r.status, r.note,
          r.created_by, u.name AS created_by_name,
          (SELECT count(*) FROM request_items i WHERE i.request_id = r.id) AS item_count,
-         (SELECT count(*) FROM payments p WHERE p.request_id = r.id AND p.status = 'pending') AS pending_payments
+         (SELECT count(*) FROM payments p WHERE p.request_id = r.id AND p.status = 'pending') AS pending_payments,
+         (SELECT coalesce(sum(x.qty * x.price), 0) FROM receipts x JOIN request_items i ON i.id = x.request_item_id
+           WHERE i.request_id = r.id) AS sum
     FROM requests r
     LEFT JOIN objects o ON o.id = r.object_id
     LEFT JOIN users u ON u.id = r.created_by`;
@@ -109,7 +111,15 @@ export async function detail(db: D1Database, id: number): Promise<RequestDetail 
     id,
   );
   const payments = await all<Payment>(db, `${PAYMENT_SELECT} WHERE p.request_id = ? ORDER BY p.id DESC`, id);
-  return { ...r, items, payments, files: await filesOf(db, id) };
+  const receipts = await all<Receipt>(
+    db,
+    `SELECT x.id, x.date, x.code, x.object_id, NULL AS object, x.request_item_id, x.name, x.unit, x.qty, x.price,
+            s.name AS supplier, x.buyer, x.contract_no, x.invoice_no, x.vehicle, x.vehicle_date, x.currency, x.note
+       FROM receipts x JOIN request_items i ON i.id = x.request_item_id LEFT JOIN suppliers s ON s.id = x.supplier_id
+      WHERE i.request_id = ? ORDER BY x.date, x.id`,
+    id,
+  );
+  return { ...r, items, payments, files: await filesOf(db, id), receipts };
 }
 
 app.get('/:id', async (c) => {

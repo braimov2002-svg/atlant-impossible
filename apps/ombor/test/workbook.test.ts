@@ -29,7 +29,7 @@ describe('mapWorkbook', () => {
     [45958, 'АС-001-10-2025', 'Диск', 'шт', 100, 9940, 994000, 'ASBOB SAVDO'],
     [45958, 'АС-001-10-2025', 'Диск', 'шт', 100, 9940, 994000, 'ASBOB SAVDO'],
     [46233, 'SHERON 004', 'Фанера', 'шт', 50, null, 15125000, 'YOGOCH SAVDO'],
-    [46233, 'Лукоил', 'Гвоздь', 'кг', 20],
+    [46233, 'Лукоил', 'Гвоздь', 'кг', 20, 11000, 230000], // the sum wins over price × qty
     [46233, 'Лукоил', 'Без количества', 'кг', null],
   ]);
   const zayavka = rows([
@@ -42,6 +42,7 @@ describe('mapWorkbook', () => {
     expect(w.receipts).toHaveLength(5);
     expect(w.receipts[0]).toMatchObject({ date: '2025-10-27', code: 'АС-001-10-2025', object: 'Балтон', price: null });
     expect(w.receipts[3]).toMatchObject({ object: 'Шерон', code: 'SHERON 004', price: 302500 });
+    expect(w.receipts[4]).toMatchObject({ name: 'Гвоздь', price: 11500 });
   });
 
   it('gives identical rows different keys', () => {

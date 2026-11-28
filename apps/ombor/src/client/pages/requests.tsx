@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ObjectFolder, RequestStatus, RequestSummary } from '../../shared/types';
 import { api, qs } from '../api';
-import { can, Empty, fmtDate, Icon, Loaded, PageHead, RequestBadge, useApp, useLoad } from '../ui';
+import { can, Empty, fmtDate, fmtMoney, Icon, Loaded, PageHead, RequestBadge, useApp, useLoad } from '../ui';
 
 const PAGE = 30;
 
@@ -76,6 +76,7 @@ export function RequestList({ objectId }: { objectId?: number }) {
                     <div className="meta">
                       <RequestBadge status={r.status} />
                       <span>{r.item_count} {t('positions')}</span>
+                      {r.sum > 0 && <b style={{ color: 'var(--ink)' }}>{fmtMoney(r.sum)} {t('sum_unit')}</b>}
                     </div>
                   </a>
                 ))}

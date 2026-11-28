@@ -84,6 +84,8 @@ export interface RequestDetail extends RequestSummary {
   files: FileInfo[];
   /** Receipt rows of this request: prices, suppliers, contracts. */
   receipts: Receipt[];
+  /** Names printed under the signature lines of the request form. */
+  signers: { warehouse: string; foreman: string; manager: string };
 }
 
 export interface Receipt {

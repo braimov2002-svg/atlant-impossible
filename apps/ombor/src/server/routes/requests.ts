@@ -119,7 +119,22 @@ export async function detail(db: D1Database, id: number): Promise<RequestDetail 
       WHERE i.request_id = ? ORDER BY x.date, x.id`,
     id,
   );
-  return { ...r, items, payments, files: await filesOf(db, id), receipts };
+  // The form is signed by the head of the warehouse, the foreman who asked
+  // and the project manager.
+  const people = await first<{ warehouse: string | null; manager: string | null; author_role: string | null }>(
+    db,
+    `SELECT (SELECT name FROM users WHERE role = 'admin' AND active = 1 ORDER BY id LIMIT 1) AS warehouse,
+            (SELECT name FROM users WHERE role = 'boss' AND active = 1 ORDER BY id LIMIT 1) AS manager,
+            (SELECT role FROM users WHERE id = ?) AS author_role`,
+    r.created_by,
+  );
+  const byForeman = people?.author_role === 'foreman' || people?.author_role === 'master';
+  const signers = {
+    warehouse: people?.warehouse ?? '',
+    foreman: (byForeman ? r.created_by_name : items.find((i) => i.ordered_by)?.ordered_by) ?? '',
+    manager: people?.manager ?? '',
+  };
+  return { ...r, items, payments, files: await filesOf(db, id), receipts, signers };
 }
 
 app.get('/:id', async (c) => {

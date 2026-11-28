@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { FileInfo, Payment, RequestDetail } from '../../shared/types';
 import { api, upload } from '../api';
 import { exportRequest } from '../excel';
+import { FORM_HEAD, FORM_MIN_ROWS } from '../form';
 import type { Key } from '../i18n';
 import {
   can, ErrorLine, Field, fmtDate, fmtMoney, fmtStamp, fmtQty, go, Icon, Loaded, PageHead, PaymentBadge, RequestBadge, Suggest,
@@ -290,23 +291,23 @@ export function RequestDetailPage({ id }: { id: number }) {
   );
 }
 
-/** The paper form of a request, shown only when printing (or saving as PDF). */
+/** The paper form of a request, shown only when printing. Same layout as the PDF. */
 function PrintSheet({ r }: { r: RequestDetail }) {
+  const blank = Math.max(0, FORM_MIN_ROWS - r.items.length);
   return (
     <div className="print-only sheet">
       <div className="sheet-head">
         <img src="/logo.png" alt="Atlant Construction" />
+        <h2>ЗАЯВКА</h2>
         <div>
-          <h2>ЗАЯВКА № {r.number}</h2>
-          <p>Объект: {r.object} · Дата / Сана: {fmtDate(r.date)}</p>
+          <p>Tarih / дата: <b>{fmtDate(r.date)}</b></p>
+          <p>Istek No / Заявка №: <b>{r.number}</b></p>
+          <p>Объект: <b>{r.object}</b></p>
         </div>
       </div>
       <table>
         <thead>
-          <tr>
-            <th>№</th><th>Описание и технические характеристики</th><th>Ед. изм.</th><th>Кол-во</th>
-            <th>Место использования</th><th>Описание работы</th><th>Кто заказал</th><th>Характеристика</th><th>Исполнитель (снабженец)</th>
-          </tr>
+          <tr>{FORM_HEAD.map((h) => <th key={h} style={{ whiteSpace: 'pre-line' }}>{h}</th>)}</tr>
         </thead>
         <tbody>
           {r.items.map((it, i) => (
@@ -315,13 +316,16 @@ function PrintSheet({ r }: { r: RequestDetail }) {
               <td>{it.place}</td><td>{it.work}</td><td>{it.ordered_by}</td><td>{it.spec}</td><td>{it.executor}</td>
             </tr>
           ))}
+          {Array.from({ length: blank }, (_, i) => (
+            <tr key={`b${i}`}><td>{r.items.length + i + 1}</td>{FORM_HEAD.slice(1).map((h) => <td key={h}>&nbsp;</td>)}</tr>
+          ))}
         </tbody>
       </table>
       {r.note && <p style={{ marginTop: 8 }}>Примечание: {r.note}</p>}
       <div className="signs">
-        <span>Заявку составил: ____________________</span>
-        <span>Снабженец: ____________________</span>
-        <span>Руководитель: ____________________</span>
+        {([['Зав Склад', r.signers.warehouse], ['Прораб', r.signers.foreman], ['Руководитель проекта', r.signers.manager]] as const).map(([role, name]) => (
+          <div key={role}><b>{role}</b><span>{name || '\u00a0'}</span><i /></div>
+        ))}
       </div>
     </div>
   );

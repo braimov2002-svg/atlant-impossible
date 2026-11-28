@@ -159,6 +159,7 @@ describe('request → payment → receipt', () => {
     expect(d).toMatchObject({ number: 'АС-001-11-2026', object: 'Балтон', status: 'open', item_count: 2 });
     items = d.items;
     expect(items.map((i) => i.received)).toEqual([0, 0]);
+    expect(d.signers).toEqual({ warehouse: 'Админ', foreman: '', manager: 'rahbar' });
   });
 
   it('lets only supply ask for a payment and only the boss approve it', async () => {

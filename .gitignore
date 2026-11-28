@@ -9,3 +9,4 @@ release/
 next-env.d.ts
 coverage/
 .wrangler/
+.embedded/

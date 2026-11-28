@@ -32,6 +32,10 @@ PDF файл беради; телефонда «Улашиш» билан Telegr
 приходлар рўйхати ва уларни тузатиш. Ҳар бир тузатиш ва ўчириш тарихда
 сақланади: ким, қачон, нима ўзгарди ва сабаби.
 
+## Сайт манзили
+
+**https://ombor.braimov2002.workers.dev**
+
 ## Интернетга чиқариш (бир марта, бепул)
 
 1. [dash.cloudflare.com/sign-up](https://dash.cloudflare.com/sign-up) да бепул ҳисоб очинг.
@@ -79,4 +83,7 @@ cd apps/ombor && npx wrangler d1 migrations apply ombor --local && npx wrangler 
 - `src/server` — Hono API (Cloudflare Worker), маълумотлар D1 (SQLite) да.
 - `src/client` — React. Excel’ни браузернинг ўзи ўқийди (`xlsx.ts`, `workbook.ts`).
 - Тестлар: `npx vitest run apps/ombor` (API локал D1 базасида текширилади).
+- `npm run deploy:embedded -w @atlant/ombor` — сайт файлларини Worker ичига жойлаб чиқаради
+  (`scripts/embed.mjs`). Cloudflare’нинг алоҳида файл юклаши ишламайдиган тармоқлар учун
+  (юклашни ўз калити билан имзолайди, баъзи прокси уни алмаштириб қўяди).
 - Компания маълумотлари репозиторийга қўшилмайди — улар сайт орқали юкланади.
